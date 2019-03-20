@@ -8,6 +8,7 @@ import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import rootReducer from './reducers/index';
 import { loadState, saveState } from './LocalStorage';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // import * as serviceWorker from './serviceWorker';
 
