@@ -9,6 +9,8 @@ import logger from 'redux-logger';
 import rootReducer from './reducers/index';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { loadState, saveState } from './LocalStorage';
+import { Onboarding } from './components/index'
+
 // import * as serviceWorker from './serviceWorker';
 
 
@@ -30,7 +32,8 @@ store.subscribe(() => {
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <Route path='/' component={App} />
+      <Route path='/onboarding' component={Onboarding} />
+      <Route path='/home' component={App} />
     </Router>
   </Provider>,
   document.getElementById("root")
