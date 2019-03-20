@@ -7,9 +7,10 @@ import { applyMiddleware, createStore } from "redux";
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import rootReducer from './reducers/index';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { loadState, saveState } from './LocalStorage';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Onboarding } from './components/index'
+
 // import * as serviceWorker from './serviceWorker';
 
 
