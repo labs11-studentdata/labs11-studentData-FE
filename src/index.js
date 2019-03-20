@@ -9,7 +9,6 @@ import logger from 'redux-logger';
 import rootReducer from './reducers/index';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { loadState, saveState } from './LocalStorage';
-
 // import * as serviceWorker from './serviceWorker';
 
 
