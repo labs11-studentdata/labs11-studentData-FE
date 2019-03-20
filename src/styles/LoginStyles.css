@@ -1,0 +1,23 @@
+.loginContainer {
+    padding: 30px;
+    max-width: 50%;
+}
+
+.loginContainer button:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.btnContainer {
+    max-width: 65%;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.setUp {
+    color: gray;
+    text-align: center;
+}
+.setUp a {
+    color: blue;
+    cursor: pointer;
+}
