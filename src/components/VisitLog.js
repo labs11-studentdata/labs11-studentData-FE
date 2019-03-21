@@ -9,7 +9,7 @@ const VisitLog = props => {
           return (
             <div className='visit'>
               <p>Visit {visit.id}</p>
-              <p>{props.date}</p>
+              <p>{visit.date}</p>
             </div>
           )
         })}
