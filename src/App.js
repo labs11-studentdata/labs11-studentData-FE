@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { LoginView, HeaderView } from './views';
+import { Route } from 'react-router-dom';
+import { LoginView, HeaderView, SponsorChildView,  } from './views';
+import { Onboarding } from './components'
+
 import './App.css';
 
 class App extends Component {
@@ -7,7 +10,9 @@ class App extends Component {
     return (
       <div className="App">
         <HeaderView />
-        <LoginView />
+        <Route path='/login' component={LoginView} />
+        <Route path='/onboarding' component={Onboarding} />
+        <Route path='/sponsor' component={SponsorChildView} />
       </div>
     );
   }

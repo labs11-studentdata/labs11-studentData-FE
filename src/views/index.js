@@ -3,3 +3,4 @@
 export { default as LoginView } from './LoginView';
 export { default as HeaderView } from './HeaderView';
 export { default as BoardDashboard } from './BoardDashboard';
+export { default as SponsorChildView } from './SponsorChildView';

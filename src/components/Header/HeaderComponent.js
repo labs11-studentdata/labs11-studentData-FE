@@ -34,7 +34,10 @@ const { classes } = props;
           <Typography variant="h6" color="inherit" className={classes.grow}>
             SchoolMe
           </Typography>
-          <Button color="inherit">{Login}</Button>
+          <Button color="inherit" href='/login'> Login </Button>
+          <Button color="inherit" href='/sponsor'> Sponsor </Button>
+          <Button color="inherit" href='/onboarding'> Onboarding </Button>
+
         </Toolbar>
       </AppBar>
     </div>
