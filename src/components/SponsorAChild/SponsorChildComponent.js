@@ -14,7 +14,7 @@ function SponsorChildComponent(props) {
       <h1>Select a child to sponsor!</h1>
       <div className='studentCardContainer'>
         {props.students.map(student => (
-          <Card className="studentCard">
+          <Card key={student.student_id} className="studentCard">
             <CardActionArea>
             {/* ADD ONCLICK TO CARD AREA ACTION THAT WILL LOAD SINGLE CHILD VIEW */}
               <CardMedia 
