@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { VisitLog, StudentCounter, StudentGrid, IssuesTracker } from '../components/index';
+import { VisitLog, StudentCounter, StudentTable, IssuesTracker } from '../components/index';
 
 class BoardDashboard extends Component {
 
@@ -9,7 +9,7 @@ class BoardDashboard extends Component {
       <div className='admin-db'>
         <VisitLog />
         <StudentCounter />
-        <StudentGrid />
+        <StudentTable />
         <IssuesTracker />
       </div>
     )
