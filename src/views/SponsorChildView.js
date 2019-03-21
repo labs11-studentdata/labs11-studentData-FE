@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { SponsorChildComponent } from '../components'
-
+import { SponsorChildComponent } from '../components';
 const mock = [
     
     {
@@ -77,16 +76,24 @@ const mock = [
 
 class SponsorChildView extends Component {
     state = {
-        students: mock
+        students: mock, 
+        selectedStudent: {}
     }
 
     componentDidMount() {
 
     }
+    sponsorSelected = (e, student) => {
+      e.preventDefault();
+      this.setState({selectedStudent: student})
+    }
 
     render() {
+      console.log(this.state)
         return (
-            <SponsorChildComponent students={this.state.students}/>
+            <>
+            <SponsorChildComponent sponsorSelected={this.sponsorSelected} selectedStudent={this.state.selectedStudent} students={this.state.students}/>
+            </>
         )
     }
 }

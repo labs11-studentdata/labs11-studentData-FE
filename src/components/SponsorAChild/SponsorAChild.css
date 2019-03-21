@@ -1,8 +1,23 @@
+.sponsorChildContainer {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap
+}
+.paymentContainer {
+    position: fixed;
+    margin-top: 2%;
+    margin-left: 5%;
+    width: 34%;
+}
 .studentCardContainer {
+    position: absolute;
+    top: 0;
+    right: 0;
     display: flex;
     flex-wrap: wrap;
-    width: 65vw;
-    margin-left: auto;
+    width: 60%;
+    border: black;
+    justify-content: center;
 }
 
 .studentCard {
