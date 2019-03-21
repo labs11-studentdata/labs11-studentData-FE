@@ -31,11 +31,7 @@ store.subscribe(() => {
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-<<<<<<< HEAD
-      <Route path='/' component={App} />
-=======
       <App/>
->>>>>>> origin/master
     </Router>
   </Provider>,
   document.getElementById("root")

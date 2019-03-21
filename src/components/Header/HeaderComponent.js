@@ -1,8 +1,4 @@
 import React from "react";
-<<<<<<< HEAD
-=======
-import PropTypes from "prop-types";
->>>>>>> origin/master
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
