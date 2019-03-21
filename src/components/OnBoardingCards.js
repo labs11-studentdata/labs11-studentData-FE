@@ -1,13 +1,23 @@
 import React from 'react';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 
-const Card = props => {
-  return(
-    <div className='onboardingCard' key={props.id}>
-        <image src={props.icon} alt={props.iconDescription} />
-        <p>I am a {props.title}</p>
-        <p>{props.subnames}</p>
-    </div>
-  )
+function OnBoardingCard(props) {
+  
+  return (
+      <Card className="onboarding-card">
+        <CardContent>
+          <img src={props.icon} alt={props.iconDesription} />
+          <Typography component="h5">
+            I am a {props.title}
+          </Typography>
+          <Typography component="p">
+            {props.subnames}
+          </Typography>
+        </CardContent>
+      </Card>
+  );
 }
 
-export default Card;
+export default OnBoardingCard;
