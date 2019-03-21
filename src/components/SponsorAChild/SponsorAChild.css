@@ -1,0 +1,16 @@
+.studentCardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    width: 65vw;
+    margin-left: auto;
+}
+
+.studentCard {
+    width: 250px;
+    margin: 10px;
+}
+
+.totalDueLabel {
+    display: inline;
+    color: black;
+}
