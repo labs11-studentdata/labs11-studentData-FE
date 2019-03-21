@@ -7,7 +7,6 @@ import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import { checkPropTypes } from "prop-types";
 
 function LoginComponent(props) {
   return (
@@ -70,12 +69,12 @@ function LoginComponent(props) {
       {props.isRegistering ? (
         <p className="setUp">
           Have an account?{" "}
-          <a onClick={e => props.registerSubmit(e)}> Sign In!</a>
+          <a href="/login" onClick={e => props.registerSubmit(e)}> Sign In!</a>
         </p>
       ) : (
         <p className="setUp">
           Create an account.{" "}
-          <a onClick={e => props.registerSubmit(e)}>Sign Up!</a>
+          <a href="/register" onClick={e => props.registerSubmit(e)}>Sign Up!</a>
         </p>
       )}
     </Paper>

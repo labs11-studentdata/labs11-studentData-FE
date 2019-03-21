@@ -1,5 +1,11 @@
 import React from 'react';
-import Card from './OnBoardingCards';
+
+import OnBoardingCard from './OnBoardingCards';
+import swIcon from './../imgs/social-worker-icon.png';
+import saIcon from './../imgs/school-admin-icon.png';
+import bmIcon from './../imgs/board-member-icon.png';
+
+import './OnBoardingPage.css';
 
 class OnBoarding extends React.Component {
 
@@ -14,12 +20,18 @@ class OnBoarding extends React.Component {
 
     render() {
       return(
-            <div className="onboarding-container">
-                <h3>Tell us who you are!</h3>
-                <Card id={1} icon={''} iconDescription={"Admin Icon"} title={"School Administrator"} surnames={''} /> 
-                <Card id={2} icon={''} iconDescription={"Social Worker Icon"} title={"Social Worker"} surnames={''} /> 
-                <Card id={3} icon={''} iconDescription={"Board Member Icon"} title={"Board Member"} surnames={"Mentor, Trainer, Teacher, Advisor, etc."} /> 
+        <div className="onboarding-page">
+          <div className="onboarding-container">
+            <h3>Tell us who you are!</h3>
+            <div className="card-holder-1">
+              <OnBoardingCard id={1} icon={saIcon} iconDescription={"Admin Icon"} title={"School Administrator"} subnames={''} /> 
+              <OnBoardingCard id={2} icon={swIcon} iconDescription={"Social Worker Icon"} title={"Social Worker"} subnames={''} /> 
             </div>
+            <div className="card-holder-2">
+              <OnBoardingCard id={3} icon={bmIcon} iconDescription={"Board Member Icon"} title={"Board Member"} subnames={"Mentor, Trainer, Teacher, Advisor, etc."} /> 
+            </div>
+          </div>
+        </div>
         );
     }
   }
