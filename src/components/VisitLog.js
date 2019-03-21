@@ -8,7 +8,7 @@ const VisitLog = props => {
         {props.visits.map(visit => {
           return (
             <div className='visit'>
-              <p>Visit {id}</p>
+              <p>Visit {visit.id}</p>
               <p>{props.date}</p>
             </div>
           )
