@@ -7,7 +7,7 @@ import { applyMiddleware, createStore } from "redux";
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import rootReducer from './reducers/index';
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { loadState, saveState } from './LocalStorage';
 
 // import * as serviceWorker from './serviceWorker';
@@ -31,8 +31,7 @@ store.subscribe(() => {
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <Route path='/onboarding' component={Onboarding} />
-      <Route path='/home' component={App} />
+      <Route path='/' component={App} />
     </Router>
   </Provider>,
   document.getElementById("root")
