@@ -40,6 +40,7 @@ function SponsorChildComponent(props) {
                   src={`${student.photo_url}`}
                   title={`Photo of ${student.first_name} ${student.last_name}`}
                 />
+                
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="h2">
                     {`${student.first_name} ${student.last_name} `}
