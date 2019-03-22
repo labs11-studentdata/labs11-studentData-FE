@@ -17,7 +17,7 @@ function SponsorChildComponent(props) {
       <div className='sponsorChildContainer'>
       <div className='paymentContainer'>
             {props.selectedStudent.hasOwnProperty('student_id') && (
-              <p className='sponsoring'>Thank you! Sponsoring {`${props.selectedStudent.student_fname}`}</p>
+              <p className='sponsoring'>Thank you! Sponsoring {`${props.selectedStudent.first_name}`}</p>
             )}
             
             {/* {props.selectedStudent.hasOwnProperty('student_id') && <hr/>} */}
@@ -34,15 +34,15 @@ function SponsorChildComponent(props) {
                 <CardMedia
                   className=""
                   component="img"
-                  alt="Contemplative Reptile"
+                  alt={`Photo of ${student.first_name} ${student.last_name}`}
                   height="140"
                   background-size="cover"
-                  src={`${student.img}`}
-                  title="Contemplative Reptile"
+                  src={`${student.photo_url}`}
+                  title={`Photo of ${student.first_name} ${student.last_name}`}
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="h2">
-                    {`${student.student_fname} ${student.student_lname} `}
+                    {`${student.first_name} ${student.last_name} `}
                   </Typography>
                   <Typography component="p" />
                 </CardContent>
