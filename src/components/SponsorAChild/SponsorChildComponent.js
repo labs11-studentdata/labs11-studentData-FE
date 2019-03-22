@@ -6,7 +6,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import PaymentComponent from '../PaymentComponent';
+import PaymentComponent from '../Payment/PaymentComponent';
 import "./SponsorAChild.css";
 
 function SponsorChildComponent(props) {
@@ -17,7 +17,7 @@ function SponsorChildComponent(props) {
       <div className='sponsorChildContainer'>
       <div className='paymentContainer'>
             {props.selectedStudent.hasOwnProperty('student_id') && (
-              <p className='sponsoring'>Now sponsoring {`${props.selectedStudent.student_fname}`}</p>
+              <p className='sponsoring'>Thank you! Sponsoring {`${props.selectedStudent.student_fname}`}</p>
             )}
             
             {/* {props.selectedStudent.hasOwnProperty('student_id') && <hr/>} */}

@@ -5,7 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
-
+import './Payment.css'
 function PaymentForm(props) {
   return (
     <>
@@ -32,7 +32,7 @@ function PaymentForm(props) {
               fullWidth
             />
           </Grid>
-          <div>
+          <div className='amountDueContainer'>
           <Typography gutterBottom component="p">
             Total Due:{" "}
             {props.selectedStudent.dues && `${props.selectedStudent.dues}`}
