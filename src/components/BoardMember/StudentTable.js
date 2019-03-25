@@ -34,13 +34,13 @@ const StudentTable = props => {
           {props.students.map(student => {
             return(
               <TableRow>
-                <TableCell>{student.name}</TableCell>
-                <TableCell>{student.status}</TableCell>
+                <TableCell>{student.first_name} {student.last_name}</TableCell>
+                <TableCell>{student.enrollment_status}</TableCell>
                 <TableCell>{student.age}</TableCell>
-                <TableCell>{student.insurance}</TableCell>
-                <TableCell>{student.birthCert}</TableCell>
-                <TableCell>{student.contact}</TableCell>
-                <TableCell>{student.phone}</TableCell>
+                <TableCell>{student.has_insurance}</TableCell>
+                <TableCell>{student.has_birthcert}</TableCell>
+                <TableCell>{student.contact_first_name} {student.contact_last_name}</TableCell>
+                <TableCell>{student.contact_number}</TableCell>
               </TableRow>
             )
           })}
