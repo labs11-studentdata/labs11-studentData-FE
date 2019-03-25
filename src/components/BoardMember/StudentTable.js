@@ -8,10 +8,19 @@ import Paper from '@material-ui/core/Paper';
 
 const StudentTable = props => {
 
+  const yOrN = val => {
+    if(val === 1){
+      return 'Y'
+    }
+    else {
+      return 'N'
+    }
+  }
+
   //this is probably gonna need a refactor in terms of form before it matches the wireframe, but this should at least be able to verify that all the data is there
   return(
     <Paper className='student-table-container'>
-      <Table className='student-table'>
+      <Table className='student-table' style={{width: '900px'}}>
         <TableHead>
 
           <TableRow>
@@ -25,15 +34,16 @@ const StudentTable = props => {
           </TableRow>
         </TableHead>
 
-        <TableBody style={{ overflow: 'auto', height: '250px' }}>
+        <TableBody style={{ overflow: 'scroll', height: '500px'}}>
           {props.students.map(student => {
+
             return(
               <TableRow>
                 <TableCell>{student.first_name} {student.last_name}</TableCell>
                 <TableCell>{student.enrollment_status}</TableCell>
                 <TableCell>{student.age}</TableCell>
-                <TableCell>{student.has_insurance}</TableCell>
-                <TableCell>{student.has_birthcert}</TableCell>
+                <TableCell>{yOrN(student.has_insurance)}</TableCell>
+                <TableCell>{yOrN(student.has_birthcert)}</TableCell>
                 <TableCell>{student.contact_first_name} {student.contact_last_name}</TableCell>
                 <TableCell>{student.contact_number}</TableCell>
               </TableRow>

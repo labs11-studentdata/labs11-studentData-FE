@@ -1,27 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {getStudents, getVisits} from '../actions/index';
 import { VisitLog, StudentCounter, StudentTable, IssuesTracker } from '../components/index';
 
 class BoardDashboard extends Component {
 
   state = {
-    students: [],
-    total: this.students.length
+    schoolID: '',
+    gradeID: ''
   }
 
   componentDidMount() {
-    this.setState({
-
-    })
+    this.props.getStudents();
+    // this.props.getVisits();
   }
 
   render(){
     return (
       <div className='admin-db'>
-        <VisitLog />
-        <StudentCounter total={this.state.total}/>
-        <StudentTable students={this.state.students}/>
-        <IssuesTracker />
+        {/* <VisitLog /> */}
+        <StudentCounter students={this.props.students}/>
+        <StudentTable students={this.props.students}/>
+        {/* <IssuesTracker /> */}
       </div>
     )
   }
@@ -29,8 +29,11 @@ class BoardDashboard extends Component {
 
 const mapStateToProps = state => {
   return {
-
+    fetching: state.board.fetching,
+    fetched: state.board.fetched,
+    students: state.board.students,
+    error: state.board.error
   }
 }
 
-export default connect(mapStateToProps, {})(BoardDashboard);
+export default connect(mapStateToProps, {getStudents, getVisits})(BoardDashboard);
