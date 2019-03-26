@@ -38,7 +38,7 @@ const StudentTable = props => {
           {props.students.map(student => {
 
             return(
-              <TableRow>
+              <TableRow key={student.student_id}>
                 <TableCell>{student.first_name} {student.last_name}</TableCell>
                 <TableCell>{student.enrollment_status}</TableCell>
                 <TableCell>{student.age}</TableCell>
