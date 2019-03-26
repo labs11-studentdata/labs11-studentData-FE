@@ -29,10 +29,10 @@ class BoardDashboard extends Component {
 
 const mapStateToProps = state => {
   return {
-    fetching: state.board.fetching,
-    fetched: state.board.fetched,
-    students: state.board.students,
-    error: state.board.error
+    fetching: state.students.fetching,
+    fetched: state.students.fetched,
+    students: state.students.students,
+    error: state.students.error
   }
 }
 
