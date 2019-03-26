@@ -1,20 +1,17 @@
 import {
   FAIL,
   FETCHING_STUDENTS,
-  FETCHED_STUDENTS,
-  FETCHING_VISITS,
-  FETCHED_VISITS,
+  FETCHED_STUDENTS
 } from '../actions/index';
 
-const initialBoardState = {
+const initialStudentState = {
   students: [],
-  visits: [],
   fetching: false,
   fetched: false,
   error: null
 }
 
-export const BoardReducer = (state = initialBoardState, action) => {
+export const StudentReducer = (state = initialStudentState, action) => {
   switch(action.type) {
     case FETCHING_STUDENTS:
       return{
@@ -29,21 +26,6 @@ export const BoardReducer = (state = initialBoardState, action) => {
         fetching: false,
         fetched: true,
         students: action.payload,
-        error: null
-      }
-    case FETCHING_VISITS:
-      return{
-        ...state,
-        fetching: true,
-        fetched: false,
-        error: null
-      }
-    case FETCHED_VISITS:
-      return{
-        ...state,
-        fetching: false,
-        fetched: true,
-        visits: action.payload,
         error: null
       }
     case FAIL:
