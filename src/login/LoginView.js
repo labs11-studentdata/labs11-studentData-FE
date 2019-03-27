@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
-import { LoginComponent } from '../components';
+import LoginComponent from './LoginComponent';
 import '../styles/LoginStyles.css'
-
-const btns = ['', 'Google', 'Facebook']
+import axios from 'axios';
+import { withRouter } from 'react-router-dom';
+import { loginUser } from '../actions/login'
+import jwtDecode from 'jwt-decode';
+import { connect } from 'react-redux';
+const btns = ['Google', 'Facebook']
 class LoginView extends Component {
     state = {
         isRegistering: false
     }
-    // BTN SUBMITTED -- for login with Google, Facebook or App
-    handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('connected')
-        // AXIOS CALLS TO 0AUTH ON SERVER
+
+    componentWillMount() {
+        const query = this.props.history.location.pathname.substring(17)
+        if(query.length > 10) {
+            this.props.loginUser(query)
+        }
     }
+  
     // BTN SUBMITTED -- changes state if user is registering or logging in
     registerSubmit = (e) => {
         e.preventDefault();
@@ -27,10 +33,17 @@ class LoginView extends Component {
     }
 
     render() {
+        console.log(this.state)
         return (
             <LoginComponent registerSubmit={this.registerSubmit} isRegistering={this.state.isRegistering} handleSubmit={this.handleSubmit} btns={btns}/>
         )
     }
 }
 
-export default LoginView;
+const mapStateToProps = state => {
+    console.log(state)
+    return {
+
+    }
+}
+export default withRouter(connect(mapStateToProps, {loginUser})(LoginView));
