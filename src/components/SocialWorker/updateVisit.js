@@ -24,11 +24,22 @@ const styles = theme => ({
   },
 });
 
-class AddVisit extends React.Component {
+class UpdateVisit extends React.Component {
   state = {
     date: "",
     note: ""
   };
+
+  componentDidMount() {
+      const arr = props.params.match(/\d+$/);
+      const id = arr[0];
+      axios.get(`http://18.188.246.0:9000/api/social_worker_visits/${id}`)
+        .then(res => {
+            console.log(res.data);
+            this.setState({date: {res.data.date}, note: {res.data.note}})
+            console.log(this.state);
+        })
+  }
 
   eHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -37,14 +48,15 @@ class AddVisit extends React.Component {
     //I need to rewrite the post request with the social worker and school id that i can get from the auth and page this component will go in.
 
   submitForm = => {
-      axios.post("http://18.188.246.0:9000/api/social_worker_visits", { state.date, state.note })
+      const arr = props.params.match(/\d+$/);
+      const id = arr[0];
+      axios.put(`http://18.188.246.0:9000/api/social_worker_visits/${id}`, { state.date, state.note })
         .then(res => {
             console.log(res.data)
         })
         .catch(err => {
             console.log(err.message)
         })
-      this.setState({ date: "", note: "" });
   }
 
   render() {
@@ -52,9 +64,10 @@ class AddVisit extends React.Component {
 
     <TextField
           id="standard-with-placeholder"
-          label="Date"
+          label="Edit Date"
           name="date"
           onChange={eHandler}
+          value={this.state.date}
           placeholder="MM/DD/YYYY"
           className={classes.textField}
           margin="normal"
@@ -62,9 +75,10 @@ class AddVisit extends React.Component {
 
     <TextField
           id="standard-textarea"
-          label="Add Visit Notes"
+          label="Edit Visit Notes"
           name="note"
           onChange={eHandler}
+          value={this.state.note}
           multiline
           className={classes.textField}
           margin="normal"
@@ -73,9 +87,9 @@ class AddVisit extends React.Component {
     className={classes.button}
     onClick={submitForm}
     >
-        Submit
+    Submit
     </Button>
   };
 };
 
-export default AddVisit;
+export default UpdateVisit;
