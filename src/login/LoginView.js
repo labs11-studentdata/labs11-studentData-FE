@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
 import LoginComponent from './LoginComponent';
+import { regSelected, logSelected } from '../actions/login';
 import '../styles/LoginStyles.css'
-import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import { loginUser } from '../actions/login'
-import jwtDecode from 'jwt-decode';
 import { connect } from 'react-redux';
+import {HeaderView} from '../views'
 const btns = ['Google', 'Facebook']
+
 class LoginView extends Component {
-    state = {
-        isRegistering: false
-    }
+
+    registerSubmit = e => {
+        e.preventDefault();
+        const text = e.target.textContent;
+        if (text.includes("Up")) {
+          this.props.regSelected();
+        } else {
+          this.props.logSelected();
+        }
+      };
 
     componentWillMount() {
         const query = this.props.history.location.pathname.substring(17)
@@ -18,24 +26,14 @@ class LoginView extends Component {
             this.props.loginUser(query)
         }
     }
-  
-    // BTN SUBMITTED -- changes state if user is registering or logging in
-    registerSubmit = (e) => {
-        e.preventDefault();
-        console.log(e.target.textContent)
-        const text = e.target.textContent;
-        console.log(text)
-        if(text.includes('Up')){
-            this.setState({isRegistering: true})
-        } else {
-            this.setState({isRegistering: false})}
-            console.log(this.state)
-    }
+
 
     render() {
-        console.log(this.state)
         return (
-            <LoginComponent registerSubmit={this.registerSubmit} isRegistering={this.state.isRegistering} handleSubmit={this.handleSubmit} btns={btns}/>
+            <>
+            <HeaderView />
+            <LoginComponent registerSubmit={this.registerSubmit} isRegistering={this.props.isRegistering} btns={btns}/>
+            </>
         )
     }
 }
@@ -43,7 +41,7 @@ class LoginView extends Component {
 const mapStateToProps = state => {
     console.log(state)
     return {
-
+        isRegistering: state.login.isRegistering
     }
 }
-export default withRouter(connect(mapStateToProps, {loginUser})(LoginView));
+export default withRouter(connect(mapStateToProps, {loginUser, logSelected, regSelected})(LoginView));

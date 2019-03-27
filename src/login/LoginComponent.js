@@ -1,15 +1,10 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import FormControl from "@material-ui/core/FormControl";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 
 function LoginComponent(props) {
-  const url = 'http://localhost:9000/auth';
+  const url = process.env.REACT_APP_BE_URL + '/auth';
   return (
     <Paper className="loginContainer">
       <Typography component="h1" variant="h5">
@@ -38,7 +33,7 @@ function LoginComponent(props) {
       {props.isRegistering ? (
         <p className="setUp">
           Have an account?{" "}
-          <a href="/login" onClick={e => props.registerSubmit(e)}> Sign In!</a>
+          <a onClick={e => props.registerSubmit(e)}> Sign In!</a>
         </p>
       ) : (
         <p className="setUp">
