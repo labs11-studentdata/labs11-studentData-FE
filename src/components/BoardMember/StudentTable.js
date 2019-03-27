@@ -19,8 +19,8 @@ const StudentTable = props => {
 
   //this is probably gonna need a refactor in terms of form before it matches the wireframe, but this should at least be able to verify that all the data is there
   return(
-    <Paper className='student-table-container'>
-      <Table className='student-table' style={{width: '900px'}}>
+    <Paper className='student-table-container' style={{ overflowY: 'scroll', maxHeight: '300px', width: '1000px'}}>
+      <Table className='student-table'>
         <TableHead>
 
           <TableRow>
@@ -34,7 +34,7 @@ const StudentTable = props => {
           </TableRow>
         </TableHead>
 
-        <TableBody style={{ overflow: 'scroll', height: '500px'}}>
+        <TableBody style={{ overflow: 'scroll', maxHeight: '500px'}}>
           {props.students.map(student => {
 
             return(
