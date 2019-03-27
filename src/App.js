@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import requiresAuth from './auth/requiresAuth';
 import { Route } from 'react-router-dom';
-import { LoginView, HeaderView, SponsorChildView, BoardDashboard,  } from './views';
+import {  HeaderView, SponsorChildView, BoardDashboard,  } from './views';
 import { Onboarding } from './components'
 
 import './App.css';
@@ -10,7 +11,6 @@ class App extends Component {
     return (
       <div className="App">
         <HeaderView />
-        <Route path='/login' component={LoginView} />
         <Route path='/onboarding' component={Onboarding} />
         <Route path='/sponsor' component={SponsorChildView} />
         <Route path='/board' component={BoardDashboard} />
@@ -19,4 +19,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default requiresAuth(App);
