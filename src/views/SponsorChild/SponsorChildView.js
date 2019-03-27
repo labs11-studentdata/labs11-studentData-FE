@@ -25,7 +25,7 @@ class SponsorChildView extends Component {
   };
 
   render() {
-    console.log(this.state);
+    console.log(this.state.students.length);
     if (this.state.students.length > 0) {
       return (
         <>
