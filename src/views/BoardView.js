@@ -12,6 +12,8 @@ class BoardView extends Component {
     gradeID: null,
     students: [],
     visits: [],
+    activeSponsor: false,
+    student: null,
   }
 
   componentDidMount() {
@@ -29,7 +31,9 @@ class BoardView extends Component {
         schoolID: 'all',
         gradeID: 'all',
         students: this.props.students,
-        visits: this.props.visits
+        visits: this.props.visits,
+        activeSponsor: false,
+        student: null,
       })
     }
     else if (schoolID !== 'all' && gradeID === 'all'){
@@ -38,7 +42,9 @@ class BoardView extends Component {
         schoolID: schoolID,
         gradeID: 'all',
         students: this.props.students.filter(student => student.schoolID === schoolID),
-        visits: this.props.visits.filter(visit => visit.schoolID === schoolID)
+        visits: this.props.visits.filter(visit => visit.schoolID === schoolID),
+        activeSponsor: false,
+        student: null,
       })
     }
     else {
@@ -47,10 +53,28 @@ class BoardView extends Component {
         schoolID: schoolID,
         gradeID: gradeID,
         students: this.props.students.filter(student => (student.gradeID === gradeID) && (student.schoolID === schoolID)),
-        visits: this.props.visits.filter(visit => visit.schoolID === schoolID)
+        visits: this.props.visits.filter(visit => visit.schoolID === schoolID),
+        activeSponsor: false,
+        student: null,
       });
     }
   }
+
+  handleOpen = (e, student) => {
+    e.preventDefault();
+    this.setState({
+      ...this.state,
+      student: student,
+      activeSponsor: true });
+    debugger;
+  };
+
+  handleClose = () => {
+    this.setState({
+      ...this.state,
+      student: null,
+      activeSponsor: false });
+  };
 
   render(){
     return (
@@ -64,7 +88,13 @@ class BoardView extends Component {
         />
         <VisitLog visits={this.state.visits}/>
         <StudentCounter students={this.state.students}/>
-        <StudentTable students={this.state.students}/>
+        <StudentTable
+          students={this.state.students}
+          open={this.state.activeSponsor}
+          handleOpen={this.handleOpen}
+          handleClose={this.handleClose}
+          student={this.state.student}
+        />
         {/* <IssuesTracker /> */}
       </div>
     )

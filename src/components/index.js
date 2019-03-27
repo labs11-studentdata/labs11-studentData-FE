@@ -8,3 +8,4 @@ export {default as StudentCounter} from './BoardMember/StudentCounter';
 export {default as StudentTable} from './BoardMember/StudentTable';
 export { default as SponsorChildComponent } from './SponsorAChild/SponsorChildComponent';
 export { default as SchoolSelect } from './SchoolSelect';
+export { default as SmallSponsor } from './BoardMember/SmallSponsor';
