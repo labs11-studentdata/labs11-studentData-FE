@@ -18,9 +18,33 @@ class EditStudent extends Component {
         super(props);
         this.state = {
 
-          student: this.props.student
-          
+          id: null,
+          grade: null,
+          first_name: null,
+          last_name: null,
+          age: null,
+          school: null,
+          photo: null,
+          enrollment_status: null,
+          insurance: null,
+          insurance_expiration: null,
+          birthcert: null,
+          dues: null,
+          special_needs: null,
+          contact_first_name: null,
+          contact_last_name: null,
+          contact_number: null,
+
         };   
+    }
+
+    componentDidUpdate(){
+
+      // this.setState({ id: this.props.student.id});
+      if(this.state.id === null){
+        this.setState({...this.props.student});
+      }
+
     }
 
     editStudent = (e, id) => {
@@ -46,6 +70,8 @@ class EditStudent extends Component {
             contact_number: this.state.contact_number,
         }
     
+        this.setState({student: updatedStudent});
+
         axios
         .put(`http://localhost:9000/api/students/${id}`, updatedStudent)
         .then(response => {
@@ -53,17 +79,24 @@ class EditStudent extends Component {
         })
     }
 
-    handleInputChange = name => event => {
+    handleInputChange = event => {
+      let name = event.target.name;
+      let value = event.target.value;
+
       this.setState({
-        [name]: event.target.value,
+        
+        ...this.state,
+        [name]: value
+
       });
     };
-
+ 
     render() {
   
       //const { classes } = this.props;
 
       console.log(this.state)
+      console.log("props", this.props);
         return (
             <div>
             <h1>Edit Student</h1>  
@@ -73,8 +106,12 @@ class EditStudent extends Component {
               id="filled-name"
               label="First Name"
               //className={classes.textField}
-              value={this.state.student.first_name}
+
+              value={this.state.first_name}
               onChange={this.handleInputChange}
+
+              name='first_name'
+
               margin="normal"
               variant="filled"
             />
@@ -83,8 +120,11 @@ class EditStudent extends Component {
               id="filled-name"
               label="Last Name"
               //className={classes.textField}
-              value={this.state.student.last_name}
+              value={this.state.last_name}
               onChange={this.handleInputChange}
+
+              name='last_name'
+
               margin="normal"
               variant="filled"
             />
@@ -93,8 +133,11 @@ class EditStudent extends Component {
               id="filled-name"
               label="Age"
               //className={classes.textField}
-              value={this.state.student.age}
+              value={this.state.age}
               onChange={this.handleInputChange}
+
+              name='age'
+
               margin="normal"
               variant="filled"
             />
@@ -103,8 +146,11 @@ class EditStudent extends Component {
               id="filled-name"
               label="Grade"
               //className={classes.textField}
-              value={this.state.student.gradeID}
+              value={this.state.gradeID}
               onChange={this.handleInputChange}
+
+              name='grade'
+
               margin="normal"
               variant="filled"
             />
@@ -114,8 +160,11 @@ class EditStudent extends Component {
               id="filled-name"
               label="School"
               //className={classes.textField}
-              value={this.state.student.schoolID}
+              value={this.state.schoolID}
               onChange={this.handleInputChange}
+
+              name='school'
+
               margin="normal"
               variant="filled"
             />
@@ -124,8 +173,11 @@ class EditStudent extends Component {
               id="filled-name"
               label="Photo URL"
               //className={classes.textField}
-              value={this.state.student.photo_url}
+              value={this.state.photo_url}
               onChange={this.handleInputChange}
+
+              name='photo'
+
               margin="normal"
               variant="filled"
             />
@@ -134,8 +186,11 @@ class EditStudent extends Component {
               id="filled-name"
               label="Enrollment Status"
               //className={classes.textField}
-              value={this.state.student.enrollment_status}
+              value={this.state.enrollment_status}
               onChange={this.handleInputChange}
+
+              name='enrollment_status'
+
               margin="normal"
               variant="filled"
             />
@@ -144,8 +199,11 @@ class EditStudent extends Component {
               id="filled-name"
               label="Insurance Expiration"
               //className={classes.textField}
-              value={this.state.student.insurance_expiration}
+              value={this.state.insurance_expiration}
               onChange={this.handleInputChange}
+
+              name='insurance_expiration'
+
               margin="normal"
               variant="filled"
             />
@@ -154,8 +212,11 @@ class EditStudent extends Component {
               id="filled-name"
               label="Birth Certificate"
               //className={classes.textField}
-              value={this.state.student.has_birthcert}
+              value={this.state.has_birthcert}
               onChange={this.handleInputChange}
+
+              name='birthcert'
+
               margin="normal"
               variant="filled"
             />
@@ -164,8 +225,11 @@ class EditStudent extends Component {
               id="filled-name"
               label="Dues"
               //className={classes.textField}
-              value={this.state.student.dues}
+              value={this.state.dues}
               onChange={this.handleInputChange}
+
+              name='dues'
+
               margin="normal"
               variant="filled"
             />
@@ -174,8 +238,11 @@ class EditStudent extends Component {
               id="filled-name"
               label="Special Needs"
               //className={classes.textField}
-              value={this.state.student.special_needs}
+              value={this.state.special_needs}
               onChange={this.handleInputChange}
+
+              name='special_needs'
+
               margin="normal"
               variant="filled"
             />
@@ -184,8 +251,11 @@ class EditStudent extends Component {
               id="filled-name"
               label="Contact First Name"
               //className={classes.textField}
-              value={this.state.student.contact_first_name}
+              value={this.state.contact_first_name}
               onChange={this.handleInputChange}
+
+              name='contact_first_name'
+
               margin="normal"
               variant="filled"
             />
@@ -194,8 +264,11 @@ class EditStudent extends Component {
               id="filled-name"
               label="Contact Last Name"
               //className={classes.textField}
-              value={this.state.student.contact_last_name}
+              value={this.state.contact_last_name}
               onChange={this.handleInputChange}
+
+              name='contact_last_name'
+
               margin="normal"
               variant="filled"
             />
@@ -204,8 +277,11 @@ class EditStudent extends Component {
               id="filled-name"
               label="Contact Phone"
               //className={classes.textField}
-              value={this.state.student.contact_number}
+              value={this.state.contact_number}
               onChange={this.handleInputChange}
+
+              name='contact_number'
+
               margin="normal"
               variant="filled"
             />
