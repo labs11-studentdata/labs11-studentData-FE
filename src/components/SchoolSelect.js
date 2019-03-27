@@ -36,6 +36,7 @@ class SchoolSelect extends Component {
             name='schoolID'
             onChange={this.handleChange('schoolID')}
           >
+            <MenuItem value = 'all'>All</MenuItem>
             {this.props.schools.map(school => {
               return <MenuItem value={school.schoolID}>{school.school_name}</MenuItem>
             })}
@@ -47,6 +48,7 @@ class SchoolSelect extends Component {
             name='gradeID'
             onChange={this.handleChange('gradeID')}
           >
+            <MenuItem value = 'all'>All</MenuItem>
             <MenuItem value = {1} >1</MenuItem>
             <MenuItem value = {2} >2</MenuItem>
             <MenuItem value = {3} >3</MenuItem>
@@ -61,6 +63,7 @@ class SchoolSelect extends Component {
             <MenuItem value = {12} >12</MenuItem>
           </Select>
         </FormControl>
+        <button type='submit'>filter</button>
       </form>
     )
   }
