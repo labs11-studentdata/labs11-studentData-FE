@@ -19,16 +19,16 @@ class EditStudent extends Component {
         this.state = {
 
           id: null,
-          grade: null,
+          gradeID: null,
           first_name: null,
           last_name: null,
           age: null,
-          school: null,
-          photo: null,
+          schoolID: null,
+          photo_url: null,
           enrollment_status: null,
-          insurance: null,
+          has_insurance: null,
           insurance_expiration: null,
-          birthcert: null,
+          has_birthcert: null,
           dues: null,
           special_needs: null,
           contact_first_name: null,
@@ -47,36 +47,24 @@ class EditStudent extends Component {
 
     }
 
-    editStudent = (e, id) => {
+    editStudent = (e) => {
 
         e.preventDefault();
     
-        const updatedStudent = {
-            id: this.state.id,
-            grade: this.state.gradeID,
-            first_name: this.state.first_name,
-            last_name: this.state.last_name,
-            age: this.state.age,
-            school: this.state.schoolID,
-            photo: this.state.photo_url,
-            enrollment_status: this.state.enrollment_status,
-            insurance: this.state.insurance,
-            insurance_expiration: this.state.insurance_expiration,
-            birthcert: this.state.has_birthcert,
-            dues: this.state.dues,
-            special_needs: this.state.special_needs,
-            contact_first_name: this.state.contact_first_name,
-            contact_last_name: this.state.contact_last_name,
-            contact_number: this.state.contact_number,
-        }
-    
-        this.setState({student: updatedStudent});
-
         axios
-        .put(`http://localhost:9000/api/students/${id}`, updatedStudent)
+        .put(`http://localhost:9000/api/students/${this.state.id}`, this.state)
         .then(response => {
-            this.setState({student: response.data})
+            console.log("server response", response.data);
         })
+        .catch(e => {
+
+          console.log("server error:", e.message);
+
+        })
+
+
+        console.log("requesting update", this.state)
+
     }
 
     handleInputChange = event => {
@@ -84,7 +72,7 @@ class EditStudent extends Component {
       let value = event.target.value;
 
       this.setState({
-        
+
         ...this.state,
         [name]: value
 
@@ -100,7 +88,7 @@ class EditStudent extends Component {
         return (
             <div>
             <h1>Edit Student</h1>  
-            <form noValidate autoComplete="off">
+            <form noValidate autoComplete="off" onSubmit={this.editStudent}>
 
             <TextField
               id="filled-name"
@@ -286,9 +274,9 @@ class EditStudent extends Component {
               variant="filled"
             />
             
-            </form>
+            <Button type="submit">Save Changes</Button>
 
-            <Button onClick={this.editStudent}>Save Changes</Button>
+            </form>
 
             </div>
 
