@@ -1,11 +1,14 @@
 import {
     LOGIN_USER,
-    LOGOUT_USER
+    LOGOUT_USER,
+    REG_SELECTED,
+    LOG_SELECTED
 } from '../actions/login'
 
 const initialState = {
     token: '',
-    loggedIn: false
+    loggedIn: false,
+    isRegistering: false
 }
 
 export const LoginReducer = (state = initialState, action) => {
@@ -22,6 +25,18 @@ export const LoginReducer = (state = initialState, action) => {
             return{
                 ...state,
                 loggedIn: false
+            }
+        }
+        case REG_SELECTED: {
+            return{
+                ...state,
+                isRegistering: true
+            }
+        }
+        case LOG_SELECTED: {
+            return{
+                ...state,
+                isRegistering: false
             }
         }
         default: 

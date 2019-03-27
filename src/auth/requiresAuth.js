@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import LoginView from '../login/LoginView';
 import axios from 'axios';
-import jwtDecode from 'jwt-decode';
-import { withRouter } from 'react-router-dom'
-import { connect } from 'react-redux';
+
 
 axios.interceptors.request.use(
     function(options) {

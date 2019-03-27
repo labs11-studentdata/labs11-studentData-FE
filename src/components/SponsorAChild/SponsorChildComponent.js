@@ -60,8 +60,8 @@ function SponsorChildComponent(props) {
                 <Button onClick={e => props.sponsorSelected(e, student)} size="small" color="primary">
                   Sponsor
                 </Button>
+                <div className="totalDueLabel"> Total Due: </div>
                 <Typography gutterBottom color="secondary" component="p">
-                  <p className="totalDueLabel"> Total Due: </p>
                   {`${student.dues}`}
                 </Typography>
               </CardActions>

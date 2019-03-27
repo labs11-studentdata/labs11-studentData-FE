@@ -40,7 +40,6 @@ class SponsorChildView extends Component {
       return (
         <div className='loaderContainer'>
           <ClipLoader
-            css=""
             sizeUnit={"px"}
             size={150}
             color={"#123abc"}
