@@ -12,7 +12,7 @@ class SponsorChildView extends Component {
 
   componentDidMount() {
     axios
-      .get("http://18.220.56.197:9000/api/students")
+      .get(`${process.env.REACT_APP_BE_URL}/api/students`)
       .then(res => {
         this.setState({
           students: res.data
