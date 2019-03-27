@@ -1,24 +1,55 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {getStudents, getVisits} from '../actions/index';
-import { VisitLog, StudentCounter, StudentTable, IssuesTracker } from '../components/index';
+import axios from 'axios';
+import {getStudents, getVisits, getSchools, getStudentsByClass} from '../actions/index';
+import { VisitLog, StudentCounter, StudentTable, IssuesTracker, SchoolSelect } from '../components/index';
 
 class BoardDashboard extends Component {
 
   state = {
     schoolID: '',
-    gradeID: ''
+    gradeID: '',
   }
 
   componentDidMount() {
     this.props.getStudents();
-    // this.props.getVisits();
+    this.props.getSchools();
+    this.props.getVisits();
+
   }
+
+  setSchool = (e, schoolID) => {
+    e.preventDefault();
+    this.setState({
+      ...this.state,
+      schoolID: schoolID
+    })
+  }
+
+  setClass = (e, schoolID, gradeID) => {
+    e.preventDefault();
+    this.setState({
+      ...this.state,
+      schoolID: schoolID,
+      gradeID: gradeID
+    });
+    this.props.getStudentsByClass(schoolID, gradeID);
+  }
+
+
+
 
   render(){
     return (
-      <div className='admin-db'>
-        {/* <VisitLog /> */}
+      <div className='board-db'>
+        <SchoolSelect
+          schools={this.props.schools}
+          setSchool={this.setSchool}
+          setClass={this.setClass}
+          schoolID={this.state.schoolID}
+          gradeID={this.state.gradeID}
+        />
+        <VisitLog visits={this.props.visits}/>
         <StudentCounter students={this.props.students}/>
         <StudentTable students={this.props.students}/>
         {/* <IssuesTracker /> */}
@@ -32,8 +63,10 @@ const mapStateToProps = state => {
     fetching: state.students.fetching,
     fetched: state.students.fetched,
     students: state.students.students,
-    error: state.students.error
+    schools: state.schools.schools,
+    error: state.students.error,
+    visits: state.visits.visits
   }
 }
 
-export default connect(mapStateToProps, {getStudents, getVisits})(BoardDashboard);
+export default connect(mapStateToProps, {getStudents, getVisits, getSchools})(BoardDashboard);
