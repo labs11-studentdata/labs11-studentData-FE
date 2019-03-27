@@ -1,26 +1,28 @@
 .onboarding-page {
     width: 100%;
-    display: flex;
-    justify-content: center;
 }
 
 .onboarding-container {
-    width: 70%;
+    display: flex;
 }
 
-.onboarding-container {
-    font-size: 150%;
-}
-
-.onboarding-container .card-holder-1 {
+.onboarding-container .card-holder {
+    width: 50%;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 .onboarding-card {
     border: solid gray 1px;
-    width: 50%;
-    padding: 2% 7%;
+    width: 40%;
+    padding: 2% 2%;
+    margin: 20px;
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .onboarding-card:hover {

@@ -1,6 +1,6 @@
 //export components here as you write them
 //export { default as NAME } from './NAME' 
-export {default as Onboarding} from './OnboardingPage'
+export {default as Onboarding} from './Onboarding/OnboardingPage'
 export { default as HeaderComponent } from './Header/HeaderComponent'
 export {default as IssuesTracker} from './BoardMember/IssuesTracker';
 export {default as VisitLog} from './BoardMember/VisitLog';
