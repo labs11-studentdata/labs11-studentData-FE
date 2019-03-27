@@ -9,6 +9,7 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 
 function LoginComponent(props) {
+  const url = 'http://localhost:9000/auth';
   return (
     <Paper className="loginContainer">
       <Typography component="h1" variant="h5">
@@ -16,42 +17,11 @@ function LoginComponent(props) {
       </Typography>
 
       <form>
-        <FormControl margin="normal" required fullWidth>
-          <InputLabel htmlFor="email">Email Address</InputLabel>
-          <Input id="email" name="email" autoComplete="email" autoFocus />
-        </FormControl>
-        
-        <FormControl margin="normal" required fullWidth>
-          <InputLabel htmlFor="password">Password</InputLabel>
-          <Input
-            name="password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-        </FormControl>
-        <FormControlLabel
-          control={<Checkbox value="remember" color="primary" />}
-          label="Remember me"
-        />
         <div className="btnContainer">
           {props.btns.map(btn => {
-            if (btn === "") {
               return (
                 <Button
-                  onClick={e => props.handleSubmit(e)}
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                >
-                  {props.isRegistering ? "Sign Up" : "Sign In"}
-                </Button>
-              );
-            } else {
-              return (
-                <Button
-                  onClick={e => props.handleSubmit(e)}
+                  href={btn === 'Google' ? `${url}/google` : `${url}/facebook`}
                   type="submit"
                   fullWidth
                   variant="contained"
@@ -62,7 +32,6 @@ function LoginComponent(props) {
                     : `Sign in with ${btn}`}
                 </Button>
               );
-            }
           })}
         </div>
       </form>
