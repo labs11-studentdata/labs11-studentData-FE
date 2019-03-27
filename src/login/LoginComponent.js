@@ -9,6 +9,7 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 
 function LoginComponent(props) {
+  const url = 'http://localhost:9000/auth';
   return (
     <Paper className="loginContainer">
       <Typography component="h1" variant="h5">
@@ -20,7 +21,7 @@ function LoginComponent(props) {
           {props.btns.map(btn => {
               return (
                 <Button
-                  onClick={e => props.handleSubmit(e)}
+                  href={btn === 'Google' ? `${url}/google` : `${url}/facebook`}
                   type="submit"
                   fullWidth
                   variant="contained"

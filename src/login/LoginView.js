@@ -2,31 +2,23 @@ import React, { Component } from 'react';
 import LoginComponent from './LoginComponent';
 import '../styles/LoginStyles.css'
 import axios from 'axios';
-
+import { withRouter } from 'react-router-dom';
+import { loginUser } from '../actions/login'
+import jwtDecode from 'jwt-decode';
+import { connect } from 'react-redux';
 const btns = ['Google', 'Facebook']
 class LoginView extends Component {
     state = {
         isRegistering: false
     }
-    // BTN SUBMITTED -- for login with Google, Facebook or App
-    handleSubmit = (e) => {
-        let axiosConfig = {
-            header: {
-                'Content-Type': 'application/json;charset=UTF-8',
-                "Access-Control-Allow-Origin": "*",
-            }
-          };
-        e.preventDefault();
-        const text = e.target.textContent;
-        const proxyurl = "https://cors-anywhere.herokuapp.com/";
-        const url = 'https://localhost:9000/auth/google'
-        if(text.includes('Google')) {
-            axios.get(proxyurl + url)
-            .then(res => console.log(res))
-            .catch(err => console.log(err))
+
+    componentWillMount() {
+        const query = this.props.history.location.pathname.substring(17)
+        if(query.length > 10) {
+            this.props.loginUser(query)
         }
-        // AXIOS CALLS TO 0AUTH ON SERVER
     }
+  
     // BTN SUBMITTED -- changes state if user is registering or logging in
     registerSubmit = (e) => {
         e.preventDefault();
@@ -41,10 +33,17 @@ class LoginView extends Component {
     }
 
     render() {
+        console.log(this.state)
         return (
             <LoginComponent registerSubmit={this.registerSubmit} isRegistering={this.state.isRegistering} handleSubmit={this.handleSubmit} btns={btns}/>
         )
     }
 }
 
-export default LoginView;
+const mapStateToProps = state => {
+    console.log(state)
+    return {
+
+    }
+}
+export default withRouter(connect(mapStateToProps, {loginUser})(LoginView));

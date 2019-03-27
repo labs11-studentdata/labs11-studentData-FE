@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import LoginView from '../login/LoginView';
 import axios from 'axios';
-
+import jwtDecode from 'jwt-decode';
+import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux';
 
 axios.interceptors.request.use(
     function(options) {
@@ -15,11 +17,17 @@ axios.interceptors.request.use(
   );
 
 
-export default function(Component) {
-    return class Authenticated extends Component {
-        render() {
-            const token = localStorage.getItem('jwt');
-            return <>{token ? <Component {...this.props} /> : <LoginView />}</>
-        }
-    } 
-}
+
+const Authenticated = Component => 
+  class extends Component {
+    componentDidMount() {
+      
+    }
+      render() {
+          const token = localStorage.getItem('jwt');
+          return <>{token ? <Component {...this.props} /> : <LoginView />}</>
+      }
+  } 
+
+
+export default Authenticated
