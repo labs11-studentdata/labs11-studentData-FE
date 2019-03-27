@@ -9,6 +9,7 @@ import logger from 'redux-logger';
 import rootReducer from './reducers/index';
 import { BrowserRouter as Router } from 'react-router-dom'
 import { loadState, saveState } from './LocalStorage';
+require('dotenv').config();
 
 // import * as serviceWorker from './serviceWorker';
 
