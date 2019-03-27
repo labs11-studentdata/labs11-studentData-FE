@@ -7,3 +7,4 @@ export {default as VisitLog} from './BoardMember/VisitLog';
 export {default as StudentCounter} from './BoardMember/StudentCounter';
 export {default as StudentTable} from './BoardMember/StudentTable';
 export { default as SponsorChildComponent } from './SponsorAChild/SponsorChildComponent';
+export { default as SchoolSelect } from './SchoolSelect';
