@@ -5,6 +5,9 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Modal from '@material-ui/core/Modal';
+import { Component } from 'react';
+import { SmallSponsor } from '../index';
 
 const StudentTable = props => {
 
@@ -19,8 +22,16 @@ const StudentTable = props => {
 
   //this is probably gonna need a refactor in terms of form before it matches the wireframe, but this should at least be able to verify that all the data is there
   return(
-    <Paper className='student-table-container'>
-      <Table className='student-table' style={{width: '900px'}}>
+    <Paper className='student-table-container' style={{ overflowY: 'scroll', maxHeight: '300px', width: '1000px'}}>
+
+      <Modal
+        open={props.open}
+        onClose={props.handleClose}
+      >
+        <SmallSponsor student={props.student}/>
+      </Modal>
+
+      <Table className='student-table' deselectOnClickaway={false}>
         <TableHead>
 
           <TableRow>
@@ -34,11 +45,11 @@ const StudentTable = props => {
           </TableRow>
         </TableHead>
 
-        <TableBody style={{ overflow: 'scroll', height: '500px'}}>
+        <TableBody style={{ overflow: 'scroll', maxHeight: '500px'}}>
           {props.students.map(student => {
 
             return(
-              <TableRow key={student.student_id}>
+              <TableRow key={student.student_id} onClick={e => props.handleOpen(e, student)}>
                 <TableCell>{student.first_name} {student.last_name}</TableCell>
                 <TableCell>{student.enrollment_status}</TableCell>
                 <TableCell>{student.age}</TableCell>
