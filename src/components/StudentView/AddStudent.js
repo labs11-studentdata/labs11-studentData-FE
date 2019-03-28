@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 
 import Button from '@material-ui/core/Button';
 
-class EditStudent extends Component {
+class AddStudent extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -30,20 +30,12 @@ class EditStudent extends Component {
         };   
     }
 
-    componentDidUpdate(){
-
-      if(this.state.id === null){
-        this.setState({...this.props.student});
-      }
-
-    }
-
-    editStudent = (e) => {
+    addStudent = (e) => {
 
         e.preventDefault();
     
         axios
-        .put(process.env.REACT_APP_BE_URL + `/api/students/${this.state.id}`, this.state)
+        .post(process.env.REACT_APP_BE_URL + '/api/students', this.state)
         .then(response => {
             console.log("server response", response.data);
         })
@@ -54,7 +46,7 @@ class EditStudent extends Component {
         })
 
 
-        console.log("requesting update", this.state)
+        console.log("adding student", this.state)
 
     }
 
@@ -76,13 +68,12 @@ class EditStudent extends Component {
       console.log("props", this.props);
         return (
             <div>
-            <h1>Edit Student</h1>  
-            <form noValidate autoComplete="off" onSubmit={this.editStudent}>
+            <h1>Add Student</h1>  
+            <form noValidate autoComplete="off" onSubmit={this.addStudent}>
 
             <TextField
               id="filled-name"
               label="First Name"
-
 
               value={this.state.first_name}
               onChange={this.handleInputChange}
@@ -126,7 +117,7 @@ class EditStudent extends Component {
               value={this.state.gradeID}
               onChange={this.handleInputChange}
 
-              name='grade'
+              name='gradeID'
 
               margin="normal"
               variant="filled"
@@ -140,7 +131,7 @@ class EditStudent extends Component {
               value={this.state.schoolID}
               onChange={this.handleInputChange}
 
-              name='school'
+              name='schoolID'
 
               margin="normal"
               variant="filled"
@@ -153,7 +144,7 @@ class EditStudent extends Component {
               value={this.state.photo_url}
               onChange={this.handleInputChange}
 
-              name='photo'
+              name='photo_url'
 
               margin="normal"
               variant="filled"
@@ -167,6 +158,19 @@ class EditStudent extends Component {
               onChange={this.handleInputChange}
 
               name='enrollment_status'
+
+              margin="normal"
+              variant="filled"
+            />
+
+            <TextField
+              id="filled-name"
+              label="Insurance"
+
+              value={this.state.has_insurance}
+              onChange={this.handleInputChange}
+
+              name='has_insurance'
 
               margin="normal"
               variant="filled"
@@ -192,7 +196,7 @@ class EditStudent extends Component {
               value={this.state.has_birthcert}
               onChange={this.handleInputChange}
 
-              name='birthcert'
+              name='has_birthcert'
 
               margin="normal"
               variant="filled"
@@ -263,7 +267,7 @@ class EditStudent extends Component {
               variant="filled"
             />
             
-            <Button type="submit">Save Changes</Button>
+            <Button type="submit">Add Student</Button>
 
             </form>
 
@@ -275,4 +279,4 @@ class EditStudent extends Component {
     }
 }
 
-export default EditStudent;
+export default AddStudent;
