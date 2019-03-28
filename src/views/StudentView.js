@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import { EditStudent } from '../components';
 
+import { EditStudent } from '../components';
 
 class StudentView extends Component {
     constructor(props) {
@@ -83,6 +82,7 @@ class StudentView extends Component {
             </Grid>
 
             <EditStudent student={this.state.student}/>
+
 					</div>
 
         )
