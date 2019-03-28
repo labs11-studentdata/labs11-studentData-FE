@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import LoginView from '../login/LoginView';
 import axios from 'axios';
 
-
+axios.defaults.baseURL = 'http://localhost:9000/'
 axios.interceptors.request.use(
     function(options) {
       options.headers.authorization = localStorage.getItem('jwt');
