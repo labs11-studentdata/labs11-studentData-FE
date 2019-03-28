@@ -1,9 +1,8 @@
 import React from 'react';
+import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 
@@ -11,8 +10,13 @@ function Transition(props) {
   return <Slide direction="up" {...props} />;
 }
 
-deleteVisit = e => {
-    const arr = props.params.match(/\d+$/);
+class DeleteVisitButton extends React.Component {
+  state = {
+    open: false,
+  };
+
+  deleteVisit = e => {
+    const arr = this.props.params.match(/\d+$/);
     const id = arr[0];
     axios.delete(`http://18.188.246.0:9000/api/social_worker_visits/${id}`)
         .then(res => {
@@ -23,11 +27,6 @@ deleteVisit = e => {
         })
     this.setState({ open: false });
 }
-
-class DeleteVisitButton extends React.Component {
-  state = {
-    open: false,
-  };
 
   handleClickOpen = () => {
     this.setState({ open: true });
