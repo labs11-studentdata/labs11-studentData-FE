@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
 import { EditStudent } from '../components';
+
+import Button from '@material-ui/core/Button';
+
+//import { DeleteStudent } from '../components';
 
 class StudentView extends Component {
     constructor(props) {
@@ -31,6 +34,24 @@ class StudentView extends Component {
           })
         })
         .catch(err => console.log(err))
+    }
+
+    deleteStudent = (e) => {
+
+      e.preventDefault();
+
+      const id = this.props.match.params.id;
+  
+      axios.delete(`${process.env.REACT_APP_BE_URL}/api/students/${id}`)
+          .then(response => {
+              console.log("server response", response.data);
+          })
+          .catch(e => {
+
+          console.log("server error:", e.message);
+
+          })
+
     }
 
     render() {
@@ -83,6 +104,7 @@ class StudentView extends Component {
 
             <EditStudent student={this.state.student}/>
 
+            <Button onClick={this.deleteStudent}>Delete Student</Button>
 					</div>
 
         )

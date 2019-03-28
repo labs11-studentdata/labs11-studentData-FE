@@ -10,4 +10,5 @@ export { default as SponsorChildComponent } from './SponsorAChild/SponsorChildCo
 export { default as SchoolSelect } from './SchoolSelect';
 export { default as EditStudent } from './StudentView/EditStudent';
 export { default as AddStudent } from './StudentView/AddStudent';
+//export { default as DeleteStudent } from './StudentView/DeleteStudent';
 export { default as SmallSponsor } from './BoardMember/SmallSponsor';

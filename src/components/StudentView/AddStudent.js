@@ -68,7 +68,7 @@ class AddStudent extends Component {
       console.log("props", this.props);
         return (
             <div>
-            <h1>Edit Student</h1>  
+            <h1>Add Student</h1>  
             <form noValidate autoComplete="off" onSubmit={this.addStudent}>
 
             <TextField
