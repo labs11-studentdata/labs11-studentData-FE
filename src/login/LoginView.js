@@ -25,8 +25,6 @@ class LoginView extends Component {
         const query = this.props.history.location.pathname
         if(query.length > 10) {
             this.props.loginUser(query);
-            const parsed = queryString.parse(query);
-            console.log(parsed)
         }
     }
 
