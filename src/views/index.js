@@ -4,4 +4,5 @@ export { default as HeaderView } from './HeaderView';
 export { default as BoardView } from './BoardView';
 export { default as SponsorChildView } from './SponsorChildView';
 export { default as StudentView } from './StudentView';
+export { default as AdminDashboard } from './AdminDashboard';
 

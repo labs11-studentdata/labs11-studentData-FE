@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import requiresAuth from './auth/requiresAuth';
 import { Route } from 'react-router-dom';
-import { LoginView, HeaderView, SponsorChildView, BoardView, StudentView } from './views';
+import { LoginView, HeaderView, SponsorChildView, BoardView, StudentView, AdminDashboard } from './views';
 import { Onboarding, AddStudent } from './components'
 
 
@@ -17,6 +17,7 @@ class App extends Component {
         <Route path='/board' component={BoardView} />
         <Route path='/student/:id' render={props => <StudentView {...props} />} />
         <Route path='/add' component={AddStudent} />
+        <Route path='/admin' component={AdminDashboard} />
       </div>
     );
   }
