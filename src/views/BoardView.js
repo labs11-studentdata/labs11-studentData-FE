@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
-import {getStudents, getVisits, getSchools, getStudentsByClass} from '../actions/index';
+import {getStudents, getVisits, getSchools, } from '../actions/index';
 import { VisitLog, StudentCounter, StudentTable, IssuesTracker, SchoolSelect } from '../components/index';
-import { all } from 'bluebird';
 
 class BoardView extends Component {
 
@@ -24,7 +22,11 @@ class BoardView extends Component {
     this.props.getVisits();
 
   }
-  
+
+
+  //this is the function if you're looking for references for how to write the local filter
+  //you'll only need one of the two ID parameters I think, so you can cut down on it significantly
+  //to use it, you'll need to connect to the redux store
   setClass = (e, schoolID, gradeID) => {
     e.preventDefault();
     if(schoolID === 'all' && gradeID === 'all'){
@@ -62,6 +64,7 @@ class BoardView extends Component {
     }
   }
 
+  //opens the student sponsorship modal
   handleOpen = (e, student) => {
     e.preventDefault();
     this.setState({
@@ -70,6 +73,7 @@ class BoardView extends Component {
       activeSponsor: true });
   };
 
+  //opens the visit notes modal
   handleOpenVisit = (e, visit) => {
     e.preventDefault();
     this.setState({
@@ -78,6 +82,7 @@ class BoardView extends Component {
       activeVisit: true });
   }
 
+  //closes both modals and resets the modal tracking in component state
   handleClose = () => {
     this.setState({
       ...this.state,
@@ -97,6 +102,7 @@ class BoardView extends Component {
           setClass={this.setClass}
           schoolID={this.state.schoolID}
           gradeID={this.state.gradeID}
+          userType='board_member'
         />
         <VisitLog
           visits={this.state.visits}
@@ -120,6 +126,7 @@ class BoardView extends Component {
 }
 
 const mapStateToProps = state => {
+  //these are references to the redux store reducers
   return {
     fetching: state.students.fetching,
     fetched: state.students.fetched,
@@ -130,4 +137,5 @@ const mapStateToProps = state => {
   }
 }
 
+//this is where you hook up the functions from the actions index to this file
 export default connect(mapStateToProps, {getStudents, getVisits, getSchools})(BoardView);
