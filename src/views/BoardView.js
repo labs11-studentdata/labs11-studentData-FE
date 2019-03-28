@@ -14,6 +14,8 @@ class BoardView extends Component {
     visits: [],
     activeSponsor: false,
     student: null,
+    activeVisit: false,
+    visit: false
   }
 
   componentDidMount() {
@@ -66,14 +68,24 @@ class BoardView extends Component {
       ...this.state,
       student: student,
       activeSponsor: true });
-    debugger;
   };
+
+  handleOpenVisit = (e, visit) => {
+    e.preventDefault();
+    this.setState({
+      ...this.state,
+      visit: visit,
+      activeVisit: true });
+  }
 
   handleClose = () => {
     this.setState({
       ...this.state,
       student: null,
-      activeSponsor: false });
+      activeSponsor: false,
+      activeVisit: false,
+      visit: null
+    });
   };
 
   render(){
@@ -86,7 +98,13 @@ class BoardView extends Component {
           schoolID={this.state.schoolID}
           gradeID={this.state.gradeID}
         />
-        <VisitLog visits={this.state.visits}/>
+        <VisitLog
+          visits={this.state.visits}
+          open={this.state.activeVisit}
+          handleOpen={this.handleOpenVisit}
+          handleClose={this.handleClose}
+          visit={this.state.visit}
+        />
         <StudentCounter students={this.state.students}/>
         <StudentTable
           students={this.state.students}

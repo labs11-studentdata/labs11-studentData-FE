@@ -6,7 +6,7 @@ export const LOG_SELECTED = 'LOG_SELECTED';
 
 
 export const loginUser = token => {
-    window.location.href = '/'
+    // window.location.href = '/'
     return {
         type: LOGIN_USER,
         payload: token
