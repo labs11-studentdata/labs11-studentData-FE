@@ -7,6 +7,7 @@
     "axios": "^0.18.0",
     "dotenv": "^7.0.0",
     "jwt-decode": "^2.2.0",
+    "query-string": "^6.4.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-materialize": "^2.6.0",
@@ -34,5 +35,5 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "proxy": "https://localhost:3000"
+  "proxy": "https://reverent-spence-fef835.netlify.com/"
 }

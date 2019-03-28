@@ -1,0 +1,48 @@
+.onboarding-page {
+    width: 100%;
+}
+
+.onboarding-container {
+    display: flex;
+}
+
+.onboarding-container .card-holder {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.onboarding-card {
+    border: solid gray 1px;
+    width: 40%;
+    padding: 2% 2%;
+    margin: 20px;
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.accountHeading {
+    width: 100%;
+    margin-top: 10px;
+    font-size: 2rem;
+}
+
+.onboarding-card:hover {
+    border: solid blueviolet 3px;
+}
+
+.onboarding-card img {
+    width: 30%;
+    height: 30%;
+}
+
+.onboarding-card p {
+    margin-top: 5px;
+    font-size: 70%;
+    color: gray;
+}
+
