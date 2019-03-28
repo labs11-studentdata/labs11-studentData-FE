@@ -22,7 +22,7 @@ class StudentView extends Component {
       
       console.log(id);
 
-      axios.get(`http://localhost:9000/api/students/${id}`)
+      axios.get(`${process.env.REACT_APP_BE_URL}/api/students/${id}`)
         .then(res => {
 
           console.log(res.data);

@@ -9,4 +9,4 @@ export {default as StudentTable} from './BoardMember/StudentTable';
 export { default as SponsorChildComponent } from './SponsorAChild/SponsorChildComponent';
 export { default as SchoolSelect } from './SchoolSelect';
 export { default as EditStudent } from './StudentView/EditStudent';
-
+export { default as SmallSponsor } from './BoardMember/SmallSponsor';
