@@ -8,7 +8,6 @@ import Checkbox from '@material-ui/core/Checkbox';
 import InputLabel from '@material-ui/core/InputLabel';
 
 function OnboardingForm(props){
-  console.log(process.env.REACT_APP_BE_URL)
     return (
         <form >
         <FormControl margin="normal" required fullWidth>
