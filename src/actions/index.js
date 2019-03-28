@@ -3,7 +3,8 @@ import axios from 'axios';
 
 // axios.defaults.withCredentials = true;
 
-const baseURL = process.env.REACT_APP_BE_URL;
+// const baseURL = process.env.REACT_APP_BE_URL;
+const baseURL = 'http://localhost:9000';
 
 export const FETCHING_STUDENTS = 'FETCHING_STUDENTS';
 export const FETCHED_STUDENTS = 'FETCHED_STUDENTS';

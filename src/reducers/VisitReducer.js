@@ -25,7 +25,7 @@ export const VisitReducer = (state = initialVisitState, action) => {
         ...state,
         fetching: false,
         fetched: true,
-        vitits: action.payload,
+        visits: action.payload,
         error: null
       }
     case FAIL:
