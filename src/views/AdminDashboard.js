@@ -10,6 +10,9 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import "../components/SponsorAChild/SponsorAChild.css"
+
+import { SchoolSelect } from '../components'
 //import { DeleteStudent } from '../components';
 
 class AdminDashboard extends Component {
@@ -17,6 +20,7 @@ class AdminDashboard extends Component {
         super(props);
         this.state = {
           students: [],
+          schools: [],
         };   
     }
 
@@ -29,6 +33,15 @@ class AdminDashboard extends Component {
             })
           })
           .catch(err => console.log(err))
+
+
+        axios.get(`${process.env.REACT_APP_BE_URL}/api/schools`)
+        .then(res => {
+          this.setState({
+            schools: res.data
+          })
+        })
+        .catch(err => console.log(err))
 
       }
       
@@ -44,12 +57,15 @@ class AdminDashboard extends Component {
               <Button>Add Student</Button>
             </Link>
 
-          </div>
+            <SchoolSelect schools={this.state.schools}/>
 
+          </div>
+            
+            <div className='sponsorChildContainer'>
             <div className="studentCardContainer">
 
             {this.state.students.map(student => (
-              <Card key={student.student_id}>
+              <Card key={student.student_id} className="studentCard">
                 
                 <Link to={`/student/${student.student_id}`}>
 
@@ -89,6 +105,7 @@ class AdminDashboard extends Component {
               </Card>
             ))}
 
+          </div>
           </div>
 
         </div>
