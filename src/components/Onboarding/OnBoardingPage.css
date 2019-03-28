@@ -25,6 +25,12 @@
     align-items: center;
 }
 
+.accountHeading {
+    width: 100%;
+    margin-top: 10px;
+    font-size: 2rem;
+}
+
 .onboarding-card:hover {
     border: solid blueviolet 3px;
 }

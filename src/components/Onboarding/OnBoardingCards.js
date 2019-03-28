@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 
 function OnBoardingCard(props) {
   
+   
   return (
       <Card onClick={() => props.userTypeSelected(props.title)}className="onboarding-card">
         <CardContent>

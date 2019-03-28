@@ -4,7 +4,9 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 
 function LoginComponent(props) {
-  const url = process.env.REACT_APP_BE_URL + '/auth';
+  console.log(process.env.REACT_APP_BE_URL)
+
+  const url = 'http://localhost:9000' + '/auth';
   return (
     <Paper className="loginContainer">
       <Typography component="h1" variant="h5">
