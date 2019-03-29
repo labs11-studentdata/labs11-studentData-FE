@@ -9,6 +9,9 @@ import logger from 'redux-logger';
 import rootReducer from './reducers/index';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { loadState, saveState } from './LocalStorage';import LoginView from './login/LoginView';
+import { SponsorChildView, BoardView, StudentView} from './views';
+import { Onboarding, AddStudent } from './components'
+
 require('dotenv').config();
 
 
@@ -33,7 +36,19 @@ store.subscribe(() => {
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      { store.getState().login.token.length > 10 && <Route path='/onboarding' component={App}/>}
+      {console.log(store.getState().login.token.length, store.getState().login.token)}
+      { 
+        store.getState().login.token.length
+     > 10 && 
+     <>
+     <Route path='/onboarding' component={Onboarding}/>
+    <Route path='/sponsor' component={SponsorChildView}/>
+    <Route path='/board' component={BoardView}/>
+    <Route path='/add' component={AddStudent}/>
+    <Route path='/student/:id' render={props => <StudentView {...props} />} />
+    </>
+    }
+
       
       <Route path='/login' component={LoginView}/>
     </Router>

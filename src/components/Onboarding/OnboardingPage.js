@@ -1,10 +1,11 @@
 import React from "react";
-
+import {HeaderView} from "../../views";
 import OnBoardingCard from "./OnBoardingCards";
 import swIcon from ".././../imgs/social-worker-icon.png";
 import saIcon from "../../imgs/school-admin-icon.png";
 import bmIcon from "../../imgs/board-member-icon.png";
 import OnBoardingForm from "./OnboardingForm";
+import CreateASchoolForm from '../CreateASchool/CreateASchoolForm';
 import axios from 'axios';
 import "./OnBoardingPage.css";
 
@@ -77,6 +78,8 @@ class OnBoarding extends React.Component {
   render() {
     console.log(this.state)
     return (
+      <>
+      <HeaderView />
       <div className="onboarding-page">
         <h3>Tell us who you are!</h3>
         <div className="onboarding-container">
@@ -110,9 +113,14 @@ class OnBoarding extends React.Component {
                 `I am a ${this.state.selected}` : 'Please select an account type.'}
             </div>
           </div>
+          <div>
           <OnBoardingForm handleSubmit={this.handleSubmit} handleChanges={this.handleChanges} user={this.state.user}/>
+          <CreateASchoolForm />
+          </div>
+          
         </div>
       </div>
+      </>
     );
   }
 }
