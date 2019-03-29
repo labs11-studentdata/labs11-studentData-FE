@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import TextField from '@material-ui/core/TextField';
+import { Link } from 'react-router-dom';
 
+import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 class AddStudent extends Component {
@@ -267,9 +268,15 @@ class AddStudent extends Component {
               variant="filled"
             />
             
+            <br></br>
+            
             <Button type="submit">Add Student</Button>
 
             </form>
+
+              <Link to={`/admin`}>
+                      <Button>Cancel</Button>
+              </Link>
 
             </div>
 
