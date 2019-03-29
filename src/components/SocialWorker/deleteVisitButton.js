@@ -18,7 +18,7 @@ class DeleteVisitButton extends React.Component {
   deleteVisit = e => {
     const arr = this.props.params.match(/\d+$/);
     const id = arr[0];
-    axios.delete(`http://18.188.246.0:9000/api/social_worker_visits/${id}`)
+    axios.delete(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits/${id}`)
         .then(res => {
             console.log(res.data)
         })

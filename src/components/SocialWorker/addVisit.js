@@ -20,7 +20,7 @@ class AddVisit extends React.Component {
         date: this.state.date,
         note: this.state.note
       }
-      axios.post("http://18.188.246.0:9000/api/social_worker_visits", {visit})
+      axios.post(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits`, {visit})
         .then(res => {
             console.log(res.data)
         })
