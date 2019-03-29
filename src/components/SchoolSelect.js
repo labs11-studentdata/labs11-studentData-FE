@@ -17,7 +17,12 @@ class SchoolSelect extends Component {
     this.state = {
       schoolID: '',
       gradeID: '',
+<<<<<<< HEAD
       userType: props.userType
+=======
+      schools: [],
+
+>>>>>>> master
     }
   }
 
