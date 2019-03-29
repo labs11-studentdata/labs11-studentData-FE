@@ -31,7 +31,6 @@ class AddVisit extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
     return(
     <div>
       <TextField
@@ -40,7 +39,6 @@ class AddVisit extends React.Component {
             name="date"
             onChange={this.eHandler}
             placeholder="MM/DD/YYYY"
-            className={classes.textField}
             margin="normal"
           />
 
@@ -50,11 +48,9 @@ class AddVisit extends React.Component {
             name="note"
             onChange={this.eHandler}
             multiline
-            className={classes.textField}
             margin="normal"
           />
       <Button 
-      className={classes.button}
       onClick={this.submitForm}
       >
           Submit
