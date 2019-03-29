@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-
+// import axios from 'axios';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import Card from "@material-ui/core/Card";
@@ -14,6 +14,7 @@ import "../components/SponsorAChild/SponsorAChild.css"
 
 import { SchoolSelect } from '../components'
 //import { DeleteStudent } from '../components';
+import {getStudents, getSchools, } from '../actions/index';
 
 class AdminDashboard extends Component {
     constructor(props) {
@@ -25,26 +26,38 @@ class AdminDashboard extends Component {
     }
 
     componentDidMount() {
-
-        axios.get(`${process.env.REACT_APP_BE_URL}/api/students`)
-          .then(res => {
-            this.setState({
-              students: res.data
-            })
-          })
-          .catch(err => console.log(err))
-
-
-        axios.get(`${process.env.REACT_APP_BE_URL}/api/schools`)
-        .then(res => {
-          this.setState({
-            schools: res.data
-          })
-        })
-        .catch(err => console.log(err))
-
-      }
+      //this hits the endpoints listed in actions/index.js and populates the redux store
+      this.props.getStudents();
+      this.props.getSchools();
+    }
       
+    setClass = (e, schoolID, gradeID) => {
+      e.preventDefault();
+      if(schoolID === 'all' && gradeID === 'all'){
+        this.setState({
+          ...this.state,
+          schoolID: schoolID,
+          gradeID: gradeID,
+          students: this.props.students,
+        })
+      }
+      else if (schoolID !== 'all' && gradeID === 'all'){
+        this.setState({
+          ...this.state,
+          schoolID: schoolID,
+          gradeID: gradeID,
+          students: this.props.students.filter(student => student.schoolID === schoolID),
+        })
+      }
+      else {
+        this.setState({
+          ...this.state,
+          schoolID: schoolID,
+          gradeID: gradeID,
+          students: this.props.students.filter(student => (student.gradeID === gradeID) && (student.schoolID === schoolID)),
+        });
+      }
+    }
     render() {
   
       console.log(this.state)
@@ -57,7 +70,12 @@ class AdminDashboard extends Component {
               <Button>Add Student</Button>
             </Link>
 
-            <SchoolSelect schools={this.state.schools}/>
+            <SchoolSelect
+              schools={this.props.schools}
+              setClass={this.setClass}
+              schoolID={this.state.schoolID}
+              gradeID={this.state.gradeID}
+            />
 
           </div>
             
@@ -113,4 +131,15 @@ class AdminDashboard extends Component {
     }
 }
 
-export default AdminDashboard;
+const mapStateToProps = state => {
+  //these are references to the redux store reducers
+  return {
+    fetching: state.students.fetching,
+    fetched: state.students.fetched,
+    students: state.students.students,
+    schools: state.schools.schools,
+    error: state.students.error,
+  }
+}
+
+export default connect(mapStateToProps, {getStudents, getSchools})(AdminDashboard);
