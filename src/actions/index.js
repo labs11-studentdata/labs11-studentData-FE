@@ -33,7 +33,7 @@ export const getStudentsByClass = (schoolID, gradeID) => dispatch => {
 }
 
 
-//gets all social worker visits, no matching endpoint yet
+//gets all social worker visits
 export const getVisits = () => dispatch => {
   dispatch({type: FETCHING_VISITS});
 

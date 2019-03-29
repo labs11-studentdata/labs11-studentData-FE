@@ -6,7 +6,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Modal from '@material-ui/core/Modal';
-import { Component } from 'react';
 import { SmallSponsor } from '../index';
 
 const StudentTable = props => {
