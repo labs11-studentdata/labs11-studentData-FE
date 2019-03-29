@@ -7,9 +7,10 @@ import { applyMiddleware, createStore } from "redux";
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import rootReducer from './reducers/index';
-import { BrowserRouter as Router } from 'react-router-dom'
-import { loadState, saveState } from './LocalStorage';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { loadState, saveState } from './LocalStorage';import LoginView from './login/LoginView';
 require('dotenv').config();
+
 
 // import * as serviceWorker from './serviceWorker';
 
@@ -32,7 +33,9 @@ store.subscribe(() => {
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <App/>
+      { store.getState().login.token.length > 10 && <Route path='/onboarding' component={App}/>}
+      
+      <Route path='/login' component={LoginView}/>
     </Router>
   </Provider>,
   document.getElementById("root")

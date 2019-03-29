@@ -4,6 +4,8 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 
 function LoginComponent(props) {
+  console.log(process.env.REACT_APP_BE_URL)
+
   const url = process.env.REACT_APP_BE_URL + '/auth';
   return (
     <Paper className="loginContainer">

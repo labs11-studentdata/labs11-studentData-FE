@@ -6,6 +6,8 @@ import { withRouter } from 'react-router-dom';
 import { loginUser } from '../actions/login'
 import { connect } from 'react-redux';
 import {HeaderView} from '../views'
+import queryString from 'query-string';
+import {Route } from 'react-router-dom';
 const btns = ['Google', 'Facebook']
 
 class LoginView extends Component {
@@ -20,10 +22,10 @@ class LoginView extends Component {
         }
       };
 
-    componentWillMount() {
-        const query = this.props.history.location.pathname.substring(17)
+    componentDidMount() {
+        const query = this.props.history.location.pathname
         if(query.length > 10) {
-            this.props.loginUser(query)
+            this.props.loginUser(query);
         }
     }
 
