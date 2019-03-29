@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { SponsorChildComponent } from '../components';
+import HeaderView from './HeaderView';
 
 class SponsorChildView extends Component {
     state = {
@@ -26,6 +27,7 @@ class SponsorChildView extends Component {
       console.log(this.state)
         return (
             <>
+            <HeaderView />
             <SponsorChildComponent sponsorSelected={this.sponsorSelected} selectedStudent={this.state.selectedStudent} students={this.state.students}/>
             </>
         )
