@@ -98,11 +98,9 @@ class BoardView extends Component {
       <div className='board-db'>
         <SchoolSelect
           schools={this.props.schools}
-          setSchool={this.setSchool}
           setClass={this.setClass}
           schoolID={this.state.schoolID}
           gradeID={this.state.gradeID}
-          userType='board_member'
         />
         <VisitLog
           visits={this.state.visits}
