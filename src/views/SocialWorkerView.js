@@ -13,7 +13,7 @@ class SocialWorkerView extends Component {
   }
 
   componentDidMount() {
-    axios.get(`http://18.188.246.0:9000/api/social_worker_visits`)
+    axios.get(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits`)
             .then(res => {
                 this.setState({ visits: res.data })
             })
