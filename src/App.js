@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import requiresAuth from './auth/requiresAuth';
 import { Route } from 'react-router-dom';
-<<<<<<< HEAD
-import { LoginView, HeaderView, SponsorChildView, BoardView, StudentView, SocialWorkerView } from './views';
-=======
-import {  HeaderView, SponsorChildView, BoardView, StudentView, AdminDashboard } from './views';
+import {  HeaderView, SponsorChildView, BoardView, StudentView, AdminDashboard, SocialWorkerView } from './views';
 import LoginView from './login/LoginView';
->>>>>>> master
 import { Onboarding, AddStudent } from './components'
 
 
