@@ -69,7 +69,7 @@ class OnBoarding extends React.Component {
     e.preventDefault()
     if(this.state.user.photo_url || this.state.user.email || this.state.user.user_permissions) {
       this.setState({...this.state, error: false})
-      axios.get('/api/users/')
+      axios.put('/api/users/')
       
     } else {
       this.setState({...this.state, error: true})
