@@ -4,6 +4,7 @@ import axios from 'axios';
 import {getStudents, getVisits, getSchools, getStudentsByClass} from '../actions/index';
 import { VisitLog, StudentCounter, StudentTable, IssuesTracker, SchoolSelect } from '../components/index';
 import { all } from 'bluebird';
+import HeaderView from './HeaderView';
 
 class BoardView extends Component {
 
@@ -90,6 +91,8 @@ class BoardView extends Component {
 
   render(){
     return (
+      <>
+      <HeaderView />
       <div className='board-db'>
         <SchoolSelect
           schools={this.props.schools}
@@ -115,6 +118,7 @@ class BoardView extends Component {
         />
         {/* <IssuesTracker /> */}
       </div>
+      </>
     )
   }
 }
