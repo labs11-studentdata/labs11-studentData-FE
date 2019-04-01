@@ -29,6 +29,11 @@ class AdminDashboard extends Component {
       //this hits the endpoints listed in actions/index.js and populates the redux store
       this.props.getStudents();
       this.props.getSchools();
+      this.setState({
+        ...this.state,
+        students: this.props.students,
+        schools: this.props.schools
+      })
     }
       
     setClass = (e, schoolID, gradeID) => {
