@@ -6,8 +6,9 @@ import saIcon from "../../imgs/school-admin-icon.png";
 import bmIcon from "../../imgs/board-member-icon.png";
 import OnBoardingForm from "./OnboardingForm";
 import CreateASchoolForm from '../CreateASchool/CreateASchoolForm';
-import axios from 'axios';
+import { updateAccount } from '../../actions/account';
 import "./OnBoardingPage.css";
+import { connect } from 'react-redux';
 
 const user = { 
   email: "",
@@ -67,16 +68,16 @@ class OnBoarding extends React.Component {
   // HANDLE SUBMIT -- axios call to update user with client info
   handleSubmit = (e) => {
     e.preventDefault()
-    if(this.state.user.photo_url || this.state.user.email || this.state.user.user_permissions) {
-      this.setState({...this.state, error: false})
-      axios.get('/api/users/')
+    const user_id = this.props.user_id
+    if(this.state.user.photo_url && this.state.user.email &&this.state.user.user_permissions) {
+      this.setState({...this.state, error: false, selected: this.state.selected.replace(/\s/g, '').toLowerCase()})
+      this.props.updateAccount(user_id, this.state.user)
       
     } else {
       this.setState({...this.state, error: true})
     }
   }
   render() {
-    console.log(this.state)
     return (
       <>
       <HeaderView />
@@ -91,6 +92,7 @@ class OnBoarding extends React.Component {
               iconDescription={"Admin Icon"}
               title={"School Administrator"}
               subnames={""}
+              value='admin'
             />
             <OnBoardingCard
               userTypeSelected={e => this.userTypeSelected(e)}
@@ -125,4 +127,10 @@ class OnBoarding extends React.Component {
   }
 }
 
-export default OnBoarding;
+const mapStateToProps = state => {
+  return {
+    user_id: state.login.user.user_id
+  }
+}
+
+export default connect(mapStateToProps, { updateAccount })(OnBoarding);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import requiresAuth from './auth/requiresAuth';
+import Authenticated from './auth/requiresAuth';
 import { Route } from 'react-router-dom';
 import {  HeaderView, SponsorChildView, BoardView, StudentView, AdminDashboard, SocialWorkerView } from './views';
 import LoginView from './login/LoginView';
@@ -20,10 +20,10 @@ class App extends Component {
         <Route path='/student/:id' render={props => <StudentView {...props} />} />
         <Route path='/add' component={AddStudent} />
         <Route path='/social' component={SocialWorkerView} />        
-        <Route path='/admin' component={AdminDashboard} />
+        <Route path='/schooladministratordashboard' component={AdminDashboard} />
       </div>
     );
   }
 }
 
-export default App;
+export default Authenticated(App);
