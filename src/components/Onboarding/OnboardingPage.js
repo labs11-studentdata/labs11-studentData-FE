@@ -34,7 +34,6 @@ class OnBoarding extends React.Component {
     console.log(this.state)
   }
   userTypeSelected = e => {
-    console.log(e)
     if (e.includes("Admin")) {
       this.setState({
         ...this.state,
@@ -71,7 +70,7 @@ class OnBoarding extends React.Component {
     e.preventDefault()
     const user_id = this.props.user_id
     if(this.state.user.photo_url && this.state.user.email &&this.state.user.user_permissions) {
-      this.setState({...this.state, error: false})
+      this.setState({...this.state, error: false, selected: this.state.selected.replace(/\s/g, '').toLowerCase()})
       this.props.updateAccount(user_id, this.state.user)
       
     } else {

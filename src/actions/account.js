@@ -10,7 +10,7 @@ export const updateAccount = (user_id, updates) => dispatch => {
         .then(res => {
             console.log(res)
             dispatch({ type: UPDATE_ACCOUNT_SUCCESS, payload: res.data.updatedUser })
-            window.location.href = `${res.data.updatedUser.user_permissions.toLowerCase()}dashboard`
+            window.location.href = `${res.data.updatedUser.user_permissions.replace(/\s/g, '').toLowerCase()}dashboard`
         })
         .catch(err => dispatch({ type: UPDATE_ACCOUNT_FAIL, payload: err}))
 }
