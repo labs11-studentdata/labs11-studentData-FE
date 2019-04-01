@@ -1,5 +1,4 @@
 import React from "react";
-import {HeaderView} from "../../views";
 import OnBoardingCard from "./OnBoardingCards";
 import swIcon from ".././../imgs/social-worker-icon.png";
 import saIcon from "../../imgs/school-admin-icon.png";
@@ -80,7 +79,6 @@ class OnBoarding extends React.Component {
   render() {
     return (
       <>
-      <HeaderView />
       <div className="onboarding-page">
         <h3>Tell us who you are!</h3>
         <div className="onboarding-container">
