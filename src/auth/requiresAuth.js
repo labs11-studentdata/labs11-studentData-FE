@@ -23,7 +23,7 @@ const Authenticated = Component =>
     }
       render() {
           const token = localStorage.getItem('jwt');
-          return <>{token ? <Component {...this.props} /> : <LoginView />}</>
+          return <>{token && token.includes('token')? <Component {...this.props} /> : <LoginView />}</>
       }
   } 
 

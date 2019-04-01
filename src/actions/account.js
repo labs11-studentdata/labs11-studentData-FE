@@ -9,6 +9,8 @@ export const updateAccount = (user_id, updates) => dispatch => {
     axios.put(`/api/users/${user_id}`, updates)
         .then(res => {
             console.log(res)
-            dispatch({ type: UPDATE_ACCOUNT_SUCCESS, payload: res.data.updatedUser })})
+            dispatch({ type: UPDATE_ACCOUNT_SUCCESS, payload: res.data.updatedUser })
+            window.location.href = `${res.data.updatedUser.user_permissions.toLowerCase()}dashboard`
+        })
         .catch(err => dispatch({ type: UPDATE_ACCOUNT_FAIL, payload: err}))
 }

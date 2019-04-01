@@ -34,6 +34,7 @@ class OnBoarding extends React.Component {
     console.log(this.state)
   }
   userTypeSelected = e => {
+    console.log(e)
     if (e.includes("Admin")) {
       this.setState({
         ...this.state,
@@ -92,6 +93,7 @@ class OnBoarding extends React.Component {
               iconDescription={"Admin Icon"}
               title={"School Administrator"}
               subnames={""}
+              value='admin'
             />
             <OnBoardingCard
               userTypeSelected={e => this.userTypeSelected(e)}
