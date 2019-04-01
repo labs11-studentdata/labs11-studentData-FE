@@ -22,7 +22,7 @@ class BoardView extends Component {
     this.props.getSchools();
     this.props.getVisits();
     this.setState({
-      ...state,
+      ...this.state,
       students: this.props.students,
       visits: this.props.visits,
     })

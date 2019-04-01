@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { AllVisits, VisitsBySchool, AddVisit } from '../components/index';
 import { connect } from 'react-redux';
+import { getSchools, getStudents, getVisitsByUserId } from '../actions/index';
 
 class SocialWorkerView extends Component {
 
@@ -18,7 +19,7 @@ class SocialWorkerView extends Component {
     this.props.getSchools();
     this.props.getStudents();
     this.setState({
-      ...state,
+      ...this.state,
       visits: this.props.visits
     });
   }

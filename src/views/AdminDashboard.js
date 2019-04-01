@@ -30,6 +30,7 @@ class AdminDashboard extends Component {
       this.props.getStudents();
       this.props.getSchools();
       this.setState({
+        ...this.state,
         students: this.props.students,
         schools: this.props.schools
       })
