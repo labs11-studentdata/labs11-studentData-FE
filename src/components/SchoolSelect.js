@@ -94,7 +94,7 @@ class SchoolSelect extends Component {
             <MenuItem value = {12} >12</MenuItem>
           </Select>
         </FormControl>
-        <Button type='submit'>filter</Button>
+        <Button type='submit' color='primary'>filter</Button>
       </form>
     )
   }
