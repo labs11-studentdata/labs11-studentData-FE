@@ -2,7 +2,7 @@ import React from 'react';
 // import PaymentComponent from '../Payment/PaymentComponent';
 // import Paper from '@material-ui/core/Paper';
 import {Elements, StripeProvider} from 'react-stripe-elements';
-import StripeComponent from './StripeComponent';
+import StripeComponent from '../Stripe/StripeComponent';
 
 const SmallSponsor = props => {
   if (props.student !== null){

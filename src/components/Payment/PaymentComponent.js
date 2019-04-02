@@ -19,11 +19,19 @@
 //     }
 //   }
 
+  
 //   handleChange = name => e => {
 //     e.preventDefault();
 //     this.setState({ [name]: e.target.value });
 //     console.log('pow');
 //   };
+
+//   onToken = token => {
+//     const body = {
+//       amount: this.state.amount,
+//       token: token
+//     }
+//   }
 
 //   render(){
 //     return (
