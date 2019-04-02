@@ -15,12 +15,12 @@ class App extends Component {
         <HeaderView />
         <Route path='/onboarding' component={OnboardingView} />
         <Route path='/sponsor' component={SponsorChildView} />
-        <Route path='/board' component={BoardView} />
+        <Route path='/boardmemberdashboard' component={BoardView} />
         <Route path='/login' component={LoginView} />
         <Route path='/student/:id' render={props => <StudentView {...props} />} />
         <Route path='/add' component={AddStudent} />
-        <Route path='/social' component={SocialWorkerView} />        
-        <Route path='/schooladministratordashboard' component={AdminDashboard} />
+        <Route path='/socialworkerdashboard' component={SocialWorkerView} />        
+        <Route path='/admindashboard' component={AdminDashboard} />
       </div>
     );
   }

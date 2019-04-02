@@ -26,7 +26,6 @@ const styles = theme => ({
 
   
     render() {
-        console.log(this.props)
       const { classes } = this.props;
         
       return (
