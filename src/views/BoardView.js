@@ -1,10 +1,32 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import {getStudents, getVisits, getSchools, } from '../actions/index';
-import { VisitLog, StudentCounter, StudentTable, IssuesTracker, SchoolSelect } from '../components/index';
+import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+import { getStudents, getVisits, getSchools } from "../actions/index";
+import {
+  VisitLog,
+  StudentCounter,
+  StudentTable,
+  IssuesTracker,
+  SchoolSelect
+} from "../components/index";
+import DashboardFrame from "./DashboardFrame";
+
+// Setting up route links object for left side navigation
+const links = [
+  {
+    title: "LINK TEST 1",
+    url: "#"
+  },
+  {
+    title: "LINK TEST 2",
+    url: "#"
+  },
+  {
+    title: "LINK TEST 3",
+    url: "#"
+  }
+];
 
 class BoardView extends Component {
-
   state = {
     schoolID: null,
     gradeID: null,
@@ -14,7 +36,7 @@ class BoardView extends Component {
     student: null,
     activeVisit: false,
     visit: false
-  }
+  };
 
   componentDidMount() {
     this.props.getStudents();
@@ -23,50 +45,52 @@ class BoardView extends Component {
     this.setState({
       ...this.state,
       students: this.props.students,
-      visits: this.props.visits,
-    })
+      visits: this.props.visits
+    });
   }
-
 
   //this is the function if you're looking for references for how to write the local filter
   //you'll only need one of the two ID parameters I think, so you can cut down on it significantly
   //to use it, you'll need to connect to the redux store
   setClass = (e, schoolID, gradeID) => {
     e.preventDefault();
-    if(schoolID === 'all' && gradeID === 'all'){
+    if (schoolID === "all" && gradeID === "all") {
       this.setState({
         ...this.state,
-        schoolID: 'all',
-        gradeID: 'all',
+        schoolID: "all",
+        gradeID: "all",
         students: this.props.students,
         visits: this.props.visits,
         activeSponsor: false,
-        student: null,
-      })
-    }
-    else if (schoolID !== 'all' && gradeID === 'all'){
+        student: null
+      });
+    } else if (schoolID !== "all" && gradeID === "all") {
       this.setState({
         ...this.state,
         schoolID: schoolID,
-        gradeID: 'all',
-        students: this.props.students.filter(student => student.schoolID === schoolID),
+        gradeID: "all",
+        students: this.props.students.filter(
+          student => student.schoolID === schoolID
+        ),
         visits: this.props.visits.filter(visit => visit.schoolID === schoolID),
         activeSponsor: false,
-        student: null,
-      })
-    }
-    else {
+        student: null
+      });
+    } else {
       this.setState({
         ...this.state,
         schoolID: schoolID,
         gradeID: gradeID,
-        students: this.props.students.filter(student => (student.gradeID === gradeID) && (student.schoolID === schoolID)),
+        students: this.props.students.filter(
+          student =>
+            student.gradeID === gradeID && student.schoolID === schoolID
+        ),
         visits: this.props.visits.filter(visit => visit.schoolID === schoolID),
         activeSponsor: false,
-        student: null,
+        student: null
       });
     }
-  }
+  };
 
   //opens the student sponsorship modal
   handleOpen = (e, student) => {
@@ -74,7 +98,8 @@ class BoardView extends Component {
     this.setState({
       ...this.state,
       student: student,
-      activeSponsor: true });
+      activeSponsor: true
+    });
   };
 
   //opens the visit notes modal
@@ -83,8 +108,9 @@ class BoardView extends Component {
     this.setState({
       ...this.state,
       visit: visit,
-      activeVisit: true });
-  }
+      activeVisit: true
+    });
+  };
 
   //closes both modals and resets the modal tracking in component state
   handleClose = () => {
@@ -97,24 +123,24 @@ class BoardView extends Component {
     });
   };
 
-  render(){
+  Header = () => {
     return (
-      <>
-      <div className='board-db'>
+      <Fragment>
+        <StudentCounter students={this.state.students} />
+      </Fragment>
+    );
+  };
+
+  Body = () => {
+    return (
+      <Fragment>
         <SchoolSelect
           schools={this.props.schools}
           setClass={this.setClass}
           schoolID={this.state.schoolID}
           gradeID={this.state.gradeID}
         />
-        <VisitLog
-          visits={this.state.visits}
-          open={this.state.activeVisit}
-          handleOpen={this.handleOpenVisit}
-          handleClose={this.handleClose}
-          visit={this.state.visit}
-        />
-        <StudentCounter students={this.state.students}/>
+        <br />
         <StudentTable
           students={this.state.students}
           open={this.state.activeSponsor}
@@ -122,10 +148,25 @@ class BoardView extends Component {
           handleClose={this.handleClose}
           student={this.state.student}
         />
-        {/* <IssuesTracker /> */}
-      </div>
-      </>
-    )
+      </Fragment>
+    );
+  };
+
+  Footer = () => {
+    return <Fragment>FOOTER</Fragment>;
+  };
+
+  render() {
+    return (
+      <Fragment>
+        <DashboardFrame
+          links={links}
+          header={this.Header}
+          body={this.Body}
+          footer={this.Footer}
+        />
+      </Fragment>
+    );
   }
 }
 
@@ -138,8 +179,11 @@ const mapStateToProps = state => {
     schools: state.schools.schools,
     error: state.students.error,
     visits: state.visits.visits
-  }
-}
+  };
+};
 
 //this is where you hook up the functions from the actions index to this file
-export default connect(mapStateToProps, {getStudents, getVisits, getSchools})(BoardView);
+export default connect(
+  mapStateToProps,
+  { getStudents, getVisits, getSchools }
+)(BoardView);
