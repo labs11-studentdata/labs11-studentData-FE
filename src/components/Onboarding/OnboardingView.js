@@ -174,6 +174,7 @@ class CustomizedStepper extends React.Component {
       user: {
         ...this.state.user,
         account_type: getAccountType(this.state.user.user_permissions),
+        user_id: this.props.user_id
       }
     });
         this.props.updateAccount(this.props.user_id, this.state.user);
