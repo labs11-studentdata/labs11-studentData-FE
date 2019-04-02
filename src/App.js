@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Authenticated from './auth/requiresAuth';
 import { Route } from 'react-router-dom';
-import {  HeaderView, SponsorChildView, BoardView, StudentView, AdminDashboard, SocialWorkerView } from './views';
+import {  HeaderView, SponsorChildView, BoardView, StudentView, AdminDashboard, SocialWorkerView, SocialWorkerDashboard } from './views';
 import LoginView from './login/LoginView';
 import { Onboarding, AddStudent } from './components'
 
@@ -21,6 +21,8 @@ class App extends Component {
         <Route path='/add' component={AddStudent} />
         <Route path='/social' component={SocialWorkerView} />        
         <Route path='/schooladministratordashboard' component={AdminDashboard} />
+
+        <Route path='/socialworkerdashboard' component={SocialWorkerDashboard} />
       </div>
     );
   }
