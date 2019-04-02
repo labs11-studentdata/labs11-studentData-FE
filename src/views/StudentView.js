@@ -39,10 +39,8 @@ class StudentView extends Component {
     deleteStudent = (e) => {
 
       e.preventDefault();
-
-      const id = this.props.match.params.id;
   
-      axios.delete(`${process.env.REACT_APP_BE_URL}/api/students/${id}`)
+      axios.delete(`${process.env.REACT_APP_BE_URL}/api/students/${this.state.student.student_id}`)
           .then(response => {
               console.log("server response", response.data);
           })

@@ -6,11 +6,11 @@ import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import EditStudent from './EditStudent';
 
-function rand() {
+/* function rand() {
   return Math.round(Math.random() * 20) - 10;
-}
+} */
 
-function getModalStyle() {
+/* function getModalStyle() {
   const top = 50 + rand();
   const left = 50 + rand();
 
@@ -19,12 +19,12 @@ function getModalStyle() {
     left: `${left}%`,
     transform: `translate(-${top}%, -${left}%)`,
   };
-}
+} */
 
 const styles = theme => ({
   paper: {
     position: 'absolute',
-    width: theme.spacing.unit * 50,
+    //width: '75%',
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing.unit * 4,
@@ -47,7 +47,7 @@ class StudentModal extends React.Component {
 
   render() {
     const { classes } = this.props;
-
+    console.log("edit student props", this.props)
     return (
       <div>
         <Button onClick={this.handleOpen}>Edit</Button>
@@ -57,8 +57,8 @@ class StudentModal extends React.Component {
           open={this.state.open}
           onClose={this.handleClose}
         >
-          <div style={getModalStyle()} className={classes.paper}>
-            <EditStudent />
+          <div className={classes.paper}>
+            <EditStudent {...this.props}/>
             <EditStudentModal />
           </div>
         </Modal>
