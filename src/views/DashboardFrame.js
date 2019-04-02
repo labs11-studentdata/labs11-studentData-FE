@@ -4,7 +4,8 @@ import { Paper, Grid, List, ListItem, ListItemText } from "@material-ui/core";
 
 const styles = theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    marginTop: 16,
   },
   paper: {
     padding: theme.spacing.unit * 2,
