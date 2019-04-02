@@ -19,4 +19,6 @@ export { default as SmallSponsor } from './BoardMember/SmallSponsor';
 export { default as AllVisits } from './SocialWorker/VisitLists/allVisits.js'
 export { default as VisitsBySchool } from './SocialWorker/VisitLists/visitsBySchool.js'
 export { default as AddStudentModal } from './StudentView/AddStudentModal'
+export { default as EditStudentModal } from './StudentView/EditStudentModal'
+
 
