@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 import { loginUser } from '../actions/login'
 import { connect } from 'react-redux';
 import {HeaderView} from '../views'
-// import queryString from 'query-string';
+import queryString from 'query-string';
 import {Route } from 'react-router-dom';
 const btns = ['Google', 'Facebook']
 
@@ -24,6 +24,10 @@ class LoginView extends Component {
 
     componentDidMount() {
         const query = this.props.history.location.pathname
+        const parsed = queryString.parse(query)
+        if(parsed.user_permissions === '') {
+            window.location.href = '/onboarding'
+        }
         if(query.length > 10) {
             this.props.loginUser(query);
         }

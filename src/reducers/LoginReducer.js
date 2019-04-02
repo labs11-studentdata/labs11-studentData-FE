@@ -4,6 +4,7 @@ import {
     REG_SELECTED,
     LOG_SELECTED
 } from '../actions/login'
+import queryString from 'query-string';
 
 const initialState = {
     token: '',
@@ -14,11 +15,15 @@ const initialState = {
 export const LoginReducer = (state = initialState, action) => {
     switch(action.type) {
         case LOGIN_USER: {
-            localStorage.setItem('jwt', action.payload)
+            localStorage.setItem('jwt', action.payload);
+            const user = queryString.parse(action.payload);
+            console.log(user.user_permissions.replace(/\s/g, '').toLowerCase())
+       
             return{
                 ...state,
                 token: action.payload,
-                loggedIn: true
+                loggedIn: true,
+                user: user
             }
         }
         case LOGOUT_USER: {

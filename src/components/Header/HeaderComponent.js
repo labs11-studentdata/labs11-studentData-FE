@@ -20,7 +20,6 @@ const styles = {
 };
 function HeaderComponent(props) {
   const { classes } = props;
-  console.log(props)
   if (props.loggedIn) {
     return (
       <div className={classes.root}>

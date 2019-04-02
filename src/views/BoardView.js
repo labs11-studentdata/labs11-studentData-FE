@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {getStudents, getVisits, getSchools, } from '../actions/index';
 import { VisitLog, StudentCounter, StudentTable, IssuesTracker, SchoolSelect } from '../components/index';
-import HeaderView from './HeaderView';
 
 class BoardView extends Component {
 
@@ -101,7 +100,6 @@ class BoardView extends Component {
   render(){
     return (
       <>
-      <HeaderView />
       <div className='board-db'>
         <SchoolSelect
           schools={this.props.schools}

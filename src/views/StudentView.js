@@ -5,7 +5,6 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
 import { EditStudent } from '../components';
-import Header from './HeaderView'
 import Button from '@material-ui/core/Button';
 
 //import { DeleteStudent } from '../components';
@@ -59,7 +58,6 @@ class StudentView extends Component {
       console.log(this.state)
         return (
           <>
-          <Header />
 					<div>
             <Grid   
               container
