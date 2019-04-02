@@ -5,7 +5,7 @@ import { Paper, Grid, List, ListItem, ListItemText } from "@material-ui/core";
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    marginTop: 16,
+    marginTop: 16
   },
   paper: {
     padding: theme.spacing.unit * 2,
@@ -29,7 +29,12 @@ function DashContainer(props) {
   const { classes } = props;
   const Header = props.header;
   const Body = props.body;
-  const Footer = props.footer;
+
+  // conditionally support footer
+  let Footer;
+  if (props.footer) {
+    Footer = props.footer;
+  }
   console.log("DashContainer props", props);
 
   return (
@@ -63,11 +68,13 @@ function DashContainer(props) {
               </Paper>
             </Grid>
             {/* FOOTER */}
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Footer />
-              </Paper>
-            </Grid>
+            {Footer ? (
+              <Grid item xs={12}>
+                <Paper className={classes.paper}>
+                  <Footer />
+                </Paper>
+              </Grid>
+            ) : null}
           </Grid>
         </Grid>
       </Grid>
