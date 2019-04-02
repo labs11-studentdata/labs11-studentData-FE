@@ -8,6 +8,7 @@ import { EditStudent } from '../components';
 import Button from '@material-ui/core/Button';
 
 //import { DeleteStudent } from '../components';
+import { EditStudentModal } from '../components';
 
 class StudentView extends Component {
     constructor(props) {
@@ -101,7 +102,8 @@ class StudentView extends Component {
 
             </Grid>
 
-            <EditStudent student={this.state.student}/>
+            {/*<EditStudent student={this.state.student}/>*/}
+            <EditStudentModal student={this.state.student}/>
 
             <Button onClick={this.deleteStudent}>Delete Student</Button>
 					</div>
