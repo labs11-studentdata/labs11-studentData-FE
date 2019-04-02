@@ -13,6 +13,7 @@ class StripeComponent extends Component {
       complete: false,
       amount: '',
       key: 'pk_test_arXBQTpudOCQ9XCjo20KlKbh00piO3nLbb',
+      student: this.props.student
     };
   }
 
@@ -40,35 +41,35 @@ class StripeComponent extends Component {
     //     </div>
     // );
     return (
-      <>
-      <TextField
-      required
-      onChange={this.handleChange}
-      value={this.state.amount}
-      name="amount"
-      label="Donation Amount"
-      fullWidth />
+      <div className='stripe-donation-container' style={{display: 'flex', alignItems: 'center'}}>
+        <TextField
+        required
+        onChange={this.handleChange}
+        value={this.state.amount}
+        name="amount"
+        label="Amount"
+        style={{width: '50%'}}
+        />
 
-      <StripeCheckout
-        allowRememberMe={false}
-        amount={this.state.amount * 100}
-        billingAddress
-        closed={this.handleClose}
-        description={`Sponsor a student`}
-        image="https://stripe.com/img/documentation/checkout/marketplace.png"
-        label="Pay with 💳"
-        locale="auto"
-        name="SchoolMe"
-        opened={this.handleOpen}
-        panelLabel={`Donate`}
-        // shippingAddress
-        stripeKey={this.state.key}
-        token={this.handleToken}
-        zipCode
-      />
-      </>
+        <StripeCheckout
+          allowRememberMe={false}
+          amount={this.state.amount * 100}
+          closed={this.handleClose}
+          description={`Sponsor ${this.state.student.first_name}`}
+          image="https://stripe.com/img/documentation/checkout/marketplace.png"
+          label="Donate"
+          locale="auto"
+          name="SchoolMe"
+          opened={this.handleOpen}
+          panelLabel={`Donate`}
+          // shippingAddress
+          stripeKey={this.state.key}
+          token={this.handleToken}
+          zipCode
+        />
+      </div>
     )
   }
 }
 
-export default injectStripe(StripeComponent);
+export default StripeComponent;
