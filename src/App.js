@@ -16,7 +16,6 @@ class App extends Component {
         <Route path='/onboarding' component={OnboardingView} />
         <Route path='/sponsor' component={SponsorChildView} />
         <Route path='/boardmemberdashboard' component={BoardView} />
-        <Route path='/login' component={LoginView} />
         <Route path='/student/:id' render={props => <StudentView {...props} />} />
         <Route path='/add' component={AddStudent} />
         <Route path='/socialworkerdashboard' component={SocialWorkerView} />        
