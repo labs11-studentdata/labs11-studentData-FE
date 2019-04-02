@@ -10,6 +10,8 @@ import {
 } from "../components/index";
 import DashboardFrame from "./DashboardFrame";
 import HighestDues from '../components/BoardMember/HighestDues';
+import { withStyles } from '@material-ui/core/styles';
+
 
 // Setting up route links object for left side navigation
 const links = [
@@ -198,7 +200,4 @@ const mapStateToProps = state => {
 };
 
 //this is where you hook up the functions from the actions index to this file
-export default connect(
-  mapStateToProps,
-  { getStudents, getVisits, getSchools }
-)(BoardView);
+export default withStyles(styles)(connect(mapStateToProps,{ getStudents, getVisits, getSchools })(BoardView));
