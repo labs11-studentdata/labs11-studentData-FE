@@ -181,9 +181,9 @@ class CustomizedStepper extends React.Component {
   };
   // ADD A SCHOOL -- If user does not see name of school
   handleSchoolSubmit = e => {
-      e.preventDefault();
+      e.preventDefaßult();
       const school = this.state.school
-      axios.post('/api/schools/', school)
+      axios.post(`${process.env.REACT_APP_BE_URL}/api/schools/`, school)
           .then(res =>{
               this.setState({
                   ...this.state,
