@@ -15,6 +15,7 @@ import "../components/SponsorAChild/SponsorAChild.css"
 import { SchoolSelect } from '../components'
 //import { DeleteStudent } from '../components';
 import {getStudents, getSchools, } from '../actions/index';
+import AddStudentModal from '../components/StudentView/AddStudentModal';
 
 class AdminDashboard extends Component {
     constructor(props) {
@@ -71,9 +72,7 @@ class AdminDashboard extends Component {
 
           <div>
 
-            <Link to={`/add`}>
-              <Button>Add Student</Button>
-            </Link>
+            <AddStudentModal />
 
             <SchoolSelect
               schools={this.props.schools}
