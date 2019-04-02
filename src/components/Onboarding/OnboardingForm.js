@@ -18,16 +18,6 @@ function OnboardingForm(props){
           <InputLabel htmlFor="photo_url">Add a photo url</InputLabel>
           <Input name="photo_url" value={props.user.photo_url} onChange={(e) => props.handleChanges(e)} id="photo_url" />
         </FormControl>
-      
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          color="primary"
-          onClick={(e) => props.handleSubmit(e)}
-        >
-          Continue
-        </Button>
       </form>
     )
 }
