@@ -30,23 +30,25 @@ class CreateASchoolForm extends Component{
     render() {
         
         return (
-            <>
+            <div className='schoolFormContainer'>
+                    {this.props.school.schoolID ? <h1> Joining {this.props.school.school_name} as a {this.props.selected} </h1>: <h1>Please select a school </h1>}
+
             <h2>Create A school</h2>
               <form noValidate autoComplete="off">
             <TextField
               id="standard-name"
               label="School Name"
               name="school_name"
-              value={this.state.school.school_name}
-              onChange={(e) => this.handleChanges(e)}
+              value={this.props.school.school_name}
+              onChange={(e) => this.props.handleSchoolChanges(e)}
               margin="normal"
             />
             <TextField
               id="standard-name"
               label="Location"
               name="location"
-              value={this.state.school.location}
-              onChange={(e) => this.handleChanges(e)}
+              value={this.props.school.location}
+              onChange={(e) => this.props.handleSchoolChanges(e)}
               margin="normal"
             />
             <Button
@@ -54,12 +56,12 @@ class CreateASchoolForm extends Component{
           fullWidth
           variant="contained"
           color="primary"
-          onClick={(e) => this.handleSubmit(e)}
+          onClick={(e) => this.props.handleSchoolSubmit(e)}
         >
           Add School
         </Button>
             </form>
-            </>
+            </div>
         )
     }
     
