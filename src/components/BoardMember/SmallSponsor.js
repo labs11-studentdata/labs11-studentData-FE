@@ -1,18 +1,20 @@
 import React from 'react';
-import PaymentComponent from '../Payment/PaymentComponent';
-import Paper from '@material-ui/core/Paper';
+// import PaymentComponent from '../Payment/PaymentComponent';
+// import Paper from '@material-ui/core/Paper';
+import {Elements, StripeProvider} from 'react-stripe-elements';
+import StripeComponent from './StripeComponent';
 
 const SmallSponsor = props => {
   if (props.student !== null){
     return(
-      <Paper>
-        <div >
-          <p className='sponsoring'>Thank you! Sponsoring {`${props.student.first_name}`}</p>
-          <div className='container'>
-          <PaymentComponent selectedStudent={props.student}/>
-          </div>
+      <StripeProvider apiKey="pk_test_arXBQTpudOCQ9XCjo20KlKbh00piO3nLbb">
+        <div className="example">
+          <h1>Sponsoring {props.student.first_name}</h1>
+          <Elements>
+            <StripeComponent />
+          </Elements>
         </div>
-      </Paper>
+      </StripeProvider>
     )
   }
 }
