@@ -112,8 +112,6 @@ class CustomizedStepper extends React.Component {
               [e.target.name]: e.target.value
           }
       })
-
-      console.log(this.state)
   }
   // HANDLE SUBMIT -- axios call to update user with client info
   handleSubmit = e => {
@@ -160,7 +158,6 @@ class CustomizedStepper extends React.Component {
   finishedSelected = e => {
       e.preventDefault();
       const user = this.state.user;
-      console.log(this.state)
       if(!user.email || !user.photo_url || !user.schoolID || !user.user_permissions) {
         alert('Please enter all onboarding information.')
       } else {
@@ -172,7 +169,6 @@ class CustomizedStepper extends React.Component {
 //   UPDATE ACCOUNT -- after all login info selected update user account info
   updateAccount = e => {
     e.preventDefault();
-    console.log(this.state);
     this.setState({
       ...this.state,
       user: {
@@ -185,8 +181,6 @@ class CustomizedStepper extends React.Component {
   };
   // ADD A SCHOOL -- If user does not see name of school
   handleSchoolSubmit = e => {
-      e.preventDefault()
-      console.log(this.state)
       e.preventDefault();
       const school = this.state.school
       axios.post('/api/schools/', school)
@@ -206,7 +200,6 @@ class CustomizedStepper extends React.Component {
           .catch(err => console.log(err))
   }
   render() {
-    console.log(this.state);
     const { classes } = this.props;
     const { activeStep } = this.state;
     const steps = getSteps();
