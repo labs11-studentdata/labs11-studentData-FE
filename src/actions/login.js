@@ -7,7 +7,6 @@ export const LOG_SELECTED = 'LOG_SELECTED';
 
 
 export const loginUser = token => {
-    console.log(token)
     return {
         type: LOGIN_USER,
         payload: token,
@@ -16,10 +15,8 @@ export const loginUser = token => {
 
 export const registerUser = token => {
     const user_permissions = store.getState()
-    console.log(user_permissions)
     const user = user_permissions.login.user.user_permissions
     const user_id = store.getState().login.user.user_id
-    console.log(user_permissions)
     return {
         type: LOGIN_USER,
         payload: token,

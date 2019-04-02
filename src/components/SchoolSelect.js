@@ -8,6 +8,29 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+// import classes from '*.module.css';
+
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  formControl: {
+    margin: theme.spacing.unit,
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing.unit * 2,
+  },
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
+  },
+});
 
 class SchoolSelect extends Component {
   constructor(props) {
@@ -31,13 +54,16 @@ class SchoolSelect extends Component {
 
   //this is the simpler version, we'll stick with it for now
   render(){
+    const {classes} = this.props;
     return(
       <form onSubmit={e => this.props.setClass(e, this.state.schoolID, this.state.gradeID)}>
-        <FormControl>
+        <FormControl className={classes.formControl}>
+        <InputLabel htmlFor="school-select">School</InputLabel>
           <Select
             value={this.state.schoolID}
             name='schoolID'
             onChange={this.handleChange('schoolID')}
+            inputProps={{id: 'school-select'}}
           >
             <MenuItem value = 'all'>All</MenuItem>
             {this.props.schools.map(school => {
@@ -45,11 +71,13 @@ class SchoolSelect extends Component {
             })}
           </Select>
         </FormControl>
-        <FormControl>
+        <FormControl className={classes.formControl}>
+        <InputLabel htmlFor="age-select">Grade</InputLabel>
           <Select
             value={this.state.gradeID}
             name='gradeID'
             onChange={this.handleChange('gradeID')}
+            inputProps={{id: 'grade-select'}}
           >
             <MenuItem value = 'all'>All</MenuItem>
             <MenuItem value = {1} >1</MenuItem>
@@ -66,7 +94,7 @@ class SchoolSelect extends Component {
             <MenuItem value = {12} >12</MenuItem>
           </Select>
         </FormControl>
-        <button type='submit'>filter</button>
+        <Button type='submit' color='primary'>filter</Button>
       </form>
     )
   }
@@ -168,4 +196,4 @@ class SchoolSelect extends Component {
   // }
 }
 
-export default SchoolSelect;
+export default withStyles(styles)(SchoolSelect);

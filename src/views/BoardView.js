@@ -9,6 +9,9 @@ import {
   SchoolSelect
 } from "../components/index";
 import DashboardFrame from "./DashboardFrame";
+import HighestDues from '../components/BoardMember/HighestDues';
+import { withStyles } from '@material-ui/core/styles';
+
 
 // Setting up route links object for left side navigation
 const links = [
@@ -25,6 +28,14 @@ const links = [
     url: "#"
   }
 ];
+
+const styles = theme => ({
+  root: {
+    ...theme.mixins.gutters(),
+    paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2,
+  },
+});
 
 class BoardView extends Component {
   state = {
@@ -153,10 +164,16 @@ class BoardView extends Component {
   };
 
   Footer = () => {
-    return <Fragment>FOOTER</Fragment>;
+    return (
+      <Fragment>
+        <HighestDues students={this.state.students} />
+      </Fragment>
+      );
   };
 
   render() {
+    console.log('BOARD VIEW STATE', this.state);
+    console.log('BOARD VIEW PROPS', this.props);
     return (
       <Fragment>
         <DashboardFrame
@@ -183,7 +200,4 @@ const mapStateToProps = state => {
 };
 
 //this is where you hook up the functions from the actions index to this file
-export default connect(
-  mapStateToProps,
-  { getStudents, getVisits, getSchools }
-)(BoardView);
+export default withStyles(styles)(connect(mapStateToProps,{ getStudents, getVisits, getSchools })(BoardView));

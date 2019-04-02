@@ -21,15 +21,12 @@ const Authenticated = Component =>
   class extends Component {
     componentDidMount() {
       const parsed = queryString.parse(window.location.href)
-      console.log(parsed)
       if(parsed.user_permissions) {
-        console.log(true)
         window.location.href = `${parsed.user_permissions.replace(/\s/g, '').toLowerCase()}dashboard`
       }
     }
       render() {
           const token = localStorage.getItem('jwt');
-          console.log(token && token.includes('token'))
           return <>{token && token.includes('token')? <Component {...this.props} /> : <LoginView />}</>
       }
   } 

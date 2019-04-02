@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import LoginComponent from './LoginComponent';
 import { regSelected, logSelected } from '../actions/login';
-import '../styles/LoginStyles.css'
+import './/LoginStyles.css'
 import { withRouter } from 'react-router-dom';
 import { loginUser } from '../actions/login'
 import { connect } from 'react-redux';
