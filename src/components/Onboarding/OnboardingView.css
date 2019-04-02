@@ -1,0 +1,14 @@
+.onboardingContainer {
+    margin: 0 auto;
+    border: none;
+    box-shadow: none;
+}
+
+.onboardingCell {
+    display: flex;
+    justify-content: center;
+}
+
+.schoolFormContainer {
+    flex-direction: column;
+}
