@@ -12,9 +12,10 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import "../components/SponsorAChild/SponsorAChild.css"
 
-import { SchoolSelect } from '../components'
+import { SchoolSelect, EditStudentModal } from '../components'
 //import { DeleteStudent } from '../components';
 import {getStudents, getSchools, } from '../actions/index';
+import AddStudentModal from '../components/StudentView/AddStudentModal';
 
 class AdminDashboard extends Component {
     constructor(props) {
@@ -71,9 +72,7 @@ class AdminDashboard extends Component {
 
           <div>
 
-            <Link to={`/add`}>
-              <Button>Add Student</Button>
-            </Link>
+            <AddStudentModal />
 
             <SchoolSelect
               schools={this.props.schools}
@@ -116,9 +115,7 @@ class AdminDashboard extends Component {
                 </Link>
 
                 <CardActions>
-                  <Button size="small" color="primary">
-                    Edit
-                  </Button>
+                  <EditStudentModal {...this.state={student}}/>
                   <div> Status: </div>
                   <Typography gutterBottom color="secondary" component="p">
                     {`${student.enrollment_status}`}
