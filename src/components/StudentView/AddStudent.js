@@ -23,7 +23,7 @@ class AddStudent extends Component {
         e.preventDefault();
     
         axios
-        .post(process.env.REACT_APP_BE_URL + '/api/students', this.state)
+        .post(process.env.REACT_APP_BE_URL + '/api/students', this.state.student)
         .then(response => {
             console.log("server response", response.data);
         })
@@ -34,7 +34,7 @@ class AddStudent extends Component {
         })
 
 
-        console.log("adding student", this.state)
+        console.log("adding student", this.state.student)
 
     }
 
@@ -44,7 +44,7 @@ class AddStudent extends Component {
 
       this.setState({
 
-        ...this.state,
+        ...this.state.student,
         [name]: value
 
       });
@@ -59,7 +59,7 @@ class AddStudent extends Component {
           <h1>Add Student</h1><br></br>  
 
 
-          <form noValidate autoComplete="off" style={{height: "50%", width: "75%", display: 'flex', flexDirection: 'row'}} onSubmit={this.editStudent}>
+          <form noValidate autoComplete="off" style={{height: "50%", width: "75%", display: 'flex', flexDirection: 'row'}} onSubmit={this.addStudent}>
           <Grid
           container
           spacing={24}
