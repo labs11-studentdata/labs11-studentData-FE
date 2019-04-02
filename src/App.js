@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Authenticated from './auth/requiresAuth';
 import { Route } from 'react-router-dom';
-import {  HeaderView, SponsorChildView, BoardView, StudentView, AdminDashboard, SocialWorkerView } from './views';
+import {  HeaderView, SponsorChildView, BoardView, StudentView, AdminDashboard, SocialWorkerView, SocialWorkerDashboard } from './views';
 import LoginView from './login/LoginView';
 import { OnboardingView, AddStudent } from './components'
 

@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid';
 
 class AddStudent extends Component {
     constructor(props) {
@@ -69,215 +71,255 @@ class AddStudent extends Component {
       console.log("props", this.props);
         return (
             <div>
-            <h1>Add Student</h1>  
-            <form noValidate autoComplete="off" onSubmit={this.addStudent}>
+            <Grid
+              container
+              spacing={24}
+              direction="row"
+              justify="center"
+              alignItems="center"
+            >
 
-            <TextField
-              id="filled-name"
-              label="First Name"
+              <Paper>
+
+              <h1>Add Student</h1>  
+              <form noValidate autoComplete="off" onSubmit={this.addStudent}>
+              <Grid item>
+                <TextField
+                  id="filled-name"
+                  label="First Name"
 
-              value={this.state.first_name}
-              onChange={this.handleInputChange}
+                  value={this.state.first_name}
+                  onChange={this.handleInputChange}
 
-              name='first_name'
+                  name='first_name'
+
+                  margin="normal"
+                  variant="filled"
+                />
+              </Grid>
 
-              margin="normal"
-              variant="filled"
-            />
+              <Grid item>
+                <TextField
+                  id="filled-name"
+                  label="Last Name"
 
-            <TextField
-              id="filled-name"
-              label="Last Name"
+                  value={this.state.last_name}
+                  onChange={this.handleInputChange}
 
-              value={this.state.last_name}
-              onChange={this.handleInputChange}
+                  name='last_name'
 
-              name='last_name'
+                  margin="normal"
+                  variant="filled"
+                />
+              </Grid>
 
-              margin="normal"
-              variant="filled"
-            />
+              <Grid item>
+                <TextField
+                  id="filled-name"
+                  label="Age"
 
-            <TextField
-              id="filled-name"
-              label="Age"
+                  value={this.state.age}
+                  onChange={this.handleInputChange}
 
-              value={this.state.age}
-              onChange={this.handleInputChange}
+                  name='age'
 
-              name='age'
+                  margin="normal"
+                  variant="filled"
+                />
+              </Grid>
 
-              margin="normal"
-              variant="filled"
-            />
+              <Grid item>
+                <TextField
+                  id="filled-name"
+                  label="Grade"
 
-            <TextField
-              id="filled-name"
-              label="Grade"
+                  value={this.state.gradeID}
+                  onChange={this.handleInputChange}
 
-              value={this.state.gradeID}
-              onChange={this.handleInputChange}
+                  name='gradeID'
 
-              name='gradeID'
+                  margin="normal"
+                  variant="filled"
+                />
+              </Grid>
 
-              margin="normal"
-              variant="filled"
-            />
+              <Grid item>
+                <TextField
+                  id="filled-name"
+                  label="School"
 
+                  value={this.state.schoolID}
+                  onChange={this.handleInputChange}
 
-            <TextField
-              id="filled-name"
-              label="School"
+                  name='schoolID'
 
-              value={this.state.schoolID}
-              onChange={this.handleInputChange}
+                  margin="normal"
+                  variant="filled"
+                />
+              </Grid>
 
-              name='schoolID'
+              <Grid item>
+                <TextField
+                  id="filled-name"
+                  label="Photo URL"
 
-              margin="normal"
-              variant="filled"
-            />
+                  value={this.state.photo_url}
+                  onChange={this.handleInputChange}
 
-            <TextField
-              id="filled-name"
-              label="Photo URL"
+                  name='photo_url'
 
-              value={this.state.photo_url}
-              onChange={this.handleInputChange}
+                  margin="normal"
+                  variant="filled"
+                />
+              </Grid>
 
-              name='photo_url'
+              <Grid item>
+                <TextField
+                  id="filled-name"
+                  label="Enrollment Status"
 
-              margin="normal"
-              variant="filled"
-            />
+                  value={this.state.enrollment_status}
+                  onChange={this.handleInputChange}
 
-            <TextField
-              id="filled-name"
-              label="Enrollment Status"
+                  name='enrollment_status'
 
-              value={this.state.enrollment_status}
-              onChange={this.handleInputChange}
+                  margin="normal"
+                  variant="filled"
+                />
+              </Grid>
 
-              name='enrollment_status'
+              <Grid item>
+                <TextField
+                  id="filled-name"
+                  label="Insurance"
 
-              margin="normal"
-              variant="filled"
-            />
+                  value={this.state.has_insurance}
+                  onChange={this.handleInputChange}
 
-            <TextField
-              id="filled-name"
-              label="Insurance"
+                  name='has_insurance'
 
-              value={this.state.has_insurance}
-              onChange={this.handleInputChange}
+                  margin="normal"
+                  variant="filled"
+                />
+              </Grid>
 
-              name='has_insurance'
+              <Grid item>
+                <TextField
+                  id="filled-name"
+                  label="Insurance Expiration"
 
-              margin="normal"
-              variant="filled"
-            />
+                  value={this.state.insurance_expiration}
+                  onChange={this.handleInputChange}
 
-            <TextField
-              id="filled-name"
-              label="Insurance Expiration"
+                  name='insurance_expiration'
 
-              value={this.state.insurance_expiration}
-              onChange={this.handleInputChange}
+                  margin="normal"
+                  variant="filled"
+                />
+              </Grid>
 
-              name='insurance_expiration'
+              <Grid item>
+                <TextField
+                  id="filled-name"
+                  label="Birth Certificate"
 
-              margin="normal"
-              variant="filled"
-            />
+                  value={this.state.has_birthcert}
+                  onChange={this.handleInputChange}
 
-            <TextField
-              id="filled-name"
-              label="Birth Certificate"
+                  name='has_birthcert'
 
-              value={this.state.has_birthcert}
-              onChange={this.handleInputChange}
+                  margin="normal"
+                  variant="filled"
+                />
+              </Grid>
 
-              name='has_birthcert'
+              <Grid item>
+                <TextField
+                  id="filled-name"
+                  label="Dues"
 
-              margin="normal"
-              variant="filled"
-            />
+                  value={this.state.dues}
+                  onChange={this.handleInputChange}
 
-            <TextField
-              id="filled-name"
-              label="Dues"
+                  name='dues'
 
-              value={this.state.dues}
-              onChange={this.handleInputChange}
+                  margin="normal"
+                  variant="filled"
+                />
+              </Grid>
 
-              name='dues'
+              <Grid item>
+                <TextField
+                  id="filled-name"
+                  label="Special Needs"
 
-              margin="normal"
-              variant="filled"
-            />
+                  value={this.state.special_needs}
+                  onChange={this.handleInputChange}
 
-            <TextField
-              id="filled-name"
-              label="Special Needs"
+                  name='special_needs'
 
-              value={this.state.special_needs}
-              onChange={this.handleInputChange}
+                  margin="normal"
+                  variant="filled"
+                />
+              </Grid>
 
-              name='special_needs'
+              <Grid item>
+                <TextField
+                  id="filled-name"
+                  label="Contact First Name"
 
-              margin="normal"
-              variant="filled"
-            />
+                  value={this.state.contact_first_name}
+                  onChange={this.handleInputChange}
 
-            <TextField
-              id="filled-name"
-              label="Contact First Name"
+                  name='contact_first_name'
 
-              value={this.state.contact_first_name}
-              onChange={this.handleInputChange}
+                  margin="normal"
+                  variant="filled"
+                />
+              </Grid>
 
-              name='contact_first_name'
+              <Grid item>
+                <TextField
+                  id="filled-name"
+                  label="Contact Last Name"
 
-              margin="normal"
-              variant="filled"
-            />
+                  value={this.state.contact_last_name}
+                  onChange={this.handleInputChange}
 
-            <TextField
-              id="filled-name"
-              label="Contact Last Name"
+                  name='contact_last_name'
 
-              value={this.state.contact_last_name}
-              onChange={this.handleInputChange}
+                  margin="normal"
+                  variant="filled"
+                />
+              </Grid>
 
-              name='contact_last_name'
+              <Grid item>
+                <TextField
+                  id="filled-name"
+                  label="Contact Phone"
 
-              margin="normal"
-              variant="filled"
-            />
+                  value={this.state.contact_number}
+                  onChange={this.handleInputChange}
 
-            <TextField
-              id="filled-name"
-              label="Contact Phone"
+                  name='contact_number'
 
-              value={this.state.contact_number}
-              onChange={this.handleInputChange}
+                  margin="normal"
+                  variant="filled"
+                />
+              </Grid>
+              
+              <br></br>
+              
+              <Button type="submit">Add Student</Button>
 
-              name='contact_number'
+              </form>
 
-              margin="normal"
-              variant="filled"
-            />
-            
-            <br></br>
-            
-            <Button type="submit">Add Student</Button>
+                <Link to={`/admin`}>
+                        <Button>Cancel</Button>
+                </Link>
 
-            </form>
-
-              <Link to={`/admin`}>
-                      <Button>Cancel</Button>
-              </Link>
-
+              </ Paper>
+            </Grid>
             </div>
 
 
