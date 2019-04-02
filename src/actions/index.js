@@ -32,12 +32,30 @@ export const getStudentsByClass = (schoolID, gradeID) => dispatch => {
     .catch(err => dispatch({type: FAIL, payload: err}))
 }
 
+//gets all students within a specific school
+//may require updated endpoint
+export const getStudentsBySchool = schoolID => dispatch => {
+  dispatch({type: FETCHING_STUDENTS});
+
+  axios.get(`${baseURL}/api/schools/${schoolID}`)
+    .then(res => dispatch({type: FETCHED_STUDENTS, payload: res.data}))
+    .catch(err => dispatch({type: FAIL, payload: err}))
+}
 
 //gets all social worker visits
 export const getVisits = () => dispatch => {
   dispatch({type: FETCHING_VISITS});
 
   axios.get(`${baseURL}/api/social_worker_visits`)
+    .then(res => dispatch({type: FETCHED_VISITS, payload: res.data}))
+    .catch(err => dispatch({type: FAIL, payload: err}))
+}
+
+//gets all visits for specific social worker ID
+export const getVisitsByUserId = id => dispatch => {
+  dispatch({type: FETCHING_VISITS});
+
+  axios.get(`${baseURL}/api/social_worker_visits/${id}`)
     .then(res => dispatch({type: FETCHED_VISITS, payload: res.data}))
     .catch(err => dispatch({type: FAIL, payload: err}))
 }
@@ -50,3 +68,4 @@ export const getSchools = () => dispatch => {
     .then(res => dispatch({type: FETCHED_SCHOOLS, payload: res.data}))
     .catch(err => dispatch({type: FAIL, payload: err}))
 }
+
