@@ -8,8 +8,10 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-
+import {Elements, StripeProvider} from 'react-stripe-elements';
+import StripeComponent from '../Stripe/StripeComponent';
 import PaymentComponent from '../Payment/PaymentComponent';
+import Paper from '@material-ui/core/Paper';
 
 import "./SponsorAChild.css";
 
@@ -20,15 +22,20 @@ function SponsorChildComponent(props) {
       
       <div className='sponsorChildContainer'>
       <div className='paymentContainer'>
-            {props.selectedStudent.hasOwnProperty('student_id') && (
-              <p className='sponsoring'>Thank you! Sponsoring {`${props.selectedStudent.first_name}`}</p>
-            )}
-            
+          <Paper>
             {/* {props.selectedStudent.hasOwnProperty('student_id') && <hr/>} */}
             <div className='container'>
-            <PaymentComponent selectedStudent={props.selectedStudent}/>
-
+            {/* <PaymentComponent selectedStudent={props.selectedStudent}/> */}
+              {/* <StripeProvider apiKey="pk_test_arXBQTpudOCQ9XCjo20KlKbh00piO3nLbb">
+                <div className="example">
+                  <Elements>
+                    <StripeComponent />
+                  </Elements>
+                </div>
+              </StripeProvider>
+             */}
             </div>
+          </Paper> 
         </div>
         <div className="studentCardContainer">
           {props.students.map(student => (

@@ -5,6 +5,7 @@ import { SchoolReducer } from './SchoolReducer';
 import { VisitReducer } from './VisitReducer';
 import { LoginReducer } from './LoginReducer';
 import { AccountReducer } from './AccountReducer';
+import { StripeReducer } from './StripeReducer';
 
 const rootReducer = combineReducers({
   //combine reducers in here
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   schools: SchoolReducer,
   visits: VisitReducer,
   login: LoginReducer,
-  account: AccountReducer
+  account: AccountReducer,
+  stripe: StripeReducer
 });
 
 export default rootReducer;

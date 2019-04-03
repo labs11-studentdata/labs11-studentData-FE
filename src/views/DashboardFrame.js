@@ -6,7 +6,9 @@ import { Paper, Grid, List, ListItem, ListItemText } from "@material-ui/core";
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    marginTop: 16
+    margin: '0 auto',
+    marginTop: 16,
+    maxWidth: 1300,
   },
   paper: {
     padding: theme.spacing.unit * 2,
@@ -17,7 +19,9 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2,
     textAliign: "center",
     color: theme.palette.text.secondary,
-    height: "90vh"
+    [theme.breakpoints.up('md')]: {
+      height: "90vh",
+    },
   },
   link: {}
 });

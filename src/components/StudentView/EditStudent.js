@@ -52,7 +52,7 @@ class EditStudent extends Component {
 
       this.setState({
 
-        ...this.state,
+        ...this.props.student,
         [name]: value
 
       });
