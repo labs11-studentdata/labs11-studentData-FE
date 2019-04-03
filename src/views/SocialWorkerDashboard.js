@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 
+import { connect } from 'react-redux';
+
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
@@ -38,12 +40,14 @@ class SocialWorkerDashboard extends Component {
     componentDidMount() {
       
       //need to change this to use the user's id
-      const id = 22;
+      const id = this.props.userID;
+
+      console.log(id);
       
       //console.log(id);
 
       //need to change this to get all visits for the user
-      axios.get(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits/school/${id}`)
+      axios.get(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits/${id}`)
         .then(res => {
 
           console.log(res.data);
@@ -112,4 +116,12 @@ class SocialWorkerDashboard extends Component {
     }
 }
 
-export default SocialWorkerDashboard;
+const mapStateToProps = state => {
+  console.log(state);
+
+  return {
+    userID: state.login.user.user_id
+  }
+}
+
+export default connect(mapStateToProps, {})(SocialWorkerDashboard);
