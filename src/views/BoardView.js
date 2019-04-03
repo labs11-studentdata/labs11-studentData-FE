@@ -1,8 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { getStudents, getVisits, getSchools } from "../actions/index";
+import { getStudents, getSchools } from "../actions/index";
 import {
-  VisitLog,
   StudentCounter,
   StudentTable,
   IssuesTracker,
@@ -45,14 +44,11 @@ class BoardView extends Component {
     visits: [],
     activeSponsor: false,
     student: null,
-    activeVisit: false,
-    visit: false
   };
 
   componentDidMount() {
     this.props.getStudents();
     this.props.getSchools();
-    this.props.getVisits();
     this.setState({
       ...this.state,
       students: this.props.students
@@ -70,7 +66,6 @@ class BoardView extends Component {
         schoolID: "all",
         gradeID: "all",
         students: this.props.students,
-        visits: this.props.visits,
         activeSponsor: false,
         student: null
       });
@@ -82,7 +77,6 @@ class BoardView extends Component {
         students: this.props.students.filter(
           student => student.schoolID === schoolID
         ),
-        visits: this.props.visits.filter(visit => visit.schoolID === schoolID),
         activeSponsor: false,
         student: null
       });
@@ -95,7 +89,6 @@ class BoardView extends Component {
           student =>
             student.gradeID === gradeID && student.schoolID === schoolID
         ),
-        visits: this.props.visits.filter(visit => visit.schoolID === schoolID),
         activeSponsor: false,
         student: null
       });
@@ -128,8 +121,6 @@ class BoardView extends Component {
       ...this.state,
       student: null,
       activeSponsor: false,
-      activeVisit: false,
-      visit: null
     });
   };
 
@@ -194,9 +185,8 @@ const mapStateToProps = state => {
     students: state.students.students,
     schools: state.schools.schools,
     error: state.students.error,
-    visits: state.visits.visits
   };
 };
 
 //this is where you hook up the functions from the actions index to this file
-export default withStyles(styles)(connect(mapStateToProps,{ getStudents, getVisits, getSchools })(BoardView));
+export default withStyles(styles)(connect(mapStateToProps,{ getStudents, getSchools })(BoardView));

@@ -12,6 +12,8 @@ export const FETCHING_VISITS = 'FETCHING_VISITS';
 export const FETCHED_VISITS = 'FETCHED_VISITS';
 export const FETCHING_SCHOOLS = 'FETCHING_SCHOOLS';
 export const FETCHED_SCHOOLS = 'FETCHED_SCHOOLS';
+export const UPDATING_STUDENT = 'UPDATING_STUDENT';
+export const UPDATED_STUDENT = 'UPDATED_STUDENT';
 export const FAIL = 'FAIL';
 export const PAYING = 'PAYING';
 export const PAID = 'PAID';
@@ -32,6 +34,15 @@ export const getStudentsByClass = (schoolID, gradeID) => dispatch => {
 
   axios.get(`${baseURL}/api/school/${schoolID}/students/${gradeID}`)
     .then(res => dispatch({type: FETCHED_STUDENTS, payload: res.data}))
+    .catch(err => dispatch({type: FAIL, payload: err}))
+}
+
+//update a specific student
+export const updateStudent = (id, update) => dispatch => {
+  dispatch({type: UPDATING_STUDENT});
+
+  axios.put(`${baseURL}/api/students/${id}`, update)
+    .then(res => dispatch({type: UPDATED_STUDENT, payload: res.data}))
     .catch(err => dispatch({type: FAIL, payload: err}))
 }
 
@@ -72,10 +83,11 @@ export const getSchools = () => dispatch => {
     .catch(err => dispatch({type: FAIL, payload: err}))
 }
 
-export const makeDonation = body => dispatch => {
+export const makeDonation = (body, id, newAmt) => dispatch => {
   console.log(body);
   dispatch({type: PAYING});
   axios.post(`${baseURL}/api/stripe/`, body)
     .then(res => dispatch({type: PAID, payload: res.data}))
+    .then(() => updateStudent(id, newAmt)(dispatch))
     .catch(err => dispatch({type: FAIL, payload: err}))
 }
