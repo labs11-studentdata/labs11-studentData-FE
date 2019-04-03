@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 
 import Grid from '@material-ui/core/Grid';
@@ -10,6 +10,22 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import DashboardFrame from './DashboardFrame';
+
+const links = [
+  {
+    title: "LINK TEST 1",
+    url: "#"
+  },
+  {
+    title: "LINK TEST 2",
+    url: "#"
+  },
+  {
+    title: "LINK TEST 3",
+    url: "#"
+  }
+];
 
 class SocialWorkerDashboard extends Component {
     constructor(props) {
@@ -21,11 +37,13 @@ class SocialWorkerDashboard extends Component {
 
     componentDidMount() {
       
-      const id = this.props.match.params.id;
+      //need to change this to use the user's id
+      const id = 22;
       
-      console.log(id);
+      //console.log(id);
 
-      axios.get(`${process.env.REACT_APP_BE_URL}/api/user/${id}`)
+      //need to change this to get all visits for the user
+      axios.get(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits/school/${id}`)
         .then(res => {
 
           console.log(res.data);
@@ -38,30 +56,57 @@ class SocialWorkerDashboard extends Component {
         .catch(err => console.log(err))
     }
 
-    render() {
-  
-      console.log(this.state)
-        return (
-            <div>
-            <Paper>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Visit Date</TableCell>
-                  <TableCell align="right">Notes</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {this.state.visits.map(visit => (
-                  <TableRow key={visit.id}>
-                    <TableCell align="right">{visit.visit_date}</TableCell>
-                    <TableCell align="right">{visit.notes}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </Paper>
+
+    Header = () => {
+      return (
+        <Fragment>
+          <div>
+            <h2>{this.state.visits.length}</h2>
           </div>
+        </Fragment>
+      );
+    };
+
+    Body = () => {
+      return (
+        <Fragment>
+              <Paper>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Visit Date</TableCell>
+                    <TableCell align="right">Notes</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {this.state.visits.map(visit => (
+                    <TableRow key={visit.id}>
+                      <TableCell align="right">{visit.visit_date}</TableCell>
+                      <TableCell align="right">{visit.notes}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </Paper>
+        </Fragment>
+      );
+    };
+
+    Footer = () => {
+      return <Fragment>FOOTER</Fragment>;
+    };
+
+    render() {
+        
+        return (
+        <Fragment>
+          <DashboardFrame
+            links={links}
+            header={this.Header}
+            body={this.Body}
+            footer={this.Footer}
+          />          
+        </Fragment>
           
         )
     }

@@ -20,6 +20,7 @@ class App extends Component {
         <Route path='/add' component={AddStudent} /> 
         <Route path='/socialworkerdashboard' component={SocialWorkerView} />        
         <Route path='/admindashboard' component={AdminDashboard} />
+        <Route path='/socialdashtest' component={SocialWorkerDashboard} />
         <Route path='/social' component={SocialWorkerView} />        
         <Route path='/schooladministratordashboard' component={AdminDashboard} />
         <Route path='/home' component={LandingPage} />
