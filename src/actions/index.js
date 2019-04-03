@@ -73,8 +73,9 @@ export const getSchools = () => dispatch => {
 }
 
 export const makeDonation = body => dispatch => {
+  console.log(body);
   dispatch({type: PAYING});
-  axios.post(`${baseURL}/api/charge`).send(body)
+  axios.post(`${baseURL}/api/stripe/`, body)
     .then(res => dispatch({type: PAID, payload: res.data}))
     .catch(err => dispatch({type: FAIL, payload: err}))
 }

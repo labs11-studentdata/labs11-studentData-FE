@@ -28,9 +28,9 @@ function SponsorChildComponent(props) {
             {/* <PaymentComponent selectedStudent={props.selectedStudent}/> */}
               {/* <StripeProvider apiKey="pk_test_arXBQTpudOCQ9XCjo20KlKbh00piO3nLbb">
                 <div className="example">
-                  <Elements> */}
-                    {/* <StripeComponent /> */}
-                  {/* </Elements>
+                  <Elements>
+                    <StripeComponent />
+                  </Elements>
                 </div>
               </StripeProvider>
              */}
