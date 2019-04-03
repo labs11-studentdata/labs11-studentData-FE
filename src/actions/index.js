@@ -13,6 +13,9 @@ export const FETCHED_VISITS = 'FETCHED_VISITS';
 export const FETCHING_SCHOOLS = 'FETCHING_SCHOOLS';
 export const FETCHED_SCHOOLS = 'FETCHED_SCHOOLS';
 export const FAIL = 'FAIL';
+export const PAYING = 'PAYING';
+export const PAID = 'PAID';
+
 
 //gets all students
 export const getStudents = () => dispatch => {
@@ -69,3 +72,10 @@ export const getSchools = () => dispatch => {
     .catch(err => dispatch({type: FAIL, payload: err}))
 }
 
+export const makeDonation = body => dispatch => {
+  console.log(body);
+  dispatch({type: PAYING});
+  axios.post(`${baseURL}/api/stripe/`, body)
+    .then(res => dispatch({type: PAID, payload: res.data}))
+    .catch(err => dispatch({type: FAIL, payload: err}))
+}

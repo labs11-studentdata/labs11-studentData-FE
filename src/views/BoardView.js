@@ -55,8 +55,7 @@ class BoardView extends Component {
     this.props.getVisits();
     this.setState({
       ...this.state,
-      students: this.props.students,
-      visits: this.props.visits
+      students: this.props.students
     });
   }
 
