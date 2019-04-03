@@ -6,14 +6,11 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 
-const rows = [];
-
-class AdminSchoolListComp extends Component {
-  render() {
+function AdminSchoolListComp(props) {
     return (
       <>
         <Paper
-          style={{ overflowY: "scroll", maxHeight: "300px", width: "100%" }}
+          style={{ overflowY: "scroll", maxheight: "300px", width: "100%" }}
         >
           <Table>
             <TableHead>
@@ -28,15 +25,15 @@ class AdminSchoolListComp extends Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map(row => (
-                <TableRow key={row.id}>
+              {props.students.map(student => (
+                <TableRow key={student.id}>
                   <TableCell component="th" scope="row">
-                    {row.name}
+                    {student.name}
                   </TableCell>
-                  <TableCell align="right">{row.first_name}</TableCell>
-                  <TableCell align="right">{row.school_name}</TableCell>
-                  <TableCell align="right">{row.contact_number}</TableCell>
-                  <TableCell align="right">{row.contact_last_name}</TableCell>
+                  <TableCell align="right">{student.first_name}</TableCell>
+                  <TableCell align="right">{student.school_name}</TableCell>
+                  <TableCell align="right">{student.contact_number}</TableCell>
+                  <TableCell align="right">{student.contact_last_name}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -44,7 +41,7 @@ class AdminSchoolListComp extends Component {
         </Paper>
       </>
     );
-  }
 }
+
 
 export default AdminSchoolListComp;
