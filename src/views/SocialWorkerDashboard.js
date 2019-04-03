@@ -16,16 +16,12 @@ import DashboardFrame from './DashboardFrame';
 
 const links = [
   {
-    title: "LINK TEST 1",
+    title: "My Visit Notes",
     url: "#"
   },
   {
-    title: "LINK TEST 2",
-    url: "#"
-  },
-  {
-    title: "LINK TEST 3",
-    url: "#"
+    title: "Sponsor",
+    url: `${process.env.REACT_APP_FE_ROOT}/sponsor`
   }
 ];
 
@@ -39,14 +35,10 @@ class SocialWorkerDashboard extends Component {
 
     componentDidMount() {
       
-      //need to change this to use the user's id
       const id = this.props.userID;
 
       console.log(id);
       
-      //console.log(id);
-
-      //need to change this to get all visits for the user
       axios.get(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits/${id}`)
         .then(res => {
 
@@ -65,7 +57,7 @@ class SocialWorkerDashboard extends Component {
       return (
         <Fragment>
           <div>
-            <h2>{this.state.visits.length}</h2>
+            <h2>All Visits: {this.state.visits.length}</h2>
           </div>
         </Fragment>
       );
@@ -96,9 +88,12 @@ class SocialWorkerDashboard extends Component {
       );
     };
 
-    Footer = () => {
-      return <Fragment>FOOTER</Fragment>;
-    };
+
+    /* optional footer placeholder     
+      Footer = () => {
+        return <Fragment>FOOTER</Fragment>;
+      }; 
+    */
 
     render() {
         
@@ -108,7 +103,6 @@ class SocialWorkerDashboard extends Component {
             links={links}
             header={this.Header}
             body={this.Body}
-            footer={this.Footer}
           />          
         </Fragment>
           

@@ -22,7 +22,7 @@ class StudentView extends Component {
       
       const id = this.props.match.params.id;
       
-      console.log(id);
+      //console.log(id);
 
       axios.get(`${process.env.REACT_APP_BE_URL}/api/students/${id}`)
         .then(res => {
@@ -40,9 +40,9 @@ class StudentView extends Component {
 
       e.preventDefault();
 
-      const id = this.props.match.params.id;
+      //const id = this.props.match.params.id;
   
-      axios.delete(`${process.env.REACT_APP_BE_URL}/api/students/${id}`)
+      axios.delete(`${process.env.REACT_APP_BE_URL}/api/students/${this.state.student.id}`)
           .then(response => {
               console.log("server response", response.data);
           })
