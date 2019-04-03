@@ -5,6 +5,7 @@ import {  HeaderView, SponsorChildView, BoardView, StudentView, AdminDashboard, 
 import LoginView from './login/LoginView';
 import { OnboardingView, AddStudent } from './components';
 import AdministratorDash from './views/AdminDashboard/AdministratorDash';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 import './App.css';
 
@@ -12,6 +13,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <CssBaseline />
         <HeaderView />
         <Route path='/onboarding' component={OnboardingView} />
         <Route path='/sponsor' component={SponsorChildView} />
