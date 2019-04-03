@@ -6,10 +6,11 @@ import { VisitReducer } from './VisitReducer';
 import { LoginReducer } from './LoginReducer';
 import { AccountReducer } from './AccountReducer';
 import { StripeReducer } from './StripeReducer';
-
+import { AdminReducer } from './AdminReducer';
 const rootReducer = combineReducers({
   //combine reducers in here
   //make sure the name here matches your view
+  admin: AdminReducer,
   students: StudentReducer,
   schools: SchoolReducer,
   visits: VisitReducer,

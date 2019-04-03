@@ -21,8 +21,8 @@ const Authenticated = Component =>
   class extends Component {
     componentDidMount() {
       const parsed = queryString.parse(window.location.href)
-      if(parsed.user_permissions) {
-        window.location.href = `${parsed.user_permissions.replace(/\s/g, '').toLowerCase()}dashboard`
+      if(parsed.account_type) {
+        window.location.href = `${parsed.account_type.replace(/\s/g, '').toLowerCase()}dashboard`
       }
     }
       render() {

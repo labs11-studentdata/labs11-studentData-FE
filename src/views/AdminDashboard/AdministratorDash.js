@@ -6,9 +6,9 @@ import AddStudentModel from "../../components/StudentView/AddStudentModal";
 import AdminHeader from "./AdminHeader";
 import VisitListBySchool from "../../components/SocialWorker/VisitLists/visitsBySchool";
 import { connect } from "react-redux";
+import { getAdminStudents } from '../../actions/admin';
 import axios from "axios";
 import "./AdminDashboard.css";
-const baseURL = process.env.REACT_APP_BE_URL;
 
 // Setting up route links object for left side navigation
 const links = [
@@ -39,17 +39,8 @@ class AdministratorDash extends Component {
     students: []
   };
   componentDidMount() {
-    const user_id = this.props.user_id;
-    axios
-      .get(`${baseURL}/api/users/${user_id}/students`)
-      .then(res => {
-        this.setState({
-          ...this.state,
-          students: res.data.students.students,
-          user: res.data.students.user
-        });
-      })
-      .catch(err => console.log(err));
+    const user_id = this.props.user_id
+    this.props.getAdminStudents(user_id)
   }
   Header = () => {
     return (
@@ -93,6 +84,7 @@ class AdministratorDash extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state)
   return {
     user_id: state.login.user.user_id
   };
@@ -100,5 +92,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {}
+  { getAdminStudents }
 )(AdministratorDash);
