@@ -4,26 +4,39 @@ import {Paper} from '@material-ui/core/Paper';
 import StripeCheckout from 'react-stripe-checkout';
 import TextField from '@material-ui/core/TextField';
 import {connect} from 'react-redux';
-import {makeDonation} from '../../actions/index';
+import {makeDonation, updateStudent} from '../../actions/index';
 
 class StripeComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
       complete: false,
-      amount: '',
+      amount: 0,
       key: 'pk_test_arXBQTpudOCQ9XCjo20KlKbh00piO3nLbb',
       student: this.props.student,
-      username: 'garry'
+      username: 'get from state later',
     };
   }
 
+
   handleSubmit = async (e) => {
     e.preventDefault();
+    let updatedDonation = this.state.student.dues - this.state.amount;
+    this.setState(prevState => ({
+      ...this.state,
+      student: {
+        ...prevState.student,
+        dues: updatedDonation
+      }
+    }));
     let token = await this.props.stripe.createToken({name: this.state.username});
-    await console.log(token);
-    await this.props.makeDonation({token: token.token, amount: Number(this.state.amount)})
+    await this.props.makeDonation(
+      {token: token.token, amount: Number(this.state.amount)},
+      this.state.student.id,
+      this.state.student
+    );
   }
+
 
   handleChange = e => {
     e.preventDefault();
@@ -48,34 +61,6 @@ class StripeComponent extends Component {
           <button onClick={this.handleSubmit}>Send</button>
         </div>
       );
-    // return (
-    //   <div className='stripe-donation-container' style={{display: 'flex', alignItems: 'center'}}>
-    //     <TextField
-    //     required
-    //     onChange={this.handleChange}
-    //     value={this.state.amount}
-    //     name="amount"
-    //     label="Amount"
-    //     style={{width: '50%'}}
-    //     />
-
-    //     <StripeCheckout
-    //       allowRememberMe={true}
-    //       amount={this.state.amount * 100}
-    //       closed={this.handleClose}
-    //       description={`Sponsor ${this.state.student.first_name}`}
-    //       image="https://stripe.com/img/documentation/checkout/marketplace.png"
-    //       label="Donate"
-    //       locale="auto"
-    //       name="SchoolMe"
-    //       opened={this.handleOpen}
-    //       panelLabel={`Donate`}
-    //       // shippingAddress
-    //       stripeKey={this.state.key}
-    //       token={this.onToken}
-    //     />
-    //   </div>
-    // )
   }
 }
 
@@ -85,8 +70,9 @@ const mapStateToProps = state => {
     paid: state.stripe.paid,
     id: state.stripe.id,
     error: state.stripe.error,
+    updatingStudent: state.students.updating,
+    updatedStudent: state.students.updated
   }
 }
 
-// export default connect(mapStateToProps, {makeDonation})(StripeComponent);
-export default connect(mapStateToProps, {makeDonation})(injectStripe(StripeComponent));
+export default connect(mapStateToProps, {makeDonation, updateStudent})(injectStripe(StripeComponent));
