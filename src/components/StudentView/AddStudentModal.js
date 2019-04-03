@@ -47,10 +47,11 @@ class StudentModal extends React.Component {
 
   render() {
     const { classes } = this.props;
+    console.log(this.state)
 
     return (
       <div>
-        <Button onClick={this.handleOpen}>Add Student</Button>
+        <Button disabled={this.state.open ? true : false } onClick={this.handleOpen}>Add Student</Button>
         <Modal
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
@@ -59,7 +60,7 @@ class StudentModal extends React.Component {
         >
           <div className={classes.paper}>
             <AddStudent />
-            <AddStudentModal />
+            {/* <AddStudentModal /> */}
           </div>
         </Modal>
       </div>
