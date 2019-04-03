@@ -40,7 +40,7 @@ function HeaderComponent(props) {
               {" "}
               Sponsor A Child{" "}
             </Button>
-            <Button color="inherit" href="/board">
+            <Button color="inherit" href="/boardmemberdashboard">
               {" "}
               Board Dash{" "}
             </Button>
