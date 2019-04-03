@@ -62,8 +62,8 @@ function getStepContent(step) {
   }
 }
 
-function getAccountType(user_permissions) {
-  switch (user_permissions) {
+function getUserPermissions(account_type) {
+  switch (account_type) {
     case "admin":
       return 1;
     case "boardmember":
@@ -120,7 +120,7 @@ class CustomizedStepper extends React.Component {
     if (
       this.state.user.photo_url &&
       this.state.user.email &&
-      this.state.user.user_permissions
+      this.state.user.account_type
     ) {
       this.setState({
         ...this.state,
@@ -173,7 +173,7 @@ class CustomizedStepper extends React.Component {
       ...this.state,
       user: {
         ...this.state.user,
-        account_type: getAccountType(this.state.user.user_permissions),
+        user_permissions: getUserPermissions(this.state.user.account_type),
         user_id: this.props.user_id
       }
     });

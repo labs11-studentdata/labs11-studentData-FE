@@ -9,7 +9,6 @@ import logger from "redux-logger";
 import rootReducer from "./reducers/index";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { loadState, saveState } from "./LocalStorage";
-import LoginView from './login/LoginView'
 require("dotenv").config();
 
 // import * as serviceWorker from './serviceWorker';
@@ -34,7 +33,6 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <App />
-      {/* <Route path='/login' component={LoginView} /> */}
 
     </Router>
   </Provider>,
