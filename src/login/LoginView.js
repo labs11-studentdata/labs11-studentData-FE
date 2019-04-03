@@ -28,7 +28,7 @@ class LoginView extends Component {
         if(parsed.user_permissions === '') {
             window.location.href = '/onboarding'
         }
-        if(query.length > 10) {
+        if(query.length > 30) {
             this.props.loginUser(query);
         }
     }

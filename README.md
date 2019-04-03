@@ -20,8 +20,8 @@ REACT_APP_FE_ROOT=http://localhost:3000
 | BOARD          | https://reverent-spence-fef835.netlify.com/boardmemberdashboard |
 | ADD STUDENT    | https://reverent-spence-fef835.netlify.com/add                  |
 | VIEW STUDENT 1 | https://reverent-spence-fef835.netlify.com/student/1            |
-| SOCIAL         | https://reverent-spence-fef835.netlify.com/social               |
-| ADMIN          | https://reverent-spence-fef835.netlify.com/admin                |
+| SOCIAL         | https://reverent-spence-fef835.netlify.com/socialsocialworkerdashboard               |
+| ADMIN          | https://reverent-spence-fef835.netlify.com/adminadmindashboard                |
 
 | FEATURE                                | ENDPOINT                                  | ROUTE         |
 | -------------------------------------- | ----------------------------------------- | ------------- |

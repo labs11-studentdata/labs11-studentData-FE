@@ -3,8 +3,9 @@ import Authenticated from './auth/requiresAuth';
 import { Route } from 'react-router-dom';
 import {  HeaderView, SponsorChildView, BoardView, StudentView, AdminDashboard, SocialWorkerView, SocialWorkerDashboard, LandingPage } from './views';
 import LoginView from './login/LoginView';
-import { OnboardingView, AddStudent } from './components'
-
+import { OnboardingView, AddStudent } from './components';
+import AdministratorDash from './views/AdminDashboard/AdministratorDash';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 import './App.css';
 
@@ -12,6 +13,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <CssBaseline />
         <HeaderView />
         <Route path='/onboarding' component={OnboardingView} />
         <Route path='/sponsor' component={SponsorChildView} />
@@ -19,10 +21,10 @@ class App extends Component {
         <Route path='/student/:id' render={props => <StudentView {...props} />} />
         <Route path='/add' component={AddStudent} /> 
         <Route path='/socialworkerdashboard' component={SocialWorkerView} />        
-        <Route path='/admindashboard' component={AdminDashboard} />
+        <Route path='/admindashboard' component={AdministratorDash} />
         <Route path='/socialdashtest' component={SocialWorkerDashboard} />
         <Route path='/social' component={SocialWorkerView} />        
-        <Route path='/schooladministratordashboard' component={AdminDashboard} />
+
         <Route path='/home' component={LandingPage} />
       </div>
     );

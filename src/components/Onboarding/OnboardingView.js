@@ -62,8 +62,8 @@ function getStepContent(step) {
   }
 }
 
-function getAccountType(user_permissions) {
-  switch (user_permissions) {
+function getUserPermissions(account_type) {
+  switch (account_type) {
     case "admin":
       return 1;
     case "boardmember":
@@ -120,7 +120,7 @@ class CustomizedStepper extends React.Component {
     if (
       this.state.user.photo_url &&
       this.state.user.email &&
-      this.state.user.user_permissions
+      this.state.user.account_type
     ) {
       this.setState({
         ...this.state,
@@ -138,7 +138,7 @@ class CustomizedStepper extends React.Component {
       ...this.state,
       user: {
         ...this.state.user,
-        user_permissions: e.target.value
+        account_type: e.target.value
       }
     });
   };
@@ -158,7 +158,7 @@ class CustomizedStepper extends React.Component {
   finishedSelected = e => {
       e.preventDefault();
       const user = this.state.user;
-      if(!user.email || !user.photo_url || !user.schoolID || !user.user_permissions) {
+      if(!user.email || !user.photo_url || !user.account_type) {
         alert('Please enter all onboarding information.')
       } else {
         this.setState(state => ({
@@ -173,7 +173,7 @@ class CustomizedStepper extends React.Component {
       ...this.state,
       user: {
         ...this.state.user,
-        account_type: getAccountType(this.state.user.user_permissions),
+        user_permissions: getUserPermissions(this.state.user.account_type),
         user_id: this.props.user_id
       }
     });
@@ -201,6 +201,7 @@ class CustomizedStepper extends React.Component {
           .catch(err => console.log(err))
   }
   render() {
+    console.log(this.state)
     const { classes } = this.props;
     const { activeStep } = this.state;
     const steps = getSteps();
@@ -227,7 +228,7 @@ class CustomizedStepper extends React.Component {
         <Stepper className='onboardingCell' alternativeLabel activeStep={activeStep} connector={connector}>
           {this.state.activeStep === 0 && (
             <OnboardAccount
-              value={this.state.user.user_permissions}
+              value={this.state.user.account_type}
               accountTypeSelected={this.accountTypeSelected}
             />
           )}

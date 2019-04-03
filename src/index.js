@@ -9,8 +9,10 @@ import logger from "redux-logger";
 import rootReducer from "./reducers/index";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { loadState, saveState } from "./LocalStorage";
-import LoginView from './login/LoginView'
+import theme from './styles/MUITheme';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 require("dotenv").config();
+
 
 // import * as serviceWorker from './serviceWorker';
 
@@ -33,9 +35,9 @@ export default store;
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <App />
-      {/* <Route path='/login' component={LoginView} /> */}
-
+      <MuiThemeProvider theme={theme}>
+        <App />
+      </MuiThemeProvider>
     </Router>
   </Provider>,
   document.getElementById("root")

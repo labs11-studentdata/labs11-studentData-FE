@@ -2,6 +2,7 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { Paper, Grid, List, ListItem, ListItemText } from "@material-ui/core";
 
+
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -43,7 +44,7 @@ function DashContainer(props) {
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={16}>
+      <Grid container spacing={16} style={{ overflowY: "scroll", width: "100%" }}>
         {/* LEFT NAV */}
         <Grid item xs={12} md={3}>
           <Paper className={classes.sidenav}>
@@ -57,7 +58,7 @@ function DashContainer(props) {
           </Paper>
         </Grid>
         {/* BODY */}
-        <Grid item xs={12} md={9}>
+        <Grid item xs={12} md={9} >
           <Grid container spacing={16}>
             {/* HEADER */}
             <Grid item xs={12}>
