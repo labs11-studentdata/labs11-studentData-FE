@@ -13,29 +13,14 @@ class EditStudent extends Component {
         super(props);
         this.state = {
 
-          id: null,
-          gradeID: null,
-          first_name: null,
-          last_name: null,
-          age: null,
-          schoolID: null,
-          photo_url: null,
-          enrollment_status: null,
-          has_insurance: null,
-          insurance_expiration: null,
-          has_birthcert: null,
-          dues: null,
-          special_needs: null,
-          contact_first_name: null,
-          contact_last_name: null,
-          contact_number: null,
+          student: this.props.student
 
         };   
     }
 
     componentDidUpdate(){
 
-      if(this.state.id === null){
+      if(this.state.student.student_id === null){
         this.setState({...this.props.student});
       }
 
@@ -46,7 +31,7 @@ class EditStudent extends Component {
         e.preventDefault();
     
         axios
-        .put(process.env.REACT_APP_BE_URL + `/api/students/${this.state.id}`, this.state)
+        .put(process.env.REACT_APP_BE_URL + `/api/students/${this.state.student.student_id}`, this.state)
         .then(response => {
             console.log("server response", response.data);
         })
@@ -67,7 +52,7 @@ class EditStudent extends Component {
 
       this.setState({
 
-        ...this.state,
+        ...this.props.student,
         [name]: value
 
       });
@@ -78,24 +63,26 @@ class EditStudent extends Component {
       console.log(this.state)
       console.log("props", this.props);
         return (
-            <div>
+              <div>
+              <h1>Edit Student</h1><br></br>  
+
+
+              <form noValidate autoComplete="off" style={{height: "50%", width: "75%", display: 'flex', flexDirection: 'row'}} onSubmit={this.editStudent}>
               <Grid
               container
               spacing={24}
-              direction="row"
+              flex-direction="column"
+              display="flex"
               justify="center"
               alignItems="center"
+              maxWidth="800px"
               >
-
-              <Paper>
-              <h1>Edit Student</h1>  
-              <form noValidate autoComplete="off" onSubmit={this.editStudent}>
               <Grid item>
                   <TextField
                     id="filled-name"
                     label="First Name"
 
-                    value={this.state.first_name}
+                    value={this.state.student.first_name}
                     onChange={this.handleInputChange}
 
                     name='first_name'
@@ -110,7 +97,7 @@ class EditStudent extends Component {
                     id="filled-name"
                     label="Last Name"
 
-                    value={this.state.last_name}
+                    value={this.state.student.last_name}
                     onChange={this.handleInputChange}
 
                     name='last_name'
@@ -125,7 +112,7 @@ class EditStudent extends Component {
                     id="filled-name"
                     label="Age"
 
-                    value={this.state.age}
+                    value={this.state.student.age}
                     onChange={this.handleInputChange}
 
                     name='age'
@@ -140,7 +127,7 @@ class EditStudent extends Component {
                     id="filled-name"
                     label="Grade"
 
-                    value={this.state.gradeID}
+                    value={this.state.student.gradeID}
                     onChange={this.handleInputChange}
 
                     name='gradeID'
@@ -155,7 +142,7 @@ class EditStudent extends Component {
                     id="filled-name"
                     label="School"
 
-                    value={this.state.schoolID}
+                    value={this.state.student.schoolID}
                     onChange={this.handleInputChange}
 
                     name='schoolID'
@@ -170,7 +157,7 @@ class EditStudent extends Component {
                     id="filled-name"
                     label="Photo URL"
 
-                    value={this.state.photo_url}
+                    value={this.state.student.photo_url}
                     onChange={this.handleInputChange}
 
                     name='photo_url'
@@ -185,7 +172,7 @@ class EditStudent extends Component {
                     id="filled-name"
                     label="Enrollment Status"
 
-                    value={this.state.enrollment_status}
+                    value={this.state.student.enrollment_status}
                     onChange={this.handleInputChange}
 
                     name='enrollment_status'
@@ -200,7 +187,7 @@ class EditStudent extends Component {
                     id="filled-name"
                     label="Insurance"
 
-                    value={this.state.has_insurance}
+                    value={this.state.student.has_insurance}
                     onChange={this.handleInputChange}
 
                     name='has_insurance'
@@ -215,7 +202,7 @@ class EditStudent extends Component {
                     id="filled-name"
                     label="Insurance Expiration"
 
-                    value={this.state.insurance_expiration}
+                    value={this.state.student.insurance_expiration}
                     onChange={this.handleInputChange}
 
                     name='insurance_expiration'
@@ -230,7 +217,7 @@ class EditStudent extends Component {
                     id="filled-name"
                     label="Birth Certificate"
 
-                    value={this.state.has_birthcert}
+                    value={this.state.student.has_birthcert}
                     onChange={this.handleInputChange}
 
                     name='has_birthcert'
@@ -245,7 +232,7 @@ class EditStudent extends Component {
                     id="filled-name"
                     label="Dues"
 
-                    value={this.state.dues}
+                    value={this.state.student.dues}
                     onChange={this.handleInputChange}
 
                     name='dues'
@@ -260,7 +247,7 @@ class EditStudent extends Component {
                     id="filled-name"
                     label="Special Needs"
 
-                    value={this.state.special_needs}
+                    value={this.state.student.special_needs}
                     onChange={this.handleInputChange}
 
                     name='special_needs'
@@ -275,7 +262,7 @@ class EditStudent extends Component {
                     id="filled-name"
                     label="Contact First Name"
 
-                    value={this.state.contact_first_name}
+                    value={this.state.student.contact_first_name}
                     onChange={this.handleInputChange}
 
                     name='contact_first_name'
@@ -290,7 +277,7 @@ class EditStudent extends Component {
                     id="filled-name"
                     label="Contact Last Name"
 
-                    value={this.state.contact_last_name}
+                    value={this.state.student.contact_last_name}
                     onChange={this.handleInputChange}
 
                     name='contact_last_name'
@@ -305,7 +292,7 @@ class EditStudent extends Component {
                     id="filled-name"
                     label="Contact Phone"
 
-                    value={this.state.contact_number}
+                    value={this.state.student.contact_number}
                     onChange={this.handleInputChange}
 
                     name='contact_number'
@@ -315,17 +302,13 @@ class EditStudent extends Component {
                   />
                 </Grid>
                           
+            </Grid>
+
             <Button type="submit">Save Changes</Button>
 
             </form>
 
-              </ Paper>
-            </Grid>
-
             </div>
-
-
-          
         )
     }
 }

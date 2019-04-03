@@ -12,31 +12,31 @@ REACT_APP_FE_ROOT=http://localhost:3000
 ## FEATURE ROUTES
 
 ### Main routes
-|VIEW|ROUTE|
-|----|-----|
-|LOGIN|https://reverent-spence-fef835.netlify.com/login|
-|ONBOARDING|https://reverent-spence-fef835.netlify.com/onboarding|
-|SPONSOR|https://reverent-spence-fef835.netlify.com/sponsor|
-|BOARD|https://reverent-spence-fef835.netlify.com/board|
-|ADD STUDENT|https://reverent-spence-fef835.netlify.com/add|
-|VIEW STUDENT 1|https://reverent-spence-fef835.netlify.com/student/1|
-|SOCIAL|https://reverent-spence-fef835.netlify.com/social|
-|ADMIN|https://reverent-spence-fef835.netlify.com/admin|
+| VIEW           | ROUTE                                                           |
+| -------------- | --------------------------------------------------------------- |
+| LOGIN          | https://reverent-spence-fef835.netlify.com/login                |
+| ONBOARDING     | https://reverent-spence-fef835.netlify.com/onboarding           |
+| SPONSOR        | https://reverent-spence-fef835.netlify.com/sponsor              |
+| BOARD          | https://reverent-spence-fef835.netlify.com/boardmemberdashboard |
+| ADD STUDENT    | https://reverent-spence-fef835.netlify.com/add                  |
+| VIEW STUDENT 1 | https://reverent-spence-fef835.netlify.com/student/1            |
+| SOCIAL         | https://reverent-spence-fef835.netlify.com/social               |
+| ADMIN          | https://reverent-spence-fef835.netlify.com/admin                |
 
-|FEATURE|ENDPOINT|ROUTE|
-|-------|--------|-----|
-|Create a school|POST /api/schools/|/onboarding|
-|Create a special need for a student|TBD|TBD|
-|Sponsor a student|POST /api/donations|/students/:id|
-|View a student|GET /api/students/:id|/students/:id|
-|Update a student|PUT /api/students/:id|/students/:id|
-|Delete a student|DELETE /api/students/:id|/students/:id|
-|List of social worker visits|GET /api/social_worker_visits|/social|
-|List of social worker visits by school|GET /api/social_worker_visits/schools/:id|/social|
-|Create a Social Worker Visit|POST /api/social_worker_visits|/social|
-|Delete a social worker visit|DELETE /api/social_worker_visits/:id|/social|
-|Edit social worker visits|PUT /api/social_worker_visits/:id|/social|
-|Stripe integration|TBD|TBD|
+| FEATURE                                | ENDPOINT                                  | ROUTE         |
+| -------------------------------------- | ----------------------------------------- | ------------- |
+| Create a school                        | POST /api/schools/                        | /onboarding   |
+| Create a special need for a student    | TBD                                       | TBD           |
+| Sponsor a student                      | POST /api/donations                       | /students/:id |
+| View a student                         | GET /api/students/:id                     | /students/:id |
+| Update a student                       | PUT /api/students/:id                     | /students/:id |
+| Delete a student                       | DELETE /api/students/:id                  | /students/:id |
+| List of social worker visits           | GET /api/social_worker_visits             | /social       |
+| List of social worker visits by school | GET /api/social_worker_visits/schools/:id | /social       |
+| Create a Social Worker Visit           | POST /api/social_worker_visits            | /social       |
+| Delete a social worker visit           | DELETE /api/social_worker_visits/:id      | /social       |
+| Edit social worker visits              | PUT /api/social_worker_visits/:id         | /social       |
+| Stripe integration                     | TBD                                       | TBD           |
 
 ## Available Scripts
 
