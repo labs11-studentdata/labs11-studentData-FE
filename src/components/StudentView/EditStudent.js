@@ -30,8 +30,10 @@ class EditStudent extends Component {
 
         e.preventDefault();
     
+        console.log(this.state.student);
+
         axios
-        .put(process.env.REACT_APP_BE_URL + `/api/students/${this.state.student.student_id}`, this.state)
+        .put(process.env.REACT_APP_BE_URL + `/api/students/${this.state.student.student_id}`, this.state.student)
         .then(response => {
             console.log("server response", response.data);
         })
@@ -50,10 +52,12 @@ class EditStudent extends Component {
       let name = event.target.name;
       let value = event.target.value;
 
+      console.log(value);
+
       this.setState({
 
-        ...this.props.student,
-        [name]: value
+        ...this.state,
+        student: {...this.state.student, [name]: value}
 
       });
     };
