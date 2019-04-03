@@ -138,7 +138,7 @@ class CustomizedStepper extends React.Component {
       ...this.state,
       user: {
         ...this.state.user,
-        user_permissions: e.target.value
+        account_type: e.target.value
       }
     });
   };
@@ -158,7 +158,7 @@ class CustomizedStepper extends React.Component {
   finishedSelected = e => {
       e.preventDefault();
       const user = this.state.user;
-      if(!user.email || !user.photo_url || !user.schoolID || !user.user_permissions) {
+      if(!user.email || !user.photo_url || !user.account_type) {
         alert('Please enter all onboarding information.')
       } else {
         this.setState(state => ({
@@ -201,6 +201,7 @@ class CustomizedStepper extends React.Component {
           .catch(err => console.log(err))
   }
   render() {
+    console.log(this.state)
     const { classes } = this.props;
     const { activeStep } = this.state;
     const steps = getSteps();
@@ -227,7 +228,7 @@ class CustomizedStepper extends React.Component {
         <Stepper className='onboardingCell' alternativeLabel activeStep={activeStep} connector={connector}>
           {this.state.activeStep === 0 && (
             <OnboardAccount
-              value={this.state.user.user_permissions}
+              value={this.state.user.account_type}
               accountTypeSelected={this.accountTypeSelected}
             />
           )}
