@@ -44,7 +44,7 @@ class StudentTable extends Component {
             <StripeProvider apiKey="pk_test_arXBQTpudOCQ9XCjo20KlKbh00piO3nLbb">
               <div className="example">
                 <Elements>
-                  <StripeComponent student={this.props.student}/>
+                  <StripeComponent student={this.props.student} user_id={this.props.user_id}/>
                 </Elements>
               </div>
             </StripeProvider>

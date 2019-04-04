@@ -41,7 +41,7 @@ class BoardView extends Component {
     schoolID: null,
     gradeID: null,
     students: [],
-    visits: [],
+    schools: [],
     activeSponsor: false,
     student: null,
   };
@@ -140,6 +140,7 @@ class BoardView extends Component {
           setClass={this.setClass}
           schoolID={this.state.schoolID}
           gradeID={this.state.gradeID}
+          userType='board_member'
         />
         <br />
         <StudentTable
@@ -148,6 +149,7 @@ class BoardView extends Component {
           handleOpen={this.handleOpen}
           handleClose={this.handleClose}
           student={this.state.student}
+          user_id={this.props.user_id}
         />
       </Fragment>
     );
@@ -185,6 +187,7 @@ const mapStateToProps = state => {
     students: state.students.students,
     schools: state.schools.schools,
     error: state.students.error,
+    user_id: state.login.user.user_id
   };
 };
 
