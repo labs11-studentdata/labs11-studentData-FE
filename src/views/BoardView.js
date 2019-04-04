@@ -107,15 +107,6 @@ class BoardView extends Component {
     });
   };
 
-  //opens the visit notes modal
-  handleOpenVisit = (e, visit) => {
-    e.preventDefault();
-    this.setState({
-      ...this.state,
-      visit: visit,
-      activeVisit: true
-    });
-  };
 
   //closes both modals and resets the modal tracking in component state
   handleClose = () => {
@@ -173,7 +164,14 @@ class BoardView extends Component {
   Footer = () => {
     return (
       <Fragment>
-        <HighestDues students={this.state.students} />
+        <HighestDues
+          students={this.state.students}
+          open={this.state.activeSponsor}
+          handleOpen={this.handleOpen}
+          handleClose={this.handleClose}
+          student={this.state.student}
+          user_id={this.props.user_id}
+        />
       </Fragment>
       );
   };
