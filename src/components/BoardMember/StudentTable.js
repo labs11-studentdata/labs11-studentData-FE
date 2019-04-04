@@ -42,15 +42,13 @@ class StudentTable extends Component {
           open={this.props.open}
           onClose={this.props.handleClose}
         >
-          
-            <StripeProvider apiKey="pk_test_arXBQTpudOCQ9XCjo20KlKbh00piO3nLbb">
-              <div className="example" style={{width: '400px', height: '400px', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                <Elements>
-                  <StripeComponent student={this.props.student} user_id={this.props.user_id}/>
-                </Elements>
-              </div>
-            </StripeProvider>
-               
+          <StripeProvider apiKey="pk_test_arXBQTpudOCQ9XCjo20KlKbh00piO3nLbb">
+            <div className="example" style={{width: '400px', height: '400px', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+              <Elements>
+                <StripeComponent student={this.props.student} user_id={this.props.user_id}/>
+              </Elements>
+            </div>
+          </StripeProvider>       
         </Dialog>
 
         <Table className='student-table' deselectOnClickaway={false} style={{ tableLayout: 'auto', padding: 'none' }}>
