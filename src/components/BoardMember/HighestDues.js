@@ -122,7 +122,10 @@ const HighestDues = props => {
   // console.log("STUDENTS AFTER", students); // <--debugging
 
   const top5 = [];
-  while(top5.length < 5 && students.length > 0){
+
+  // Added conditional to see if student owes dues first
+  // students[students.length -1].dues > 0
+  while(top5.length < 5 && students.length > 0 && students[students.length -1].dues > 0){
       top5.push(students.pop());
   }
   return (
