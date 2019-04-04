@@ -14,6 +14,8 @@ export const getAdminStudents = user_id => dispatch => {
         .then(res => {
             console.log(res)
             dispatch({ type: FETCHING_ADMIN_STUDENTS_SUCCESS, payload: res.data.students})
+            
+
         })
         .catch(error => dispatch({ type: FETCHING_ADMIN_STUDENTS_FAILURE, payload: error}))    
 }

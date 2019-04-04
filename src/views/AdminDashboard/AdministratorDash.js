@@ -12,21 +12,7 @@ import axios from "axios";
 import "./AdminDashboard.css";
 import { Stats } from "fs";
 
-// Setting up route links object for left side navigation
-const links = [
-  {
-    title: "LINK TEST 1",
-    url: "#"
-  },
-  {
-    title: "LINK TEST 2",
-    url: "#"
-  },
-  {
-    title: "LINK TEST 3",
-    url: "#"
-  }
-];
+// Setting up route links object for left side navigation 
 
 const styles = theme => ({
   root: {
@@ -38,10 +24,41 @@ const styles = theme => ({
 const visits = [];
 class AdministratorDash extends Component {
   state = {
+    selected: 0,
     students: this.props.students,
     visits: this.props.visits.length > 5 ? this.props.visits.slice(0, 5) : this.props.visits,
-    school: []
+    school: this.props.school,
+    links: [
+      {
+        title: "Social Visits",
+        onClick: () => {
+          this.setState({
+            ...this.state,
+            selected: 0
+          })
+        }
+      },
+      {
+        title: "Students",
+        onClick: () => {
+          this.setState({
+            ...this.state,
+            selected: 1
+          })
+        }
+      },
+      {
+        title: "Donations",
+        onClick: () => {
+          this.setState({
+            ...this.state,
+            selected: 2
+          })
+        }
+      }
+    ]
   };
+  
   componentDidMount() {
     const user_id = this.props.user_id;
     console.log(user_id)
@@ -56,26 +73,31 @@ class AdministratorDash extends Component {
       this.props.getSchoolVisits(school_id);
   }
   Header = () => {
-    return (
-      <>
-        <AdminHeader school={this.state.school} />
-        <Divider variant="middle" />
-
-        <div className="adminHeaderContainer">
-          <div className="headerLeft">
-            <h3>Recent Social Worker Visits</h3>
-            <div className="visitAdminContainer">
-              <VisitListBySchool visits={this.state.visits} />
+    if(this.state.selected === 0) {
+      return (
+        <>
+          <AdminHeader school={this.state.school} />
+          <Divider variant="middle" />
+  
+          <div className="adminHeaderContainer">
+            <div className="headerLeft">
+              <h3>Recent Social Worker Visits</h3>
+              <div className="visitAdminContainer">
+                <VisitListBySchool visits={this.state.visits} />
+              </div>
+            </div>
+  
+            <div className="headerRight">
+              <AddStudentModal user_id={this.props.user_id} school={this.state.school} />
+              <AdminStudentCount students={this.state.students} />
             </div>
           </div>
-
-          <div className="headerRight">
-            <AddStudentModal user_id={this.props.user_id} school={this.state.school} />
-            <AdminStudentCount students={this.state.students} />
-          </div>
-        </div>
-      </>
-    );
+        </>
+      );
+    }
+    if(this.state.selected === 1) {
+      return <h1>My Students</h1>
+    }
   };
 
   Body = () => {
@@ -91,9 +113,10 @@ class AdministratorDash extends Component {
   };
 
   render() {
+    console.log('THIS>STATE', this.state)
     return (
       <>
-        <DashboardFrame links={links} header={this.Header} body={this.Body} />
+        <DashboardFrame links={this.state.links} header={this.Header} body={this.Body} />
       </>
     );
   }
@@ -106,7 +129,7 @@ const mapStateToProps = state => {
     user_id: state.login.user.user_id,
     school_id: state.login.user.schoolID,
     visits: typeof state.admin.visits === "array" ? state.admin.visits : arr,
-    students: state.admin.students.students
+    students: state.admin.students === undefined ? [] : state.admin.students.students
   };
 };
 

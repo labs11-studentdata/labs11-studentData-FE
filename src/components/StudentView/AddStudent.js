@@ -36,7 +36,6 @@ class AddStudent extends Component {
       e.preventDefault()
       this.props.addStudent(this.state.student)
       this.props.getAdminStudents(this.state.user_id)
-      window.location.href=`${process.env.REACT_APP_FE_ROOT}/admindashboard`
     }
 
     handleInputChange = e => {

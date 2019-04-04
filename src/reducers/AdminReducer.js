@@ -7,7 +7,8 @@ import { CardActions } from '@material-ui/core';
 
 const initialState = {
     isFetchingStudents: false,
-    visits: []
+    visits: [],
+    students: []
 }
 
 export const AdminReducer = ( state = initialState, action ) => {

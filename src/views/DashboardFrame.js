@@ -1,6 +1,7 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { Paper, Grid, List, ListItem, ListItemText } from "@material-ui/core";
+import Divider from '@material-ui/core/Divider';
 
 
 const styles = theme => ({
@@ -50,8 +51,9 @@ function DashContainer(props) {
           <Paper className={classes.sidenav}>
             <List component="nav">
               {props.links.map(link => (
-                <ListItemLink href={link.url} key={link.text}>
+                <ListItemLink href={link.url} onClick={link.onClick} key={link.text}>
                   <ListItemText primary={link.title} />
+                  {/* <Divider variant="middle" /> */}
                 </ListItemLink>
               ))}
             </List>
