@@ -53,6 +53,7 @@ class AddVisit extends React.Component {
           />
       <Button 
       onClick={this.submitForm}
+      variant='outlined'
       >
           Submit
       </Button>

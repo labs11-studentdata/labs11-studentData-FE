@@ -54,10 +54,10 @@ class DeleteVisitButton extends React.Component {
             {"Would you like to delete this visit?"}
           </DialogTitle>
           <DialogActions>
-            <Button onClick={this.deleteVisit} color="red">
+            <Button variant='outlined' onClick={this.deleteVisit} color="red">
               Delete
             </Button>
-            <Button onClick={this.handleClose} color="primary">
+            <Button variant='outlined' onClick={this.handleClose} color="primary">
               Cancel
             </Button>
           </DialogActions>
