@@ -58,7 +58,7 @@ class StudentTable extends Component {
 
             <TableRow>
               <TableCell style={{padding: '0px', width: '15%'}}>Name</TableCell>
-              <TableCell style={{padding: '0px', width: '10%'}}>Status</TableCell>
+              {/* <TableCell style={{padding: '0px', width: '10%'}}>Status</TableCell> */}
               <TableCell style={{padding: '0px', width: '5%'}}>Age</TableCell>
               <TableCell style={{padding: '0px', width: '10%'}}>Insurance</TableCell>
               <TableCell style={{padding: '0px', width: '10%'}}>Birth Cert</TableCell>
@@ -74,7 +74,7 @@ class StudentTable extends Component {
               return(
                 <TableRow key={student.student_id}>
                   <TableCell style={{padding: '0px', width: '15%'}}>{student.first_name} {student.last_name}</TableCell>
-                  <TableCell style={{padding: '0px', width: '10%'}}>{student.enrollment_status}</TableCell>
+                  {/* <TableCell style={{padding: '0px', width: '10%'}}>{student.enrollment_status}</TableCell> */}
                   <TableCell style={{padding: '0px', width: '5%'}}>{student.age}</TableCell>
                   <TableCell style={{padding: '0px', width: '10%'}}>{this.yOrN(student.has_insurance)}</TableCell>
                   <TableCell style={{padding: '0px', width: '10%'}}>{this.yOrN(student.has_birthcert)}</TableCell>
