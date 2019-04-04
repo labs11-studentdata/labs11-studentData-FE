@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
 import {CardElement, CardNumberElement, CardExpiryElement, CardCVCElement, injectStripe} from 'react-stripe-elements';
 import {Paper} from '@material-ui/core/Paper';
-import StripeCheckout from 'react-stripe-checkout';
 import TextField from '@material-ui/core/TextField';
 import {connect} from 'react-redux';
 import {makeDonation, updateStudent} from '../../actions/index';
+import Button from '@material-ui/core/Button';
+
+
+
 
 class StripeComponent extends Component {
   constructor(props) {
@@ -15,6 +18,8 @@ class StripeComponent extends Component {
       key: 'pk_test_arXBQTpudOCQ9XCjo20KlKbh00piO3nLbb',
       student: this.props.student,
       username: 'get from state later',
+      buttonText: 'Send Donation',
+      success: null
     };
   }
 
@@ -45,7 +50,14 @@ class StripeComponent extends Component {
       this.state.student,
       donation
     );
+    this.setState({
+      ...this.state,
+      complete: true,
+      buttonText: 'Donation Sent',
+      success: {color: 'green'}
+    })
   }
+
 
 
   handleChange = e => {
@@ -56,19 +68,25 @@ class StripeComponent extends Component {
   render() {
     return (
         <div className="checkout">
-          <p>Sponsoring {this.state.student.first_name}</p>
+          <div style={{display: 'flex', paddingBottom: '20px', justifyContent: 'space-between', alignItems: 'center', width: '140%'}}>
+            <h3>Sponsoring {this.state.student.first_name}</h3>
+            <img src={this.state.student.photo_url} />
+          </div>
           <TextField
             required
             onChange={this.handleChange}
             value={this.state.amount}
             name="amount"
             label="Amount"
-            style={{width: '50%'}}
+            style={{width: '100%'}}
           />
-          <CardNumberElement />
+          <p>Credit Card Number</p>
+          <CardNumberElement/>
+          <p>Expiration Date</p>
           <CardExpiryElement/>
+          <p>CVC Number</p>
           <CardCVCElement />
-          <button onClick={this.handleSubmit}>Send</button>
+          <Button type='submit' color='primary' variant="outlined" onClick={this.handleSubmit} style={this.state.success}>{this.state.buttonText}</Button>
         </div>
       );
   }
