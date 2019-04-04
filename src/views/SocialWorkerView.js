@@ -10,7 +10,7 @@ class SocialWorkerView extends Component {
     //I'm going to hide the addnot view by default and then make it an overlaying modal later
   state = {
     schoolID: null,
-    schools: [],
+    schools: [], //make sure there's a school array in order to match the names and IDs
     visits: [],
     sortedVisits: [],
     addvisit: "hidden"
