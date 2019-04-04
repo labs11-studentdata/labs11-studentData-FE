@@ -75,7 +75,7 @@ function SponsorChildComponent(props) {
               </CardActionArea>
               </Link>
               <CardActions>
-                <Button onClick={e => props.sponsorSelected(e, student)} size="small" color="primary">
+                <Button variant='outlined' onClick={e => props.sponsorSelected(e, student)} size="small" color="primary">
                   Sponsor
                 </Button>
                 <div className="totalDueLabel"> Total Due: </div>

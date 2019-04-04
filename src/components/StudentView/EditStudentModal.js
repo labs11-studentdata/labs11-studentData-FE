@@ -50,7 +50,7 @@ class StudentModal extends React.Component {
     console.log("edit student props", this.props)
     return (
       <div>
-        <Button onClick={this.handleOpen}>Edit</Button>
+        <Button variant='outlined' onClick={this.handleOpen}>Edit</Button>
         <Modal
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
