@@ -23,7 +23,11 @@ const styles = theme => ({
       height: "90vh",
     },
   },
-  link: {}
+  link: {},
+  body: {
+    maxHeight: 500,
+    overflowY: 'scroll',
+  }
 });
 
 function ListItemLink(props) {
@@ -68,8 +72,8 @@ function DashContainer(props) {
             </Grid>
             {/* BODY */}
             <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Body />
+              <Paper className={`${classes.paper} ${classes.body}`}>
+                <Body className={classes.body} />
               </Paper>
             </Grid>
             {/* FOOTER */}
