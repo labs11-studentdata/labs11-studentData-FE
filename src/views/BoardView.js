@@ -15,15 +15,15 @@ import { withStyles } from '@material-ui/core/styles';
 // Setting up route links object for left side navigation
 const links = [
   {
-    title: "LINK TEST 1",
-    url: "#"
+    title: "DASHBOARD",
+    url: `${process.env.REACT_APP_FE_ROOT}/boardmemberdashboard`
   },
   {
-    title: "LINK TEST 2",
-    url: "#"
+    title: "SPONSOR A STUDENT",
+    url: `${process.env.REACT_APP_FE_ROOT}/sponsor`
   },
   {
-    title: "LINK TEST 3",
+    title: "SOCIAL VISITS",
     url: "#"
   }
 ];
