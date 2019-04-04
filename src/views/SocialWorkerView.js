@@ -3,12 +3,14 @@ import axios from 'axios';
 import { AllVisits, VisitsBySchool, AddVisit } from '../components/index';
 import { connect } from 'react-redux';
 import { getSchools, getStudents, getVisitsByUserId } from '../actions/index';
+import SchoolSelect from '../components/SchoolSelect';
 
 class SocialWorkerView extends Component {
 
     //I'm going to hide the addnot view by default and then make it an overlaying modal later
   state = {
     schoolID: null,
+    schools: [], //make sure there's a school array in order to match the names and IDs
     visits: [],
     sortedVisits: [],
     addvisit: "hidden"
@@ -20,13 +22,40 @@ class SocialWorkerView extends Component {
     this.props.getStudents();
     this.setState({
       ...this.state,
-      visits: this.props.visits
+      visits: this.props.visits,
+      schools: this.props.schools
     });
   }
+
+  setSchool = (e, schoolID) => {
+    e.preventDefault();
+    if (schoolID === "all") {
+      this.setState({
+        ...this.state,
+        schoolID: "all",
+        visits: this.props.visits,
+      });
+    } 
+    else {
+      this.setState({
+        ...this.state,
+        schoolID: schoolID,
+        visits: this.props.visits.filter(
+          visit => visit.schoolID === schoolID
+        ),
+      });
+    }
+  };
 
   render(){
     return (
       <div className='socialWorkerDash'>
+        <SchoolSelect
+          schools={this.props.schools}
+          setSchool={this.setClass}
+          schoolID={this.state.schoolID}
+          userType='social_worker'
+        />
         <AllVisits visits={this.state.visits} />
         <AddVisit className={this.state.addvisit}/>
         
@@ -48,4 +77,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, getSchools, getStudents, getVisitsByUserId)(SocialWorkerView);
+export default connect(mapStateToProps, {getSchools, getStudents, getVisitsByUserId})(SocialWorkerView);
