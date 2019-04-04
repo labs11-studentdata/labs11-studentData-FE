@@ -44,7 +44,7 @@ class StudentTable extends Component {
             <StripeProvider apiKey="pk_test_arXBQTpudOCQ9XCjo20KlKbh00piO3nLbb">
               <div className="example">
                 <Elements>
-                  <StripeComponent student={this.props.student}/>
+                  <StripeComponent student={this.props.student} user_id={this.props.user_id}/>
                 </Elements>
               </div>
             </StripeProvider>
@@ -52,16 +52,6 @@ class StudentTable extends Component {
         </Modal>
 
         <Table className='student-table' deselectOnClickaway={false} style={{ tableLayout: 'auto', padding: 'none' }}>
-        {/* <colgroup>
-          <col width="20%" />
-          <col width="10%" />
-          <col width="5%" />
-          <col width="5%" />
-          <col width="5%" />
-          <col width="20%" />
-          <col width="15%" />
-          <col width="15%" />
-        </colgroup> */}
           <TableHead>
 
             <TableRow>
@@ -86,7 +76,7 @@ class StudentTable extends Component {
                   <TableCell style={{padding: '0px', width: '10%'}}>{this.yOrN(student.has_insurance)}</TableCell>
                   <TableCell style={{padding: '0px', width: '10%'}}>{this.yOrN(student.has_birthcert)}</TableCell>
                   <TableCell style={{padding: '0px', width: '15%'}}>{student.contact_first_name} {student.contact_last_name}</TableCell>
-                  <TableCell style={{padding: '0px', width: '15%'}}>{student.contact_number}</TableCell>
+                  <TableCell style={{padding: '0px', width: '15%'}}>${student.dues}</TableCell>
                 </TableRow>
               )
             })}
