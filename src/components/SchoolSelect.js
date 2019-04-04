@@ -107,6 +107,7 @@ class SchoolSelect extends Component {
       return(
         <form onSubmit={e => this.props.setClass(e, this.state.schoolID, this.state.gradeID)}>
           <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="school-select">School</InputLabel>
             <Select
               value={this.state.schoolID}
               name='schoolID'
@@ -184,6 +185,7 @@ class SchoolSelect extends Component {
       return (        
         <form onSubmit={e => this.props.setSchool(e, this.state.schoolID)}>
           <FormControl className={classes.formControl}>
+            <InputLabel htmlFor="school-select">School</InputLabel>
             <Select
               value={this.state.schoolID}
               name='schoolID'
@@ -195,6 +197,7 @@ class SchoolSelect extends Component {
                 return <MenuItem value={school.schoolID}>{school.school_name}</MenuItem>
               })}
             </Select>
+            <Button type='submit' color='primary' variant="outlined">apply</Button>
           </FormControl>
         </form>
       )
