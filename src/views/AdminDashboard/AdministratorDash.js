@@ -2,13 +2,15 @@ import React, { Component } from "react";
 import DashboardFrame from "../DashboardFrame";
 import AdminSchoolListComp from "./AdminSchoolListComp";
 import AdminStudentCount from "./AdminStudentCount";
-import AddStudentModel from "../../components/StudentView/AddStudentModal";
+import AddStudentModal from "../../components/StudentView/AddStudentModal";
 import AdminHeader from "./AdminHeader";
 import VisitListBySchool from "../../components/SocialWorker/VisitLists/visitsBySchool";
 import { connect } from "react-redux";
-import { getAdminStudents } from '../../actions/admin';
+import { getAdminStudents, getSchoolVisits } from "../../actions/admin";
+import Divider from '@material-ui/core/Divider';
 import axios from "axios";
 import "./AdminDashboard.css";
+import { Stats } from "fs";
 
 // Setting up route links object for left side navigation
 const links = [
@@ -36,27 +38,43 @@ const styles = theme => ({
 const visits = [];
 class AdministratorDash extends Component {
   state = {
-    students: []
+    students: this.props.students,
+    visits: this.props.visits.length > 5 ? this.props.visits.slice(0, 5) : this.props.visits,
+    school: []
   };
   componentDidMount() {
-    const user_id = this.props.user_id
-    this.props.getAdminStudents(user_id)
+    const user_id = this.props.user_id;
+    console.log(user_id)
+    const school_id = this.props.school_id;
+    axios.get(`${process.env.REACT_APP_BE_URL}/api/schools/${school_id}`)
+      .then(res => this.setState({
+        ...this.state,
+        school: res.data
+      }))
+      .catch(err => console.log(err))
+      this.props.getAdminStudents(user_id);
+      this.props.getSchoolVisits(school_id);
   }
   Header = () => {
     return (
-      <div className="adminHeaderContainer">
-        <div className="headerLeft">
-          <AdminHeader />
-          <div className="visitAdminContainer">
-            <VisitListBySchool visits={visits} />
+      <>
+        <AdminHeader school={this.state.school} />
+        <Divider variant="middle" />
+
+        <div className="adminHeaderContainer">
+          <div className="headerLeft">
+            <h3>Recent Social Worker Visits</h3>
+            <div className="visitAdminContainer">
+              <VisitListBySchool visits={this.state.visits} />
+            </div>
+          </div>
+
+          <div className="headerRight">
+            <AddStudentModal user_id={this.props.user_id} school={this.state.school} />
+            <AdminStudentCount students={this.state.students} />
           </div>
         </div>
-
-        <div className="headerRight">
-          <AddStudentModel />
-          <AdminStudentCount students={this.state.students} />
-        </div>
-      </div>
+      </>
     );
   };
 
@@ -73,8 +91,6 @@ class AdministratorDash extends Component {
   };
 
   render() {
-    console.log("BOARD VIEW STATE", this.state);
-    console.log("BOARD VIEW PROPS", this.props);
     return (
       <>
         <DashboardFrame links={links} header={this.Header} body={this.Body} />
@@ -84,13 +100,17 @@ class AdministratorDash extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state)
+  console.log('______________________', state)
+  const arr = []
   return {
-    user_id: state.login.user.user_id
+    user_id: state.login.user.user_id,
+    school_id: state.login.user.schoolID,
+    visits: typeof state.admin.visits === "array" ? state.admin.visits : arr,
+    students: state.admin.students.students
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getAdminStudents }
+  { getAdminStudents, getSchoolVisits }
 )(AdministratorDash);

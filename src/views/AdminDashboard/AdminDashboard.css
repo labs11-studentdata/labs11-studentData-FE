@@ -12,6 +12,7 @@
     display: flex;
     position: relative;
     justify-content: space-around;
+    flex-wrap: wrap
 }
 
 .adminHeaderContainer .headerRight {
@@ -27,8 +28,22 @@
     width: 70%;
     align-items: center;
     justify-content: space-between;
+    flex-direction: column
 }
 
 .visitAdminContainer {
-    
+    overflow: scroll;
+    max-height: 250px;
+}
+
+.visitListRow:hover {
+    background-color: rgba(233,255,255, .3);
+    cursor: pointer;
+}
+
+.headerLeft h3 {
+    color: #617D8B;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 0;
 }

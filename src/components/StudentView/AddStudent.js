@@ -1,65 +1,58 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-
 import { Link } from 'react-router-dom';
-
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid';
+import { connect } from 'react-redux';
+import { addStudent,getAdminStudents } from '../../actions/admin'
 
 class AddStudent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
-          student: {},
+          user_id: this.props.user_id,
+          student: {
+            schoolID: "",
+            student_id: 0
+          },
 
         };   
     }
 
+    componentDidMount() {
+      console.log("************************")
+      console.log(this.state)
+      this.setState({
+        ...this.state,
+        student: {
+          ...this.state.student,
+          schoolID: this.props.school[0].id
+        }
+      })
+      this.props.getAdminStudents(this.state.user_id)
+    }
     addStudent = (e) => {
-
-        e.preventDefault();
-    
-        axios
-        .post(process.env.REACT_APP_BE_URL + '/api/students', this.state.student)
-        .then(response => {
-            console.log("server response", response.data);
-        })
-        .catch(e => {
-
-          console.log("server error:", e.message);
-
-        })
-
-
-        console.log("adding student", this.state.student)
-
+      e.preventDefault()
+      this.props.addStudent(this.state.student)
+      this.props.getAdminStudents(this.state.user_id)
+      window.location.href=`${process.env.REACT_APP_FE_ROOT}/admindashboard`
     }
 
-    handleInputChange = event => {
-      let name = event.target.name;
-      let value = event.target.value;
-
-      this.setState({
-
-        ...this.state.student,
-        [name]: value
-
+    handleInputChange = e => {
+      this.setState({ 
+        ...this.state,
+        student: {
+          ...this.state.student,
+          [e.target.name]: e.target.value
+        }
       });
     };
  
     render() {
-  
-      console.log(this.state)
-      console.log("props", this.props);
         return (
-          <div>
-          <h1>Add Student</h1><br></br>  
 
-
-          <form noValidate autoComplete="off" style={{height: "50%", width: "75%", display: 'flex', flexDirection: 'row'}} onSubmit={this.addStudent}>
+          <form  className='addStudentModel' noValidate autoComplete="off" onSubmit={this.addStudent}>
           <Grid
           container
           spacing={24}
@@ -68,6 +61,7 @@ class AddStudent extends Component {
           justify="center"
           alignItems="center"
           maxWidth="800px"
+          id='form'
           >
           <Grid item>
               <TextField
@@ -80,7 +74,6 @@ class AddStudent extends Component {
                 name='first_name'
 
                 margin="normal"
-                variant="filled"
               />
             </Grid>
 
@@ -95,7 +88,6 @@ class AddStudent extends Component {
                 name='last_name'
 
                 margin="normal"
-                variant="filled"
               />
             </Grid>
 
@@ -110,7 +102,6 @@ class AddStudent extends Component {
                 name='age'
 
                 margin="normal"
-                variant="filled"
               />
             </Grid>
 
@@ -125,22 +116,6 @@ class AddStudent extends Component {
                 name='gradeID'
 
                 margin="normal"
-                variant="filled"
-              />
-            </Grid>
-
-            <Grid item>
-              <TextField
-                id="filled-name"
-                label="School"
-
-                value={this.state.student.schoolID}
-                onChange={this.handleInputChange}
-
-                name='schoolID'
-
-                margin="normal"
-                variant="filled"
               />
             </Grid>
 
@@ -155,7 +130,6 @@ class AddStudent extends Component {
                 name='photo_url'
 
                 margin="normal"
-                variant="filled"
               />
             </Grid>
 
@@ -170,7 +144,6 @@ class AddStudent extends Component {
                 name='enrollment_status'
 
                 margin="normal"
-                variant="filled"
               />
             </Grid>
 
@@ -185,7 +158,6 @@ class AddStudent extends Component {
                 name='has_insurance'
 
                 margin="normal"
-                variant="filled"
               />
             </Grid>
 
@@ -200,7 +172,6 @@ class AddStudent extends Component {
                 name='insurance_expiration'
 
                 margin="normal"
-                variant="filled"
               />
             </Grid>
 
@@ -215,7 +186,6 @@ class AddStudent extends Component {
                 name='has_birthcert'
 
                 margin="normal"
-                variant="filled"
               />
             </Grid>
 
@@ -230,7 +200,6 @@ class AddStudent extends Component {
                 name='dues'
 
                 margin="normal"
-                variant="filled"
               />
             </Grid>
 
@@ -245,7 +214,6 @@ class AddStudent extends Component {
                 name='special_needs'
 
                 margin="normal"
-                variant="filled"
               />
             </Grid>
 
@@ -260,7 +228,6 @@ class AddStudent extends Component {
                 name='contact_first_name'
 
                 margin="normal"
-                variant="filled"
               />
             </Grid>
 
@@ -275,7 +242,6 @@ class AddStudent extends Component {
                 name='contact_last_name'
 
                 margin="normal"
-                variant="filled"
               />
             </Grid>
 
@@ -290,7 +256,6 @@ class AddStudent extends Component {
                 name='contact_number'
 
                 margin="normal"
-                variant="filled"
               />
             </Grid>
                       
@@ -299,13 +264,15 @@ class AddStudent extends Component {
         <Button type="submit">Add Student</Button>
 
         </form>
-
-        </div>
-
-
-          
         )
     }
 }
 
-export default AddStudent;
+const mapStateToProps = state => {
+  console.log(state)
+  return {
+
+  }
+}
+
+export default connect(mapStateToProps, {addStudent, getAdminStudents})(AddStudent);
