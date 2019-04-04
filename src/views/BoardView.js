@@ -10,6 +10,7 @@ import {
 import DashboardFrame from "./DashboardFrame";
 import HighestDues from '../components/BoardMember/HighestDues';
 import { withStyles } from '@material-ui/core/styles';
+import SponsorChildView from '../views/SponsorChildView';
 
 
 // Setting up route links object for left side navigation
@@ -44,6 +45,7 @@ class BoardView extends Component {
     visits: [],
     activeSponsor: false,
     student: null,
+    bodyView: null,
   };
 
   componentDidMount() {
@@ -133,24 +135,36 @@ class BoardView extends Component {
   };
 
   Body = () => {
-    return (
-      <Fragment>
-        <SchoolSelect
-          schools={this.props.schools}
-          setClass={this.setClass}
-          schoolID={this.state.schoolID}
-          gradeID={this.state.gradeID}
-        />
-        <br />
-        <StudentTable
-          students={this.state.students}
-          open={this.state.activeSponsor}
-          handleOpen={this.handleOpen}
-          handleClose={this.handleClose}
-          student={this.state.student}
-        />
-      </Fragment>
-    );
+    // Standard body view
+    if(this.state.bodyView === null){
+      return (
+        <Fragment>
+          <SchoolSelect
+            schools={this.props.schools}
+            setClass={this.setClass}
+            schoolID={this.state.schoolID}
+            gradeID={this.state.gradeID}
+          />
+          <br />
+          <StudentTable
+            students={this.state.students}
+            open={this.state.activeSponsor}
+            handleOpen={this.handleOpen}
+            handleClose={this.handleClose}
+            student={this.state.student}
+          />
+        </Fragment>
+      );
+    }
+
+    // Sponsor body view
+    if(this.state.bodyView === "sponsor"){
+      return (
+        <Fragment>
+          <SponsorChildView />
+        </Fragment>
+      );
+    }
   };
 
   Footer = () => {
