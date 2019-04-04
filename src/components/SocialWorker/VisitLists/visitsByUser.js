@@ -6,7 +6,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-const VisitList = props => {
+const VisitListByUser = props => {
   return(
     <Paper className='visit-list-container'>
       <Table className='visit-list'>
@@ -14,7 +14,6 @@ const VisitList = props => {
           <TableRow>
             <TableCell>Date</TableCell>
             <TableCell>School</TableCell>
-            <TableCell>Notes</TableCell>
           </TableRow>
         </TableHead>
 
@@ -22,9 +21,8 @@ const VisitList = props => {
           {props.visits.map(visit => {
             return(
               <TableRow>
-                <TableCell>{visit.date}</TableCell>
+                <TableCell>{visit.visit_date}</TableCell>
                 <TableCell>{visit.school}</TableCell>
-                <TableCell>{visit.notes}</TableCell>                
               </TableRow>
             )
           })}
@@ -34,4 +32,4 @@ const VisitList = props => {
   )
 }
 
-export default VisitList;
+export default VisitListByUser;

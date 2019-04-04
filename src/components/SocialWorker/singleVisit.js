@@ -3,45 +3,38 @@ import axios from 'axios';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
+import DeleteVisitButton from './deleteVisitButton'
 
+//needs visit and openEdit Handler as props
 
-class SingleVisit extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-        date: "",
-        note: ""
-        }
-    }
-
-    componentDidMount() {
-        const arr = this.props.params.match(/\d+$/);
-        const id = arr[0]
-        axios.get(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits/${id}`)
-            .then(res => {
-                this.setState({ date: res.data.date, note: res.data.note })
-            })
-            .catch(err => {
-                console.log(err.message)
-            })
-    }
-
-
-    render() {
-        return (
-            <Card>
-                <CardContent>
+const SingleVisit = props => {
+    return (
+        <Card>
+            <CardContent>
+                <div className="visit-header">
                     <Typography color="textSecondary" gutterBottom>
-                        {this.state.date}
+                        {props.visit.visit_date}
                     </Typography>
                     <Typography color="textSecondary" gutterBottom>
-                        {this.state.note}
+                        {props.visit.school}
                     </Typography>
-                </CardContent>
-            </Card>
-        );
-    }
+                </div>
+                <div className="visit-body">
+                    <Typography color="textSecondary" gutterBottom>
+                        {props.visit.notes}
+                    </Typography>
+                </div>
+                <div className="visit-footer">
+                    <Button variant="outlined" color="red" onClick={props.openEdit}>
+                        Edit
+                    </Button>
+                    <DeleteVisitButton visit={props.visit} />
+                </div>
+            </CardContent>
+        </Card>
+    );
 }
 
 

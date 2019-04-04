@@ -4,11 +4,15 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 class AddVisit extends React.Component {
+  constructor(props) {
+    super(props);
+    state = {
+      date: "",
+      notes: "",
+      school: ""
+    };
+  }
   
-  state = {
-    date: "",
-    note: ""
-  };
 
   eHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -18,8 +22,10 @@ class AddVisit extends React.Component {
 
   submitForm = e => {
       let visit = {
-        date: this.state.date,
-        note: this.state.note
+        visit_date: this.state.date,
+        notes: this.state.notes,
+        school
+
       }
       axios.post(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits`, {visit})
         .then(res => {
@@ -28,7 +34,7 @@ class AddVisit extends React.Component {
         .catch(err => {
             console.log(err.message)
         })
-      this.setState({ date: "", note: "" });
+      this.setState({ date: "", notes: "" });
   }
 
   render() {
@@ -39,7 +45,7 @@ class AddVisit extends React.Component {
             label="Date"
             name="date"
             onChange={this.eHandler}
-            placeholder="MM/DD/YYYY"
+            placeholder="YYYY-MM-DD"
             margin="normal"
           />
 
@@ -51,9 +57,7 @@ class AddVisit extends React.Component {
             multiline
             margin="normal"
           />
-      <Button 
-      onClick={this.submitForm}
-      >
+      <Button onClick={this.submitForm}>
           Submit
       </Button>
     </div>
