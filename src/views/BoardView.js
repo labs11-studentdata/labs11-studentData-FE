@@ -42,7 +42,7 @@ class BoardView extends Component {
     schoolID: null,
     gradeID: null,
     students: [],
-    visits: [],
+    schools: [],
     activeSponsor: false,
     student: null,
     bodyView: null,
@@ -140,18 +140,20 @@ class BoardView extends Component {
       return (
         <Fragment>
           <SchoolSelect
-            schools={this.props.schools}
-            setClass={this.setClass}
-            schoolID={this.state.schoolID}
-            gradeID={this.state.gradeID}
+          schools={this.props.schools}
+          setClass={this.setClass}
+          schoolID={this.state.schoolID}
+          gradeID={this.state.gradeID}
+          userType='board_member'
           />
           <br />
           <StudentTable
-            students={this.state.students}
-            open={this.state.activeSponsor}
-            handleOpen={this.handleOpen}
-            handleClose={this.handleClose}
-            student={this.state.student}
+          students={this.state.students}
+          open={this.state.activeSponsor}
+          handleOpen={this.handleOpen}
+          handleClose={this.handleClose}
+          student={this.state.student}
+          user_id={this.props.user_id}
           />
         </Fragment>
       );
@@ -165,6 +167,7 @@ class BoardView extends Component {
         </Fragment>
       );
     }
+
   };
 
   Footer = () => {
@@ -199,6 +202,7 @@ const mapStateToProps = state => {
     students: state.students.students,
     schools: state.schools.schools,
     error: state.students.error,
+    user_id: state.login.user.user_id
   };
 };
 

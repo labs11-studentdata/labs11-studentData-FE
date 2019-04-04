@@ -17,6 +17,8 @@ export const UPDATED_STUDENT = 'UPDATED_STUDENT';
 export const FAIL = 'FAIL';
 export const PAYING = 'PAYING';
 export const PAID = 'PAID';
+export const ADDING_DONATION = 'ADDING_DONATION';
+export const ADDED_DONATION = 'ADDED_DONATION';
 
 
 //gets all students
@@ -83,11 +85,19 @@ export const getSchools = () => dispatch => {
     .catch(err => dispatch({type: FAIL, payload: err}))
 }
 
-export const makeDonation = (body, id, newAmt) => dispatch => {
+export const addDonation = donation => dispatch => {
+  dispatch({type: ADDING_DONATION})
+  axios.post(`${baseURL}/api/donations`, donation)
+    .then(res => dispatch({type: ADDED_DONATION, payload: res.data}))
+    .catch(err => dispatch({type: FAIL, payload: err}))
+}
+
+export const makeDonation = (body, id, newAmt, donation) => dispatch => {
   console.log(body);
   dispatch({type: PAYING});
   axios.post(`${baseURL}/api/stripe/`, body)
     .then(res => dispatch({type: PAID, payload: res.data}))
     .then(() => updateStudent(id, newAmt)(dispatch))
+    .then(() => addDonation(donation)(dispatch))
     .catch(err => dispatch({type: FAIL, payload: err}))
 }

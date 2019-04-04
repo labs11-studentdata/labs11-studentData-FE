@@ -22,6 +22,15 @@ class StripeComponent extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     let updatedDonation = this.state.student.dues - this.state.amount;
+    let d = new Date();
+    let donation = {
+      user_id: Number(this.props.user_id),
+      student_id: this.state.student.student_id,
+      schoolID: this.state.student.schoolID,
+      donation_total: Number(this.state.amount),
+      donation_date: d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
+    }
+    console.log(donation);
     this.setState(prevState => ({
       ...this.state,
       student: {
@@ -33,7 +42,8 @@ class StripeComponent extends Component {
     await this.props.makeDonation(
       {token: token.token, amount: Number(this.state.amount)},
       this.state.student.id,
-      this.state.student
+      this.state.student,
+      donation
     );
   }
 
