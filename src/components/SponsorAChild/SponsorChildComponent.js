@@ -11,12 +11,9 @@ import Typography from "@material-ui/core/Typography";
 import {Elements, StripeProvider} from 'react-stripe-elements';
 import StripeComponent from '../Stripe/StripeComponent';
 import Paper from '@material-ui/core/Paper';
-<<<<<<< HEAD
 import Dialog from '@material-ui/core/Dialog';
 
-=======
 import { withStyles } from '@material-ui/core/styles';
->>>>>>> master
 import "./SponsorAChild.css";
 
 const styles = theme => ({
