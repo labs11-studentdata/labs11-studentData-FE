@@ -47,3 +47,12 @@
     font-weight: 500;
     margin-bottom: 0;
 }
+.adminStudentCardContainer {
+    position: absolute;
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        border: black;
+        justify-content: center; 
+        overflow: hidden;  
+}

@@ -4,7 +4,7 @@ function AdminHeader(props) {
     console.log(props)
     return (
         <>
-            <h2>Welcome</h2>
+            <h1>My Dashboard</h1>
         </>
     )
 }

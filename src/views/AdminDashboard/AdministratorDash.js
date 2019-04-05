@@ -5,10 +5,12 @@ import AdminStudentCount from "./AdminStudentCount";
 import AddStudentModal from "../../components/StudentView/AddStudentModal";
 import AdminHeader from "./AdminHeader";
 import VisitListBySchool from "../../components/SocialWorker/VisitLists/visitsBySchool";
+import AdminChildComponent from './AdminChildComponent';
 import { connect } from "react-redux";
 import { getAdminStudents, getSchoolVisits } from "../../actions/admin";
 import Divider from '@material-ui/core/Divider';
 import axios from "axios";
+import AdminDonationList from './AdminDonationList';
 import "./AdminDashboard.css";
 import { Stats } from "fs";
 
@@ -28,6 +30,7 @@ class AdministratorDash extends Component {
     students: this.props.students,
     visits: this.props.visits.length > 5 ? this.props.visits.slice(0, 5) : this.props.visits,
     school: this.props.school,
+    schoolDonations: [],
     links: [
       {
         title: "Social Visits",
@@ -57,11 +60,10 @@ class AdministratorDash extends Component {
         }
       }
     ]
-  };
-  
+  }
+
   componentDidMount() {
     const user_id = this.props.user_id;
-    console.log(user_id)
     const school_id = this.props.school_id;
     axios.get(`${process.env.REACT_APP_BE_URL}/api/schools/${school_id}`)
       .then(res => this.setState({
@@ -71,7 +73,16 @@ class AdministratorDash extends Component {
       .catch(err => console.log(err))
       this.props.getAdminStudents(user_id);
       this.props.getSchoolVisits(school_id);
+      axios.get(`${process.env.REACT_APP_BE_URL}/api/donations/school/${school_id}`)
+        .then(res => {
+          this.setState({
+          
+          ...this.state,
+          schoolDonations: res.data.schoolDonations
+        })})
+        .catch(error => console.log(error))
   }
+
   Header = () => {
     if(this.state.selected === 0) {
       return (
@@ -98,14 +109,26 @@ class AdministratorDash extends Component {
     if(this.state.selected === 1) {
       return <h1>My Students</h1>
     }
+    if(this.state.selected === 2) {
+      return <h1>School Donations</h1>
+    }
   };
 
   Body = () => {
-    return (
-      <>
-        <AdminSchoolListComp students={this.state.students} />
-      </>
-    );
+    if(this.state.selected === 0) {
+      return (
+        <>
+          <AdminSchoolListComp students={this.state.students} />
+        </>
+      );
+    }
+    if(this.state.selected === 1) {
+      const arr = []
+      return <AdminChildComponent students={this.props.allStudents} />
+    }
+    if(this.state.selected === 2) {
+      return <AdminDonationList donations={this.state.schoolDonations} />
+    }
   };
 
   Footer = () => {
@@ -113,7 +136,6 @@ class AdministratorDash extends Component {
   };
 
   render() {
-    console.log('THIS>STATE', this.state)
     return (
       <>
         <DashboardFrame links={this.state.links} header={this.Header} body={this.Body} />
@@ -123,13 +145,13 @@ class AdministratorDash extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log('______________________', state)
   const arr = []
   return {
     user_id: state.login.user.user_id,
     school_id: state.login.user.schoolID,
     visits: typeof state.admin.visits === "array" ? state.admin.visits : arr,
-    students: state.admin.students === undefined ? [] : state.admin.students.students
+    students: state.admin.students === undefined ? [] : state.admin.students.students,
+    allStudents: state.students.students
   };
 };
 
