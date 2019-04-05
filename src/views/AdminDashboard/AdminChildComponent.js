@@ -1,59 +1,92 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import {Elements, StripeProvider} from 'react-stripe-elements';
-import StripeComponent from '../../components/Stripe/StripeComponent';
-import PaymentComponent from '../../components/Payment/PaymentComponent';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-
+import Button from "@material-ui/core/Button";
 function AdminChildComponent(props) {
+    console.log(props)
     return (
-        <div className="adminStudentCardContainer">
-        {props.students.map(student => (
-          <Card key={student.student_id} className="studentCard">
-            
-            <Link to={`/student/${student.student_id}`}>
+      <Paper className='donation-list-container'>
+        <Table className='donation-list'>
+          <TableHead>
+            <TableRow>
+              <TableCell>Student Name</TableCell>
+              <TableCell>Age</TableCell>
+              <TableCell>Dues</TableCell>
+              <TableCell>Insur/Birth Certif.</TableCell>
+              <TableCell>Emergency Contact</TableCell>
+              <TableCell>Contact Num.</TableCell>
+              <TableCell>Edit Student</TableCell>
 
-            <CardActionArea>
-              {/* ADD ONCLICK TO CARD AREA ACTION THAT WILL LOAD SINGLE CHILD VIEW */}
-              
-              <CardMedia
-                className=""
-                component="img"
-                alt={`Photo of ${student.first_name} ${student.last_name}`}
-                height="140"
-                background-size="cover"
-                src={`${student.photo_url}`}
-                title={`Photo of ${student.first_name} ${student.last_name}`}
-              />                
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  {`${student.first_name} ${student.last_name} `}
-                </Typography>
-                <Typography component="p" />
-              </CardContent>
-            </CardActionArea>
-            </Link>
-            <CardActions>
-              <Button onClick={e => props.sponsorSelected(e, student)} size="small" color="primary">
-                Sponsor
-              </Button>
-              <div className="totalDueLabel"> Total Due: </div>
-              <Typography gutterBottom color="secondary" component="p">
-                {`${student.dues}`}
-              </Typography>
-            </CardActions>
-          </Card>
-        ))}
-      </div>
+            </TableRow>
+          </TableHead>
+  
+          <TableBody style={{ textAlign: 'center', overflow: 'auto', height: '250px' }}>
+            {props.students.map(student => {
+              return(
+                <TableRow>
+                  <TableCell>{`${student.first_name} ${student.last_name}`}</TableCell>
+                  <TableCell>{student.age}</TableCell> 
+                  <TableCell style={{ color: 'red'}}>{student.dues}</TableCell>  
+                  <TableCell>{`${student.has_birthcert === 1 ? 'Y' : 'N'}/${student.has_insurance === 1 ? 'Y' : 'N'}`}</TableCell>                
+                  <TableCell>{`${student.contact_first_name} ${student.contact_last_name}`}</TableCell>  
+                  <TableCell>{student.contact_number}</TableCell>                
+
+                  <TableCell> <Button variant='outlined'  size="small" color="primary">
+                  Edit
+                </Button></TableCell>   
+                </TableRow>
+              )
+            })}
+          </TableBody>
+        </Table>
+      </Paper>
     )
 }
+// function AdminChildComponent(props) {
+//     return (
+//         <div className="adminStudentCardContainer">
+//         {props.students.map(student => (
+//           <Card key={student.student_id} className="studentCard">
+            
+//             <Link to={`/student/${student.student_id}`}>
+
+//             <CardActionArea>
+//               {/* ADD ONCLICK TO CARD AREA ACTION THAT WILL LOAD SINGLE CHILD VIEW */}
+              
+//               <CardMedia
+//                 className=""
+//                 component="img"
+//                 alt={`Photo of ${student.first_name} ${student.last_name}`}
+//                 height="140"
+//                 background-size="cover"
+//                 src={`${student.photo_url}`}
+//                 title={`Photo of ${student.first_name} ${student.last_name}`}
+//               />                
+//               <CardContent>
+//                 <Typography gutterBottom variant="h5" component="h2">
+//                   {`${student.first_name} ${student.last_name} `}
+//                 </Typography>
+//                 <Typography component="p" />
+//               </CardContent>
+//             </CardActionArea>
+//             </Link>
+//             <CardActions>
+//               <Button onClick={e => props.sponsorSelected(e, student)} size="small" color="primary">
+//                 Sponsor
+//               </Button>
+//               <div className="totalDueLabel"> Total Due: </div>
+//               <Typography gutterBottom color="secondary" component="p">
+//                 {`${student.dues}`}
+//               </Typography>
+//             </CardActions>
+//           </Card>
+//         ))}
+//       </div>
+//     )
+// }
 
 export default AdminChildComponent;

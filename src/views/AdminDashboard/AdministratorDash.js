@@ -107,7 +107,7 @@ class AdministratorDash extends Component {
       );
     }
     if(this.state.selected === 1) {
-      return <h1>My Students</h1>
+      return <h1>All Students</h1>
     }
     if(this.state.selected === 2) {
       return <h1>School Donations</h1>
