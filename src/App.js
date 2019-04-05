@@ -7,6 +7,8 @@ import { OnboardingView, AddStudent } from './components';
 import AdministratorDash from './views/AdminDashboard/AdministratorDash';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
+import ImageUpload from './components/ImageUpload/ImageUpload';
+
 import './App.css';
 
 class App extends Component {
@@ -20,12 +22,15 @@ class App extends Component {
         <Route path='/boardmemberdashboard' component={BoardView} />
         <Route path='/student/:id' render={props => <StudentView {...props} />} />
         <Route path='/add' component={AddStudent} /> 
-        <Route path='/socialworkerdashboard' component={SocialWorkerView} />        
+        <Route path='/socialworkerdashboard' component={SocialWorkerDashboard} />        
         <Route path='/admindashboard' component={AdministratorDash} />
         <Route path='/socialdashtest' component={SocialWorkerDashboard} />
         <Route path='/social' component={SocialWorkerView} />        
 
         <Route path='/home' component={LandingPage} />
+
+        <Route path='/upload' component={ImageUpload} />
+
       </div>
     );
   }

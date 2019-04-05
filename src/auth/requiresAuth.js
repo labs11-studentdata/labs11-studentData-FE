@@ -23,7 +23,10 @@ const Authenticated = Component =>
       const parsed = queryString.parse(window.location.href)
       if(parsed.account_type) {
         window.location.href = `${parsed.account_type.replace(/\s/g, '').toLowerCase()}dashboard`
+      } else if (parsed.account_type === '') {
+        window.location.href = '/onboarding'
       }
+      
     }
       render() {
           const token = localStorage.getItem('jwt');

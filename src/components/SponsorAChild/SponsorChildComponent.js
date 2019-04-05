@@ -11,16 +11,31 @@ import Typography from "@material-ui/core/Typography";
 import {Elements, StripeProvider} from 'react-stripe-elements';
 import StripeComponent from '../Stripe/StripeComponent';
 import Paper from '@material-ui/core/Paper';
+<<<<<<< HEAD
 import Dialog from '@material-ui/core/Dialog';
 
+=======
+import { withStyles } from '@material-ui/core/styles';
+>>>>>>> master
 import "./SponsorAChild.css";
 
+const styles = theme => ({
+  scContainer: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+  }
+})
+
 function SponsorChildComponent(props) {
+  const { classes } = props;
   return (
     <>
-      <h1>Select a child to sponsor!</h1>
+      {/* <h1>Select a child to sponsor!</h1> */}
+      <Typography variant="h5">Select a child to sponsor!</Typography>
       
-      <div className='sponsorChildContainer'>
+      {/* <div className='sponsorChildContainer'> */}
+      <div>
       <div className='paymentContainer'>
           <Paper>
             {/* {props.selectedStudent.hasOwnProperty('student_id') && <hr/>} */}
@@ -40,7 +55,7 @@ function SponsorChildComponent(props) {
             </div>
           </Paper> 
         </div>
-        <div className="studentCardContainer">
+        <div className={classes.scContainer}>
           {props.students.map(student => (
             <Card key={student.student_id} className="studentCard">
               
@@ -67,7 +82,7 @@ function SponsorChildComponent(props) {
               </CardActionArea>
               </Link>
               <CardActions>
-                <Button onClick={e => props.handleOpen(e, student)} size="small" color="primary">
+                <Button variant='outlined' onClick={e => props.handleOpen(e, student)} size="small" color="primary">
                   Sponsor
                 </Button>
                 <div className="totalDueLabel"> Total Due: </div>
@@ -83,4 +98,4 @@ function SponsorChildComponent(props) {
   );
 }
 
-export default SponsorChildComponent;
+export default withStyles(styles)(SponsorChildComponent);
