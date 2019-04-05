@@ -1,0 +1,37 @@
+#modal{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    width: 70%;
+    height: 70%;
+    margin: auto;   
+    border: #617D8B solid 15px;
+    border-radius: 4px;
+
+}
+
+#addStudentModalContainer {
+    height: 100%;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    background-color: aliceblue;
+    padding: 0;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+#addStudentModalContainer h2 {
+    
+    margin-top: 5px;
+    color: #617D8B;
+}
+.addStudentModel {
+    background-color: aliceblue;
+    width: 100%;
+}
+
+#form {
+    background-color: aliceblue;
+}
