@@ -22,7 +22,7 @@ class App extends Component {
         <Route path='/boardmemberdashboard' component={BoardView} />
         <Route path='/student/:id' render={props => <StudentView {...props} />} />
         <Route path='/add' component={AddStudent} /> 
-        <Route path='/socialworkerdashboard' component={SocialWorkerView} />        
+        <Route path='/socialworkerdashboard' component={SocialWorkerDashboard} />        
         <Route path='/admindashboard' component={AdministratorDash} />
         <Route path='/socialdashtest' component={SocialWorkerDashboard} />
         <Route path='/social' component={SocialWorkerView} />        
