@@ -10,7 +10,11 @@ const LandingCardBtn = props => {
             <p>
                 {props.text}
             </p>
-            <div class="button" onClick={props.btnHandler}>{props.btnText}</div>
+            {/* <div class="button" onClick={props.btnHandler}>{props.btnText}</div> */}
+            {/* Switched to href for presentation */}
+            <a href={`${process.env.REACT_APP_FE_ROOT}/login`}>
+            <div class="button" >{props.btnText}</div>
+            </a>
         </div>
     );
   }
