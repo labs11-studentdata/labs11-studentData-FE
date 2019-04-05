@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import AddStudent from './AddStudent';
-
+import './StudentStyles.css';
 /* function rand() {
   return Math.round(Math.random() * 20) - 10;
 }
@@ -48,18 +48,20 @@ class StudentModal extends React.Component {
   render() {
     const { classes } = this.props;
     console.log(this.state)
-
+    console.log(this.props)
     return (
       <div>
         <Button variant='outlined' disabled={this.state.open ? true : false } onClick={this.handleOpen}>Add Student</Button>
         <Modal
+          id='modal'
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
           open={this.state.open}
           onClose={this.handleClose}
         >
-          <div className={classes.paper}>
-            <AddStudent />
+          <div className={`${classes.paper}`} id='addStudentModalContainer'>
+          <h2>Adding A Student </h2> 
+            <AddStudent handleClose={this.handleClose} user_id={this.props.user_id} school={this.props.school} />
             {/* <AddStudentModal /> */}
           </div>
         </Modal>
