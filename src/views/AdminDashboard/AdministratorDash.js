@@ -61,7 +61,9 @@ class AdministratorDash extends Component {
       }
     ]
   }
-
+  componentWillUpdate() {
+    console.log(this.props)
+  }
   componentDidMount() {
     const user_id = this.props.user_id;
     const school_id = this.props.school_id;
@@ -100,7 +102,8 @@ class AdministratorDash extends Component {
   
             <div className="headerRight">
               <AddStudentModal user_id={this.props.user_id} school={this.state.school} />
-              <AdminStudentCount students={this.state.students} />
+              {this.state.students && <AdminStudentCount students={this.state.students} />}
+              
             </div>
           </div>
         </>
@@ -116,14 +119,19 @@ class AdministratorDash extends Component {
 
   Body = () => {
     if(this.state.selected === 0) {
+      console.log(this.state)
+
       return (
         <>
-          <AdminSchoolListComp students={this.state.students} />
+          {this.state.students && <AdminSchoolListComp students={this.state.students} />}
+          
         </>
       );
     }
     if(this.state.selected === 1) {
       const arr = []
+      console.log(this.state)
+
       return <AdminChildComponent students={this.props.allStudents} />
     }
     if(this.state.selected === 2) {
@@ -145,6 +153,7 @@ class AdministratorDash extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state)
   const arr = []
   return {
     user_id: state.login.user.user_id,
