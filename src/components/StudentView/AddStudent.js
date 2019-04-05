@@ -260,7 +260,7 @@ class AddStudent extends Component {
                       
         </Grid>
 
-        <Button type="submit">Add Student</Button>
+        <Button variant='outlined' type="submit">Add Student</Button>
 
         </form>
         )

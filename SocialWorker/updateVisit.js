@@ -70,6 +70,7 @@ class UpdateVisit extends React.Component {
         <Button 
         className={classes.button}
         onClick={this.submitForm}
+        variant='outlined'
         >
         Submit
         </Button>

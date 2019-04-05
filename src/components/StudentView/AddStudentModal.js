@@ -51,7 +51,7 @@ class StudentModal extends React.Component {
     console.log(this.props)
     return (
       <div>
-        <Button disabled={this.state.open ? true : false } onClick={this.handleOpen}>Add Student</Button>
+        <Button variant='outlined' disabled={this.state.open ? true : false } onClick={this.handleOpen}>Add Student</Button>
         <Modal
           id='modal'
           aria-labelledby="simple-modal-title"

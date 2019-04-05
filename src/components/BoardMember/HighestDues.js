@@ -6,6 +6,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import StripeComponent from '../Stripe/StripeComponent';
+import {Elements, StripeProvider} from 'react-stripe-elements';
 
 const styles = theme => ({
   root: {
@@ -36,15 +39,16 @@ function TabContainer(props) {
 const StudentCard = props => {
   const {student} = props;
   const {classes} = props;
+  const {handleOpen} = props;
   return (
     <Paper>
       <Typography className={classes.scName} variant="subtitle1">
         {`${student.first_name} ${student.last_name}`}
       </Typography>
       <Typography className={classes.scDues}>
-        {`Ammount due: \$${student.dues}`}
+        {`Amount due: \$${student.dues}`}
       </Typography>
-      <Button color='primary' variant="outlined" className={classes.sdButton}>DONATE</Button>
+      <Button color='primary' variant="outlined" className={classes.sdButton} onClick={e => handleOpen(e, student)}>DONATE</Button>
     </Paper>
     );
 } 
@@ -69,6 +73,7 @@ class ScrollableTabsButtonAuto extends React.Component {
     const { classes } = this.props;
     const { value } = this.state;
     const { top5 } = this.props;
+    const {handleOpen} = this.props;
     console.log("TOP5", top5);
     if(top5.length > 0){
       return (
@@ -89,9 +94,21 @@ class ScrollableTabsButtonAuto extends React.Component {
           </AppBar>
           {top5.map((student, index) => {
             if(value === index){
-              return <StudentCard student={student} classes={classes} />
+              return <StudentCard student={student} classes={classes} handleOpen={handleOpen}/>
             }
           })}
+          <Dialog
+            open={this.props.open}
+            onClose={this.props.handleClose}
+          >
+            <StripeProvider apiKey="pk_test_arXBQTpudOCQ9XCjo20KlKbh00piO3nLbb">
+              <div className="example" style={{width: '400px', height: '400px', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                <Elements>
+                  <StripeComponent student={this.props.student} user_id={this.props.user_id}/>
+                </Elements>
+              </div>
+            </StripeProvider>       
+          </Dialog>
         </div>
       );
     } else {
@@ -132,7 +149,12 @@ const HighestDues = props => {
     <Fragment>
     <Typography variant="h5">Highest Needs</Typography>
     <Typography component="div" style={{ padding: 8 * 3 }}>
-      <ScrollableTabsButtonAuto top5={top5} classes={classes}/>
+      <ScrollableTabsButtonAuto top5={top5} classes={classes}
+                open={props.activeSponsor}
+                handleOpen={props.handleOpen}
+                handleClose={props.handleClose}
+                student={props.student}
+                user_id={props.user_id}/>
     </Typography>
     </Fragment>
   )

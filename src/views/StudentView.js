@@ -105,7 +105,7 @@ class StudentView extends Component {
             {/*<EditStudent student={this.state.student}/>*/}
             <EditStudentModal student={this.state.student}/>
 
-            <Button onClick={this.deleteStudent}>Delete Student</Button>
+            <Button variant='outlined' onClick={this.deleteStudent}>Delete Student</Button>
 					</div>
 </>
         )
