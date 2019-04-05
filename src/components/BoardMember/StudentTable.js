@@ -11,6 +11,8 @@ import StripeComponent from '../Stripe/StripeComponent';
 import {withStyles} from '@material-ui/core/styles';
 import {Elements, StripeProvider} from 'react-stripe-elements';
 import {connect} from 'react-redux';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
 
 
 
@@ -36,57 +38,47 @@ class StudentTable extends Component {
     return(
       <Paper className='student-table-container' style={{ overflowY: 'scroll', maxHeight: '300px', width: 'auto'}}>
 
-        <Modal
+        <Dialog
           open={this.props.open}
           onClose={this.props.handleClose}
         >
-          <Paper>
-            <StripeProvider apiKey="pk_test_arXBQTpudOCQ9XCjo20KlKbh00piO3nLbb">
-              <div className="example">
-                <Elements>
-                  <StripeComponent student={this.props.student}/>
-                </Elements>
-              </div>
-            </StripeProvider>
-          </Paper>      
-        </Modal>
+          <StripeProvider apiKey="pk_test_arXBQTpudOCQ9XCjo20KlKbh00piO3nLbb">
+            <div className="example" style={{width: '400px', height: '400px', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+              <Elements>
+                <StripeComponent student={this.props.student} user_id={this.props.user_id}/>
+              </Elements>
+            </div>
+          </StripeProvider>       
+        </Dialog>
 
         <Table className='student-table' deselectOnClickaway={false} style={{ tableLayout: 'auto', padding: 'none' }}>
-        {/* <colgroup>
-          <col width="20%" />
-          <col width="10%" />
-          <col width="5%" />
-          <col width="5%" />
-          <col width="5%" />
-          <col width="20%" />
-          <col width="15%" />
-          <col width="15%" />
-        </colgroup> */}
           <TableHead>
 
             <TableRow>
               <TableCell style={{padding: '0px', width: '15%'}}>Name</TableCell>
-              <TableCell style={{padding: '0px', width: '10%'}}>Status</TableCell>
+              {/* <TableCell style={{padding: '0px', width: '10%'}}>Status</TableCell> */}
               <TableCell style={{padding: '0px', width: '5%'}}>Age</TableCell>
               <TableCell style={{padding: '0px', width: '10%'}}>Insurance</TableCell>
               <TableCell style={{padding: '0px', width: '10%'}}>Birth Cert</TableCell>
               <TableCell style={{padding: '0px', width: '15%'}}>Contact</TableCell>
-              <TableCell style={{padding: '0px', width: '15%'}}>Number</TableCell>
+              <TableCell style={{padding: '0px', width: '15%'}}>Dues</TableCell>
+              <TableCell style={{padding: '0px', width: '10%'}}>Donate</TableCell>
             </TableRow>
           </TableHead>
 
-          <TableBody style={{ overflow: 'scroll', maxHeight: '500px'}}>
+          <TableBody style={{ overflowY: 'scroll', maxHeight: '500px'}}>
             {this.props.students.map(student => {
 
               return(
-                <TableRow key={student.student_id} onClick={e => this.props.handleOpen(e, student)}>
+                <TableRow key={student.student_id}>
                   <TableCell style={{padding: '0px', width: '15%'}}>{student.first_name} {student.last_name}</TableCell>
-                  <TableCell style={{padding: '0px', width: '10%'}}>{student.enrollment_status}</TableCell>
+                  {/* <TableCell style={{padding: '0px', width: '10%'}}>{student.enrollment_status}</TableCell> */}
                   <TableCell style={{padding: '0px', width: '5%'}}>{student.age}</TableCell>
                   <TableCell style={{padding: '0px', width: '10%'}}>{this.yOrN(student.has_insurance)}</TableCell>
                   <TableCell style={{padding: '0px', width: '10%'}}>{this.yOrN(student.has_birthcert)}</TableCell>
                   <TableCell style={{padding: '0px', width: '15%'}}>{student.contact_first_name} {student.contact_last_name}</TableCell>
-                  <TableCell style={{padding: '0px', width: '15%'}}>{student.contact_number}</TableCell>
+                  <TableCell style={{padding: '0px', width: '15%'}}>${student.dues}</TableCell>
+                  <TableCell style={{padding: '0px', width: '10%'}} onClick={e => this.props.handleOpen(e, student)}><Button type='submit' color='primary' variant="outlined">donate</Button></TableCell>
                 </TableRow>
               )
             })}

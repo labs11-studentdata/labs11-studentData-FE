@@ -6,6 +6,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import StripeComponent from '../Stripe/StripeComponent';
+import {Elements, StripeProvider} from 'react-stripe-elements';
 
 const styles = theme => ({
   root: {
@@ -36,20 +39,20 @@ function TabContainer(props) {
 const StudentCard = props => {
   const {student} = props;
   const {classes} = props;
+  const {handleOpen} = props;
   return (
     <Paper>
       <Typography className={classes.scName} variant="subtitle1">
         {`${student.first_name} ${student.last_name}`}
       </Typography>
       <Typography className={classes.scDues}>
-        {`Ammount due: \$${student.dues}`}
+        {`Amount due: \$${student.dues}`}
       </Typography>
-      <Button color='primary' variant="outlined" className={classes.sdButton}>DONATE</Button>
+      <Button color='primary' variant="outlined" className={classes.sdButton} onClick={e => handleOpen(e, student)}>DONATE</Button>
     </Paper>
     );
 } 
 
-// TODO: Map the top5 labels and selected
 class ScrollableTabsButtonAuto extends React.Component {
   state = {
     value: 0,
@@ -59,10 +62,18 @@ class ScrollableTabsButtonAuto extends React.Component {
     this.setState({ value });
   };
 
+  // Resets value to 0 if filter changes top5
+  componentDidUpdate(prevProps){
+    if(prevProps.top5 !== this.props.top5){
+      this.setState({value: 0})
+    }
+  }
+
   render() {
     const { classes } = this.props;
     const { value } = this.state;
     const { top5 } = this.props;
+    const {handleOpen} = this.props;
     console.log("TOP5", top5);
     if(top5.length > 0){
       return (
@@ -76,18 +87,28 @@ class ScrollableTabsButtonAuto extends React.Component {
               variant="scrollable"
               scrollButtons="auto"
             >
-              <Tab label={`${top5[0].first_name} ${top5[0].last_name}`} />
-              <Tab label={`${top5[1].first_name} ${top5[1].last_name}`} />
-              <Tab label={`${top5[2].first_name} ${top5[2].last_name}`} />
-              <Tab label={`${top5[3].first_name} ${top5[3].last_name}`} />
-              <Tab label={`${top5[4].first_name} ${top5[4].last_name}`} />
+              {top5.map((student, index)=> {
+                return <Tab key={index} label={`${top5[index].first_name} ${top5[index].last_name}`} />
+              })}
             </Tabs>
           </AppBar>
-          {value === 0 && <StudentCard student={top5[0]} classes={classes}/>}
-          {value === 1 && <StudentCard student={top5[1]} classes={classes}/>}
-          {value === 2 && <StudentCard student={top5[2]} classes={classes}/>}
-          {value === 3 && <StudentCard student={top5[3]} classes={classes}/>}
-          {value === 4 && <StudentCard student={top5[4]} classes={classes}/>}
+          {top5.map((student, index) => {
+            if(value === index){
+              return <StudentCard student={student} classes={classes} handleOpen={handleOpen}/>
+            }
+          })}
+          <Dialog
+            open={this.props.open}
+            onClose={this.props.handleClose}
+          >
+            <StripeProvider apiKey="pk_test_arXBQTpudOCQ9XCjo20KlKbh00piO3nLbb">
+              <div className="example" style={{width: '400px', height: '400px', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                <Elements>
+                  <StripeComponent student={this.props.student} user_id={this.props.user_id}/>
+                </Elements>
+              </div>
+            </StripeProvider>       
+          </Dialog>
         </div>
       );
     } else {
@@ -118,14 +139,22 @@ const HighestDues = props => {
   // console.log("STUDENTS AFTER", students); // <--debugging
 
   const top5 = [];
-  while(top5.length < 5 && students.length > 0){
+
+  // Added conditional to see if student owes dues first
+  // students[students.length -1].dues > 0
+  while(top5.length < 5 && students.length > 0 && students[students.length -1].dues > 0){
       top5.push(students.pop());
   }
   return (
     <Fragment>
     <Typography variant="h5">Highest Needs</Typography>
     <Typography component="div" style={{ padding: 8 * 3 }}>
-      <ScrollableTabsButtonAuto top5={top5} classes={classes}/>
+      <ScrollableTabsButtonAuto top5={top5} classes={classes}
+                open={props.activeSponsor}
+                handleOpen={props.handleOpen}
+                handleClose={props.handleClose}
+                student={props.student}
+                user_id={props.user_id}/>
     </Typography>
     </Fragment>
   )

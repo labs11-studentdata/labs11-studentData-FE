@@ -1,8 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { getStudents, getVisits, getSchools } from "../actions/index";
+import { getStudents, getSchools } from "../actions/index";
 import {
-  VisitLog,
   StudentCounter,
   StudentTable,
   IssuesTracker,
@@ -11,20 +10,21 @@ import {
 import DashboardFrame from "./DashboardFrame";
 import HighestDues from '../components/BoardMember/HighestDues';
 import { withStyles } from '@material-ui/core/styles';
+import SponsorChildView from '../views/SponsorChildView';
 
 
 // Setting up route links object for left side navigation
 const links = [
   {
-    title: "LINK TEST 1",
-    url: "#"
+    title: "DASHBOARD",
+    url: `${process.env.REACT_APP_FE_ROOT}/boardmemberdashboard`
   },
   {
-    title: "LINK TEST 2",
-    url: "#"
+    title: "SPONSOR A STUDENT",
+    url: `${process.env.REACT_APP_FE_ROOT}/sponsor`
   },
   {
-    title: "LINK TEST 3",
+    title: "SOCIAL VISITS",
     url: "#"
   }
 ];
@@ -42,17 +42,15 @@ class BoardView extends Component {
     schoolID: null,
     gradeID: null,
     students: [],
-    visits: [],
+    schools: [],
     activeSponsor: false,
     student: null,
-    activeVisit: false,
-    visit: false
+    bodyView: null,
   };
 
   componentDidMount() {
     this.props.getStudents();
     this.props.getSchools();
-    this.props.getVisits();
     this.setState({
       ...this.state,
       students: this.props.students
@@ -70,7 +68,6 @@ class BoardView extends Component {
         schoolID: "all",
         gradeID: "all",
         students: this.props.students,
-        visits: this.props.visits,
         activeSponsor: false,
         student: null
       });
@@ -82,7 +79,6 @@ class BoardView extends Component {
         students: this.props.students.filter(
           student => student.schoolID === schoolID
         ),
-        visits: this.props.visits.filter(visit => visit.schoolID === schoolID),
         activeSponsor: false,
         student: null
       });
@@ -95,7 +91,6 @@ class BoardView extends Component {
           student =>
             student.gradeID === gradeID && student.schoolID === schoolID
         ),
-        visits: this.props.visits.filter(visit => visit.schoolID === schoolID),
         activeSponsor: false,
         student: null
       });
@@ -112,15 +107,6 @@ class BoardView extends Component {
     });
   };
 
-  //opens the visit notes modal
-  handleOpenVisit = (e, visit) => {
-    e.preventDefault();
-    this.setState({
-      ...this.state,
-      visit: visit,
-      activeVisit: true
-    });
-  };
 
   //closes both modals and resets the modal tracking in component state
   handleClose = () => {
@@ -128,8 +114,6 @@ class BoardView extends Component {
       ...this.state,
       student: null,
       activeSponsor: false,
-      activeVisit: false,
-      visit: null
     });
   };
 
@@ -142,30 +126,52 @@ class BoardView extends Component {
   };
 
   Body = () => {
-    return (
-      <Fragment>
-        <SchoolSelect
+    // Standard body view
+    if(this.state.bodyView === null){
+      return (
+        <Fragment>
+          <SchoolSelect
           schools={this.props.schools}
           setClass={this.setClass}
           schoolID={this.state.schoolID}
           gradeID={this.state.gradeID}
-        />
-        <br />
-        <StudentTable
+          userType='board_member'
+          />
+          <br />
+          <StudentTable
           students={this.state.students}
           open={this.state.activeSponsor}
           handleOpen={this.handleOpen}
           handleClose={this.handleClose}
           student={this.state.student}
-        />
-      </Fragment>
-    );
+          user_id={this.props.user_id}
+          />
+        </Fragment>
+      );
+    }
+
+    // Sponsor body view
+    if(this.state.bodyView === "sponsor"){
+      return (
+        <Fragment>
+          <SponsorChildView />
+        </Fragment>
+      );
+    }
+
   };
 
   Footer = () => {
     return (
       <Fragment>
-        <HighestDues students={this.state.students} />
+        <HighestDues
+          students={this.state.students}
+          open={this.state.activeSponsor}
+          handleOpen={this.handleOpen}
+          handleClose={this.handleClose}
+          student={this.state.student}
+          user_id={this.props.user_id}
+        />
       </Fragment>
       );
   };
@@ -194,9 +200,9 @@ const mapStateToProps = state => {
     students: state.students.students,
     schools: state.schools.schools,
     error: state.students.error,
-    visits: state.visits.visits
+    user_id: state.login.user.user_id
   };
 };
 
 //this is where you hook up the functions from the actions index to this file
-export default withStyles(styles)(connect(mapStateToProps,{ getStudents, getVisits, getSchools })(BoardView));
+export default withStyles(styles)(connect(mapStateToProps,{ getStudents, getSchools })(BoardView));

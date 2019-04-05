@@ -308,7 +308,7 @@ class EditStudent extends Component {
                           
             </Grid>
 
-            <Button type="submit">Save Changes</Button>
+            <Button variant='outlined' type="submit">Save Changes</Button>
 
             </form>
 
