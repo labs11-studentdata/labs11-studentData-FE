@@ -7,6 +7,8 @@ import { OnboardingView, AddStudent } from './components';
 import AdministratorDash from './views/AdminDashboard/AdministratorDash';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
+import ImageUpload from './components/ImageUpload/ImageUpload';
+
 import './App.css';
 
 class App extends Component {
@@ -26,6 +28,9 @@ class App extends Component {
         <Route path='/social' component={SocialWorkerView} />        
 
         <Route path='/home' component={LandingPage} />
+
+        <Route path='/upload' component={ImageUpload} />
+
       </div>
     );
   }

@@ -37,7 +37,7 @@ class SocialWorkerDashboard extends Component {
       
       const id = this.props.userID;
 
-      console.log(id);
+      console.log("user props:", this.props);
       
       axios.get(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits/${id}`)
         .then(res => {
