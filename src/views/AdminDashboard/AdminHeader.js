@@ -1,9 +1,10 @@
 import React from 'react';
 
 function AdminHeader(props) {
+    console.log(props)
     return (
         <>
-            <h2>Test School for Students</h2>
+            <h1>My Dashboard</h1>
         </>
     )
 }
