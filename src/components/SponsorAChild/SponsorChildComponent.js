@@ -10,8 +10,8 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import {Elements, StripeProvider} from 'react-stripe-elements';
 import StripeComponent from '../Stripe/StripeComponent';
-import PaymentComponent from '../Payment/PaymentComponent';
 import Paper from '@material-ui/core/Paper';
+import Dialog from '@material-ui/core/Dialog';
 
 import "./SponsorAChild.css";
 
@@ -25,15 +25,18 @@ function SponsorChildComponent(props) {
           <Paper>
             {/* {props.selectedStudent.hasOwnProperty('student_id') && <hr/>} */}
             <div className='container'>
-            {/* <PaymentComponent selectedStudent={props.selectedStudent}/> */}
-              {/* <StripeProvider apiKey="pk_test_arXBQTpudOCQ9XCjo20KlKbh00piO3nLbb">
-                <div className="example">
+            <Dialog
+              open={props.open}
+              onClose={props.handleClose}
+            >
+              <StripeProvider apiKey="pk_test_arXBQTpudOCQ9XCjo20KlKbh00piO3nLbb">
+                <div className="example" style={{width: '400px', height: '400px', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                   <Elements>
-                    <StripeComponent />
+                    <StripeComponent student={props.student} user_id={props.user_id}/>
                   </Elements>
                 </div>
-              </StripeProvider>
-             */}
+              </StripeProvider>       
+            </Dialog>
             </div>
           </Paper> 
         </div>
@@ -64,7 +67,7 @@ function SponsorChildComponent(props) {
               </CardActionArea>
               </Link>
               <CardActions>
-                <Button onClick={e => props.sponsorSelected(e, student)} size="small" color="primary">
+                <Button onClick={e => props.handleOpen(e, student)} size="small" color="primary">
                   Sponsor
                 </Button>
                 <div className="totalDueLabel"> Total Due: </div>
