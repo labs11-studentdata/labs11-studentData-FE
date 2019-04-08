@@ -140,9 +140,28 @@ class BoardView extends Component {
   };
 
   Body = () => {
-    // Standard body view
-    if(this.state.bodyView === null){
+    switch(this.state.bodyView){
+      // Sponsor body view
+      case "sponsor":
       return (
+        <Fragment>
+          <SponsorChildView />
+        </Fragment>
+      );
+      break;
+
+      // Social visits view
+      case "social":
+        return (
+          <Fragment>
+            SOCIAL VISITS LIST
+          </Fragment>
+        );
+        break;
+
+      // Standard body view
+      default:
+        return (
         <Fragment>
           <SchoolSelect
           schools={this.props.schools}
@@ -164,14 +183,6 @@ class BoardView extends Component {
       );
     }
 
-    // Sponsor body view
-    if(this.state.bodyView === "sponsor"){
-      return (
-        <Fragment>
-          <SponsorChildView />
-        </Fragment>
-      );
-    }
 
   };
 
