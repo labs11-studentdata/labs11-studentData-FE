@@ -61,6 +61,13 @@ class AdministratorDash extends Component {
       }
     ]
   }
+  componentWillReceiveProps() {
+    console.log('TTRREEUUUU')
+    this.setState({
+      ...this.state,
+      students: this.props.students
+    })
+  }
   componentWillUpdate() {
     console.log(this.props)
   }
