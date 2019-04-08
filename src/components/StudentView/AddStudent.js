@@ -22,12 +22,7 @@ class AddStudent extends Component {
       value: 2
     };
   }
-  componentDidUpdate() {
-    console.log("*************CWRP*************");
-  }
   componentDidMount() {
-    console.log("**********SECOND**CDM************");
-    console.log(this.state);
     this.setState({
       ...this.state,
       student: {
@@ -36,7 +31,6 @@ class AddStudent extends Component {
       }
     });
     this.props.getAdminStudents(this.state.user_id);
-    console.log("************CDM********TWO");
   }
   addStudent = e => {
     e.preventDefault();
@@ -238,8 +232,6 @@ class AddStudent extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log("*******FIRST*****MSTP************");
-  console.log(state);
   return {
     schoolID: parseInt(state.login.user.schoolID)
   };

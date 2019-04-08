@@ -33,7 +33,7 @@ class AdministratorDash extends Component {
     schoolDonations: [],
     links: [
       {
-        title: "Social Visits",
+        title: "My Dashboard",
         onClick: () => {
           this.setState({
             ...this.state,
@@ -62,7 +62,6 @@ class AdministratorDash extends Component {
     ]
   }
   componentWillReceiveProps() {
-    console.log('TTRREEUUUU')
     this.setState({
       ...this.state,
       students: this.props.students
