@@ -34,15 +34,30 @@ class BoardView extends Component {
     links: [
       {
         title: "DASHBOARD",
-        url: `${process.env.REACT_APP_FE_ROOT}/boardmemberdashboard`
+        onClick: () => {
+          this.setState({
+            ...this.state,
+            bodyView: null,
+          })
+        }
       },
       {
         title: "SPONSOR A STUDENT",
-        url: `${process.env.REACT_APP_FE_ROOT}/sponsor`
+        onClick: () => {
+          this.setState({
+            ...this.state,
+            bodyView: "sponsor",
+          })
+        }
       },
       {
         title: "SOCIAL VISITS",
-        url: "#"
+        onClick: () => {
+          this.setState({
+            ...this.state,
+            bodyView: "social"
+          })
+        }
       }
     ],
   };
