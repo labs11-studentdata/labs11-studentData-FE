@@ -13,22 +13,6 @@ import { withStyles } from '@material-ui/core/styles';
 import SponsorChildView from '../views/SponsorChildView';
 
 
-// Setting up route links object for left side navigation
-const links = [
-  {
-    title: "DASHBOARD",
-    url: `${process.env.REACT_APP_FE_ROOT}/boardmemberdashboard`
-  },
-  {
-    title: "SPONSOR A STUDENT",
-    url: `${process.env.REACT_APP_FE_ROOT}/sponsor`
-  },
-  {
-    title: "SOCIAL VISITS",
-    url: "#"
-  }
-];
-
 const styles = theme => ({
   root: {
     ...theme.mixins.gutters(),
@@ -46,6 +30,21 @@ class BoardView extends Component {
     activeSponsor: false,
     student: null,
     bodyView: null,
+    selectedStudent: null,
+    links: [
+      {
+        title: "DASHBOARD",
+        url: `${process.env.REACT_APP_FE_ROOT}/boardmemberdashboard`
+      },
+      {
+        title: "SPONSOR A STUDENT",
+        url: `${process.env.REACT_APP_FE_ROOT}/sponsor`
+      },
+      {
+        title: "SOCIAL VISITS",
+        url: "#"
+      }
+    ],
   };
 
   componentDidMount() {
@@ -182,7 +181,7 @@ class BoardView extends Component {
     return (
       <Fragment>
         <DashboardFrame
-          links={links}
+          links={this.state.links}
           header={this.Header}
           body={this.Body}
           footer={this.Footer}
