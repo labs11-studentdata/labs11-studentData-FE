@@ -1,35 +1,71 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import axios from 'axios';
 import { SponsorChildComponent } from '../components';
+import { getStudents } from "../actions/index";
 
 class SponsorChildView extends Component {
     state = {
         students: [], 
-        selectedStudent: {}
+        activeSponsor: false,
+        student: null,
     }
 
     componentDidMount() {
-      axios.get(process.env.REACT_APP_BE_URL + '/api/students')
-        .then(res => {
-          this.setState({
-            students: res.data
-          })
-        })
-        .catch(err => console.log(err))
+      this.props.getStudents();
+      this.setState({
+        students: this.props.students
+      })
     }
-    sponsorSelected = (e, student) => {
+    // sponsorSelected = (e, student) => {
+    //   e.preventDefault();
+    //   this.setState({selectedStudent: student})
+    // }
+
+    handleOpen = (e, student) => {
       e.preventDefault();
-      this.setState({selectedStudent: student})
-    }
+      this.setState({
+        ...this.state,
+        student: student,
+        activeSponsor: true
+      });
+    };
+  
+  
+    //closes both modals and resets the modal tracking in component state
+    handleClose = () => {
+      this.setState({
+        ...this.state,
+        student: null,
+        activeSponsor: false,
+      });
+    };
 
     render() {
       console.log(this.state)
         return (
-            <>
-            <SponsorChildComponent sponsorSelected={this.sponsorSelected} selectedStudent={this.state.selectedStudent} students={this.state.students}/>
-            </>
+          <>
+            <SponsorChildComponent
+              students={this.state.students}
+              open={this.state.activeSponsor}
+              handleOpen={this.handleOpen}
+              handleClose={this.handleClose}
+              student={this.state.student}
+              user_id={this.props.user_id}
+            />
+          </>
         )
     }
 }
 
-export default SponsorChildView;
+const mapStateToProps = state => {
+  return {
+    fetching: state.students.fetching,
+    fetched: state.students.fetched,
+    students: state.students.students,
+    error: state.students.error,
+    user_id: state.login.user.user_id
+  }
+}
+
+export default connect(mapStateToProps, {getStudents})(SponsorChildView);
