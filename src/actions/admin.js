@@ -11,6 +11,7 @@ const baseURL = process.env.REACT_APP_BE_URL;
 export const getAdminStudents = user_id => dispatch => {
     dispatch({ type: FETCHING_ADMIN_STUDENTS_START })
         axios.get(`${baseURL}/api/users/${user_id}/students`)
+        
         .then(res => {
             console.log(res)
             dispatch({ type: FETCHING_ADMIN_STUDENTS_SUCCESS, payload: res.data.students})

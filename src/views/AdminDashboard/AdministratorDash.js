@@ -120,7 +120,6 @@ class AdministratorDash extends Component {
   Body = () => {
     if(this.state.selected === 0) {
       console.log(this.state)
-
       return (
         <>
           {this.state.students && <AdminSchoolListComp students={this.state.students} />}
