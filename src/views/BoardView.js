@@ -144,11 +144,11 @@ class BoardView extends Component {
       // Sponsor body view
       case "sponsor":
       return (
-        <Fragment>
-          <SponsorChildView />
-        </Fragment>
-      );
-      break;
+          <Fragment>
+            <SponsorChildView />
+          </Fragment>
+        );
+        break;
 
       // Social visits view
       case "social":
