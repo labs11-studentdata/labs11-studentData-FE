@@ -13,22 +13,6 @@ import { withStyles } from '@material-ui/core/styles';
 import SponsorChildView from '../views/SponsorChildView';
 
 
-// Setting up route links object for left side navigation
-const links = [
-  {
-    title: "DASHBOARD",
-    url: `${process.env.REACT_APP_FE_ROOT}/boardmemberdashboard`
-  },
-  {
-    title: "SPONSOR A STUDENT",
-    url: `${process.env.REACT_APP_FE_ROOT}/sponsor`
-  },
-  {
-    title: "SOCIAL VISITS",
-    url: "#"
-  }
-];
-
 const styles = theme => ({
   root: {
     ...theme.mixins.gutters(),
@@ -46,6 +30,36 @@ class BoardView extends Component {
     activeSponsor: false,
     student: null,
     bodyView: null,
+    selectedStudent: null,
+    links: [
+      {
+        title: "DASHBOARD",
+        onClick: () => {
+          this.setState({
+            ...this.state,
+            bodyView: null,
+          })
+        }
+      },
+      {
+        title: "SPONSOR A STUDENT",
+        onClick: () => {
+          this.setState({
+            ...this.state,
+            bodyView: "sponsor",
+          })
+        }
+      },
+      {
+        title: "SOCIAL VISITS",
+        onClick: () => {
+          this.setState({
+            ...this.state,
+            bodyView: "social"
+          })
+        }
+      }
+    ],
   };
 
   componentDidMount() {
@@ -126,9 +140,28 @@ class BoardView extends Component {
   };
 
   Body = () => {
-    // Standard body view
-    if(this.state.bodyView === null){
+    switch(this.state.bodyView){
+      // Sponsor body view
+      case "sponsor":
       return (
+          <Fragment>
+            <SponsorChildView />
+          </Fragment>
+        );
+        break;
+
+      // Social visits view
+      case "social":
+        return (
+          <Fragment>
+            SOCIAL VISITS LIST
+          </Fragment>
+        );
+        break;
+
+      // Standard body view
+      default:
+        return (
         <Fragment>
           <SchoolSelect
           schools={this.props.schools}
@@ -150,14 +183,6 @@ class BoardView extends Component {
       );
     }
 
-    // Sponsor body view
-    if(this.state.bodyView === "sponsor"){
-      return (
-        <Fragment>
-          <SponsorChildView />
-        </Fragment>
-      );
-    }
 
   };
 
@@ -182,7 +207,7 @@ class BoardView extends Component {
     return (
       <Fragment>
         <DashboardFrame
-          links={links}
+          links={this.state.links}
           header={this.Header}
           body={this.Body}
           footer={this.Footer}
