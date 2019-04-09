@@ -1,14 +1,21 @@
 import React from 'react';
 import axios from 'axios';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 class AddVisit extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      date: "",
+      notes: "",
+      school: ""
+    };
+  }
   
-  state = {
-    date: "",
-    note: ""
-  };
 
   eHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -18,8 +25,9 @@ class AddVisit extends React.Component {
 
   submitForm = e => {
       let visit = {
-        date: this.state.date,
-        note: this.state.note
+        visit_date: this.state.date,
+        notes: this.state.notes,
+        school: ''
       }
       axios.post(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits`, {visit})
         .then(res => {
@@ -28,38 +36,48 @@ class AddVisit extends React.Component {
         .catch(err => {
             console.log(err.message)
         })
-      this.setState({ date: "", note: "" });
+      this.setState({ date: "", notes: "", school: ""});
   }
 
-  render() {
-    return(
-    <div>
-      <TextField
-            id="standard-with-placeholder"
-            label="Date"
-            name="date"
-            onChange={this.eHandler}
-            placeholder="MM/DD/YYYY"
-            margin="normal"
-          />
-
-      <TextField
-            id="standard-textarea"
-            label="Add Visit Notes"
-            name="note"
-            onChange={this.eHandler}
-            multiline
-            margin="normal"
-          />
-      <Button 
-      onClick={this.submitForm}
-      variant='outlined'
-      >
-          Submit
-      </Button>
-    </div>
-    )
-  };
+    render() {
+        return(
+            <Card>
+                <CardContent>
+                    <div className="visit-header">
+                        <TextField
+                            id="standard-with-placeholder" 
+                            className="text"
+                            label="Date"
+                            name="date"
+                            onChange={this.eHandler}
+                            placeholder="YYYY-MM-DD"
+                            margin="normal"
+                        />
+                        {/* school search */}
+                    </div>
+                    <div className="visit-body">
+                        <TextField
+                            id="standard-textarea"
+                            className="text"
+                            label="Add Visit Notes"
+                            name="notes"
+                            onChange={this.eHandler}
+                            multiline
+                            margin="normal"
+                        />
+                    </div>
+                    <div className="visit-footer">
+                        <Button variant="outlined" className="edit-btn" onClick={this.props.cancelAdd}>
+                            Cancel
+                        </Button>
+                        <Button variant="outlined" className="edit-btn" onClick={this.submitForm}>
+                            Add
+                        </Button>
+                    </div>
+                </CardContent>
+            </Card>
+        )
+    };
 };
 
 export default AddVisit;

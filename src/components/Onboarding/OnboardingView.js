@@ -12,6 +12,7 @@ import CreateASchoolForm from "../CreateASchool/CreateASchoolForm";
 import { connect } from "react-redux";
 import { updateAccount } from "../../actions/account";
 import './OnboardingView.css'
+import SchoolList from '../Schools/SchoolList';
 import axios from 'axios';
 
 const styles = theme => ({
@@ -46,7 +47,7 @@ const styles = theme => ({
 });
 
 function getSteps() {
-  return ["Select account type", "Enter account info", "Add a school"];
+  return ["Select account type", "Enter account info", "View schools"];
 }
 
 function getStepContent(step) {
@@ -243,8 +244,13 @@ class CustomizedStepper extends React.Component {
               handleSubmit={this.handleSubmit}
             />
           )}
-          {this.state.activeStep === 2 && <CreateASchoolForm handleSchoolChanges={this.handleSchoolChanges} school={this.state.school}
-          handleSchoolSubmit={this.handleSchoolSubmit}/>}
+          {console.log(this.state)}
+          {this.state.activeStep === 2 && this.state.user.account_type.includes('admin') ? ( 
+            <>
+          <SchoolList />
+          <CreateASchoolForm handleSchoolChanges={this.handleSchoolChanges} school={this.state.school}a
+          handleSchoolSubmit={this.handleSchoolSubmit}/>
+          </>) : null}
         </Stepper>
         <div>
           {activeStep === steps.length ? (
