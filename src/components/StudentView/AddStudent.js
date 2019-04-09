@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import { addStudent, getAdminStudents } from "../../actions/admin";
 import DropDownMenu from "@material-ui/core/MenuList";
 import Select from '@material-ui/core/Select';
-
+import axios from 'axios';
 import MenuItem from "@material-ui/core/MenuItem";
 class AddStudent extends Component {
   constructor(props) {
@@ -22,6 +22,10 @@ class AddStudent extends Component {
       value: 2
     };
   }
+  componentWillReceiveProps() {
+    console.log('+++++++CWRP++++++++++')
+    
+  }
   componentDidMount() {
     this.setState({
       ...this.state,
@@ -30,13 +34,18 @@ class AddStudent extends Component {
         schoolID: this.props.schoolID
       }
     });
-    this.props.getAdminStudents(this.state.user_id);
   }
   addStudent = e => {
+    const baseURL = process.env.REACT_APP_BE_URL;
     e.preventDefault();
-    this.props.addStudent(this.state.student);
-    this.props.getAdminStudents(this.state.user_id);
-  };
+    axios.post(`${baseURL}/api/students`, this.state.student)
+        .then(res => {
+          console.log(this.state.user_id)
+          this.props.getAdminStudents(this.state.user_id)
+          this.props.handleClose()
+        })
+        .catch(error => console.log(error))
+  }
 
   handleInputChange = e => {
     this.setState({
@@ -54,7 +63,7 @@ class AddStudent extends Component {
         className="addStudentModel"
         noValidate
         autoComplete="off"
-        onSubmit={this.addStudent}
+        onSubmit={(e) => this.addStudent(e)}
       >
         <Grid
           container
@@ -232,6 +241,8 @@ class AddStudent extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log('+++++MSTP ADD STUDENT++++++++++')
+  console.log(state)
   return {
     schoolID: parseInt(state.login.user.schoolID)
   };

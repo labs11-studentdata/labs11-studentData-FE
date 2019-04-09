@@ -42,7 +42,7 @@ class AdministratorDash extends Component {
         }
       },
       {
-        title: "Students",
+        title: "My Students",
         onClick: () => {
           this.setState({
             ...this.state,
@@ -51,7 +51,7 @@ class AdministratorDash extends Component {
         }
       },
       {
-        title: "Donations",
+        title: "My School Donations",
         onClick: () => {
           this.setState({
             ...this.state,
@@ -74,13 +74,16 @@ class AdministratorDash extends Component {
     const user_id = this.props.user_id;
     const school_id = this.props.school_id;
     axios.get(`${process.env.REACT_APP_BE_URL}/api/schools/${school_id}`)
-      .then(res => this.setState({
+      .then(res => {
+        this.setState({
         ...this.state,
         school: res.data
-      }))
-      .catch(err => console.log(err))
+      })
       this.props.getAdminStudents(user_id);
-      this.props.getSchoolVisits(school_id);
+      this.props.getSchoolVisits(school_id);    
+    })
+      .catch(err => console.log(err))
+   
       axios.get(`${process.env.REACT_APP_BE_URL}/api/donations/school/${school_id}`)
         .then(res => {
           this.setState({
@@ -116,7 +119,14 @@ class AdministratorDash extends Component {
       );
     }
     if(this.state.selected === 1) {
-      return <h1>All Students</h1>
+      return (
+        <>
+          <h1>Students</h1>
+          <AddStudentModal />
+          {this.state.students && <AdminStudentCount students={this.state.students} />}
+
+        </>  
+      )
     }
     if(this.state.selected === 2) {
       return <h1>School Donations</h1>
@@ -124,19 +134,24 @@ class AdministratorDash extends Component {
   };
 
   Body = () => {
+    if(this.state.students > this.props.students) {
+      console.log(true)
+    }
     if(this.state.selected === 0) {
-      console.log(this.state)
+      console.log(this.props)
+      // this.setState({
+      //   ...this.state,
+      //   students: this.props.students
+      // })
       return (
         <>
           {this.state.students && <AdminSchoolListComp students={this.state.students} />}
           
         </>
       );
+      
     }
     if(this.state.selected === 1) {
-      const arr = []
-      console.log(this.state)
-
       return <AdminChildComponent students={this.props.students} />
     }
     if(this.state.selected === 2) {
@@ -158,6 +173,7 @@ class AdministratorDash extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log('::::::::::MSTP ADMIN DASH::::::::::')
   console.log(state)
   const arr = []
   return {

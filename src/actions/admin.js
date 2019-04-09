@@ -48,6 +48,7 @@ export const addStudent = student => dispatch => {
             .then(res => {
                 console.log(res)
                 dispatch({ type: ADD_STUDENT_SUCCESS, payload: res})
+                dispatch({ type: FETCHING_ADMIN_STUDENTS_SUCCESS, payload: res.data.students})
             })
             .catch(error => console.log(error))
 }

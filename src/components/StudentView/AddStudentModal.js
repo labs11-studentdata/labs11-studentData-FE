@@ -47,8 +47,7 @@ class StudentModal extends React.Component {
 
   render() {
     const { classes } = this.props;
-    console.log(this.state)
-    console.log(this.props)
+
     return (
       <div>
         <Button variant='outlined' disabled={this.state.open ? true : false } onClick={this.handleOpen}>Add Student</Button>
@@ -62,7 +61,6 @@ class StudentModal extends React.Component {
           <div className={`${classes.paper}`} id='addStudentModalContainer'>
           <h2>Adding A Student </h2> 
             <AddStudent handleClose={this.handleClose} user_id={this.props.user_id} school={this.props.school} />
-            {/* <AddStudentModal /> */}
           </div>
         </Modal>
       </div>

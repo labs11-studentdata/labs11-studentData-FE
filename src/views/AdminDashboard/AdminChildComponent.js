@@ -10,7 +10,6 @@ import EditChildModal from "../../components/StudentView/EditStudentModal";
 import EditStudentModal from "../../components/StudentView/EditStudentModal";
 
 function AdminChildComponent(props) {
-  console.log(props);
   return (
     <Paper className="donation-list-container">
       <Table className="donation-list">
@@ -18,9 +17,11 @@ function AdminChildComponent(props) {
           <TableRow>
             <TableCell>Student Name</TableCell>
             <TableCell>Age</TableCell>
-            <TableCell>I/BC</TableCell>
-            <TableCell>Emergency Contact</TableCell>
-            <TableCell>Contact Num.</TableCell>
+            <TableCell>Grade</TableCell>
+            <TableCell>Ins/BC</TableCell>
+            <TableCell>Ins Exp.</TableCell>
+            <TableCell>SPED</TableCell>
+
             <TableCell>Dues</TableCell>
 
             <TableCell>Edit Student</TableCell>
@@ -37,14 +38,14 @@ function AdminChildComponent(props) {
                   student.last_name
                 }`}</TableCell>
                 <TableCell>{student.age}</TableCell>
-
+                <TableCell>{student.gradeID}</TableCell>
                 <TableCell>{`${student.has_birthcert === 1 ? "Y" : "N"}/${
                   student.has_insurance === 1 ? "Y" : "N"
                 }`}</TableCell>
-                <TableCell>{`${student.contact_first_name} ${
-                  student.contact_last_name
-                }`}</TableCell>
-                <TableCell>{student.contact_number}</TableCell>
+                  <TableCell>{student.insurance_expiration}</TableCell>
+
+                  <TableCell>{student.special_needs}</TableCell>
+                  
                 <TableCell style={{ color: "red" }}>{student.dues}</TableCell>
                 <TableCell>
                   <EditStudentModal student={student}/>
