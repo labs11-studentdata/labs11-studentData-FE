@@ -11,13 +11,16 @@ function Transition(props) {
 }
 
 class DeleteVisitButton extends React.Component {
-  state = {
-    open: false,
-  };
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false,
+    }
+  }
+  
   deleteVisit = e => {
-    const arr = this.props.params.match(/\d+$/);
-    const id = arr[0];
+    const id = this.props.visit.id
+
     axios.delete(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits/${id}`)
         .then(res => {
             console.log(res.data)
@@ -39,7 +42,7 @@ class DeleteVisitButton extends React.Component {
   render() {
     return (
       <div>
-        <Button variant="outlined" color="red" onClick={this.handleClickOpen}>
+        <Button variant="outlined" color="default" onClick={this.handleClickOpen}>
           Delete Visit
         </Button>
         <Dialog
