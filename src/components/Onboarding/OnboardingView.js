@@ -190,11 +190,15 @@ class CustomizedStepper extends React.Component {
                   ...this.state,
                   user: {
                       ...this.state.user,
-                      schoolID: res.data[0]
-                  },
-                  school: {
+                      //TODO: UNDO HARDCODE
+                      // schoolID: res.data[0]
+                      schoolID: 1
+                    },
+                    school: {
                       ...this.state.school,
-                      schoolID: res.data[0]
+                      //TODO: UNDO HARDCODE
+                      // schoolID: res.data[0]
+                      schoolID: 1
                   }
               })
           })

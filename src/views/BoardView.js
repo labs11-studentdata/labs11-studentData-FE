@@ -10,23 +10,8 @@ import {
 import DashboardFrame from "./DashboardFrame";
 import HighestDues from '../components/BoardMember/HighestDues';
 import { withStyles } from '@material-ui/core/styles';
+import SponsorChildView from '../views/SponsorChildView';
 
-
-// Setting up route links object for left side navigation
-const links = [
-  {
-    title: "DASHBOARD",
-    url: `${process.env.REACT_APP_FE_ROOT}/boardmemberdashboard`
-  },
-  {
-    title: "SPONSOR A STUDENT",
-    url: `${process.env.REACT_APP_FE_ROOT}/sponsor`
-  },
-  {
-    title: "SOCIAL VISITS",
-    url: "#"
-  }
-];
 
 const styles = theme => ({
   root: {
@@ -44,6 +29,37 @@ class BoardView extends Component {
     schools: [],
     activeSponsor: false,
     student: null,
+    bodyView: null,
+    selectedStudent: null,
+    links: [
+      {
+        title: "DASHBOARD",
+        onClick: () => {
+          this.setState({
+            ...this.state,
+            bodyView: null,
+          })
+        }
+      },
+      {
+        title: "SPONSOR A STUDENT",
+        onClick: () => {
+          this.setState({
+            ...this.state,
+            bodyView: "sponsor",
+          })
+        }
+      },
+      {
+        title: "SOCIAL VISITS",
+        onClick: () => {
+          this.setState({
+            ...this.state,
+            bodyView: "social"
+          })
+        }
+      }
+    ],
   };
 
   componentDidMount() {
@@ -124,26 +140,50 @@ class BoardView extends Component {
   };
 
   Body = () => {
-    return (
-      <Fragment>
-        <SchoolSelect
+    switch(this.state.bodyView){
+      // Sponsor body view
+      case "sponsor":
+      return (
+          <Fragment>
+            <SponsorChildView />
+          </Fragment>
+        );
+        break;
+
+      // Social visits view
+      case "social":
+        return (
+          <Fragment>
+            SOCIAL VISITS LIST
+          </Fragment>
+        );
+        break;
+
+      // Standard body view
+      default:
+        return (
+        <Fragment>
+          <SchoolSelect
           schools={this.props.schools}
           setClass={this.setClass}
           schoolID={this.state.schoolID}
           gradeID={this.state.gradeID}
           userType='board_member'
-        />
-        <br />
-        <StudentTable
+          />
+          <br />
+          <StudentTable
           students={this.state.students}
           open={this.state.activeSponsor}
           handleOpen={this.handleOpen}
           handleClose={this.handleClose}
           student={this.state.student}
           user_id={this.props.user_id}
-        />
-      </Fragment>
-    );
+          />
+        </Fragment>
+      );
+    }
+
+
   };
 
   Footer = () => {
@@ -167,7 +207,7 @@ class BoardView extends Component {
     return (
       <Fragment>
         <DashboardFrame
-          links={links}
+          links={this.state.links}
           header={this.Header}
           body={this.Body}
           footer={this.Footer}

@@ -1,12 +1,15 @@
 import React from 'react';
 import axios from 'axios';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 class UpdateVisit extends React.Component {
   constructor(props) {
     super(props);
-    state = {
+    this.state = {
       date: "",
       notes: ""
     };
@@ -40,30 +43,43 @@ class UpdateVisit extends React.Component {
   render() {
     return(
       <div>
-        <TextField
-              id="standard-with-placeholder"
-              label="Edit Date"
-              name="date"
-              onChange={this.eHandler}
-              value={this.state.date}
-              placeholder="YYYY-MM-DD"
-              margin="normal"
-            />
-
-        <TextField
-              id="standard-textarea"
-              label="Edit Visit Notes"
-              name="notes"
-              onChange={this.eHandler}
-              value={this.state.notes}
-              multiline
-              margin="normal"
-            />
-        <Button 
-        onClick={this.submitForm}
-        >
-        Submit
-        </Button>
+        <Card>
+            <CardContent>
+                <div className="visit-header">
+                    <TextField
+                      id="standard-with-placeholder"
+                      label="Edit Date"
+                      name="date"
+                      onChange={this.eHandler}
+                      value={this.state.date}
+                      placeholder="YYYY-MM-DD"
+                      margin="normal"
+                    />
+                    <Typography color="textSecondary" gutterBottom>
+                        {this.props.visit.school}
+                    </Typography>
+                </div>
+                <div className="visit-body">
+                  <TextField
+                    id="standard-textarea"
+                    label="Edit Visit Notes"
+                    name="notes"
+                    onChange={this.eHandler}
+                    value={this.state.notes}
+                    multiline
+                    margin="normal"
+                  />
+                </div>
+                <div className="visit-footer">
+                    <Button variant="outlined" className="edit-btn" onClick={this.props.cancelEdit}>
+                        Cancel
+                    </Button>
+                    <Button variant="outlined" className="edit-btn" onClick={this.submitForm}>
+                        Save
+                    </Button>
+                </div>
+            </CardContent>
+        </Card>
       </div>
     )
   };

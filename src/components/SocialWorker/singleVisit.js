@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
@@ -27,7 +26,7 @@ const SingleVisit = props => {
                     </Typography>
                 </div>
                 <div className="visit-footer">
-                    <Button variant="outlined" color="red" onClick={props.openEdit}>
+                    <Button variant="outlined" className="edit-btn" onClick={props.openEdit}>
                         Edit
                     </Button>
                     <DeleteVisitButton visit={props.visit} />

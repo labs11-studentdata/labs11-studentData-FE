@@ -1,6 +1,7 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { Paper, Grid, List, ListItem, ListItemText } from "@material-ui/core";
+import Divider from '@material-ui/core/Divider';
 
 
 const styles = theme => ({
@@ -23,7 +24,11 @@ const styles = theme => ({
       height: "90vh",
     },
   },
-  link: {}
+  link: {},
+  body: {
+    maxHeight: 500,
+    overflowY: 'scroll',
+  }
 });
 
 function ListItemLink(props) {
@@ -50,8 +55,9 @@ function DashContainer(props) {
           <Paper className={classes.sidenav}>
             <List component="nav">
               {props.links.map(link => (
-                <ListItemLink href={link.url} key={link.text}>
+                <ListItemLink href={link.url} onClick={link.onClick} key={link.text}>
                   <ListItemText primary={link.title} />
+                  {/* <Divider variant="middle" /> */}
                 </ListItemLink>
               ))}
             </List>
@@ -68,8 +74,8 @@ function DashContainer(props) {
             </Grid>
             {/* BODY */}
             <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Body />
+              <Paper className={`${classes.paper} ${classes.body}`}>
+                <Body className={classes.body} />
               </Paper>
             </Grid>
             {/* FOOTER */}

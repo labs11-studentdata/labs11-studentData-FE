@@ -10,34 +10,49 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import {Elements, StripeProvider} from 'react-stripe-elements';
 import StripeComponent from '../Stripe/StripeComponent';
-import PaymentComponent from '../Payment/PaymentComponent';
 import Paper from '@material-ui/core/Paper';
+import Dialog from '@material-ui/core/Dialog';
 
+import { withStyles } from '@material-ui/core/styles';
 import "./SponsorAChild.css";
 
+const styles = theme => ({
+  scContainer: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+  }
+})
+
 function SponsorChildComponent(props) {
+  const { classes } = props;
   return (
     <>
-      <h1>Select a child to sponsor!</h1>
+      {/* <h1>Select a child to sponsor!</h1> */}
+      <Typography variant="h5">Select a child to sponsor!</Typography>
       
-      <div className='sponsorChildContainer'>
+      {/* <div className='sponsorChildContainer'> */}
+      <div>
       <div className='paymentContainer'>
           <Paper>
             {/* {props.selectedStudent.hasOwnProperty('student_id') && <hr/>} */}
             <div className='container'>
-            {/* <PaymentComponent selectedStudent={props.selectedStudent}/> */}
-              {/* <StripeProvider apiKey="pk_test_arXBQTpudOCQ9XCjo20KlKbh00piO3nLbb">
-                <div className="example">
+            <Dialog
+              open={props.open}
+              onClose={props.handleClose}
+            >
+              <StripeProvider apiKey="pk_test_arXBQTpudOCQ9XCjo20KlKbh00piO3nLbb">
+                <div className="example" style={{width: '400px', height: '400px', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                   <Elements>
-                    <StripeComponent />
+                    <StripeComponent student={props.student} user_id={props.user_id}/>
                   </Elements>
                 </div>
-              </StripeProvider>
-             */}
+              </StripeProvider>       
+            </Dialog>
             </div>
           </Paper> 
         </div>
-        <div className="studentCardContainer">
+        <div className={classes.scContainer}>
           {props.students.map(student => (
             <Card key={student.student_id} className="studentCard">
               
@@ -64,7 +79,7 @@ function SponsorChildComponent(props) {
               </CardActionArea>
               </Link>
               <CardActions>
-                <Button onClick={e => props.sponsorSelected(e, student)} size="small" color="primary">
+                <Button variant='outlined' onClick={e => props.handleOpen(e, student)} size="small" color="primary">
                   Sponsor
                 </Button>
                 <div className="totalDueLabel"> Total Due: </div>
@@ -80,4 +95,4 @@ function SponsorChildComponent(props) {
   );
 }
 
-export default SponsorChildComponent;
+export default withStyles(styles)(SponsorChildComponent);

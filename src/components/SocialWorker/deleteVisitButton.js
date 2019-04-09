@@ -11,12 +11,15 @@ function Transition(props) {
 }
 
 class DeleteVisitButton extends React.Component {
-  state = {
-    open: false,
-  };
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false,
+    }
+  }
+  
   deleteVisit = e => {
-    const id = props.visit.id
+    const id = this.props.visit.id
 
     axios.delete(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits/${id}`)
         .then(res => {
@@ -39,7 +42,7 @@ class DeleteVisitButton extends React.Component {
   render() {
     return (
       <div>
-        <Button variant="outlined" color="red" onClick={this.handleClickOpen}>
+        <Button variant="outlined" color="default" onClick={this.handleClickOpen}>
           Delete Visit
         </Button>
         <Dialog
@@ -54,10 +57,10 @@ class DeleteVisitButton extends React.Component {
             {"Would you like to delete this visit?"}
           </DialogTitle>
           <DialogActions>
-            <Button onClick={this.deleteVisit} color="red">
+            <Button variant='outlined' onClick={this.deleteVisit} color="red">
               Delete
             </Button>
-            <Button onClick={this.handleClose} color="primary">
+            <Button variant='outlined' onClick={this.handleClose} color="primary">
               Cancel
             </Button>
           </DialogActions>

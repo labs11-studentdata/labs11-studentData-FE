@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { VisitsByUser, UpdateVisit, AddVisit, SingleVisit } from '../components/index';
+import '../styles/VisitsStyles.css';
 
 import { connect } from 'react-redux';
 
@@ -10,12 +11,12 @@ class Visits extends Component {
     visits: [],
     addOpen: false,
     editOpen: false,
-    selectedVisit: [],
+    selectedVisit: null,
     selectedVisitSchool: ""
   }
 
   openAdd = e => {
-    this.setState({addOpen: true})
+    this.setState({addOpen: true, editOpen: false})
   }
 
   cancelAdd = e => {
@@ -30,6 +31,9 @@ class Visits extends Component {
     this.setState({editOpen: false})
   }
 
+  setSelectedVisit = (visit) => {
+    this.setState({selectedVisit: visit})
+  }
 
   componentDidMount() {
     this.setState({userID: this.props.userID})
@@ -58,18 +62,15 @@ class Visits extends Component {
 
 
   render(){
-    const displayedComponent = null;
+    let displayedComponent = null;
   
-    if( this.state.addOpen === false && this.state.editOpen === true) { displayedComponent = <UpdateVisit visit={this.state.selectedVisit} />;}
-    else if( this.state.addOpen === true && this.state.editOpen === false) {displayedComponent = <AddVisit />}
-    else {displayedComponent = <SingleVisit visit={this.state.selectedVisit} openEdit={this.openEdit} />}
+    if( this.state.addOpen === false && this.state.editOpen === true) { displayedComponent = <UpdateVisit visit={this.state.selectedVisit} cancelEdit={this.cancelEdit} />;}
+    else if( this.state.addOpen === true ) {displayedComponent = <AddVisit cancelAdd={this.cancelAdd} />}
+    else if( this.state.selectedVisit) {displayedComponent = <SingleVisit visit={this.state.selectedVisit} openEdit={this.openEdit} />}
     return (
       <div className="visits-container">
         <div className="visits-list">
-          <div className="add-visit-btn" onClick={openAdd}>
-            +
-          </div>
-          <VisitsByUser visits={this.state.visits} />
+          <VisitsByUser visits={this.state.visits} openAdd={this.openAdd} />
         </div>
         <div className="visit-display">
           {displayedComponent}
