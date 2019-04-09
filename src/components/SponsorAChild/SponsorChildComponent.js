@@ -35,7 +35,7 @@ function SponsorChildComponent(props) {
       <div>
       <div className='paymentContainer'>
           <Paper>
-            {/* {props.selectedStudent.hasOwnProperty('studentID) && <hr/>} */}
+            {/* {props.selectedStudent.hasOwnProperty('studentID') && <hr/>} */}
             <div className='container'>
             <Dialog
               open={props.open}

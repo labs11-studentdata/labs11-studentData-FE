@@ -16,8 +16,12 @@ import DashboardFrame from './DashboardFrame';
 
 const links = [
   {
+    title: "Dashboard",
+    url: `${process.env.REACT_APP_FE_ROOT}/socialworkerdashboard`
+  },
+  {
     title: "My Visit Notes",
-    url: "#"
+    url: `${process.env.REACT_APP_FE_ROOT}/visits`
   },
   {
     title: "Sponsor",
