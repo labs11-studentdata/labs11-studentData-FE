@@ -35,7 +35,7 @@ function SponsorChildComponent(props) {
       <div>
       <div className='paymentContainer'>
           <Paper>
-            {/* {props.selectedStudent.hasOwnProperty('student_id') && <hr/>} */}
+            {/* {props.selectedStudent.hasOwnProperty('studentID') && <hr/>} */}
             <div className='container'>
             <Dialog
               open={props.open}
@@ -54,9 +54,9 @@ function SponsorChildComponent(props) {
         </div>
         <div className={classes.scContainer}>
           {props.students.map(student => (
-            <Card key={student.student_id} className="studentCard">
+            <Card key={student.studentID} className="studentCard">
               
-              <Link to={`/student/${student.student_id}`}>
+              <Link to={`/student/${student.studentID}`}>
 
               <CardActionArea>
                 {/* ADD ONCLICK TO CARD AREA ACTION THAT WILL LOAD SINGLE CHILD VIEW */}

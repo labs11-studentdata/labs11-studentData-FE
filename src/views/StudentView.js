@@ -42,7 +42,7 @@ class StudentView extends Component {
 
       //const id = this.props.match.params.id;
   
-      axios.delete(`${process.env.REACT_APP_BE_URL}/api/students/${this.state.student.id}`)
+      axios.delete(`${process.env.REACT_APP_BE_URL}/api/students/${this.state.student.studentID}`)
           .then(response => {
               console.log("server response", response.data);
           })
@@ -82,7 +82,7 @@ class StudentView extends Component {
                 </Typography>
 
                 <Typography variant='h5'>
-                  <p>Grade Level: {this.state.student.gradeID}</p>
+                  <p>Grade Level: {this.state.student.grade}</p>
                 </Typography>
 
                 <Typography variant='h3'>
