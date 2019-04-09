@@ -87,7 +87,7 @@ export const getSchools = () => dispatch => {
 
 export const addDonation = donation => dispatch => {
   dispatch({type: ADDING_DONATION})
-  axios.post(`${baseURL}/api/donations`, donation)
+  axios.post(`${baseURL}/api/donations/`, donation)
     .then(res => dispatch({type: ADDED_DONATION, payload: res.data}))
     .catch(err => dispatch({type: FAIL, payload: err}))
 }

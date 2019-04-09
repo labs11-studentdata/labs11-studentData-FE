@@ -1,0 +1,60 @@
+.visits-container {
+    width: 100%;
+    display: flex;
+}
+
+.visits-container .visits-list {
+    width: 30%;
+    height: 93vh;
+    background: white;
+    border-right: solid gray 2px;
+}
+
+.visits-container .visits-list .add-visit-btn {
+    margin-top: 10px;
+}
+
+.visits-container .visits-list .tag-2 {
+    position: relative;
+    left: 20%;
+}
+
+.visits-container .visit-display {
+    width: 70%;
+    height: 93vh;
+    background: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.visits-container .visit-display .text {
+    width: 100%;
+}
+
+.visits-container .visit-display .visit-body .text {
+    white-space: pre-wrap;
+}
+
+.visits-container .visit-display .visit-header {
+    height: 10vh;
+}
+
+.visits-container .visit-display .visit-body {
+    height: 69vh;
+    max-height: 69vh;
+    overflow-y: scroll;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.visits-container .visit-display .visit-footer {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: end;
+    align-items: flex-end; 
+}
+
+.visits-container .visit-display .visit-footer .edit-btn {
+    margin-right: 10px;
+}

@@ -23,7 +23,6 @@
 }
 
 #addStudentModalContainer h2 {
-    
     margin-top: 5px;
     color: #617D8B;
 }
@@ -34,4 +33,8 @@
 
 #form {
     background-color: aliceblue;
+}
+
+.addStudentDDMenu {
+    width: 200px;
 }
