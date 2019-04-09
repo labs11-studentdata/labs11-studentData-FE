@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import { connect } from 'react-redux';
+import {getAdminStudents} from '../../actions/admin';
 import TextField from '@material-ui/core/TextField';
 
 import Button from '@material-ui/core/Button';
@@ -27,25 +28,16 @@ class EditStudent extends Component {
     }
 
     editStudent = (e) => {
-
         e.preventDefault();
-    
-        console.log(this.state.student);
-
         axios
-        .put(process.env.REACT_APP_BE_URL + `/api/students/${this.state.student.student_id}`, this.state.student)
+        .put(process.env.REACT_APP_BE_URL + `/api/students/${this.state.student.id}`, this.state.student)
         .then(response => {
-            console.log("server response", response.data);
+            this.props.getAdminStudents(this.props.adminID)
         })
         .catch(e => {
-
           console.log("server error:", e.message);
-
         })
-
-
-        console.log("requesting update", this.state)
-
+        this.props.handleClose()
     }
 
     handleInputChange = event => {
@@ -316,5 +308,10 @@ class EditStudent extends Component {
         )
     }
 }
-
-export default EditStudent;
+const mapStateToProps = state => {
+  console.log(state)
+  return {
+    adminID: state.login.user.user_id
+  }
+}
+export default connect(mapStateToProps, {getAdminStudents})(EditStudent);

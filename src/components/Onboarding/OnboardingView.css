@@ -12,3 +12,10 @@
 .schoolFormContainer {
     flex-direction: column;
 }
+.accountTypeLabel {
+    color: #617D8B;
+    text-align: left;
+    margin: 0;
+    padding-left: 35px;
+    font-size: .87rem;
+}
