@@ -10,7 +10,7 @@ function AdminSchoolListComp(props) {
     return (
       <>
         <Paper
-          style={{ overflowY: "scroll", maxHeight: "400px", width: "100%" }}
+         style={{ overflowY: "scroll", maxHeight: "400px", width: "100%" }}
         >
           <Table>
             <TableHead>
