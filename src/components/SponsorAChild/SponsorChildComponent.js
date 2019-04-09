@@ -41,7 +41,7 @@ const SponsorChildComponent = props => {
         </div>
       </>
     );
-  }
 }
+
 
 export default withStyles(styles)(SponsorChildComponent);
