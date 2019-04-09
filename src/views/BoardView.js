@@ -202,7 +202,7 @@ const mapStateToProps = state => {
     students: state.students.students,
     schools: state.schools.schools,
     error: state.students.error,
-    userID: state.login.user.userID
+    userID: state.login.user.user_id //this needs to get standardized eventually
   };
 };
 
