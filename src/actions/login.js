@@ -16,7 +16,7 @@ export const loginUser = token => {
 export const registerUser = token => {
     const user_permissions = store.getState()
     const user = user_permissions.login.user.user_permissions
-    const user_id = store.getState().login.user.user_id
+    const userID = store.getState().login.user.userID
     return {
         type: LOGIN_USER,
         payload: token,
