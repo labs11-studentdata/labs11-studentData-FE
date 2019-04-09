@@ -51,7 +51,7 @@ class SponsorChildView extends Component {
               handleOpen={this.handleOpen}
               handleClose={this.handleClose}
               student={this.state.student}
-              user_id={this.props.user_id}
+              userID={this.props.userID}
             />
           </>
         )
@@ -64,7 +64,7 @@ const mapStateToProps = state => {
     fetched: state.students.fetched,
     students: state.students.students,
     error: state.students.error,
-    user_id: state.login.user.user_id
+    userID: state.login.user.userID
   }
 }
 
