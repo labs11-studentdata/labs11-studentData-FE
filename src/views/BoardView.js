@@ -4,7 +4,6 @@ import { getStudents, getSchools } from "../actions/index";
 import {
   StudentCounter,
   StudentTable,
-  IssuesTracker,
   SchoolSelect
 } from "../components/index";
 import DashboardFrame from "./DashboardFrame";
@@ -24,11 +23,9 @@ const styles = theme => ({
 class BoardView extends Component {
   state = {
     schoolID: null,
-    gradeID: null,
+    grade: null,
     students: [],
     schools: [],
-    activeSponsor: false,
-    student: null,
     bodyView: null,
     selectedStudent: null,
     links: [
@@ -74,22 +71,22 @@ class BoardView extends Component {
   //this is the function if you're looking for references for how to write the local filter
   //you'll only need one of the two ID parameters I think, so you can cut down on it significantly
   //to use it, you'll need to connect to the redux store
-  setClass = (e, schoolID, gradeID) => {
+  setClass = (e, schoolID, grade) => {
     e.preventDefault();
-    if (schoolID === "all" && gradeID === "all") {
+    if (schoolID === "all" && grade === "all") {
       this.setState({
         ...this.state,
         schoolID: "all",
-        gradeID: "all",
+        grade: "all",
         students: this.props.students,
         activeSponsor: false,
         student: null
       });
-    } else if (schoolID !== "all" && gradeID === "all") {
+    } else if (schoolID !== "all" && grade === "all") {
       this.setState({
         ...this.state,
         schoolID: schoolID,
-        gradeID: "all",
+        grade: "all",
         students: this.props.students.filter(
           student => student.schoolID === schoolID
         ),
@@ -100,10 +97,10 @@ class BoardView extends Component {
       this.setState({
         ...this.state,
         schoolID: schoolID,
-        gradeID: gradeID,
+        gradeID: grade,
         students: this.props.students.filter(
           student =>
-            student.gradeID === gradeID && student.schoolID === schoolID
+            student.grade === grade && student.schoolID === schoolID
         ),
         activeSponsor: false,
         student: null
@@ -112,24 +109,11 @@ class BoardView extends Component {
   };
 
   //opens the student sponsorship modal
-  handleOpen = (e, student) => {
-    e.preventDefault();
-    this.setState({
-      ...this.state,
-      student: student,
-      activeSponsor: true
-    });
-  };
+
 
 
   //closes both modals and resets the modal tracking in component state
-  handleClose = () => {
-    this.setState({
-      ...this.state,
-      student: null,
-      activeSponsor: false,
-    });
-  };
+
 
   Header = () => {
     return (
@@ -167,17 +151,14 @@ class BoardView extends Component {
           schools={this.props.schools}
           setClass={this.setClass}
           schoolID={this.state.schoolID}
-          gradeID={this.state.gradeID}
+          grade={this.state.grade}
           userType='board_member'
           />
           <br />
           <StudentTable
           students={this.state.students}
-          open={this.state.activeSponsor}
-          handleOpen={this.handleOpen}
-          handleClose={this.handleClose}
-          student={this.state.student}
-          user_id={this.props.user_id}
+          userID={this.props.userID}
+          
           />
         </Fragment>
       );
@@ -191,11 +172,7 @@ class BoardView extends Component {
       <Fragment>
         <HighestDues
           students={this.state.students}
-          open={this.state.activeSponsor}
-          handleOpen={this.handleOpen}
-          handleClose={this.handleClose}
-          student={this.state.student}
-          user_id={this.props.user_id}
+          userID={this.props.userID}
         />
       </Fragment>
       );
@@ -225,7 +202,7 @@ const mapStateToProps = state => {
     students: state.students.students,
     schools: state.schools.schools,
     error: state.students.error,
-    user_id: state.login.user.user_id
+    userID: state.login.user.userID
   };
 };
 

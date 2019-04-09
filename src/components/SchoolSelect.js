@@ -39,7 +39,7 @@ class SchoolSelect extends Component {
     //the userType you pass it should be(as of now) board_member, 
     this.state = {
       schoolID: '',
-      gradeID: '',
+      grade: '',
       userType: this.props.userType
     }
   }
@@ -105,7 +105,7 @@ class SchoolSelect extends Component {
     const {classes} = this.props;
     if(this.state.userType === 'board_member'){
       return(
-        <form onSubmit={e => this.props.setClass(e, this.state.schoolID, this.state.gradeID)}>
+        <form onSubmit={e => this.props.setClass(e, this.state.schoolID, this.state.grade)}>
           <FormControl className={classes.formControl}>
           <InputLabel htmlFor="school-select">School</InputLabel>
             <Select
@@ -125,7 +125,7 @@ class SchoolSelect extends Component {
               <Select
                 value={this.state.gradeID}
                 name='gradeID'
-                onChange={this.handleChange('gradeID')}
+                onChange={this.handleChange('grade')}
                 inputProps={{id: 'grade-select'}}
               >
                 <MenuItem value = 'all'>All</MenuItem>
@@ -155,9 +155,9 @@ class SchoolSelect extends Component {
           <FormControl className={classes.formControl}>
             <InputLabel htmlFor="age-select">Grade</InputLabel>
               <Select
-                value={this.state.gradeID}
-                name='gradeID'
-                onChange={this.handleChange('gradeID')}
+                value={this.state.grade}
+                name='grade'
+                onChange={this.handleChange('grade')}
                 inputProps={{id: 'grade-select'}}
               >
                 <MenuItem value = 'all'>All</MenuItem>
