@@ -23,7 +23,7 @@ const styles = theme => ({
 class BoardView extends Component {
   state = {
     schoolID: null,
-    gradeID: null,
+    grade: null,
     students: [],
     schools: [],
     bodyView: null,
@@ -157,10 +157,6 @@ class BoardView extends Component {
           <br />
           <StudentTable
           students={this.state.students}
-          open={this.state.activeSponsor}
-          handleOpen={this.handleOpen}
-          handleClose={this.handleClose}
-          student={this.state.student}
           userID={this.props.userID}
           
           />
@@ -176,10 +172,6 @@ class BoardView extends Component {
       <Fragment>
         <HighestDues
           students={this.state.students}
-          open={this.state.activeSponsor}
-          handleOpen={this.handleOpen}
-          handleClose={this.handleClose}
-          student={this.state.student}
           userID={this.props.userID}
         />
       </Fragment>

@@ -23,7 +23,7 @@ class StudentRow extends Component {
     }
   }
 
-  handleOpen = (e, student) => {
+  handleOpen = e => {
     e.preventDefault();
     this.setState({
       ...this.state,
@@ -68,7 +68,7 @@ class StudentRow extends Component {
         <TableCell style={{padding: '0px', width: '10%'}}>{this.yOrN(this.state.student.has_birthcert)}</TableCell>
         <TableCell style={{padding: '0px', width: '15%'}}>{this.state.student.contact_first_name} {this.state.student.contact_last_name}</TableCell>
         <TableCell style={{padding: '0px', width: '15%'}}>${this.state.student.dues}</TableCell>
-        <TableCell style={{padding: '0px', width: '10%'}} onClick={e => this.handleOpen(e, this.state.student)}>
+        <TableCell style={{padding: '0px', width: '10%'}} onClick={e => this.handleOpen(e)}>
           <Button type='submit' color='primary' variant="outlined">donate</Button>
         </TableCell>
       </TableRow>
