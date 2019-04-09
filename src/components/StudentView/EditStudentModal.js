@@ -36,7 +36,6 @@ class StudentModal extends React.Component {
   state = {
     open: false,
   };
-
   handleOpen = () => {
     this.setState({ open: true });
   };
@@ -58,8 +57,7 @@ class StudentModal extends React.Component {
           onClose={this.handleClose}
         >
           <div className={classes.paper}>
-            <EditStudent {...this.props}/>
-            <EditStudentModal />
+            <EditStudent handleClose={this.handleClose} student={this.props.student}/>
           </div>
         </Modal>
       </div>

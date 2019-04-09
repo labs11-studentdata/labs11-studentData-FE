@@ -137,7 +137,7 @@ class AdministratorDash extends Component {
       const arr = []
       console.log(this.state)
 
-      return <AdminChildComponent students={this.props.allStudents} />
+      return <AdminChildComponent students={this.props.students} />
     }
     if(this.state.selected === 2) {
       return <AdminDonationList donations={this.state.schoolDonations} />
