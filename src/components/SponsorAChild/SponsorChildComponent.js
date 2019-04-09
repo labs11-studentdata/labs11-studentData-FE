@@ -44,7 +44,7 @@ function SponsorChildComponent(props) {
               <StripeProvider apiKey="pk_test_arXBQTpudOCQ9XCjo20KlKbh00piO3nLbb">
                 <div className="example" style={{width: '400px', height: '400px', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                   <Elements>
-                    <StripeComponent student={props.student} user_id={props.user_id}/>
+                    <StripeComponent student={props.student} userID={props.userID}/>
                   </Elements>
                 </div>
               </StripeProvider>       

@@ -104,7 +104,7 @@ class ScrollableTabsButtonAuto extends React.Component {
             <StripeProvider apiKey="pk_test_arXBQTpudOCQ9XCjo20KlKbh00piO3nLbb">
               <div className="example" style={{width: '400px', height: '400px', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <Elements>
-                  <StripeComponent student={this.props.student} user_id={this.props.user_id}/>
+                  <StripeComponent student={this.props.student} userID={this.props.userID}/>
                 </Elements>
               </div>
             </StripeProvider>       
@@ -154,7 +154,7 @@ const HighestDues = props => {
                 handleOpen={props.handleOpen}
                 handleClose={props.handleClose}
                 student={props.student}
-                user_id={props.user_id}/>
+                userID={props.userID}/>
     </Typography>
     </Fragment>
   )
