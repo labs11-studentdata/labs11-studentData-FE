@@ -37,7 +37,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <MuiThemeProvider theme={theme}>
-        {window.location.href.includes('login') ? <App />
+        {window.location.href.includes('login') || window.location.href.length > 2 ? <App />
 : null}
         <Route exact path='/' component={LandingPage} />
       </MuiThemeProvider>
