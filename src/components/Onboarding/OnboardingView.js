@@ -76,6 +76,11 @@ function getUserPermissions(account_type) {
       return null;
   }
 }
+function jsUcfirst(string) { 
+  return string.charAt(0).toUpperCase() + string.slice(1); 
+}
+
+
 const user = {
   email: "",
   photo_url: "",
@@ -205,7 +210,7 @@ class CustomizedStepper extends React.Component {
             ...res.data[0]
           },
           schoolForm: {
-            ...this.state.school,
+            ...this.state.schoolForm,
             schoolID: res.data[0].schoolID
           }
           
@@ -277,13 +282,12 @@ class CustomizedStepper extends React.Component {
               handleSubmit={this.handleSubmit}
             />
           )}
-          {console.log(this.state)}
           {this.state.activeStep === 2 &&
           this.state.user.account_type.includes("admin") ? (
             <div>
               {this.state.school.schoolID ? (
                 <p>
-                  My school: {this.state.school.school_name} <br/>Account type: {this.state.user.account_type}{" "}
+                  Joining: {this.state.school.school_name} <br/>Account type: {jsUcfirst(this.state.user.account_type)}{" "}
                 </p>
               ) : (
                 <h1></h1>
@@ -291,6 +295,7 @@ class CustomizedStepper extends React.Component {
 
               <div className='schoolListFormContainer'>
                 <SchoolList
+                  accountType={this.state.user.account_type}
                   schoolSelected={this.schoolSelected}
                   school={this.state.school}
                   user={this.state.user}
@@ -303,6 +308,11 @@ class CustomizedStepper extends React.Component {
                 />
               </div>
             </div>
+          ) : null}
+          {this.state.activeStep === 2 &&
+          this.state.user.account_type.includes("social") || this.state.activeStep === 2 &&
+          this.state.user.account_type.includes("board") ? (
+            <SchoolList accountType={this.state.user.account_type} />
           ) : null}
         </Stepper>
         <div>
