@@ -7,6 +7,8 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 
 function AdminSchoolListComp(props) {
+
+
     return (
       <>
         <Paper

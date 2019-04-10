@@ -10,8 +10,9 @@
 .adminHeaderContainer {
     display: flex;
     position: relative;
-    justify-content: space-around;
-    flex-wrap: wrap
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-top: 15px
 }
 
 .adminHeaderContainer .headerRight {
@@ -28,11 +29,11 @@
     width: 70%;
     align-items: center;
     justify-content: space-between;
-    flex-direction: column
+    flex-direction: column;
 }
 
 .visitAdminContainer {
-    overflow: scroll;
+    overflow-y: scroll;
     max-height: 250px;
 }
 
