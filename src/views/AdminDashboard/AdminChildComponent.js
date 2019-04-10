@@ -11,7 +11,7 @@ import EditStudentModal from "../../components/StudentView/EditStudentModal";
 import moment from 'moment';
 function AdminChildComponent(props) {
   return (
-    <div className="donation-list-container"style={{ textAlign: "center", overflowY: "scroll", height: "250px" }}>
+    <div className="donation-list-container"style={{ textAlign: "center", overflowY: "scroll", height: "400px" }}>
       <Table className="donation-list" >
         <TableHead>
           <TableRow>
