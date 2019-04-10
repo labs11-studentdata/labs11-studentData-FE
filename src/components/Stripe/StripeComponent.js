@@ -70,10 +70,11 @@ class StripeComponent extends Component {
 
   render() {
     return (
-        <div className="checkout">
-          <div style={{display: 'flex', paddingBottom: '20px', justifyContent: 'space-between', alignItems: 'center', width: '140%'}}>
-            <h3>Sponsoring {this.state.student.first_name}</h3>
-            <img src={this.state.student.photo_url} />
+        <div className="checkout" style={{display: 'flex', flexDirection: 'column'}}>
+          <div style={{display: 'flex', paddingBottom: '20px', alignItems: 'center'}}>
+            <div style={{display: 'flex', justifyContent: 'center', minWidth: '100%', padding: '0px 20px 0px 0px'}}><h3>Sponsoring {this.state.student.first_name}</h3></div>
+            {/* <img src={this.state.student.photo_url} /> */}
+            <Button color='primary' variant='outlined' style={{padding: '5px 15px', minWidth: '20px', color: 'red', margin: '10px'}} onClick={this.props.handleClose}>X</Button>
           </div>
           <TextField
             required
@@ -81,7 +82,7 @@ class StripeComponent extends Component {
             value={this.state.amount}
             name="amount"
             label="Amount"
-            style={{width: '100%'}}
+            style={{width: '50%'}}
           />
           <p>Credit Card Number</p>
           <CardNumberElement/>
@@ -89,7 +90,7 @@ class StripeComponent extends Component {
           <CardExpiryElement/>
           <p>CVC Number</p>
           <CardCVCElement />
-          <Button type='submit' color='primary' variant="outlined" onClick={this.handleSubmit} style={this.state.success}>{this.state.buttonText}</Button>
+          <Button type='submit' color='primary' variant="outlined" onClick={this.handleSubmit} style={{marginTop: '10px'}}>{this.state.buttonText}</Button>
         </div>
       );
   }
