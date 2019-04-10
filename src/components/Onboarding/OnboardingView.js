@@ -10,10 +10,11 @@ import OnboardAccount from "./OnboardAccount";
 import OnboardingForm from "./OnboardingForm";
 import CreateASchoolForm from "../CreateASchool/CreateASchoolForm";
 import { connect } from "react-redux";
+import { updateLoginInfo } from '../../actions/login';
 import { updateAccount } from "../../actions/account";
-import './OnboardingView.css'
-import SchoolList from '../Schools/SchoolList';
-import axios from 'axios';
+import "./OnboardingView.css";
+import SchoolList from "../Schools/SchoolList";
+import axios from "axios";
 
 const styles = theme => ({
   root: {
@@ -75,6 +76,11 @@ function getUserPermissions(account_type) {
       return null;
   }
 }
+function jsUcfirst(string) { 
+  return string.charAt(0).toUpperCase() + string.slice(1); 
+}
+
+
 const user = {
   email: "",
   photo_url: "",
@@ -91,7 +97,12 @@ class CustomizedStepper extends React.Component {
     activeStep: 0,
     selected: "",
     user: user,
-    school: school
+    school: school,
+    schoolForm: {
+      school_name: "",
+      location: "",
+      schoolID: ""
+    }
   };
 
   //   HANDLE FORM -- handle form update
@@ -106,18 +117,18 @@ class CustomizedStepper extends React.Component {
   };
 
   handleSchoolChanges = e => {
-      this.setState({
-          ...this.state,
-          school: {
-              ...this.state.school,
-              [e.target.name]: e.target.value
-          }
-      })
-  }
+    this.setState({
+      ...this.state,
+      schoolForm: {
+        ...this.state.schoolForm,
+        [e.target.name]: e.target.value
+      }
+    });
+  };
   // HANDLE SUBMIT -- axios call to update user with client info
   handleSubmit = e => {
     e.preventDefault();
-    const user_id = this.props.user_id;
+    const userID = this.props.userID;
     if (
       this.state.user.photo_url &&
       this.state.user.email &&
@@ -128,7 +139,7 @@ class CustomizedStepper extends React.Component {
         error: false,
         selected: this.state.selected.replace(/\s/g, "").toLowerCase()
       });
-      this.props.updateAccount(user_id, this.state.user);
+      this.props.updateAccount(userID, this.state.user);
     } else {
       this.setState({ ...this.state, error: true });
     }
@@ -157,17 +168,17 @@ class CustomizedStepper extends React.Component {
   };
 
   finishedSelected = e => {
-      e.preventDefault();
-      const user = this.state.user;
-      if(!user.email || !user.photo_url || !user.account_type) {
-        alert('Please enter all onboarding information.')
-      } else {
-        this.setState(state => ({
-            activeStep: state.activeStep + 1
-          }));
-      }
-  }
-//   UPDATE ACCOUNT -- after all login info selected update user account info
+    e.preventDefault();
+    const user = this.state.user;
+    if (!user.email || !user.photo_url || !user.account_type) {
+      alert("Please enter all onboarding information.");
+    } else {
+      this.setState(state => ({
+        activeStep: state.activeStep + 1
+      }));
+    }
+  };
+  //   UPDATE ACCOUNT -- after all login info selected update user account info
   updateAccount = e => {
     e.preventDefault();
     this.setState({
@@ -175,38 +186,60 @@ class CustomizedStepper extends React.Component {
       user: {
         ...this.state.user,
         user_permissions: getUserPermissions(this.state.user.account_type),
-        user_id: this.props.user_id
+        userID: this.props.userID
       }
     });
-        this.props.updateAccount(this.props.user_id, this.state.user);
-   
+    console.log(this.props.userID)
+    this.props.updateAccount(this.props.userID, this.state.user);
   };
   // ADD A SCHOOL -- If user does not see name of school
   handleSchoolSubmit = e => {
-      e.preventDefault();
-      const school = this.state.school
-      axios.post(`${process.env.REACT_APP_BE_URL}/api/schools/`, school)
-          .then(res =>{
-              this.setState({
-                  ...this.state,
-                  user: {
-                      ...this.state.user,
-                      //TODO: UNDO HARDCODE
-                      // schoolID: res.data[0]
-                      schoolID: 1
-                    },
-                    school: {
-                      ...this.state.school,
-                      //TODO: UNDO HARDCODE
-                      // schoolID: res.data[0]
-                      schoolID: 1
-                  }
-              })
-          })
-          .catch(err => console.log(err))
-  }
+    e.preventDefault();
+    const school = this.state.schoolForm;
+    axios
+      .post(`${process.env.REACT_APP_BE_URL}/api/schools/`, school)
+      .then(res => {
+        console.log(res);
+        this.setState({
+          ...this.state,
+          user: {
+            ...this.state.user,
+            schoolID: res.data[0].schoolID
+          },
+          school: {
+            ...res.data[0]
+          },
+          schoolForm: {
+            ...this.state.schoolForm,
+            schoolID: res.data[0].schoolID
+          }
+          
+        });
+        this.props.updateLoginInfo(res.data[0].schoolID)
+      })
+      .catch(err => console.log(err));
+  };
+
+  schoolSelected = (e, schoolID) => {
+    console.log(e.target.textContent);
+
+    this.setState({
+      ...this.state,
+      user: {
+        ...this.state.user,
+        schoolID: schoolID
+      },
+      school: {
+        ...this.state.school,
+        schoolID: schoolID,
+        school_name: e.target.textContent
+      }
+    });
+    this.props.updateLoginInfo(schoolID)
+    console.log(this.state);
+  };
   render() {
-    console.log(this.state)
+    console.log(this.state);
     const { classes } = this.props;
     const { activeStep } = this.state;
     const steps = getSteps();
@@ -230,7 +263,12 @@ class CustomizedStepper extends React.Component {
             </Step>
           ))}
         </Stepper>
-        <Stepper className='onboardingCell' alternativeLabel activeStep={activeStep} connector={connector}>
+        <Stepper
+          className="onboardingCell"
+          alternativeLabel
+          activeStep={activeStep}
+          connector={connector}
+        >
           {this.state.activeStep === 0 && (
             <OnboardAccount
               value={this.state.user.account_type}
@@ -244,13 +282,38 @@ class CustomizedStepper extends React.Component {
               handleSubmit={this.handleSubmit}
             />
           )}
-          {console.log(this.state)}
-          {this.state.activeStep === 2 && this.state.user.account_type.includes('admin') ? ( 
-            <>
-          <SchoolList />
-          <CreateASchoolForm handleSchoolChanges={this.handleSchoolChanges} school={this.state.school}a
-          handleSchoolSubmit={this.handleSchoolSubmit}/>
-          </>) : null}
+          {this.state.activeStep === 2 &&
+          this.state.user.account_type.includes("admin") ? (
+            <div>
+              {this.state.school.schoolID ? (
+                <p>
+                  Joining: {this.state.school.school_name} <br/>Account type: {jsUcfirst(this.state.user.account_type)}{" "}
+                </p>
+              ) : (
+                <h1></h1>
+              )}
+
+              <div className='schoolListFormContainer'>
+                <SchoolList
+                  accountType={this.state.user.account_type}
+                  schoolSelected={this.schoolSelected}
+                  school={this.state.school}
+                  user={this.state.user}
+                />
+                <CreateASchoolForm
+                  handleSchoolChanges={this.handleSchoolChanges}
+                  school={this.state.schoolForm}
+                  a
+                  handleSchoolSubmit={this.handleSchoolSubmit}
+                />
+              </div>
+            </div>
+          ) : null}
+          {this.state.activeStep === 2 &&
+          this.state.user.account_type.includes("social") || this.state.activeStep === 2 &&
+          this.state.user.account_type.includes("board") ? (
+            <SchoolList accountType={this.state.user.account_type} />
+          ) : null}
         </Stepper>
         <div>
           {activeStep === steps.length ? (
@@ -276,10 +339,20 @@ class CustomizedStepper extends React.Component {
                   Back
                 </Button>
                 <Button
-                  disabled = {activeStep === steps.length - 1 && !(this.state.school.school_name)  && !(this.state.school.location) ? true : null}
+                  disabled={
+                    activeStep === steps.length - 1 &&
+                    !this.state.school.school_name &&
+                    !this.state.school.location || activeStep === steps.length - 1 && this.state.user.account_type.includes('social')
+                      ? false
+                      : null
+                  }
                   variant="contained"
                   color="primary"
-                  onClick={activeStep === steps.length - 1 ? this.finishedSelected : this.handleNext}
+                  onClick={
+                    activeStep === steps.length - 1
+                      ? this.finishedSelected
+                      : this.handleNext
+                  }
                   className={classes.button}
                 >
                   {activeStep === steps.length - 1 ? "Finish" : "Next"}
@@ -293,15 +366,14 @@ class CustomizedStepper extends React.Component {
   }
 }
 
-
-
 const mapStateToProps = state => {
+  console.log(state)
   return {
-    user_id: state.login.user.user_id
+    userID: state.login.user.user_id
   };
 };
 
 export default connect(
   mapStateToProps,
-  { updateAccount }
+  { updateAccount, updateLoginInfo }
 )(withStyles(styles)(CustomizedStepper));

@@ -11,6 +11,7 @@
 
 .schoolFormContainer {
     flex-direction: column;
+    padding: 25px;
 }
 .accountTypeLabel {
     color: #617D8B;
@@ -18,4 +19,16 @@
     margin: 0;
     padding-left: 35px;
     font-size: .87rem;
+}
+
+.schoolListFormContainer {
+    display: flex;
+}
+.schoolListContainer {
+    padding: 25px;
+}
+
+.schoolListRow:hover {
+    background-color: aliceblue;
+    cursor: pointer;
 }

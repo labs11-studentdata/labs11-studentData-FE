@@ -5,6 +5,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import moment from 'moment'
 
 function AdminDonationList(props) {
     return (
@@ -24,7 +25,7 @@ function AdminDonationList(props) {
             {props.donations.map(donation => {
               return(
                 <TableRow>
-                  <TableCell>{donation.donation_date}</TableCell>
+                  <TableCell>{moment(donation.created_at).startOf('day').fromNow()}</TableCell>
                   <TableCell>{`${donation.donor_first} ${donation.donor_last}`}</TableCell> 
                   <TableCell>{donation.donation_total}</TableCell>                
                   <TableCell>{`${donation.student_first} ${donation.student_last}`}</TableCell>  

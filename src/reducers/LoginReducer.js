@@ -2,14 +2,16 @@ import {
     LOGIN_USER,
     LOGOUT_USER,
     REG_SELECTED,
-    LOG_SELECTED
+    LOG_SELECTED,
+    UPDATE_LOGIN_INFO
 } from '../actions/login'
 import queryString from 'query-string';
 
 const initialState = {
     token: '',
     loggedIn: false,
-    isRegistering: false
+    isRegistering: false,
+    user: {}
 }
 
 export const LoginReducer = (state = initialState, action) => {
@@ -42,6 +44,15 @@ export const LoginReducer = (state = initialState, action) => {
             return{
                 ...state,
                 isRegistering: false
+            }
+        }
+        case UPDATE_LOGIN_INFO: {
+            return{
+                ...state,
+                user: {
+                    ...state.user,
+                    schoolID: action.payload
+                }
             }
         }
         default: 

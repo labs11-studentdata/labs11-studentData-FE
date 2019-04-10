@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {CardElement, CardNumberElement, CardExpiryElement, CardCVCElement, injectStripe} from 'react-stripe-elements';
-import {Paper} from '@material-ui/core/Paper';
+import {CardNumberElement, CardExpiryElement, CardCVCElement, injectStripe} from 'react-stripe-elements';
 import TextField from '@material-ui/core/TextField';
 import {connect} from 'react-redux';
 import {makeDonation, updateStudent} from '../../actions/index';
@@ -19,21 +18,29 @@ class StripeComponent extends Component {
       student: this.props.student,
       username: 'get from state later',
       buttonText: 'Send Donation',
-      success: null
+      success: null,
     };
   }
 
+  // setGreen = () => {
+  //   if(this.props.paid === true){
+  //     this.setState({
+  //       ...this.state,
+  //       buttonText: 'Donation Sent',
+  //       complete: true,
+  //       success: {color: 'green'}
+  //     }
+  //   )}
+  // }
 
   handleSubmit = async (e) => {
     e.preventDefault();
     let updatedDonation = this.state.student.dues - this.state.amount;
-    let d = new Date();
     let donation = {
-      user_id: Number(this.props.user_id),
-      student_id: this.state.student.student_id,
+      userID: Number(this.props.userID),
+      studentID: this.state.student.studentID,
       schoolID: this.state.student.schoolID,
       donation_total: Number(this.state.amount),
-      donation_date: d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
     }
     console.log(donation);
     this.setState(prevState => ({
@@ -46,16 +53,12 @@ class StripeComponent extends Component {
     let token = await this.props.stripe.createToken({name: this.state.username});
     await this.props.makeDonation(
       {token: token.token, amount: Number(this.state.amount)},
-      this.state.student.id,
+      this.state.student.studentID,
       this.state.student,
       donation
     );
-    this.setState({
-      ...this.state,
-      complete: true,
-      buttonText: 'Donation Sent',
-      success: {color: 'green'}
-    })
+    await this.props.updateDues(this.state.student);
+    await this.props.handleClose();
   }
 
 

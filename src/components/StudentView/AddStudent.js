@@ -17,15 +17,11 @@ class AddStudent extends Component {
       user_id: this.props.user_id,
       student: {
         schoolID: "",
-        student_id: 0
       },
       value: 2
     };
   }
-  componentWillReceiveProps() {
-    console.log('+++++++CWRP++++++++++')
-    
-  }
+  
   componentDidMount() {
     this.setState({
       ...this.state,
@@ -103,7 +99,7 @@ class AddStudent extends Component {
           display="flex"
           justify="center"
           alignItems="center"
-          maxWidth="800px"
+          maxwidth="800px"
           id="form"
         >
           <Grid item>
@@ -147,7 +143,7 @@ class AddStudent extends Component {
               type="number"
               value={this.state.student.grade}
               onChange={this.handleInputChange}
-              name="gradeID"
+              name="grade"
               margin="normal"
             />
           </Grid>
