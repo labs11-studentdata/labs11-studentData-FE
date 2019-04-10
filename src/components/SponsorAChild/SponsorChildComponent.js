@@ -12,6 +12,7 @@ import {Elements, StripeProvider} from 'react-stripe-elements';
 import StripeComponent from '../Stripe/StripeComponent';
 import Paper from '@material-ui/core/Paper';
 import Dialog from '@material-ui/core/Dialog';
+import SponsorChildCard from './SponsorChildCard';
 
 import { withStyles } from '@material-ui/core/styles';
 import "./SponsorAChild.css";
@@ -24,75 +25,23 @@ const styles = theme => ({
   }
 })
 
-function SponsorChildComponent(props) {
-  const { classes } = props;
-  return (
-    <>
-      {/* <h1>Select a child to sponsor!</h1> */}
-      <Typography variant="h5">Select a child to sponsor!</Typography>
-      
-      {/* <div className='sponsorChildContainer'> */}
-      <div>
-      <div className='paymentContainer'>
-          <Paper>
-            {/* {props.selectedStudent.hasOwnProperty('studentID') && <hr/>} */}
-            <div className='container'>
-            <Dialog
-              open={props.open}
-              onClose={props.handleClose}
-            >
-              <StripeProvider apiKey="pk_test_arXBQTpudOCQ9XCjo20KlKbh00piO3nLbb">
-                <div className="example" style={{width: '400px', height: '400px', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                  <Elements>
-                    <StripeComponent student={props.student} userID={props.userID}/>
-                  </Elements>
-                </div>
-              </StripeProvider>       
-            </Dialog>
-            </div>
-          </Paper> 
+const SponsorChildComponent = props => {
+    return (
+      <>
+        {/* <h1>Select a child to sponsor!</h1> */}
+        <Typography variant="h5">Select a child to sponsor!</Typography>
+        
+        {/* <div className='sponsorChildContainer'> */}
+        <div>
+          <div className={props.classes.scContainer}>
+            {props.students.map(student => (
+              <SponsorChildCard key={student.studentID} student={student}/>
+            ))}
+          </div>
         </div>
-        <div className={classes.scContainer}>
-          {props.students.map(student => (
-            <Card key={student.studentID} className="studentCard">
-              
-              <Link to={`/student/${student.studentID}`}>
-
-              <CardActionArea>
-                {/* ADD ONCLICK TO CARD AREA ACTION THAT WILL LOAD SINGLE CHILD VIEW */}
-                
-                <CardMedia
-                  className=""
-                  component="img"
-                  alt={`Photo of ${student.first_name} ${student.last_name}`}
-                  height="140"
-                  background-size="cover"
-                  src={`${student.photo_url}`}
-                  title={`Photo of ${student.first_name} ${student.last_name}`}
-                />                
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    {`${student.first_name} ${student.last_name} `}
-                  </Typography>
-                  <Typography component="p" />
-                </CardContent>
-              </CardActionArea>
-              </Link>
-              <CardActions>
-                <Button variant='outlined' onClick={e => props.handleOpen(e, student)} size="small" color="primary">
-                  Sponsor
-                </Button>
-                <div className="totalDueLabel"> Total Due: </div>
-                <Typography gutterBottom color="secondary" component="p">
-                  {`${student.dues}`}
-                </Typography>
-              </CardActions>
-            </Card>
-          ))}
-        </div>
-      </div>
-    </>
-  );
+      </>
+    );
 }
+
 
 export default withStyles(styles)(SponsorChildComponent);

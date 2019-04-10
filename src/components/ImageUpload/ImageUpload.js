@@ -5,7 +5,7 @@ export default class ImageUpload extends Component {
 
     state = {
         selectedFile: null,
-        filePath: null,
+        photoURL: null,
         fileName: null,
     }
 
@@ -27,7 +27,7 @@ export default class ImageUpload extends Component {
             .then(response => {
                 console.log("server response", response);
 
-                this.setState({ fileName: response.data });
+                this.setState({ photoURL: `${process.env.REACT_APP_BE_URL} + /${response.data}` });
 
             })
             .catch(e => {
@@ -45,7 +45,7 @@ export default class ImageUpload extends Component {
 
                 <input type="file" name="userImage" onChange={this.fileSelectHandler}/>
                 <button onClick={this.fileUploadHandler}>Upload</button>
-                <img src={process.env.REACT_APP_BE_URL + `/${this.state.fileName}`}/>
+                <img src={process.env.REACT_APP_BE_URL + `/${this.state.photoURL}`}/>
 
             </div>
 

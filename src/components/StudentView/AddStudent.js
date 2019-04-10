@@ -17,15 +17,11 @@ class AddStudent extends Component {
       user_id: this.props.user_id,
       student: {
         schoolID: "",
-        student_id: 0
       },
       value: 2
     };
   }
-  componentWillReceiveProps() {
-    console.log('+++++++CWRP++++++++++')
-    
-  }
+  
   componentDidMount() {
     this.setState({
       ...this.state,
@@ -57,6 +53,38 @@ class AddStudent extends Component {
     });
   };
 
+  fileSelectHandler = event => {
+    console.log(event.target.files[0]);
+    this.setState({
+      ...this.state,
+      selectedFile: event.target.files[0]})
+  }
+
+  fileUploadHandler = () => {
+    const fd = new FormData();
+    fd.append('userImage', this.state.selectedFile, this.state.selectedFile.name);
+    console.log(fd);
+
+    axios.post(process.env.REACT_APP_BE_URL + '/api/uploads', fd)
+        .then(response => {
+
+            console.log("server response", response);
+          this.setState({
+            ...this.state, 
+
+            student: {
+              ...this.state.student,
+              photo_url: `${process.env.REACT_APP_BE_URL}/${response.data}` 
+            }
+        
+          });
+
+        })
+        .catch(e => {
+            console.log("server error:", e.message);
+        })
+  }
+
   render() {
     return (
       <form
@@ -72,7 +100,7 @@ class AddStudent extends Component {
           display="flex"
           justify="center"
           alignItems="center"
-          maxWidth="800px"
+          maxwidth="800px"
           id="form"
         >
           <Grid item>
@@ -116,20 +144,23 @@ class AddStudent extends Component {
               type="number"
               value={this.state.student.grade}
               onChange={this.handleInputChange}
-              name="gradeID"
+              name="grade"
               margin="normal"
             />
           </Grid>
 
           <Grid item>
-            <TextField
+            {/* <TextField
               id="filled-name"
               label="Photo URL"
               value={this.state.student.photo_url}
               onChange={this.handleInputChange}
               name="photo_url"
               margin="normal"
-            />
+            /> */}
+
+            <input type="file" name="userImage" onChange={this.fileSelectHandler}/>
+            <button onClick={this.fileUploadHandler}>Upload</button>
           </Grid>
 
           <Grid item>

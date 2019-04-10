@@ -39,11 +39,16 @@ class SocialWorkerDashboard extends Component {
 
     componentDidMount() {
       
-      const id = this.props.userID;
+      //Use this to only get the visits for the currently logged in user
+      //const id = this.props.userID;
+
+      //our seeds have userID 3 and 4 set up as social workers with social worker visits added. 
+      //setting this manually for demonstration purposes
+      const id = 3;
 
       console.log("user props:", this.props);
       
-      axios.get(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits/${id}`)
+      axios.get(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits/user/${id}`)
         .then(res => {
 
           console.log(res.data);

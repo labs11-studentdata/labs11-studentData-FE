@@ -7,7 +7,7 @@ function CreateASchoolForm(props){
             <div className='schoolFormContainer'>
                 
 
-            <h3>Don't see your school? Create it here.</h3>
+            <h4>Don't see your school? Create it here.</h4>
               <form noValidate autoComplete="off">
             <TextField
               id="standard-name"
