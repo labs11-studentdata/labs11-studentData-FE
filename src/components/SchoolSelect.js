@@ -143,7 +143,7 @@ class SchoolSelect extends Component {
                 <MenuItem value = {12} >12</MenuItem>
               </Select>
           </FormControl>
-          <Button type='submit' color='primary' variant="outlined">apply</Button>
+          <Button type='submit' color='primary' variant="outlined" style={{alignSelf: 'flex-end'}}>apply</Button>
         </form>      
       )
     }

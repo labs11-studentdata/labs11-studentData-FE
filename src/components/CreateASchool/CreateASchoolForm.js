@@ -4,10 +4,9 @@ import Button from '@material-ui/core/Button'
 
 function CreateASchoolForm(props){
         return (
-            <div className='schoolFormContainer'>
-                
-
-            <h4>Don't see your school? Create it here.</h4>
+            <div style={{display: props.showForm}}className='schoolFormContainer'>
+              
+              <h4>Create A school here </h4>
               <form noValidate autoComplete="off">
             <TextField
               id="standard-name"

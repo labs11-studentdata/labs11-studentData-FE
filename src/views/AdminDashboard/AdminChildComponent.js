@@ -8,23 +8,23 @@ import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import EditChildModal from "../../components/StudentView/EditStudentModal";
 import EditStudentModal from "../../components/StudentView/EditStudentModal";
-
+import moment from 'moment';
 function AdminChildComponent(props) {
   return (
     <Paper className="donation-list-container">
       <Table className="donation-list">
         <TableHead>
           <TableRow>
-            <TableCell>Student Name</TableCell>
-            <TableCell>Age</TableCell>
-            <TableCell>Grade</TableCell>
-            <TableCell>Ins/BC</TableCell>
-            <TableCell>Ins Exp.</TableCell>
-            <TableCell>SPED</TableCell>
+            <TableCell align="center">Student Name</TableCell>
+            <TableCell align="center">Age</TableCell>
+            <TableCell align="center">Grade</TableCell>
+            <TableCell align="center">Insurance /<br/> Birth Cert.</TableCell>
+            <TableCell align="center">Insurance Expiration</TableCell>
+            <TableCell align="center">Special Needs</TableCell>
 
-            <TableCell>Dues</TableCell>
+            <TableCell align="center">Dues</TableCell>
 
-            <TableCell>Edit Student</TableCell>
+            <TableCell align="center">Edit Student</TableCell>
           </TableRow>
         </TableHead>
 
@@ -35,20 +35,20 @@ function AdminChildComponent(props) {
             console.log(student)
             return (
               <TableRow>
-                <TableCell>{`${student.first_name} ${
+                <TableCell align="center">{`${student.first_name} ${
                   student.last_name
                 }`}</TableCell>
-                <TableCell>{student.age}</TableCell>
-                <TableCell>{student.grade}</TableCell>
-                <TableCell>{`${student.has_birthcert === 1 ? "Y" : "N"}/${
+                <TableCell align="center">{student.age}</TableCell>
+                <TableCell align="center">{student.grade}</TableCell>
+                <TableCell align="center">{`${student.has_birthcert === 1 ? "Y" : "N"}/${
                   student.has_insurance === 1 ? "Y" : "N"
                 }`}</TableCell>
-                  <TableCell>{student.insurance_expiration}</TableCell>
+                  <TableCell align="center">{moment(student.insurance_expiration).format('l')}</TableCell>
 
-                  <TableCell>{student.special_needs === 1 ? "Y" : "N"}</TableCell>
+                  <TableCell align="center">{student.special_needs === 1 ? "Y" : "N"}</TableCell>
                   
-                <TableCell style={{ color: "red" }}>{student.dues}</TableCell>
-                <TableCell>
+                <TableCell align="center" style={{ color: "red" }}>{`$${student.dues}`}</TableCell>
+                <TableCell align="center">
                   <EditStudentModal student={student}/>
                 </TableCell>
               </TableRow>
