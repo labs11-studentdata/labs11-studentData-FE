@@ -29,6 +29,7 @@ class BoardView extends Component {
     grade: null,
     students: [],
     schools: [],
+    schoolsList: [],
     bodyView: null,
     selectedStudent: null,
     socialVisits: [],
@@ -73,6 +74,23 @@ class BoardView extends Component {
   }
 
   componentDidUpdate(prevProps, prevState){
+
+    // GET SCHOOLS LIST IF IT IS EMPTY ON STATE
+    if(this.state.schoolsList.length === 0){
+      // console.log("FETCHING SCHOOL LIST");
+      Axios.get(`${process.env.REACT_APP_BE_URL}/api/schools/`)
+        .then(res => {
+          // console.log("SCHOOL LIST RES", res.data);
+          this.setState({
+            ...this.state,
+            schoolsList: res.data
+          })
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }
+
     // If prev state view was not social
     // and current state view is social
     // and there is a school selected
@@ -84,7 +102,7 @@ class BoardView extends Component {
 
     // fetch social worker visits by school
 
-    console.log(`prevSBV ${prevState.bodyView} SBV${this.state.bodyView} prevSS${prevState.schoolID} SS${this.state.schoolID}`)
+    // console.log(`prevSBV ${prevState.bodyView} SBV${this.state.bodyView} prevSS${prevState.schoolID} SS${this.state.schoolID}`)
 
     if((prevState.bodyView !== "social" && 
         this.state.bodyView === "social" && 
@@ -95,10 +113,10 @@ class BoardView extends Component {
         )){
           Axios.get(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits/school/nojoin/${this.state.schoolID}`)
             .then(res => {
-              console.log("FETCHED SW VISITS", res.data);
+              // console.log("FETCHED SW VISITS", res.data);
               this.setState({
                 ...this.state,
-                socialVisits: res.data
+                socialVisits: res.data.schoolVisits
               });
             })
             .catch(err => {
@@ -178,8 +196,9 @@ class BoardView extends Component {
         return (
           <Fragment>
             <BoardSocialSchoolSelect 
-              schools={this.props.schools}
+              schools={this.state.schoolsList}
               socialSchoolSelect={this.socialSchoolSelect}
+              schoolID={this.state.schoolID}
             />
             <BoardSocial 
               bodyView={this.state.bodyView}
@@ -226,8 +245,8 @@ class BoardView extends Component {
   };
 
   render() {
-    console.log('BOARD VIEW STATE', this.state);
-    console.log('BOARD VIEW PROPS', this.props);
+    // console.log('BOARD VIEW STATE', this.state);
+    // console.log('BOARD VIEW PROPS', this.props);
     return (
       <Fragment>
         <DashboardFrame
