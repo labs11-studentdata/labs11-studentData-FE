@@ -8,20 +8,20 @@ import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import EditChildModal from "../../components/StudentView/EditStudentModal";
 import EditStudentModal from "../../components/StudentView/EditStudentModal";
-
+import moment from 'moment';
 function AdminChildComponent(props) {
   return (
-    <div className="donation-list-container">
-      <Table className="donation-list">
+    <div className="donation-list-container"style={{ textAlign: "center", overflowY: "scroll", height: "250px" }}>
+      <Table className="donation-list" >
         <TableHead>
           <TableRow>
-            <TableCell align='center' style={{padding: '0px', width: '15%'}}>Student Name</TableCell>
+            <TableCell style={{padding: '0px 0px 0px 10px', width: '15%'}}>Student Name</TableCell>
             <TableCell align='center' style={{padding: '0px', width: '5%'}}>Age</TableCell>
             <TableCell align='center' style={{padding: '0px', width: '5%'}}>Grade</TableCell>
             <TableCell align='center' style={{padding: '0px', width: '7.5%'}}>Insurance</TableCell>
             <TableCell align='center' style={{padding: '0px', width: '7.5%'}}>Birth Cert</TableCell>
             <TableCell align='center' style={{padding: '0px', width: '15%'}}>Insurance Expiration</TableCell>
-            <TableCell align='center' style={{padding: '0px', width: '15%'}}>Special Education</TableCell>
+            <TableCell align='center' style={{padding: '0px', width: '10%'}}>Special Ed</TableCell>
 
             <TableCell align='center' style={{padding: '0px', width: '15%'}}>Dues</TableCell>
 
@@ -30,13 +30,13 @@ function AdminChildComponent(props) {
         </TableHead>
 
         <TableBody
-          style={{ textAlign: "center", overflow: "auto", height: "250px" }}
+          
         >
           {props.students.map(student => {
             console.log(student)
             return (
               <TableRow>
-                <TableCell align='center' style={{padding: '0px 0px 0px 10px', width: '15%'}}>{`${student.first_name} ${
+                <TableCell style={{padding: '0px 0px 0px 10px', width: '15%'}}>{`${student.first_name} ${
                   student.last_name
                 }`}</TableCell>
                 <TableCell align='center' style={{padding: '0px', width: '5%'}}>{student.age}</TableCell>
@@ -45,7 +45,7 @@ function AdminChildComponent(props) {
                 <TableCell align='center' style={{padding: '0px', width: '7.5%'}}>{`${student.has_birthcert === 1 ? "Y" : "N"}`}</TableCell>
                   <TableCell align='center' style={{padding: '0px', width: '15%'}}>{student.insurance_expiration}</TableCell>
 
-                  <TableCell align='center' style={{padding: '0px', width: '15%'}}>{student.special_needs === 1 ? "Y" : "N"}</TableCell>
+                  <TableCell align='center' style={{padding: '0px', width: '10%'}}>{student.special_needs === 1 ? "Y" : "N"}</TableCell>
                   
                 <TableCell align='center' style={{ color: "red", padding: '0px', width: '10%' }}>${student.dues}</TableCell>
                 <TableCell align='center' style={{padding: '0px', width: '10%'}}>
