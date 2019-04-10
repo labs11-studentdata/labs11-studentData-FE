@@ -15,8 +15,13 @@ function OnboardingForm(props){
           <Input onChange={(e) => props.handleChanges(e)} id="email" name="email" autoComplete="email" value={props.user.email} autoFocus />
         </FormControl>
         <FormControl margin="normal" required fullWidth>
-          <InputLabel htmlFor="photo_url">Add a photo url</InputLabel>
-          <Input name="photo_url" value={props.user.photo_url} onChange={(e) => props.handleChanges(e)} id="photo_url" />
+          {/* <InputLabel htmlFor="photo_url">Add a photo url</InputLabel>
+          <Input name="photo_url" value={props.user.photo_url} onChange={(e) => props.handleChanges(e)} id="photo_url" /> */}
+            <input type="file" name="userImage" onChange={props.fileSelectHandler}/>
+            <Button
+              onClick={props.fileUploadHandler}>
+                  Upload
+                </Button>
         </FormControl>
       </form>
     )
