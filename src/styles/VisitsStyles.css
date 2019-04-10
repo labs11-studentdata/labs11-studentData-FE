@@ -28,15 +28,17 @@
 }
 
 .visits-container .visit-display .text {
-    width: 100%;
+    
 }
 
 .visits-container .visit-display .visit-body .text {
     white-space: pre-wrap;
+    width: 100%;
 }
 
 .visits-container .visit-display .visit-header {
     height: 10vh;
+    display: flex;
 }
 
 .visits-container .visit-display .visit-body {
@@ -51,7 +53,7 @@
     width: 100%;
     height: 10vh;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: flex-end; 
 }
 
