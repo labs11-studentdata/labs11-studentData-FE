@@ -31,7 +31,7 @@ class SchoolList extends Component {
     return (
         <div className='schoolListContainer'>
         <h4>Please select school from list</h4>
-      <Paper style={{ overflowY: "scroll", maxHeight: "250px", width: "60%" }}>
+      <Paper style={{ overflowY: "scroll", maxHeight: "250px", width: "100%", margin: '10px' }}>
         <Table>
           <TableHead>
             <TableRow>
@@ -41,7 +41,7 @@ class SchoolList extends Component {
           </TableHead>
           <TableBody>
             {this.state.schools.map(school => (
-              <TableRow onClick={(e) => this.props.schoolSelected(e, school.schoolID)} key={school.id}>
+              <TableRow onClick={(e) => this.props.schoolSelected(e, school.schoolID)}  className='schoolListRow' key={school.id}>
                 <TableCell align="right">{school.school_name}</TableCell>
                 <TableCell style={{ color: "#617D8B" }} align="right">
                   {school.location}

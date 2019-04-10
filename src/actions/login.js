@@ -4,6 +4,7 @@ export const LOGIN_USER = 'LOGIN_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
 export const REG_SELECTED = 'REG_SELECTED';
 export const LOG_SELECTED = 'LOG_SELECTED';
+export const UPDATE_LOGIN_INFO = 'UPDATE_LOGIN_INFO';
 
 
 export const loginUser = token => {
@@ -40,5 +41,12 @@ export const regSelected = () => {
 export const logSelected = () => {
     return {
         type: LOG_SELECTED
+    }
+}
+
+export const updateLoginInfo = (schoolID) => {
+    return {
+        type: UPDATE_LOGIN_INFO,
+        payload: schoolID
     }
 }
