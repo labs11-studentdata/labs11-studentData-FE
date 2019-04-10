@@ -9,7 +9,7 @@ const styles = theme => ({
     flexGrow: 1,
     margin: '0 auto',
     marginTop: 16,
-    maxWidth: 1300,
+    maxwidth: 1300,
   },
   paper: {
     padding: theme.spacing.unit * 2,

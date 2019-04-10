@@ -59,11 +59,10 @@ class EditStudent extends Component {
       console.log(this.state)
       console.log("props", this.props);
         return (
-              <div>
-              <h1>Edit Student</h1><br></br>  
+           
 
 
-              <form noValidate autoComplete="off" style={{height: "50%", width: "75%", display: 'flex', flexDirection: 'row'}} onSubmit={this.editStudent}>
+              <form className='editStudentModal' noValidate autoComplete="off"  onSubmit={this.editStudent}>
               <Grid
               container
               spacing={24}
@@ -71,7 +70,7 @@ class EditStudent extends Component {
               display="flex"
               justify="center"
               alignItems="center"
-              maxWidth="800px"
+              maxwidth="800px"
               >
               <Grid item>
                   <TextField
@@ -303,8 +302,6 @@ class EditStudent extends Component {
             <Button variant='outlined' type="submit">Save Changes</Button>
 
             </form>
-
-            </div>
         )
     }
 }
