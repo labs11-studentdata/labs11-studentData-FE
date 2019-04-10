@@ -29,7 +29,7 @@ class SchoolList extends Component {
 
 
     return (
-        <div className='schoolListContainer'>
+        <div className='schoolListContainer' style={{display: this.props.showList}}>
         {this.props.accountType.includes('board') || this.props.accountType.includes('social') ? <h3>Here is a preview of the schools you will be helping!</h3> : <h4>Please select school from list</h4>}
       <Paper style={{ overflowY: "scroll", maxHeight: "250px", width: "100%", margin: '10px' }}>
         <Table>

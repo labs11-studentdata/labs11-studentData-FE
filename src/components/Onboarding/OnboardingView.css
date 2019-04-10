@@ -13,22 +13,39 @@
     flex-direction: column;
     padding: 25px;
 }
+
+.schoolFormContainer h4 {
+    text-transform: uppercase;
+}
 .accountTypeLabel {
     color: #617D8B;
     text-align: left;
     margin: 0;
+    margin-top: -15px;
     padding-left: 35px;
     font-size: .87rem;
 }
 
 .schoolListFormContainer {
     display: flex;
+    flex-direction: column;
 }
-.schoolListContainer {
-    padding: 25px;
+.schoolListContainer h4 {
+    margin: 0;
+    text-transform: uppercase;
 }
 
 .schoolListRow:hover {
     background-color: aliceblue;
+    cursor: pointer;
+}
+
+.selectSchool h4 {
+    margin: 0;
+}
+.selectSchool a {
+    display: inline-block;
+    margin-top: 5px;
+    color: #617D8B;
     cursor: pointer;
 }
