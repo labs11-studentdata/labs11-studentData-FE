@@ -35,7 +35,7 @@ const SponsorChildComponent = props => {
         <div>
           <div className={props.classes.scContainer}>
             {props.students.map(student => (
-              <SponsorChildCard key={student.studentID} student={student}/>
+              <SponsorChildCard key={student.studentID} student={student} userID={props.userID}/>
             ))}
           </div>
         </div>
