@@ -56,8 +56,8 @@ class AddStudent extends Component {
   fileSelectHandler = event => {
     console.log(event.target.files[0]);
     this.setState({
-        selectedFile: event.target.files[0]
-    })
+      ...this.state,
+      selectedFile: event.target.files[0]})
   }
 
   fileUploadHandler = () => {
@@ -70,6 +70,7 @@ class AddStudent extends Component {
 
             console.log("server response", response);
           this.setState({
+            ...this.state, 
 
             student: {
               ...this.state.student,
