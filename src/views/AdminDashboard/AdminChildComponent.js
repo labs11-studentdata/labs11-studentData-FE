@@ -32,19 +32,20 @@ function AdminChildComponent(props) {
           style={{ textAlign: "center", overflow: "auto", height: "250px" }}
         >
           {props.students.map(student => {
+            console.log(student)
             return (
               <TableRow>
                 <TableCell>{`${student.first_name} ${
                   student.last_name
                 }`}</TableCell>
                 <TableCell>{student.age}</TableCell>
-                <TableCell>{student.gradeID}</TableCell>
+                <TableCell>{student.grade}</TableCell>
                 <TableCell>{`${student.has_birthcert === 1 ? "Y" : "N"}/${
                   student.has_insurance === 1 ? "Y" : "N"
                 }`}</TableCell>
                   <TableCell>{student.insurance_expiration}</TableCell>
 
-                  <TableCell>{student.special_needs}</TableCell>
+                  <TableCell>{student.special_needs === 1 ? "Y" : "N"}</TableCell>
                   
                 <TableCell style={{ color: "red" }}>{student.dues}</TableCell>
                 <TableCell>
