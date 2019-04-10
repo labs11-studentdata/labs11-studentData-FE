@@ -1,6 +1,6 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles';
-import { FormControl } from '@material-ui/core';
+import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
 // const {schools, socialSchoolSelect} = props;
 // // schoolSelect(schoolID)
 
@@ -21,29 +21,35 @@ const styles = theme => ({
 class BoardSocialSchoolSelect extends React.Component {
   constructor(props){
     super(props);
-    this.state = {
-      schools: [],
-    }
   }
 
-  componentDidUpdate(){
-    if(this.state.schools.length === 0 && this.props.schools.length !== 0){
-      this.setState({
-        ...this.state,
-        schools: this.props.schools,
-      });
-    }
-  }
 
   handleChange = event => {
-    this.setState({[event.target.name]: event.target.value});
+    this.props.socialSchoolSelect(event.target.value);
   }
 
   render(){
-    const { classes } = this.props
+    const  classes  = this.props.classes
     return (
       <form className={classes.root} autoComplete="off">
         <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="school-select" >School</InputLabel>
+          <Select
+            value={this.props.schoolID}
+            onChange={this.handleChange}
+            inputProps={{
+              name: 'schoolID',
+              id: 'school-select',
+            }}
+          >
+            {this.props.schools.map(school => {
+              return (
+              <MenuItem value={school.schoolID}>
+                {school.school_name}
+              </MenuItem>
+              )
+            })}
+          </Select>
         </FormControl>
       </form>
     )
