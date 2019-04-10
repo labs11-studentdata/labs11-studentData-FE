@@ -2,7 +2,6 @@
     line-height: .5;
     border-radius: 5px;
     text-align: center;
-    border: #3F51B5 2px solid;
     padding: 0 5px;
     margin-left: 2px;
 }
@@ -21,6 +20,7 @@
     width: 20%;
     align-items: center;
     justify-content: space-evenly;
+    flex-direction: column-reverse;
 }
 .adminHeaderContainer .headerLeft {
     display: flex;

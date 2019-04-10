@@ -74,7 +74,7 @@ function DashContainer(props) {
             </Grid>
             {/* BODY */}
             <Grid item xs={12}>
-              <Paper className={`${classes.paper} ${classes.body}`}>
+              <Paper style={{overflowY: "hidden"}} className={`${classes.paper} ${classes.body}`}>
                 <Body className={classes.body} />
               </Paper>
             </Grid>
