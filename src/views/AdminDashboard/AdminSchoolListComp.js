@@ -7,32 +7,38 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 
 function AdminSchoolListComp(props) {
+
+  const formattedNumber = number => {
+    number = number.toString();
+    return ('('+ number.slice(0,3) + ') ' + number.slice(3,6)+ ' - ' + number.slice(6,10))
+  }
+
     return (
       <>
-        <Paper
+        <div
          style={{ overflowY: "scroll", maxHeight: "400px", width: "100%" }}
         >
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Student Name</TableCell>
-                <TableCell align="right">Grade</TableCell>
-                <TableCell align="right">Emergency Contact</TableCell>
-                <TableCell align="right">Contact Number</TableCell>
+                <TableCell >Student Name</TableCell>
+                <TableCell >Grade</TableCell>
+                <TableCell >Emergency Contact</TableCell>
+                <TableCell >Contact Number</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {props.students.map(student => (
                 <TableRow key={student.id}>
-                  <TableCell align="right">{`${student.first_name} ${student.last_name}`}</TableCell>
-                  <TableCell align="right">{student.grade}</TableCell>
-                  <TableCell align="right">{`${student.contact_first_name} ${student.contact_last_name}`}</TableCell>
-                  <TableCell style={{color: "#617D8B"}} align="right">{student.contact_number}</TableCell>
+                  <TableCell >{`${student.first_name} ${student.last_name}`}</TableCell>
+                  <TableCell style={{paddingLeft: '35px'}}>{student.grade}</TableCell>
+                  <TableCell >{`${student.contact_first_name} ${student.contact_last_name}`}</TableCell>
+                  <TableCell style={{color: "#617D8B"}} >{formattedNumber(student.contact_number)}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
-        </Paper>
+        </div>
       </>
     );
 }

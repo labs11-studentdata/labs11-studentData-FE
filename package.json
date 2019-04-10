@@ -10,7 +10,7 @@
     "moment": "^2.24.0",
     "query-string": "^6.4.2",
     "react": "^16.8.4",
-    "react-dom": "^16.8.4",
+    "react-dom": "^16.8.6",
     "react-images-uploader": "^1.2.0-rc1",
     "react-materialize": "^2.6.0",
     "react-mdl": "^1.11.0",
