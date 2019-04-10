@@ -57,6 +57,37 @@ class AddStudent extends Component {
     });
   };
 
+  fileSelectHandler = event => {
+    console.log(event.target.files[0]);
+    this.setState({
+        selectedFile: event.target.files[0]
+    })
+  }
+
+  fileUploadHandler = () => {
+    const fd = new FormData();
+    fd.append('userImage', this.state.selectedFile, this.state.selectedFile.name);
+    console.log(fd);
+
+    axios.post(process.env.REACT_APP_BE_URL + '/api/uploads', fd)
+        .then(response => {
+
+            console.log("server response", response);
+          this.setState({
+
+            student: {
+              ...this.state.student,
+              photo_url: `${process.env.REACT_APP_BE_URL}/${response.data}` 
+            }
+        
+          });
+
+        })
+        .catch(e => {
+            console.log("server error:", e.message);
+        })
+  }
+
   render() {
     return (
       <form
@@ -122,14 +153,17 @@ class AddStudent extends Component {
           </Grid>
 
           <Grid item>
-            <TextField
+            {/* <TextField
               id="filled-name"
               label="Photo URL"
               value={this.state.student.photo_url}
               onChange={this.handleInputChange}
               name="photo_url"
               margin="normal"
-            />
+            /> */}
+
+            <input type="file" name="userImage" onChange={this.fileSelectHandler}/>
+            <button onClick={this.fileUploadHandler}>Upload</button>
           </Grid>
 
           <Grid item>
