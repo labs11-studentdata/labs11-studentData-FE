@@ -16,6 +16,7 @@ import "./OnboardingView.css";
 import SchoolList from "../Schools/SchoolList";
 import axios from "axios";
 import {Snackbar} from 'react-mdl'
+
 const styles = theme => ({
   root: {
     width: "90%"
@@ -49,19 +50,6 @@ const styles = theme => ({
 
 function getSteps() {
   return ["Select account type", "Enter account info", "View schools"];
-}
-
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return "Tell us about yourself...";
-    case 1:
-      return "Tell us your school info?";
-    case 2:
-      return "If you dont see your school listed... Add it.";
-    default:
-      return "Unknown step";
-  }
 }
 
 function getUserPermissions(account_type) {
@@ -103,7 +91,9 @@ class CustomizedStepper extends React.Component {
       schoolID: ""
     },
     isSnackbarActive: false,
-    selectedFile: {}
+    selectedFile: {},
+    showForm: "none",
+    showList: "block"
   };
 
   //   HANDLE FORM -- handle form update
@@ -168,20 +158,35 @@ class CustomizedStepper extends React.Component {
     }));
   };
 
+  handleShowForm = (e) => {
+    console.log(e.target.textContent)
+    const btn = e.target.textContent;
+    if(btn.includes('Create')){
+      this.setState({
+        ...this.state,
+        showForm: "block",
+        showList: "none"
+      })
+    } else {
+      this.setState({
+        ...this.state,
+        showForm: "none",
+        showList: "block"
+      })
+    }
+    console.log(this.state)
+  }
   finishedSelected = e => {
     e.preventDefault();
     const user = this.state.user;
     if (!user.email || !user.photo_url || !user.account_type) {
       alert("Please enter all onboarding information.");
     } else {
-      this.setState(state => ({
-        activeStep: state.activeStep + 1
-      }));
+      this.updateAccount()
     }
   };
   //   UPDATE ACCOUNT -- after all login info selected update user account info
-  updateAccount = e => {
-    e.preventDefault();
+  updateAccount = () => {
     this.setState({
       ...this.state,
       user: {
@@ -285,6 +290,8 @@ class CustomizedStepper extends React.Component {
   handleTimeoutSnackbar = () => {
     this.setState({ isSnackbarActive: false });
   };
+
+
   render() {
     console.log(this.state);
     const { classes } = this.props;
@@ -353,18 +360,26 @@ class CustomizedStepper extends React.Component {
               )}
 
               <div className="schoolListFormContainer">
+                
                 <SchoolList
+                  showList={this.state.showList}
                   accountType={this.state.user.account_type}
                   schoolSelected={this.schoolSelected}
                   school={this.state.school}
                   user={this.state.user}
                 />
                 <CreateASchoolForm
+                  showForm={this.state.showForm}
                   handleSchoolChanges={this.handleSchoolChanges}
                   school={this.state.schoolForm}
                   a
                   handleSchoolSubmit={this.handleSchoolSubmit}
                 />
+                <div className="selectSchool"><h4>{ this.state.showForm.includes('none') ?  'Don\'t see your school?' : 'View a list of schools you can join!'}</h4>
+                
+                <a onClick={(e) => this.handleShowForm(e)}>{ this.state.showForm.includes('none') ?  'Create it here' :'Click Here'}</a>
+                
+                </div>
               </div>
             </div>
           ) : null}
@@ -378,17 +393,11 @@ class CustomizedStepper extends React.Component {
         <div>
           {activeStep === steps.length ? (
             <div>
-              <Typography className={classes.instructions}>
-                All steps completed - you&apos;re finished
-              </Typography>
-              <Button onClick={this.updateAccount} className={classes.button}>
-                Continue to dashboard
-              </Button>
+   
             </div>
           ) : (
             <div>
               <Typography className={classes.instructions}>
-                {getStepContent(activeStep)}
               </Typography>
               <div>
                 <Button
