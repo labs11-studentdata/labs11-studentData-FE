@@ -355,9 +355,9 @@ class CustomizedStepper extends React.Component {
                   Joining: {this.state.school.school_name} <br />
                   Account type: {jsUcfirst(this.state.user.account_type)}{" "}
                 </p>
-              ) : (
-                <h1 />
-              )}
+              ) : 
+               null
+              }
 
               <div className="schoolListFormContainer">
                 
