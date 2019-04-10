@@ -8,8 +8,11 @@ import {
 } from "../components/index";
 import DashboardFrame from "./DashboardFrame";
 import HighestDues from '../components/BoardMember/HighestDues';
+import BoardSocial from '../components/BoardMember/BoardSocial';
 import { withStyles } from '@material-ui/core/styles';
 import SponsorChildView from '../views/SponsorChildView';
+import Axios from "axios";
+import BoardSocialSchoolSelect from "../components/BoardMember/BoardSocialSchoolSelect";
 
 
 const styles = theme => ({
@@ -26,8 +29,10 @@ class BoardView extends Component {
     grade: null,
     students: [],
     schools: [],
+    schoolsList: [],
     bodyView: null,
     selectedStudent: null,
+    socialVisits: [],
     links: [
       {
         title: "DASHBOARD",
@@ -66,6 +71,58 @@ class BoardView extends Component {
       ...this.state,
       students: this.props.students
     });
+  }
+
+  componentDidUpdate(prevProps, prevState){
+
+    // GET SCHOOLS LIST IF IT IS EMPTY ON STATE
+    if(this.state.schoolsList.length === 0){
+      // console.log("FETCHING SCHOOL LIST");
+      Axios.get(`${process.env.REACT_APP_BE_URL}/api/schools/`)
+        .then(res => {
+          // console.log("SCHOOL LIST RES", res.data);
+          this.setState({
+            ...this.state,
+            schoolsList: res.data
+          })
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }
+
+    // If prev state view was not social
+    // and current state view is social
+    // and there is a school selected
+    
+    // or
+    
+    // if current state view is social
+    // and if the selected school has changed
+
+    // fetch social worker visits by school
+
+    // console.log(`prevSBV ${prevState.bodyView} SBV${this.state.bodyView} prevSS${prevState.schoolID} SS${this.state.schoolID}`)
+
+    if((prevState.bodyView !== "social" && 
+        this.state.bodyView === "social" && 
+        this.state.schoolID !== null) || 
+        (this.state.bodyView === "social" &&
+        this.state.schoolID !== null &&
+        this.state.schoolID !== prevState.schoolID 
+        )){
+          Axios.get(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits/school/nojoin/${this.state.schoolID}`)
+            .then(res => {
+              // console.log("FETCHED SW VISITS", res.data);
+              this.setState({
+                ...this.state,
+                socialVisits: res.data.schoolVisits
+              });
+            })
+            .catch(err => {
+              console.log("Error fetching sw visits",err);
+            })
+        }
   }
 
   //this is the function if you're looking for references for how to write the local filter
@@ -108,12 +165,12 @@ class BoardView extends Component {
     }
   };
 
-  //opens the student sponsorship modal
-
-
-
-  //closes both modals and resets the modal tracking in component state
-
+  socialSchoolSelect = schoolID => {
+    this.setState({
+      ...this.state,
+      schoolID: schoolID
+    })
+  }
 
   Header = () => {
     return (
@@ -138,7 +195,16 @@ class BoardView extends Component {
       case "social":
         return (
           <Fragment>
-            SOCIAL VISITS LIST
+            <BoardSocialSchoolSelect 
+              schools={this.state.schoolsList}
+              socialSchoolSelect={this.socialSchoolSelect}
+              schoolID={this.state.schoolID}
+            />
+            <BoardSocial 
+              bodyView={this.state.bodyView}
+              schoolID={this.state.schoolID}
+              socialVisits={this.state.socialVisits}
+            />
           </Fragment>
         );
         break;
@@ -179,8 +245,8 @@ class BoardView extends Component {
   };
 
   render() {
-    console.log('BOARD VIEW STATE', this.state);
-    console.log('BOARD VIEW PROPS', this.props);
+    // console.log('BOARD VIEW STATE', this.state);
+    // console.log('BOARD VIEW PROPS', this.props);
     return (
       <Fragment>
         <DashboardFrame
