@@ -10,6 +10,7 @@ import rootReducer from "./reducers/index";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { loadState, saveState } from "./LocalStorage";
 import theme from './styles/MUITheme';
+import LandingPage from './views/LandingPage'
 import { MuiThemeProvider } from '@material-ui/core/styles';
 require("dotenv").config();
 
@@ -36,7 +37,9 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <MuiThemeProvider theme={theme}>
-        <App />
+        {window.location.href.includes('login') ? <App />
+: null}
+        <Route exact path='/' component={LandingPage} />
       </MuiThemeProvider>
     </Router>
   </Provider>,
