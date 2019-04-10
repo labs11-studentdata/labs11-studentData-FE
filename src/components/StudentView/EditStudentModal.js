@@ -46,17 +46,18 @@ class StudentModal extends React.Component {
 
   render() {
     const { classes } = this.props;
-    console.log("edit student props", this.props)
     return (
       <div>
         <Button variant='outlined' onClick={this.handleOpen}>Edit</Button>
         <Modal
+        id='modal'
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
           open={this.state.open}
           onClose={this.handleClose}
         >
-          <div className={classes.paper}>
+          <div className={classes.paper} id='addStudentModalContainer'>
+              <h1>Edit Student</h1>
             <EditStudent handleClose={this.handleClose} student={this.props.student}/>
           </div>
         </Modal>

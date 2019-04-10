@@ -56,3 +56,13 @@
         justify-content: center; 
         overflow: hidden;  
 }
+
+.adminStudentBtn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.adminStudentBtn  .adminStudentCount {
+    margin: 5px;
+}
