@@ -61,7 +61,7 @@ class StudentRow extends Component {
         </StripeProvider>       
       </Dialog>
       <TableRow key={this.state.student.studentID}>
-        <TableCell style={{padding: '0px', width: '15%'}}>{this.state.student.first_name} {this.state.student.last_name}</TableCell>
+        <TableCell style={{padding: '0px 0px 0px 10px', width: '15%'}}>{this.state.student.first_name} {this.state.student.last_name}</TableCell>
         {/* <TableCell style={{padding: '0px', width: '10%'}}>{student.enrollment_status}</TableCell> */}
         <TableCell style={{padding: '0px', width: '5%'}}>{this.state.student.age}</TableCell>
         <TableCell style={{padding: '0px', width: '10%'}}>{this.yOrN(this.state.student.has_insurance)}</TableCell>
