@@ -47,3 +47,25 @@
 .editStudentModal  {
     height: 40%;
 } */
+
+.labelContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.labelContainer label {
+    transform: none;
+}
+
+.labelContainer  .labelSelection{ 
+    margin: 0;
+    text-align: left;
+}
+
+#addStudent {
+    margin: 10px;
+}
+
+#editStudent {
+    margin: 10px;
+}

@@ -7,9 +7,14 @@ import Grid from "@material-ui/core/Grid";
 import { connect } from "react-redux";
 import { addStudent, getAdminStudents } from "../../actions/admin";
 import DropDownMenu from "@material-ui/core/MenuList";
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import FilledInput from '@material-ui/core/FilledInput';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Input from '@material-ui/core/Input';
+
 import axios from 'axios';
-import MenuItem from "@material-ui/core/MenuItem";
 class AddStudent extends Component {
   constructor(props) {
     super(props);
@@ -51,6 +56,7 @@ class AddStudent extends Component {
         [e.target.name]: e.target.value
       }
     });
+    console.log(this.state)
   };
 
   fileSelectHandler = event => {
@@ -63,12 +69,9 @@ class AddStudent extends Component {
   fileUploadHandler = () => {
     const fd = new FormData();
     fd.append('userImage', this.state.selectedFile, this.state.selectedFile.name);
-    console.log(fd);
 
     axios.post(process.env.REACT_APP_BE_URL + '/api/uploads', fd)
         .then(response => {
-
-            console.log("server response", response);
           this.setState({
             ...this.state, 
 
@@ -103,53 +106,90 @@ class AddStudent extends Component {
           maxwidth="800px"
           id="form"
         >
-          <Grid item>
+          <Grid className='labelContainer' item>
+          <InputLabel htmlFor="filled-first_name-simple">First Name</InputLabel>
+
             <TextField
+                        className='labelSelection'
+
               id="filled-name"
-              label="First Name"
               value={this.state.student.first_name}
               onChange={this.handleInputChange}
               name="first_name"
               margin="normal"
+              variant="filled"
+
             />
           </Grid>
 
-          <Grid item>
+          <Grid className='labelContainer' item>
+          <InputLabel htmlFor="filled-last_name-simple">Last Name</InputLabel>
+
             <TextField
+                        className='labelSelection'
+
               id="filled-name"
-              label="Last Name"
               value={this.state.student.last_name}
               onChange={this.handleInputChange}
               name="last_name"
               margin="normal"
+              variant="filled"
+
             />
           </Grid>
 
-          <Grid item>
+          <Grid className='labelContainer' item>
+          <InputLabel htmlFor="filled-age-simple">Age</InputLabel>
+
             <TextField
+                        className='labelSelection'
+
               id="filled-name"
-              label="Age"
               type="number"
               value={this.state.student.age}
               onChange={this.handleInputChange}
               name="age"
               margin="normal"
+              variant="filled"
             />
           </Grid>
 
-          <Grid item>
-          <TextField
+          <Grid className='labelContainer' item>
+          <InputLabel htmlFor="filled-grade-simple">Grade</InputLabel>
+
+          {/* <TextField
               id="filled-name"
-              label="grade"
               type="number"
               value={this.state.student.grade}
               onChange={this.handleInputChange}
               name="grade"
               margin="normal"
-            />
+              variant="filled"
+
+            /> */}
+            <Select
+            className='labelSelection'
+              value={this.state.student.grade}
+              onChange={this.handleInputChange}
+              input={<FilledInput name="grade" id="filled-grade-simple" />}
+            >
+              <MenuItem value="Pre-K">Pre-K</MenuItem>
+              <MenuItem value="1st">1st</MenuItem>
+              <MenuItem value="2nd">2nd</MenuItem>
+              <MenuItem value="3rd">3rd</MenuItem>
+              <MenuItem value="4th">4th</MenuItem>
+              <MenuItem value="5th">5th</MenuItem>
+              <MenuItem value="6th">6th</MenuItem>
+              <MenuItem value="7th">7th</MenuItem>
+              <MenuItem value="8th">8th</MenuItem>
+              <MenuItem value="9th">9th</MenuItem>
+              <MenuItem value="10th">10th</MenuItem>
+              <MenuItem value="11th">11th</MenuItem>
+              <MenuItem value="12th">12th</MenuItem>
+            </Select>
           </Grid>
 
-          <Grid item>
+          <Grid className='labelContainer' item>
             {/* <TextField
               id="filled-name"
               label="Photo URL"
@@ -163,76 +203,114 @@ class AddStudent extends Component {
             <button onClick={this.fileUploadHandler}>Upload</button>
           </Grid>
 
-          <Grid item>
-            <TextField
-              id="filled-name"
-              label="Enrollment Status"
+          <Grid className='labelContainer' item>
+            <InputLabel variant="filled" htmlFor="filled-enrollment_status-simple">Enrollment Status</InputLabel>
+            <Select
               value={this.state.student.enrollment_status}
               onChange={this.handleInputChange}
-              name="enrollment_status"
-              margin="normal"
-            />
+              input={<FilledInput name="enrollment_status" id="filled-enrollment_status-simple" />}
+            >
+              <MenuItem value="Current">Current</MenuItem>
+              <MenuItem value="Removed">Removed</MenuItem>
+              <MenuItem value="Graduated">Graduated</MenuItem>
+
+            </Select>
           </Grid>
 
-          <Grid item>
-            <TextField
-              id="filled-name"
-              label="Insurance"
+          <Grid  className='labelContainer' item>
+            <InputLabel variant="filled" htmlFor="filled-has_insurance-simple">Insurance</InputLabel>
+            <Select
+                        className='labelSelection'
+
               value={this.state.student.has_insurance}
               onChange={this.handleInputChange}
-              name="has_insurance"
-              margin="normal"
-            />
+              input={<FilledInput name="has_insurance" id="filled-has_insurance-simple" />}
+            >
+              <MenuItem value={1}>Yes</MenuItem>
+              <MenuItem value={0}>No</MenuItem>
+            </Select>
           </Grid>
 
-          <Grid item>
-            <TextField
+          <Grid className='labelContainer' item>
+          <InputLabel htmlFor="filled-insurance_expiration-simple">Insurance Expiration</InputLabel>
+
+            {/* <TextField
+                        className='labelSelection'
+
               id="filled-name"
-              label="Insurance Expiration"
               value={this.state.student.insurance_expiration}
               onChange={this.handleInputChange}
               name="insurance_expiration"
               margin="normal"
-            />
-          </Grid>
+              variant="filled"
 
-          <Grid item>
+            /> */}
             <TextField
               id="filled-name"
-              label="Birth Certificate"
+        type="date"
+        onChange={this.handleInputChange}
+        name="insurance_expiration"
+
+        value={this.state.student.insurance_expiration}
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+          </Grid>
+
+          <Grid  className='labelContainer' item>
+             <InputLabel htmlFor="filled-has_birthcert-simple">Birth Certificate</InputLabel>
+            <Select
+                        className='labelSelection'
+                        variant="filled"
+
               value={this.state.student.has_birthcert}
               onChange={this.handleInputChange}
-              name="has_birthcert"
-              margin="normal"
-            />
+              input={<FilledInput name="has_birthcert" id="filled-has_birthcert-simple" />}
+            >
+              <MenuItem value={1}>Yes</MenuItem>
+              <MenuItem value={0}>No</MenuItem>
+            </Select>
           </Grid>
 
-          <Grid item>
-            <TextField
-              id="filled-name"
-              label="Dues"
-              value={this.state.student.dues}
-              onChange={this.handleInputChange}
-              name="dues"
-              margin="normal"
-            />
+          <Grid className='labelContainer' item>
+          <InputLabel htmlFor="adornment-dues">Dues</InputLabel>
+          <TextField
+            id="adornment-dues"
+            name='dues'
+            variant="filled"
+
+            value={this.state.student.dues}
+            onChange={this.handleInputChange}
+            InputProps={{
+              startAdornment: <InputAdornment position="start">$</InputAdornment>,
+            }}          />
           </Grid>
 
-          <Grid item>
-            <TextField
-              id="filled-name"
-              label="Special Needs"
+          <Grid  className='labelContainer' className='labelContainer' item>
+            <InputLabel htmlFor="filled-special_needs-simple">Special Needs</InputLabel>
+            <Select
+                          variant="filled"
+
+                        className='labelSelection'
+
               value={this.state.student.special_needs}
               onChange={this.handleInputChange}
-              name="special_needs"
-              margin="normal"
-            />
+              input={<FilledInput name="special_needs" id="filled-special_needs-simple" />}
+            >
+              <MenuItem value={1}>Yes</MenuItem>
+              <MenuItem value={0}>No</MenuItem>
+            </Select>
           </Grid>
 
-          <Grid item>
+          <Grid className='labelContainer' item>
+          <InputLabel htmlFor="filled-contact_first_name-simple">Contact First Name</InputLabel>
+
             <TextField
+                        className='labelSelection'
+                        variant="filled"
+
               id="filled-name"
-              label="Contact First Name"
               value={this.state.student.contact_first_name}
               onChange={this.handleInputChange}
               name="contact_first_name"
@@ -240,10 +318,14 @@ class AddStudent extends Component {
             />
           </Grid>
 
-          <Grid item>
+          <Grid className='labelContainer' item>
+          <InputLabel htmlFor="filled-contact_last_name-simple">Contact Last Name</InputLabel>
+
             <TextField
+                        className='labelSelection'
+                        variant="filled"
+
               id="filled-name"
-              label="Contact Last Name"
               value={this.state.student.contact_last_name}
               onChange={this.handleInputChange}
               name="contact_last_name"
@@ -251,10 +333,14 @@ class AddStudent extends Component {
             />
           </Grid>
 
-          <Grid item>
+          <Grid className='labelContainer' item>
+          <InputLabel htmlFor="filled-contact_phone_number-simple">Contact Phone Number</InputLabel>
+
             <TextField
+                        className='labelSelection'
+                        variant="filled"
+
               id="filled-name"
-              label="Contact Phone"
               value={this.state.student.contact_number}
               onChange={this.handleInputChange}
               name="contact_number"
@@ -263,7 +349,7 @@ class AddStudent extends Component {
           </Grid>
         </Grid>
 
-        <Button variant="outlined" type="submit">
+        <Button id='addStudent' variant="outlined" type="submit">
           Add Student
         </Button>
       </form>
@@ -272,8 +358,6 @@ class AddStudent extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log('+++++MSTP ADD STUDENT++++++++++')
-  console.log(state)
   return {
     schoolID: parseInt(state.login.user.schoolID)
   };

@@ -1,5 +1,5 @@
 import React from "react";
-import { withStyles } from "@material-ui/core/styles";
+import { withStyles, withTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -51,15 +51,11 @@ function HeaderComponent(props) {
   } else {
     return (
       <div className={classes.root}>
-        <AppBar position="static">
-          <Toolbar>
-            <IconButton
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="Menu"
-            />
+        <AppBar position="static" >
+          <Toolbar style={{display: "flex", justifyContent: "space-between"}}>
+     
             <Typography variant="h6" color="inherit" className={classes.grow}>
-              SchoolMe
+             <a style={{color: "white", textDecoration: "none"}} href={`${process.env.REACT_APP_FE_ROOT}`}>SchoolMe</a> 
             </Typography>
             <Button color="inherit" onClick={(e) => props.registerSubmit(e)}>
               {props.isRegistering ? 'Login' : 'Register'}
