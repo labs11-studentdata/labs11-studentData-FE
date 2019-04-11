@@ -88,7 +88,6 @@ class CustomizedStepper extends React.Component {
     schoolForm: {
       school_name: "",
       location: "",
-      schoolID: ""
     },
     isSnackbarActive: false,
     selectedFile: {},
@@ -220,7 +219,7 @@ class CustomizedStepper extends React.Component {
             schoolID: res.data[0].schoolID
           }
         });
-        this.props.updateLoginInfo(res.data[0].schoolID);
+        this.props.updateLoginInfo(res.data[0]);
       })
       .catch(err => console.log(err));
   };
