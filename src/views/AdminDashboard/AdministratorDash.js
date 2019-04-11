@@ -113,7 +113,7 @@ class AdministratorDash extends Component {
             <div className="headerLeft">
               <h3>Recent Social Worker Visits</h3>
               <div className="visitAdminContainer">
-                <VisitListBySchool visits={this.state.visits} />
+                <VisitListBySchool visits={this.state.visits}/>
               </div>
             </div>
   

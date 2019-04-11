@@ -2,7 +2,6 @@
     line-height: .5;
     border-radius: 5px;
     text-align: center;
-    border: #3F51B5 2px solid;
     padding: 0 5px;
     margin-left: 2px;
 }
@@ -11,8 +10,9 @@
 .adminHeaderContainer {
     display: flex;
     position: relative;
-    justify-content: space-around;
-    flex-wrap: wrap
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-top: 15px
 }
 
 .adminHeaderContainer .headerRight {
@@ -21,6 +21,7 @@
     width: 20%;
     align-items: center;
     justify-content: space-evenly;
+    flex-direction: column-reverse;
 }
 .adminHeaderContainer .headerLeft {
     display: flex;
@@ -28,11 +29,11 @@
     width: 70%;
     align-items: center;
     justify-content: space-between;
-    flex-direction: column
+    flex-direction: column;
 }
 
 .visitAdminContainer {
-    overflow: scroll;
+    overflow-y: scroll;
     max-height: 250px;
 }
 

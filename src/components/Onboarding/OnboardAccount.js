@@ -46,7 +46,7 @@ const styles = theme => ({
                 label={`School Administrator`}
                 labelPlacement="end"
               />
-              <p className='accountTypeLabel'>I take care of my schools database.<br/> I manage and update all of my school students and donations!</p>
+              <p className='accountTypeLabel'>I take care of my school's database.<br/> I manage and update all of my school students and donations.</p>
      
               <FormControlLabel
                 value="socialworker"
@@ -56,15 +56,15 @@ const styles = theme => ({
 
                 labelPlacement="end"
               />
-                 <p className='accountTypeLabel'>I visits schools and write reports on all of my findings. <br/> These reports are used to update school administrators and donors on <br/> the students and any concerns I have about the schools</p>
+                 <p className='accountTypeLabel'>I visits schools and write reports on all of my findings. <br/> These reports are used to update school administrators and donors on <br/> the students and any concerns I have about the schools.</p>
      
               <FormControlLabel
                 value="boardmember"
                 control={<Radio color="primary" />}
-                label="Board Memeber"
+                label="Board Member"
                 labelPlacement="end"
               />
-              <p className='accountTypeLabel'>I donate to schools and students that are in need. <br/> I am able to donate to any school that is in need.</p>
+              <p className='accountTypeLabel'>I donate to schools and students that are in need. <br/> I am able to donate to any school or student in need.</p>
 
              
             </RadioGroup>
