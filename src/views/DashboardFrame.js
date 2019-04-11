@@ -49,7 +49,7 @@ function DashContainer(props) {
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={16} style={{ overflowY: "scroll", width: "100%" }}>
+      <Grid container spacing={16} style={{ width: "100%" }}>
         {/* LEFT NAV */}
         <Grid item xs={12} md={3}>
           <Paper className={classes.sidenav}>
@@ -65,7 +65,7 @@ function DashContainer(props) {
         </Grid>
         {/* BODY */}
         <Grid item xs={12} md={9} >
-          <Grid container spacing={16}>
+          <Grid container spacing={16} >
             {/* HEADER */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
@@ -74,7 +74,7 @@ function DashContainer(props) {
             </Grid>
             {/* BODY */}
             <Grid item xs={12}>
-              <Paper style={{overflowY: "hidden"}} className={`${classes.paper} ${classes.body}`}>
+              <Paper  className={`${classes.paper} ${classes.body}`}>
                 <Body className={classes.body} />
               </Paper>
             </Grid>

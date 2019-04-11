@@ -12,6 +12,10 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .landing-container .jumbotron h1{
@@ -20,8 +24,6 @@
     color: aliceblue;
     position: relative;
     font-size: 70px;
-    left: 60%;
-    top: 40%;
     background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -112,11 +114,6 @@
         background-size: cover;
     }
 
-    .landing-container .jumbotron h1 {
-        width: 100%;
-        left: 0;
-    }
-
     .landing-container .hall {
         background-image: url('../imgs/school-hall-mobile.jpg');
         height: 500px;
@@ -154,3 +151,11 @@
         width: 100%;
     }
   }
+
+  .landingBtns {
+    margin: 0;
+    color: aliceblue;
+}
+.landingBtns button {
+margin: 5px;
+}
