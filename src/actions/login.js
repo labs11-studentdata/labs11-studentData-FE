@@ -26,7 +26,7 @@ export const registerUser = token => {
 
 export const logoutUser = () => {
     localStorage.removeItem('jwt')
-    window.location.href = '/login'
+    window.location.href = '/'
     return {
         type: LOGOUT_USER
     }

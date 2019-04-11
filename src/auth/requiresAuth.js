@@ -22,11 +22,10 @@ const Authenticated = Component =>
   class extends Component {
     componentDidMount() {
       const parsed = queryString.parse(window.location.href)
+      console.log(parsed)
       if(parsed.account_type) {
         window.location.href = `${parsed.account_type.replace(/\s/g, '').toLowerCase()}dashboard`
-      } else if (parsed.account_type === '') {
-        window.location.href = '/onboarding'
-      }
+      } 
       
     }
       render() {
@@ -36,7 +35,7 @@ const Authenticated = Component =>
           } else if (window.location.href.includes('login')){
             return <LoginView />
           } else {
-            return <LandingPage />
+            return <LandingPage {...this.props}/>
           }
           // return <>{token && token.includes('token')? <Component {...this.props} /> : <LoginView />}</>
       }

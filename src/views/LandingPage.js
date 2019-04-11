@@ -3,13 +3,29 @@ import LandingCardText from "../components/LandingPage/LandingCardText";
 import LandingCardImg from "../components/LandingPage/LandingCardImg";
 import LandingCardBtn from "../components/LandingPage/LandingCardBtn";
 import { connect } from 'react-redux';
-import { regSelected, logSelected } from '../actions/login';
+import { regSelected, logSelected, loginUser } from '../actions/login';
 import Button from '@material-ui/core/Button';
-
+import { withRouter } from 'react-router';
 import "../styles/LandingPage.css";
+import queryString from 'query-string';
 const baseURL = process.env.REACT_APP_FE_ROOT;
 
 class LandingPage extends React.Component {
+
+
+    componentDidMount() {
+      const query = this.props.history.location.pathname
+      console.log(query)
+      const parsed = queryString.parse(query)
+      console.log(parsed)
+      if(parsed.account_type === '') {
+          window.location.href = '/onboarding'
+      }
+      if(query.length > 30) {
+          this.props.loginUser(query);
+  
+      }
+  }
 
   registerSubmit = e => {
     e.preventDefault();
@@ -81,4 +97,4 @@ class LandingPage extends React.Component {
   }
 }
 
-export default connect(null, {regSelected, logSelected})(LandingPage);
+export default withRouter(connect(null, {regSelected, logSelected, loginUser})(LandingPage));
