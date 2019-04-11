@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import LoginView from '../login/LoginView';
 import axios from 'axios';
 import queryString from 'query-string';
+import { LandingPage } from '../views';
 
 axios.defaults.baseURL = 'http://localhost:9000/'
 axios.interceptors.request.use(
@@ -30,7 +31,14 @@ const Authenticated = Component =>
     }
       render() {
           const token = localStorage.getItem('jwt');
-          return <>{token && token.includes('token')? <Component {...this.props} /> : <LoginView />}</>
+          if(token && token.includes('token')) {
+            return <Component {...this.props} />
+          } else if (window.location.href.includes('login')){
+            return <LoginView />
+          } else {
+            return <LandingPage />
+          }
+          // return <>{token && token.includes('token')? <Component {...this.props} /> : <LoginView />}</>
       }
   } 
 

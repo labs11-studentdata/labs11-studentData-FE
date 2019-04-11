@@ -2,12 +2,30 @@ import React from "react";
 import LandingCardText from "../components/LandingPage/LandingCardText";
 import LandingCardImg from "../components/LandingPage/LandingCardImg";
 import LandingCardBtn from "../components/LandingPage/LandingCardBtn";
+import { connect } from 'react-redux';
+import { regSelected, logSelected } from '../actions/login';
 import Button from '@material-ui/core/Button';
 
 import "../styles/LandingPage.css";
 const baseURL = process.env.REACT_APP_FE_ROOT;
 
 class LandingPage extends React.Component {
+
+  registerSubmit = e => {
+    e.preventDefault();
+    const text = e.target.textContent;
+    if (text.includes("Register") && window.location.href.includes('login')) {
+      this.props.regSelected();
+    } else if (text.includes('Register')) {
+      this.props.regSelected();
+      window.location.href='/login'
+    } else if(text.includes("Login") && window.location.href.includes('login')) {
+      this.props.logSelected();
+    } else {
+      this.props.logSelected();
+      window.location.href='/login'
+    }
+  };
   render() {
     return (
       <div className="landing-container">
@@ -17,7 +35,7 @@ class LandingPage extends React.Component {
             variant="contained"
             size="large"
             color="primary"
-            href={`${baseURL}/login`}
+            onClick={(e) => this.registerSubmit(e)}
 >
             Login
           </Button>
@@ -25,8 +43,7 @@ class LandingPage extends React.Component {
             variant="contained"
             size="large"
             color="primary"
-            href={`${baseURL}/login`}
-
+            onClick={(e) => this.registerSubmit(e)}
           >
             Register
           </Button>
@@ -64,4 +81,4 @@ class LandingPage extends React.Component {
   }
 }
 
-export default LandingPage;
+export default connect(null, {regSelected, logSelected})(LandingPage);
