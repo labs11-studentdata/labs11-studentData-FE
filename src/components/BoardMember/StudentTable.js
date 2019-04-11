@@ -22,12 +22,12 @@ class StudentTable extends Component {
   
   render(){
     return(
-      <Paper className='student-table-container' style={{ overflowY: 'scroll', maxHeight: '300px', width: 'auto'}}>
+      <div className='student-table-container' style={{ overflowY: 'scroll', maxHeight: '300px', width: 'auto'}}>
 
         <Table className='student-table' deselectOnClickaway={false} style={{ tableLayout: 'auto', padding: 'none' }}>
           <TableHead>
             <TableRow>
-              <TableCell style={{padding: '0px', width: '15%'}}>Name</TableCell>
+              <TableCell style={{padding: '0px 0px 0px 10px', width: '15%'}}>Name</TableCell>
               {/* <TableCell style={{padding: '0px', width: '10%'}}>Status</TableCell> */}
               <TableCell style={{padding: '0px', width: '5%'}}>Age</TableCell>
               <TableCell style={{padding: '0px', width: '10%'}}>Insurance</TableCell>
@@ -48,7 +48,7 @@ class StudentTable extends Component {
             })}
           </TableBody>
         </Table>
-      </Paper>
+      </div>
     )
   }
 }

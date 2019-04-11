@@ -12,7 +12,7 @@ class Visits extends Component {
     addOpen: false,
     editOpen: false,
     selectedVisit: null,
-    selectedVisitSchool: ""
+    selectedVisitSchool: "",
   }
 
   openAdd = e => {
@@ -33,6 +33,17 @@ class Visits extends Component {
 
   setSelectedVisit = (visit) => {
     this.setState({selectedVisit: visit})
+  }
+
+  addVisit = (visit) => {
+    axios.post(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits`, visit)
+        .then(res => {
+            console.log(res.data)
+        })
+        .catch(err => {
+            console.log(err.message)
+        })
+    this.setState({addOpen: false})
   }
 
   componentDidMount() {
@@ -65,7 +76,7 @@ class Visits extends Component {
     let displayedComponent = null;
   
     if( this.state.addOpen === false && this.state.editOpen === true) { displayedComponent = <UpdateVisit visit={this.state.selectedVisit} cancelEdit={this.cancelEdit} />;}
-    else if( this.state.addOpen === true ) {displayedComponent = <AddVisit cancelAdd={this.cancelAdd} />}
+    else if( this.state.addOpen === true ) {displayedComponent = <AddVisit cancelAdd={this.cancelAdd} addVisit={this.addVisit} user={this.state.userID} />}
     else if( this.state.selectedVisit) {displayedComponent = <SingleVisit visit={this.state.selectedVisit} openEdit={this.openEdit} />}
     return (
       <div className="visits-container">

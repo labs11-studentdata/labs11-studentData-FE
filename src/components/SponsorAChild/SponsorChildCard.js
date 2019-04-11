@@ -60,8 +60,6 @@ class SponsorChildCard extends React.Component {
           </StripeProvider>       
         </Dialog>
         <Card key={this.state.student.studentID} className="studentCard">
-          
-          <Link to={`/student/${this.state.student.studentID}`}>
 
           <CardActionArea>
             {/* ADD ONCLICK TO CARD AREA ACTION THAT WILL LOAD SINGLE CHILD VIEW */}
@@ -80,17 +78,21 @@ class SponsorChildCard extends React.Component {
                 {`${this.state.student.first_name} ${this.state.student.last_name} `}
               </Typography>
               <Typography component="p" />
+              <Typography gutterBottom color="secondary" component="p">
+                Total Due: ${`${this.state.student.dues}`}
+              </Typography>
             </CardContent>
           </CardActionArea>
-          </Link>
+
           <CardActions>
-            <Button variant='outlined' onClick={e => this.handleOpen(e)} size="small" color="primary">
+
+
+            <Button variant='outlined' onClick={e => this.handleOpen(e)} size="small" color="primary"
+              style={{width: '50%', margin: '0% 25%'}}
+            >
               Sponsor
             </Button>
-            <div className="totalDueLabel"> Total Due: </div>
-            <Typography gutterBottom color="secondary" component="p">
-              {`${this.state.student.dues}`}
-            </Typography>
+            <div className="totalDueLabel"> </div>
           </CardActions>
         </Card>
       </>

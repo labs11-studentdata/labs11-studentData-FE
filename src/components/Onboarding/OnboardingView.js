@@ -10,11 +10,12 @@ import OnboardAccount from "./OnboardAccount";
 import OnboardingForm from "./OnboardingForm";
 import CreateASchoolForm from "../CreateASchool/CreateASchoolForm";
 import { connect } from "react-redux";
-import { updateLoginInfo } from '../../actions/login';
+import { updateLoginInfo } from "../../actions/login";
 import { updateAccount } from "../../actions/account";
 import "./OnboardingView.css";
 import SchoolList from "../Schools/SchoolList";
 import axios from "axios";
+import {Snackbar} from 'react-mdl'
 
 const styles = theme => ({
   root: {
@@ -51,19 +52,6 @@ function getSteps() {
   return ["Select account type", "Enter account info", "View schools"];
 }
 
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return "Tell us about yourself...";
-    case 1:
-      return "Tell us your school info?";
-    case 2:
-      return "If you dont see your school listed... Add it.";
-    default:
-      return "Unknown step";
-  }
-}
-
 function getUserPermissions(account_type) {
   switch (account_type) {
     case "admin":
@@ -76,10 +64,9 @@ function getUserPermissions(account_type) {
       return null;
   }
 }
-function jsUcfirst(string) { 
-  return string.charAt(0).toUpperCase() + string.slice(1); 
+function jsUcfirst(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
-
 
 const user = {
   email: "",
@@ -102,7 +89,11 @@ class CustomizedStepper extends React.Component {
       school_name: "",
       location: "",
       schoolID: ""
-    }
+    },
+    isSnackbarActive: false,
+    selectedFile: {},
+    showForm: "none",
+    showList: "block"
   };
 
   //   HANDLE FORM -- handle form update
@@ -167,20 +158,35 @@ class CustomizedStepper extends React.Component {
     }));
   };
 
+  handleShowForm = (e) => {
+    console.log(e.target.textContent)
+    const btn = e.target.textContent;
+    if(btn.includes('Create')){
+      this.setState({
+        ...this.state,
+        showForm: "block",
+        showList: "none"
+      })
+    } else {
+      this.setState({
+        ...this.state,
+        showForm: "none",
+        showList: "block"
+      })
+    }
+    console.log(this.state)
+  }
   finishedSelected = e => {
     e.preventDefault();
     const user = this.state.user;
     if (!user.email || !user.photo_url || !user.account_type) {
       alert("Please enter all onboarding information.");
     } else {
-      this.setState(state => ({
-        activeStep: state.activeStep + 1
-      }));
+      this.updateAccount()
     }
   };
   //   UPDATE ACCOUNT -- after all login info selected update user account info
-  updateAccount = e => {
-    e.preventDefault();
+  updateAccount = () => {
     this.setState({
       ...this.state,
       user: {
@@ -189,7 +195,7 @@ class CustomizedStepper extends React.Component {
         userID: this.props.userID
       }
     });
-    console.log(this.props.userID)
+    console.log(this.props.userID);
     this.props.updateAccount(this.props.userID, this.state.user);
   };
   // ADD A SCHOOL -- If user does not see name of school
@@ -213,9 +219,8 @@ class CustomizedStepper extends React.Component {
             ...this.state.schoolForm,
             schoolID: res.data[0].schoolID
           }
-          
         });
-        this.props.updateLoginInfo(res.data[0].schoolID)
+        this.props.updateLoginInfo(res.data[0].schoolID);
       })
       .catch(err => console.log(err));
   };
@@ -235,9 +240,58 @@ class CustomizedStepper extends React.Component {
         school_name: e.target.textContent
       }
     });
-    this.props.updateLoginInfo(schoolID)
+    this.props.updateLoginInfo(schoolID);
     console.log(this.state);
   };
+  // Image Upload Handler
+  fileSelectHandler = event => {
+    console.log(event.target.files[0]);
+    this.setState({
+      ...this.state,
+      selectedFile: event.target.files[0]
+    });
+  };
+  // Image File Upload Handler
+  fileUploadHandler = e => {
+    e.preventDefault();
+    const fd = new FormData();
+    if(this.state.selectedFile.name) {
+      fd.append(
+        "userImage",
+        this.state.selectedFile,
+        this.state.selectedFile.name
+      );
+  
+      axios
+        .post(process.env.REACT_APP_BE_URL + "/api/uploads", fd)
+        .then(response => {
+          console.log("server response", response);
+          this.setState({
+            ...this.state,
+  
+            user: {
+              ...this.state.user,
+              photo_url: `${process.env.REACT_APP_BE_URL}/${response.data}`
+            }
+          });
+          this.handleShowSnackbar();
+        })
+        .catch(e => {
+          console.log("server error:", e.message);
+        });
+    } else {
+      alert('please select a photo and upload')
+    }
+    
+  };
+  handleShowSnackbar = () => {
+    this.setState({ isSnackbarActive: true });
+  };
+  handleTimeoutSnackbar = () => {
+    this.setState({ isSnackbarActive: false });
+  };
+
+
   render() {
     console.log(this.state);
     const { classes } = this.props;
@@ -276,59 +330,74 @@ class CustomizedStepper extends React.Component {
             />
           )}
           {this.state.activeStep === 1 && (
-            <OnboardingForm
-              user={this.state.user}
-              handleChanges={this.handleChanges}
-              handleSubmit={this.handleSubmit}
-            />
+            <div>
+                   <Snackbar
+                   className='snackBar'
+                active={this.state.isSnackbarActive}
+                onTimeout={this.handleTimeoutSnackbar}
+              >
+                Photo Uploaded
+              </Snackbar>
+              <OnboardingForm
+                fileSelectHandler={this.fileSelectHandler}
+                fileUploadHandler={this.fileUploadHandler}
+                user={this.state.user}
+                handleChanges={this.handleChanges}
+                handleSubmit={this.handleSubmit}
+              />
+            </div>
           )}
           {this.state.activeStep === 2 &&
           this.state.user.account_type.includes("admin") ? (
             <div>
               {this.state.school.schoolID ? (
                 <p>
-                  Joining: {this.state.school.school_name} <br/>Account type: {jsUcfirst(this.state.user.account_type)}{" "}
+                  Joining: {this.state.school.school_name} <br />
+                  Account type: {jsUcfirst(this.state.user.account_type)}{" "}
                 </p>
-              ) : (
-                <h1></h1>
-              )}
+              ) : 
+               null
+              }
 
-              <div className='schoolListFormContainer'>
+              <div className="schoolListFormContainer">
+                
                 <SchoolList
+                  showList={this.state.showList}
                   accountType={this.state.user.account_type}
                   schoolSelected={this.schoolSelected}
                   school={this.state.school}
                   user={this.state.user}
                 />
                 <CreateASchoolForm
+                  showForm={this.state.showForm}
                   handleSchoolChanges={this.handleSchoolChanges}
                   school={this.state.schoolForm}
                   a
                   handleSchoolSubmit={this.handleSchoolSubmit}
                 />
+                <div className="selectSchool"><h4>{ this.state.showForm.includes('none') ?  'Don\'t see your school?' : 'View a list of schools you can join!'}</h4>
+                
+                <a onClick={(e) => this.handleShowForm(e)}>{ this.state.showForm.includes('none') ?  'Create it here' :'Click Here'}</a>
+                
+                </div>
               </div>
             </div>
           ) : null}
-          {this.state.activeStep === 2 &&
-          this.state.user.account_type.includes("social") || this.state.activeStep === 2 &&
-          this.state.user.account_type.includes("board") ? (
+          {(this.state.activeStep === 2 &&
+            this.state.user.account_type.includes("social")) ||
+          (this.state.activeStep === 2 &&
+            this.state.user.account_type.includes("board")) ? (
             <SchoolList accountType={this.state.user.account_type} />
           ) : null}
         </Stepper>
         <div>
           {activeStep === steps.length ? (
             <div>
-              <Typography className={classes.instructions}>
-                All steps completed - you&apos;re finished
-              </Typography>
-              <Button onClick={this.updateAccount} className={classes.button}>
-                Continue to dashboard
-              </Button>
+   
             </div>
           ) : (
             <div>
               <Typography className={classes.instructions}>
-                {getStepContent(activeStep)}
               </Typography>
               <div>
                 <Button
@@ -340,9 +409,11 @@ class CustomizedStepper extends React.Component {
                 </Button>
                 <Button
                   disabled={
-                    activeStep === steps.length - 1 &&
-                    !this.state.school.school_name &&
-                    !this.state.school.location || activeStep === steps.length - 1 && this.state.user.account_type.includes('social')
+                    (activeStep === steps.length - 1 &&
+                      !this.state.school.school_name &&
+                      !this.state.school.location) ||
+                    (activeStep === steps.length - 1 &&
+                      this.state.user.account_type.includes("social"))
                       ? false
                       : null
                   }
@@ -367,7 +438,7 @@ class CustomizedStepper extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state)
+  console.log(state);
   return {
     userID: state.login.user.user_id
   };
