@@ -55,12 +55,35 @@ class AddStudent extends Component {
 
   fileSelectHandler = event => {
     console.log(event.target.files[0]);
-    this.setState({
-      ...this.state,
-      selectedFile: event.target.files[0]})
+    
+    const selectedFile = event.target.files[0];
+
+    const fd = new FormData();
+    fd.append('userImage', selectedFile, selectedFile.name);
+
+    console.log(fd);
+  
+    axios.post(process.env.REACT_APP_BE_URL + '/api/uploads', fd)
+        .then(response => {
+  
+          console.log("server response", response);
+          this.setState({
+            ...this.state, 
+  
+            student: {
+              ...this.state.student,
+              photo_url: `${process.env.REACT_APP_BE_URL}/${response.data}` 
+            }
+          
+          });
+  
+        })
+        .catch(e => {
+        console.log("server error:", e.message);
+      })
   }
 
-  fileUploadHandler = () => {
+/*   fileUploadHandler = () => {
     const fd = new FormData();
     fd.append('userImage', this.state.selectedFile, this.state.selectedFile.name);
     console.log(fd);
@@ -83,7 +106,7 @@ class AddStudent extends Component {
         .catch(e => {
             console.log("server error:", e.message);
         })
-  }
+  } */
 
   render() {
     return (
@@ -160,7 +183,8 @@ class AddStudent extends Component {
             /> */}
 
             <input type="file" name="userImage" onChange={this.fileSelectHandler}/>
-            <button onClick={this.fileUploadHandler}>Upload</button>
+            
+            {/*<button onClick={this.fileUploadHandler}>Upload</button>*/}
           </Grid>
 
           <Grid item>
