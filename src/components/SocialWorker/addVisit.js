@@ -5,17 +5,31 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 class AddVisit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      schools: [],
       date: "",
       notes: "",
-      school: ""
+      schoolID: "",
     };
   }
   
+  componentDidMount() {
+      axios.get(`${process.env.REACT_APP_BE_URL}/api/schools`)
+        .then(res => {
+            this.setState({schools: res.data})
+        })
+        .catch(err => {
+            console.log(err.message)
+        })
+  }
 
   eHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -27,17 +41,18 @@ class AddVisit extends React.Component {
       let visit = {
         visit_date: this.state.date,
         notes: this.state.notes,
-        school: ''
+        schoolID: this.state.schoolID,
+        userID: this.props.userID
       }
-      axios.post(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits`, {visit})
-        .then(res => {
-            console.log(res.data)
-        })
-        .catch(err => {
-            console.log(err.message)
-        })
-      this.setState({ date: "", notes: "", school: ""});
+      console.log(visit)
+      this.props.addVisit(visit)
   }
+
+  handleChange = name => e => {
+    e.preventDefault();
+    this.setState({ [name]: e.target.value });
+    console.log('pow');
+  };
 
     render() {
         return(
@@ -53,7 +68,21 @@ class AddVisit extends React.Component {
                             placeholder="YYYY-MM-DD"
                             margin="normal"
                         />
-                        {/* school search */}
+                        <form>
+                            <FormControl>
+                                <InputLabel htmlFor="school-select">School</InputLabel>
+                                <Select
+                                value={this.state.schoolID}
+                                name='schoolID'
+                                onChange={this.handleChange('schoolID')}
+                                inputProps={{id: 'school-select'}}
+                                >
+                                {this.state.schools.map(school => {
+                                    return <MenuItem value={school.schoolID}>{school.school_name}</MenuItem>
+                                })}
+                                </Select>
+                            </FormControl>
+                        </form>   
                     </div>
                     <div className="visit-body">
                         <TextField
