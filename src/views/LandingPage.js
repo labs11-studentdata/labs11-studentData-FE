@@ -47,6 +47,7 @@ class LandingPage extends React.Component {
       <div className="landing-container">
         <div className="jumbotron">
           <h1>SchoolMe</h1>
+          <div className="landingBtns">
           <Button
             variant="contained"
             size="large"
@@ -63,6 +64,8 @@ class LandingPage extends React.Component {
           >
             Register
           </Button>
+          </div>
+         
         </div>
         <div className="landing-content row-1">
           <LandingCardImg class="left inlineImg hall" />
