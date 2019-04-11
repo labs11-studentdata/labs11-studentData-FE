@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import LoginView from '../login/LoginView';
 import axios from 'axios';
 import queryString from 'query-string';
+import { LandingPage } from '../views';
 
 axios.defaults.baseURL = 'http://localhost:9000/'
 axios.interceptors.request.use(
@@ -21,16 +22,22 @@ const Authenticated = Component =>
   class extends Component {
     componentDidMount() {
       const parsed = queryString.parse(window.location.href)
+      console.log(parsed)
       if(parsed.account_type) {
         window.location.href = `${parsed.account_type.replace(/\s/g, '').toLowerCase()}dashboard`
-      } else if (parsed.account_type === '') {
-        window.location.href = '/onboarding'
-      }
+      } 
       
     }
       render() {
           const token = localStorage.getItem('jwt');
-          return <>{token && token.includes('token')? <Component {...this.props} /> : <LoginView />}</>
+          if(token && token.includes('token')) {
+            return <Component {...this.props} />
+          } else if (window.location.href.includes('login')){
+            return <LoginView />
+          } else {
+            return <LandingPage {...this.props}/>
+          }
+          // return <>{token && token.includes('token')? <Component {...this.props} /> : <LoginView />}</>
       }
   } 
 
