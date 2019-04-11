@@ -22,14 +22,19 @@ const styles = theme => ({
     display: 'flex',
     flexWrap: 'wrap',
     flexDirection: 'row',
-  }
+    justifyContent: 'space-around'
+  },
+  heading: {
+    margin: 30,
+  },
 })
 
 const SponsorChildComponent = props => {
+    const {classes} = props;
     return (
       <>
         {/* <h1>Select a child to sponsor!</h1> */}
-        <Typography variant="h5">Select a child to sponsor!</Typography>
+        <Typography className={classes.heading} variant="h4">Select a child to sponsor!</Typography>
         
         {/* <div className='sponsorChildContainer'> */}
         <div>

@@ -20,6 +20,10 @@ const styles = theme => ({
   table: {
     minWidth: 700,
   },
+  message: {
+    marginTop: 30,
+    marginBottom: 20,
+  },
 });
 
 const formatDate = date => {
@@ -35,7 +39,7 @@ const BoardSocial = props => {
   if(!props.schoolID){
     return(
       <Fragment>
-        <Typography variant="subtitle1">
+        <Typography className={classes.message} variant="h5">
           Please select a school to view social worker notes.
         </Typography>
       </Fragment>
@@ -43,7 +47,7 @@ const BoardSocial = props => {
   } else if (props.socialVisits.length === 0) {
     return(
       <Fragment>
-        <Typography variant="subtitle1">
+        <Typography className={classes.message} variant="h5">
           There are no social worker visits on record for the selected school.
         </Typography>
       </Fragment>

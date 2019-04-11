@@ -61,7 +61,7 @@ class SponsorChildCard extends React.Component {
         </Dialog>
         <Card key={this.state.student.studentID} className="studentCard">
 
-          <CardActionArea>
+          {/* <CardActionArea> */}
             {/* ADD ONCLICK TO CARD AREA ACTION THAT WILL LOAD SINGLE CHILD VIEW */}
             
             <CardMedia
@@ -82,7 +82,7 @@ class SponsorChildCard extends React.Component {
                 Total Due: ${`${this.state.student.dues}`}
               </Typography>
             </CardContent>
-          </CardActionArea>
+          {/* </CardActionArea> */}
 
           <CardActions>
 
