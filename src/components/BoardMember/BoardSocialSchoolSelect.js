@@ -11,7 +11,8 @@ const styles = theme => ({
   },
   formControl: {
     margin: theme.spacing.unit,
-    minWidth: 120,
+    minWidth: 200,
+    margin: '0 auto',
   },
   selectEmpty: {
     marginTop: theme.spacing.unit * 2,
@@ -33,7 +34,7 @@ class BoardSocialSchoolSelect extends React.Component {
     return (
       <form className={classes.root} autoComplete="off">
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="school-select" >School</InputLabel>
+          <InputLabel shrink htmlFor="school-select" >School</InputLabel>
           <Select
             value={this.props.schoolID}
             onChange={this.handleChange}
