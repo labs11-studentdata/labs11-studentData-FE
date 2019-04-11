@@ -69,12 +69,9 @@ class AddStudent extends Component {
   fileUploadHandler = () => {
     const fd = new FormData();
     fd.append('userImage', this.state.selectedFile, this.state.selectedFile.name);
-    console.log(fd);
 
     axios.post(process.env.REACT_APP_BE_URL + '/api/uploads', fd)
         .then(response => {
-
-            console.log("server response", response);
           this.setState({
             ...this.state, 
 
@@ -277,17 +274,6 @@ class AddStudent extends Component {
           </Grid>
 
           <Grid className='labelContainer' item>
-            {/* <TextField
-                        className='labelSelection'
-
-              id="filled-name"
-              label="Dues"
-              value={this.state.student.dues}
-              onChange={this.handleInputChange}
-              name="dues"
-              margin="normal"
-
-            /> */}
           <InputLabel htmlFor="adornment-dues">Dues</InputLabel>
           <TextField
             id="adornment-dues"
@@ -372,8 +358,6 @@ class AddStudent extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log('+++++MSTP ADD STUDENT++++++++++')
-  console.log(state)
   return {
     schoolID: parseInt(state.login.user.schoolID)
   };
