@@ -88,8 +88,6 @@ class LandingPage extends React.Component {
             class="center inlineText"
             title="Would you like to start using SchoolMe"
             text="$60USD/Year"
-            btnText="Subscribe Now!"
-            btnHandler={null}
           />
         </div>
         <div className="footer">

@@ -3,6 +3,11 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import {getAdminStudents} from '../../actions/admin';
 import TextField from '@material-ui/core/TextField';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import FilledInput from '@material-ui/core/FilledInput';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 import Button from '@material-ui/core/Button';
 
@@ -72,80 +77,77 @@ class EditStudent extends Component {
               alignItems="center"
               maxwidth="800px"
               >
-              <Grid item>
-                  <TextField
-                    id="filled-name"
-                    label="First Name"
+          <Grid className='labelContainer' item>
+          <InputLabel htmlFor="filled-first_name-simple">First Name</InputLabel>
 
-                    value={this.state.student.first_name}
-                    onChange={this.handleInputChange}
+            <TextField
+                        className='labelSelection'
 
-                    name='first_name'
+              id="filled-name"
+              value={this.state.student.first_name}
+              onChange={this.handleInputChange}
+              name="first_name"
+              margin="normal"
+              variant="filled"
 
-                    margin="normal"
-                    variant="filled"
-                  />
-                </Grid>
+            />
+          </Grid>
 
-                <Grid item>
-                  <TextField
-                    id="filled-name"
-                    label="Last Name"
+              
+          <Grid className='labelContainer' item>
+          <InputLabel htmlFor="filled-last_name-simple">Last Name</InputLabel>
 
-                    value={this.state.student.last_name}
-                    onChange={this.handleInputChange}
+            <TextField
+                        className='labelSelection'
 
-                    name='last_name'
+              id="filled-name"
+              value={this.state.student.last_name}
+              onChange={this.handleInputChange}
+              name="last_name"
+              margin="normal"
+              variant="filled"
 
-                    margin="normal"
-                    variant="filled"
-                  />
-                </Grid>
+            />
+          </Grid>
+          <Grid className='labelContainer' item>
+          <InputLabel htmlFor="filled-age-simple">Age</InputLabel>
 
-                <Grid item>
-                  <TextField
-                    id="filled-name"
-                    label="Age"
+            <TextField
+                        className='labelSelection'
 
-                    value={this.state.student.age}
-                    onChange={this.handleInputChange}
+              id="filled-name"
+              type="number"
+              value={this.state.student.age}
+              onChange={this.handleInputChange}
+              name="age"
+              margin="normal"
+              variant="filled"
+            />
+          </Grid>
 
-                    name='age'
-
-                    margin="normal"
-                    variant="filled"
-                  />
-                </Grid>
-
-                <Grid item>
-                  <TextField
-                    id="filled-name"
-                    label="Grade"
-
-                    value={this.state.student.grade}
-                    onChange={this.handleInputChange}
-
-                    name='grade'
-
-                    margin="normal"
-                    variant="filled"
-                  />
-                </Grid>
-
-                <Grid item>
-                  <TextField
-                    id="filled-name"
-                    label="School"
-
-                    value={this.state.student.schoolID}
-                    onChange={this.handleInputChange}
-
-                    name='schoolID'
-
-                    margin="normal"
-                    variant="filled"
-                  />
-                </Grid>
+          <Grid className='labelContainer' item>
+          <InputLabel htmlFor="filled-grade-simple">Grade</InputLabel>
+            <Select
+            className='labelSelection'
+              value={this.state.student.grade}
+              onChange={this.handleInputChange}
+              input={<FilledInput name="grade" id="filled-grade-simple" />}
+            >
+              <MenuItem value="Pre-K">Pre-K</MenuItem>
+              <MenuItem value="1st">1st</MenuItem>
+              <MenuItem value="2nd">2nd</MenuItem>
+              <MenuItem value="3rd">3rd</MenuItem>
+              <MenuItem value="4th">4th</MenuItem>
+              <MenuItem value="5th">5th</MenuItem>
+              <MenuItem value="6th">6th</MenuItem>
+              <MenuItem value="7th">7th</MenuItem>
+              <MenuItem value="8th">8th</MenuItem>
+              <MenuItem value="9th">9th</MenuItem>
+              <MenuItem value="10th">10th</MenuItem>
+              <MenuItem value="11th">11th</MenuItem>
+              <MenuItem value="12th">12th</MenuItem>
+            </Select>
+          </Grid>
 
                 <Grid item>
                   <TextField
@@ -162,51 +164,51 @@ class EditStudent extends Component {
                   />
                 </Grid>
 
-                <Grid item>
-                  <TextField
-                    id="filled-name"
-                    label="Enrollment Status"
+                <Grid className='labelContainer' item>
+            <InputLabel variant="filled" htmlFor="filled-enrollment_status-simple">Enrollment Status</InputLabel>
+            <Select
+              value={this.state.student.enrollment_status}
+              onChange={this.handleInputChange}
+              input={<FilledInput name="enrollment_status" id="filled-enrollment_status-simple" />}
+            >
+              <MenuItem value="Current">Current</MenuItem>
+              <MenuItem value="Removed">Removed</MenuItem>
+              <MenuItem value="Graduated">Graduated</MenuItem>
 
-                    value={this.state.student.enrollment_status}
-                    onChange={this.handleInputChange}
+            </Select>
+          </Grid>
 
-                    name='enrollment_status'
+              
+          <Grid  className='labelContainer' item>
+            <InputLabel variant="filled" htmlFor="filled-has_insurance-simple">Insurance</InputLabel>
+            <Select
+                        className='labelSelection'
 
-                    margin="normal"
-                    variant="filled"
-                  />
-                </Grid>
+              value={this.state.student.has_insurance}
+              onChange={this.handleInputChange}
+              input={<FilledInput name="has_insurance" id="filled-has_insurance-simple" />}
+            >
+              <MenuItem value={1}>Yes</MenuItem>
+              <MenuItem value={0}>No</MenuItem>
+            </Select>
+          </Grid>
 
-                <Grid item>
-                  <TextField
-                    id="filled-name"
-                    label="Insurance"
+          <Grid className='labelContainer' item>
+          <InputLabel htmlFor="filled-insurance_expiration-simple">Insurance Expiration</InputLabel>
 
-                    value={this.state.student.has_insurance}
-                    onChange={this.handleInputChange}
+     
+            <TextField
+              id="filled-name"
+        type="date"
+        onChange={this.handleInputChange}
+        name="insurance_expiration"
 
-                    name='has_insurance'
-
-                    margin="normal"
-                    variant="filled"
-                  />
-                </Grid>
-
-                <Grid item>
-                  <TextField
-                    id="filled-name"
-                    label="Insurance Expiration"
-
-                    value={this.state.student.insurance_expiration}
-                    onChange={this.handleInputChange}
-
-                    name='insurance_expiration'
-
-                    margin="normal"
-                    variant="filled"
-                  />
-                </Grid>
-
+        value={this.state.student.insurance_expiration}
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+          </Grid>
                 <Grid item>
                   <TextField
                     id="filled-name"
@@ -222,84 +224,82 @@ class EditStudent extends Component {
                   />
                 </Grid>
 
-                <Grid item>
-                  <TextField
-                    id="filled-name"
-                    label="Dues"
+                <Grid className='labelContainer' item>
+          <InputLabel htmlFor="adornment-dues">Dues</InputLabel>
+          <TextField
+            id="adornment-dues"
+            name='dues'
+            variant="filled"
 
-                    value={this.state.student.dues}
-                    onChange={this.handleInputChange}
+            value={this.state.student.dues}
+            onChange={this.handleInputChange}
+            InputProps={{
+              startAdornment: <InputAdornment position="start">$</InputAdornment>,
+            }}          />
+          </Grid>
 
-                    name='dues'
+          <Grid  className='labelContainer' className='labelContainer' item>
+            <InputLabel htmlFor="filled-special_needs-simple">Special Needs</InputLabel>
+            <Select
+                          variant="filled"
 
-                    margin="normal"
-                    variant="filled"
-                  />
-                </Grid>
+                        className='labelSelection'
 
-                <Grid item>
-                  <TextField
-                    id="filled-name"
-                    label="Special Needs"
+              value={this.state.student.special_needs}
+              onChange={this.handleInputChange}
+              input={<FilledInput name="special_needs" id="filled-special_needs-simple" />}
+            >
+              <MenuItem value={1}>Yes</MenuItem>
+              <MenuItem value={0}>No</MenuItem>
+            </Select>
+          </Grid>
 
-                    value={this.state.student.special_needs}
-                    onChange={this.handleInputChange}
+          <Grid className='labelContainer' item>
+          <InputLabel htmlFor="filled-contact_first_name-simple">Contact First Name</InputLabel>
 
-                    name='special_needs'
+            <TextField
+                        className='labelSelection'
+                        variant="filled"
 
-                    margin="normal"
-                    variant="filled"
-                  />
-                </Grid>
+              id="filled-name"
+              value={this.state.student.contact_first_name}
+              onChange={this.handleInputChange}
+              name="contact_first_name"
+              margin="normal"
+            />
+          </Grid>
+          <Grid className='labelContainer' item>
+          <InputLabel htmlFor="filled-contact_last_name-simple">Contact Last Name</InputLabel>
 
-                <Grid item>
-                  <TextField
-                    id="filled-name"
-                    label="Contact First Name"
+            <TextField
+                        className='labelSelection'
+                        variant="filled"
 
-                    value={this.state.student.contact_first_name}
-                    onChange={this.handleInputChange}
+              id="filled-name"
+              value={this.state.student.contact_last_name}
+              onChange={this.handleInputChange}
+              name="contact_last_name"
+              margin="normal"
+            />
+          </Grid>
 
-                    name='contact_first_name'
+          <Grid className='labelContainer' item>
+          <InputLabel htmlFor="filled-contact_phone_number-simple">Contact Phone Number</InputLabel>
 
-                    margin="normal"
-                    variant="filled"
-                  />
-                </Grid>
+            <TextField
+                        className='labelSelection'
+                        variant="filled"
 
-                <Grid item>
-                  <TextField
-                    id="filled-name"
-                    label="Contact Last Name"
-
-                    value={this.state.student.contact_last_name}
-                    onChange={this.handleInputChange}
-
-                    name='contact_last_name'
-
-                    margin="normal"
-                    variant="filled"
-                  />
-                </Grid>
-
-                <Grid item>
-                  <TextField
-                    id="filled-name"
-                    label="Contact Phone"
-
-                    value={this.state.student.contact_number}
-                    onChange={this.handleInputChange}
-
-                    name='contact_number'
-
-                    margin="normal"
-                    variant="filled"
-                  />
-                </Grid>
-                          
+              id="filled-name"
+              value={this.state.student.contact_number}
+              onChange={this.handleInputChange}
+              name="contact_number"
+              margin="normal"
+            />
+          </Grid>
             </Grid>
 
-            <Button variant='outlined' type="submit">Save Changes</Button>
+            <Button id='editStudent' variant='outlined' type="submit">Save Changes</Button>
 
             </form>
         )
