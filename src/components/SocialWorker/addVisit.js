@@ -18,6 +18,7 @@ class AddVisit extends React.Component {
       date: "",
       notes: "",
       schoolID: "",
+      warningText: ""
     };
   }
   
@@ -45,7 +46,11 @@ class AddVisit extends React.Component {
         userID: this.props.userID
       }
       console.log(visit)
-      this.props.addVisit(visit)
+      if (!visit.visit_date || !visit.notes || !visit.schoolID) {
+          this.setState({warningText: "Please Makes sure all fields are filled out"})
+      } else {
+        this.props.addVisit(visit)
+      }
   }
 
   handleChange = name => e => {
@@ -61,7 +66,7 @@ class AddVisit extends React.Component {
                     <div className="visit-header">
                         <TextField
                             id="standard-with-placeholder" 
-                            className="text"
+                            className="text date"
                             label="Date"
                             name="date"
                             onChange={this.eHandler}
@@ -72,6 +77,7 @@ class AddVisit extends React.Component {
                             <FormControl>
                                 <InputLabel htmlFor="school-select">School</InputLabel>
                                 <Select
+                                className="school"
                                 value={this.state.schoolID}
                                 name='schoolID'
                                 onChange={this.handleChange('schoolID')}
@@ -96,6 +102,7 @@ class AddVisit extends React.Component {
                         />
                     </div>
                     <div className="visit-footer">
+                        <span className="warning-text">{this.state.warningText}</span>
                         <Button variant="outlined" className="edit-btn" onClick={this.props.cancelAdd}>
                             Cancel
                         </Button>

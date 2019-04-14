@@ -10,13 +10,27 @@
     border-right: solid gray 2px;
 }
 
-.visits-container .visits-list .add-visit-btn {
-    margin-top: 10px;
+.visits-container .visits-list .full {
+    width: 100%;
 }
 
-.visits-container .visits-list .tag-2 {
+.visits-container .visits-list .add-visit-btn {
+    margin-top: 10px;
     position: relative;
-    left: 20%;
+    width: 100px;
+    right: 10px;
+}
+
+.visits-container .visits-list .visit {
+    width: 100%;
+}
+
+.visits-container .visits-list .visit .cell {
+    width: 50%;
+}
+
+.visits-container .visits-list .visit:hover{
+    background: lightblue;
 }
 
 .visits-container .visit-display {
@@ -27,18 +41,31 @@
     flex-direction: column;
 }
 
-.visits-container .visit-display .text {
-    
+.visits-container .visit-display .visit-header .date{
+    color: black;
+    margin-left: 5%;
+}
+
+.visits-container .visit-display .visit-header .school{
+    color: black;
+    margin-left: 5%;
 }
 
 .visits-container .visit-display .visit-body .text {
     white-space: pre-wrap;
     width: 100%;
+    text-align: left;
+    color: black;
+}
+
+.visits-container .visit-display .single-visit-header {
+    padding-top: 2%;
 }
 
 .visits-container .visit-display .visit-header {
     height: 10vh;
     display: flex;
+    align-items: baseline;
 }
 
 .visits-container .visit-display .visit-body {
