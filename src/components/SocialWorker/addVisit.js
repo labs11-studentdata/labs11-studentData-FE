@@ -45,7 +45,7 @@ class AddVisit extends React.Component {
         schoolID: this.state.schoolID,
         userID: this.props.userID
       }
-      console.log(visit)
+    //   console.log(visit)
       if (!visit.visit_date || !visit.notes || !visit.schoolID) {
           this.setState({warningText: "Please Makes sure all fields are filled out"})
       } else {
@@ -56,7 +56,7 @@ class AddVisit extends React.Component {
   handleChange = name => e => {
     e.preventDefault();
     this.setState({ [name]: e.target.value });
-    console.log('pow');
+    // console.log('pow');
   };
 
     render() {
