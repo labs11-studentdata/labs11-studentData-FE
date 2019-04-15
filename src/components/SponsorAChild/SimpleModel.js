@@ -16,18 +16,15 @@ class SimpleModal extends React.Component {
   handleOpen = () => {
      
         this.setState({ open: true });
-        console.log('running')
 
   };
 
   handleClose = () => {
     this.setState({ open: false });
-    console.log('running')
   };
 
   render() {
     // const { classes } = this.props;
-    console.log(this.state)
     return (
       <div>
         <Typography gutterBottom>Click to get the full Modal experience!</Typography>

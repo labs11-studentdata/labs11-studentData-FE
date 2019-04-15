@@ -19,7 +19,6 @@ export const LoginReducer = (state = initialState, action) => {
         case LOGIN_USER: {
             localStorage.setItem('jwt', action.payload);
             const user = queryString.parse(action.payload);
-            if (user.user_permissions) console.log(user.user_permissions.replace(/\s/g, '').toLowerCase())
        
             return{
                 ...state,

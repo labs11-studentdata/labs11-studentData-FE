@@ -41,7 +41,6 @@ class AddStudent extends Component {
     e.preventDefault();
     axios.post(`${baseURL}/api/students`, this.state.student)
         .then(res => {
-          console.log(this.state.user_id)
           this.props.getAdminStudents(this.state.user_id)
           this.props.handleClose()
         })
@@ -56,7 +55,6 @@ class AddStudent extends Component {
         [e.target.name]: e.target.value
       }
     });
-    console.log(this.state)
   };
 
   fileSelectHandler = event => {
@@ -66,8 +64,6 @@ class AddStudent extends Component {
 
     const fd = new FormData();
     fd.append('userImage', selectedFile, selectedFile.name);
-
-    console.log(fd);
   
     axios.post(process.env.REACT_APP_BE_URL + '/api/uploads', fd)
         .then(response => {
