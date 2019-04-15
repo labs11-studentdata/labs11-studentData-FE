@@ -118,7 +118,7 @@ class SocialWorkerDashboard extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
+  // console.log(state);
 
   return {
     userID: state.login.user.user_id

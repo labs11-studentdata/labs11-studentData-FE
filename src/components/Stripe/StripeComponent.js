@@ -42,7 +42,7 @@ class StripeComponent extends Component {
       schoolID: this.state.student.schoolID,
       donation_total: Number(this.state.amount),
     }
-    console.log(donation);
+    // console.log(donation);
     this.setState(prevState => ({
       ...this.state,
       student: {

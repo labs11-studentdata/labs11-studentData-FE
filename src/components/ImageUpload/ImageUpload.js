@@ -10,7 +10,7 @@ export default class ImageUpload extends Component {
     }
 
     fileSelectHandler = event => {
-        console.log(event.target.files[0]);
+        // console.log(event.target.files[0]);
         this.setState({
             selectedFile: event.target.files[0]
         })
@@ -24,7 +24,7 @@ export default class ImageUpload extends Component {
 
         axios.post(process.env.REACT_APP_BE_URL + '/api/uploads', fd)
             .then(response => {
-                console.log("server response", response);
+                // console.log("server response", response);
 
                 this.setState({ photoURL: `${process.env.REACT_APP_BE_URL} + /${response.data}` });
 

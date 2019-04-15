@@ -58,7 +58,7 @@ class AddStudent extends Component {
   };
 
   fileSelectHandler = event => {
-    console.log(event.target.files[0]);
+    // console.log(event.target.files[0]);
     
     const selectedFile = event.target.files[0];
 
@@ -68,7 +68,7 @@ class AddStudent extends Component {
     axios.post(process.env.REACT_APP_BE_URL + '/api/uploads', fd)
         .then(response => {
   
-          console.log("server response", response);
+          // console.log("server response", response);
           this.setState({
             ...this.state, 
   
@@ -81,7 +81,7 @@ class AddStudent extends Component {
   
         })
         .catch(e => {
-        console.log("server error:", e.message);
+        // console.log("server error:", e.message);
       })
   }
 
