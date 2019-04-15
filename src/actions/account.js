@@ -5,12 +5,12 @@ export const UPDATE_ACCOUNT_FAIL = 'UPDATE_ACCOUNT_FAILURE';
 
 const baseURL = process.env.REACT_APP_BE_URL;
 export const updateAccount = (user_id, updates) => dispatch => {
-    console.log(updates)
-    console.log(user_id)
+    // console.log(updates)
+    // console.log(user_id)
     dispatch({ type: UPDATE_ACCOUNT_START });
     axios.put(`${baseURL}/api/users/${user_id}`, updates)
         .then(res => {
-            console.log(res)
+            // console.log(res)
             dispatch({ type: UPDATE_ACCOUNT_SUCCESS, payload: res.data.updatedUser })
             window.location.href = `${res.data.updatedUser.account_type.replace(/\s/g, '').toLowerCase()}dashboard`
         })
