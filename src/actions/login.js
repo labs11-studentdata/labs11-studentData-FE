@@ -15,7 +15,7 @@ export const loginUser = token => {
 }
 
 export const registerUser = token => {
-    const user_permissions = store.getState()
+    // const user_permissions = store.getState()
     // const user = user_permissions.login.user.user_permissions
     // const userID = store.getState().login.user.userID
     return {
