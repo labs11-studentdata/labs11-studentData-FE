@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import LoginView from '../login/LoginView';
 import axios from 'axios';
 import queryString from 'query-string';

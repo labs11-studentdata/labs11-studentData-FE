@@ -4,7 +4,7 @@ import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
-import { EditStudent } from '../components';
+// import { EditStudent } from '../components';
 import Button from '@material-ui/core/Button';
 
 //import { DeleteStudent } from '../components';
@@ -69,7 +69,7 @@ class StudentView extends Component {
 
             <Grid item>
               <img 
-                  alt={`Photo of ${this.state.student.first_name} ${this.state.student.last_name}`} 
+                  alt={`student ${this.state.student.first_name} ${this.state.student.last_name}`} 
                   src={`${this.state.student.photo_url}`} 
                   height='400' width='400'
               />

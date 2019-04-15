@@ -10,7 +10,7 @@ const styles = theme => ({
     flexWrap: 'wrap',
   },
   formControl: {
-    margin: theme.spacing.unit,
+    // margin: theme.spacing.unit,
     minWidth: 200,
     margin: '0 auto',
   },
@@ -20,10 +20,6 @@ const styles = theme => ({
 });
 
 class BoardSocialSchoolSelect extends React.Component {
-  constructor(props){
-    super(props);
-  }
-
 
   handleChange = event => {
     this.props.socialSchoolSelect(event.target.value);

@@ -189,7 +189,6 @@ class BoardView extends Component {
             <SponsorChildView />
           </Fragment>
         );
-        break;
 
       // Social visits view
       case "social":
@@ -207,7 +206,6 @@ class BoardView extends Component {
             />
           </Fragment>
         );
-        break;
 
       // Standard body view
       default:

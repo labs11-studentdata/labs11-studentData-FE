@@ -7,7 +7,7 @@ import { loginUser } from '../actions/login'
 import { connect } from 'react-redux';
 import {HeaderView} from '../views'
 import queryString from 'query-string';
-import {Route } from 'react-router-dom';
+// import {Route } from 'react-router-dom';
 const btns = ['Google']
 
 class LoginView extends Component {

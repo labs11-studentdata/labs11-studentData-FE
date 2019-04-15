@@ -4,11 +4,11 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-import Button from "@material-ui/core/Button";
-import EditChildModal from "../../components/StudentView/EditStudentModal";
+// import Paper from "@material-ui/core/Paper";
+// import Button from "@material-ui/core/Button";
+// import EditChildModal from "../../components/StudentView/EditStudentModal";
 import EditStudentModal from "../../components/StudentView/EditStudentModal";
-import moment from 'moment';
+// import moment from 'moment';
 function AdminChildComponent(props) {
   return (
     <div className="donation-list-container"style={{ textAlign: "center", overflowY: "scroll", height: "400px" }}>

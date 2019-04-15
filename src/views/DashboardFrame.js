@@ -1,7 +1,7 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { Paper, Grid, List, ListItem, ListItemText } from "@material-ui/core";
-import Divider from '@material-ui/core/Divider';
+// import Divider from '@material-ui/core/Divider';
 
 
 const styles = theme => ({
@@ -9,7 +9,7 @@ const styles = theme => ({
     flexGrow: 1,
     margin: '0 auto',
     marginTop: 16,
-    maxwidth: 1300,
+    maxWidth: 1300,
   },
   paper: {
     padding: theme.spacing.unit * 2,
