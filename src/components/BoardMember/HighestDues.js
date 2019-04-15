@@ -27,13 +27,13 @@ const styles = theme => ({
   },
 });
 
-function TabContainer(props) {
-  return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
-      {props.children}
-    </Typography>
-  );
-}
+// function TabContainer(props) {
+//   return (
+//     <Typography component="div" style={{ padding: 8 * 3 }}>
+//       {props.children}
+//     </Typography>
+//   );
+// }
 
 // TODO: Plug in donate button
 class StudentCard extends React.Component {
@@ -87,7 +87,7 @@ class StudentCard extends React.Component {
           {`${this.state.student.first_name} ${this.state.student.last_name}`}
         </Typography>
         <Typography className={this.props.classes.scDues}>
-          {`Amount due: \$${this.state.student.dues}`}
+          {`Amount due: $${this.state.student.dues}`}
         </Typography>
         <Button color='primary' variant="outlined" className={this.props.classes.sdButton} onClick={e => this.handleOpen(e)}>DONATE</Button>
       </Paper>
@@ -136,6 +136,8 @@ class ScrollableTabsButtonAuto extends React.Component {
           {top5.map((student, index) => {
             if(value === index){
               return <StudentCard student={student} classes={classes} userID={this.props.userID}/>
+            } else {
+              return
             }
           })}
 
