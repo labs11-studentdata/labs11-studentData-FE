@@ -13,7 +13,7 @@ export const getAdminStudents = user_id => dispatch => {
         axios.get(`${baseURL}/api/users/${user_id}/students`)
         
         .then(res => {
-            console.log(res)
+            // console.log(res)
             dispatch({ type: FETCHING_ADMIN_STUDENTS_SUCCESS, payload: res.data.students})
             
 
@@ -30,7 +30,7 @@ export const getSchoolVisits = school_id => dispatch => {
     dispatch({type: FETCHING_SCHOOL_VISITS_START})
         axios.get(`${baseURL}/api/social_worker_visits/school/${school_id}`)
             .then(res => {
-                console.log(res.data.schoolVisits)
+                // console.log(res.data.schoolVisits)
                 dispatch({type: FETCHING_SCHOOL_VISITS_SUCCESS, payload: res.data.schoolVisits})
             })
             .catch(error => dispatch({type: FETCHING_SCHOOL_VISITS_SUCCESS, payload: error}))
@@ -46,7 +46,7 @@ export const addStudent = student => dispatch => {
     dispatch({type: ADD_STUDENT_START})
         axios.post(`${baseURL}/api/students`, student)
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 dispatch({ type: ADD_STUDENT_SUCCESS, payload: res})
                 dispatch({ type: FETCHING_ADMIN_STUDENTS_SUCCESS, payload: res.data.students})
             })
