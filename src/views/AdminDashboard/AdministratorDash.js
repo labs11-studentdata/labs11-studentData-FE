@@ -26,10 +26,12 @@ const styles = theme => ({
 const visits = [];
 class AdministratorDash extends Component {
   state = {
+    searchInput: "",
     selected: 0,
     students: this.props.students,
     visits: this.props.visits.length > 5 ? this.props.visits.slice(0, 5) : this.props.visits,
     school: this.props.school,
+    filteredStudents: [],
     schoolDonations: [],
     links: [
       {
@@ -113,7 +115,7 @@ class AdministratorDash extends Component {
             <div className="headerLeft">
               <h3>Recent Social Worker Visits</h3>
               <div className="visitAdminContainer">
-                <VisitListBySchool visits={this.state.visits} />
+                <VisitListBySchool visits={this.state.visits}/>
               </div>
             </div>
   
@@ -148,7 +150,7 @@ class AdministratorDash extends Component {
     if(this.state.selected === 0) {
       return (
         <>
-          {this.state.students && <AdminSchoolListComp students={this.state.students} />}
+          {this.state.students && <AdminSchoolListComp  students={this.state.filteredStudents.length > 0 ? this.state.filteredStudents : this.state.students} />}
           
         </>
       );

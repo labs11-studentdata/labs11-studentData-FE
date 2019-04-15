@@ -11,44 +11,44 @@ import EditStudentModal from "../../components/StudentView/EditStudentModal";
 import moment from 'moment';
 function AdminChildComponent(props) {
   return (
-    <Paper className="donation-list-container">
-      <Table className="donation-list">
+    <div className="donation-list-container"style={{ textAlign: "center", overflowY: "scroll", height: "400px" }}>
+      <Table className="donation-list" >
         <TableHead>
           <TableRow>
-            <TableCell align="center">Student Name</TableCell>
-            <TableCell align="center">Age</TableCell>
-            <TableCell align="center">Grade</TableCell>
-            <TableCell align="center">Insurance /<br/> Birth Cert.</TableCell>
-            <TableCell align="center">Insurance Expiration</TableCell>
-            <TableCell align="center">Special Needs</TableCell>
+            <TableCell style={{padding: '0px 0px 0px 10px', width: '15%'}}>Student Name</TableCell>
+            <TableCell align='center' style={{padding: '0px', width: '5%'}}>Age</TableCell>
+            <TableCell align='center' style={{padding: '0px', width: '5%'}}>Grade</TableCell>
+            <TableCell align='center' style={{padding: '0px', width: '7.5%'}}>Insurance</TableCell>
+            <TableCell align='center' style={{padding: '0px', width: '7.5%'}}>Birth Cert</TableCell>
+            <TableCell align='center' style={{padding: '0px', width: '15%'}}>Insurance Expiration</TableCell>
+            <TableCell align='center' style={{padding: '0px', width: '10%'}}>Special Ed</TableCell>
 
-            <TableCell align="center">Dues</TableCell>
+            <TableCell align='center' style={{padding: '0px', width: '15%'}}>Dues</TableCell>
 
-            <TableCell align="center">Edit Student</TableCell>
+            <TableCell align='center' style={{padding: '0px', width: '10%'}}>Edit Student</TableCell>
           </TableRow>
         </TableHead>
 
         <TableBody
-          style={{ textAlign: "center", overflow: "auto", height: "250px" }}
+          
         >
           {props.students.map(student => {
             console.log(student)
             return (
               <TableRow>
-                <TableCell align="center">{`${student.first_name} ${
+                <TableCell style={{padding: '0px 0px 0px 10px', width: '15%'}}>{`${student.first_name} ${
                   student.last_name
                 }`}</TableCell>
-                <TableCell align="center">{student.age}</TableCell>
-                <TableCell align="center">{student.grade}</TableCell>
-                <TableCell align="center">{`${student.has_birthcert === 1 ? "Y" : "N"}/${
-                  student.has_insurance === 1 ? "Y" : "N"
-                }`}</TableCell>
-                  <TableCell align="center">{moment(student.insurance_expiration).format('l')}</TableCell>
+                <TableCell align='center' style={{padding: '0px', width: '5%'}}>{student.age}</TableCell>
+                <TableCell align='center' style={{padding: '0px', width: '5%'}}>{student.grade}</TableCell>
+                <TableCell align='center' style={{padding: '0px', width: '7.5%'}}>{`${student.has_insurance === 1 ? "Y" : "N"}`}</TableCell>
+                <TableCell align='center' style={{padding: '0px', width: '7.5%'}}>{`${student.has_birthcert === 1 ? "Y" : "N"}`}</TableCell>
+                  <TableCell align='center' style={{padding: '0px', width: '15%'}}>{student.insurance_expiration}</TableCell>
 
-                  <TableCell align="center">{student.special_needs === 1 ? "Y" : "N"}</TableCell>
+                  <TableCell align='center' style={{padding: '0px', width: '10%'}}>{student.special_needs === 1 ? "Y" : "N"}</TableCell>
                   
-                <TableCell align="center" style={{ color: "red" }}>{`$${student.dues}`}</TableCell>
-                <TableCell align="center">
+                <TableCell align='center' style={{ color: "red", padding: '0px', width: '10%' }}>${student.dues}</TableCell>
+                <TableCell align='center' style={{padding: '0px', width: '10%'}}>
                   <EditStudentModal student={student}/>
                 </TableCell>
               </TableRow>
@@ -56,7 +56,7 @@ function AdminChildComponent(props) {
           })}
         </TableBody>
       </Table>
-    </Paper>
+    </div>
   );
 }
 // function AdminChildComponent(props) {

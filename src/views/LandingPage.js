@@ -15,9 +15,41 @@ import Scott from '../imgs/Scott.png'
 
 
 import "../styles/LandingPage.css";
+import queryString from 'query-string';
 const baseURL = process.env.REACT_APP_FE_ROOT;
 
 class LandingPage extends React.Component {
+
+
+    componentDidMount() {
+      const query = this.props.history.location.pathname
+      console.log(query)
+      const parsed = queryString.parse(query)
+      console.log(parsed)
+      if(parsed.account_type === '') {
+          window.location.href = '/onboarding'
+      }
+      if(query.length > 30) {
+          this.props.loginUser(query);
+  
+      }
+  }
+
+  registerSubmit = e => {
+    e.preventDefault();
+    const text = e.target.textContent;
+    if (text.includes("Register") && window.location.href.includes('login')) {
+      this.props.regSelected();
+    } else if (text.includes('Register')) {
+      this.props.regSelected();
+      window.location.href='/login'
+    } else if(text.includes("Login") && window.location.href.includes('login')) {
+      this.props.logSelected();
+    } else {
+      this.props.logSelected();
+      window.location.href='/login'
+    }
+  };
   render() {
     return (
       <div className="landing-container">
@@ -146,4 +178,4 @@ class LandingPage extends React.Component {
   }
 }
 
-export default LandingPage;
+export default withRouter(connect(null, {regSelected, logSelected, loginUser})(LandingPage));

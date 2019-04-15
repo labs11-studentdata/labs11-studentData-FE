@@ -20,7 +20,18 @@ const styles = theme => ({
   table: {
     minWidth: 700,
   },
+  message: {
+    marginTop: 30,
+    marginBottom: 20,
+  },
 });
+
+const formatDate = date => {
+  let formatted = date.split('T')[0];
+  formatted = formatted.split('-');
+  formatted = `${formatted[1]}/${formatted[2]}/${formatted[0]}`;
+  return formatted;
+}
 
 const BoardSocial = props => {
   const {classes} = props;
@@ -28,7 +39,7 @@ const BoardSocial = props => {
   if(!props.schoolID){
     return(
       <Fragment>
-        <Typography variant="subtitle1">
+        <Typography className={classes.message} variant="h5">
           Please select a school to view social worker notes.
         </Typography>
       </Fragment>
@@ -36,7 +47,7 @@ const BoardSocial = props => {
   } else if (props.socialVisits.length === 0) {
     return(
       <Fragment>
-        <Typography variant="subtitle1">
+        <Typography className={classes.message} variant="h5">
           There are no social worker visits on record for the selected school.
         </Typography>
       </Fragment>
@@ -56,7 +67,7 @@ const BoardSocial = props => {
           <TableBody>
             {socialVisits.map(visit => (
               <TableRow key={visit.visitID}>
-                <TableCell>{visit.visit_date}</TableCell>
+                <TableCell>{formatDate(visit.visit_date)}</TableCell>
                 <TableCell>{visit.notes}</TableCell>
               </TableRow>
             ))}
