@@ -11,7 +11,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 
 import Button from '@material-ui/core/Button';
 
-import Paper from '@material-ui/core/Paper'
+// import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid';
 
 class EditStudent extends Component {
@@ -238,7 +238,7 @@ class EditStudent extends Component {
             }}          />
           </Grid>
 
-          <Grid  className='labelContainer' className='labelContainer' item>
+          <Grid  className='labelContainer' item>
             <InputLabel htmlFor="filled-special_needs-simple">Special Needs</InputLabel>
             <Select
                           variant="filled"
