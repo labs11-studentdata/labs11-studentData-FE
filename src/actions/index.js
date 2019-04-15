@@ -93,7 +93,7 @@ export const addDonation = donation => dispatch => {
 }
 
 export const makeDonation = (body, id, newAmt, donation) => dispatch => {
-  console.log(body);
+  // console.log(body);
   dispatch({type: PAYING});
   axios.post(`${baseURL}/api/stripe/`, body)
     .then(res => dispatch({type: PAID, payload: res.data}))
