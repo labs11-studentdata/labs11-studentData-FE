@@ -99,19 +99,19 @@ class LandingPage extends React.Component {
           <RoleCard 
             src={AdminIcon} 
             alt="School Administrator Icon" 
-            role="School Administrator" 
+            userRole="School Administrator" 
             description="School Administrators create or join schools to add and manage student files and classrooms, as well as viewing Social workers notes for their school" 
           />
           <RoleCard 
             src={SocialIcon} 
             alt="Social Worker Icon" 
-            role="Social Worker" 
+            userRole="Social Worker" 
             description="Social Workers create visit notes after visits to the schools using SchoolMe, they can also see the information of the students at each school and choose to sponser a student as well." 
           />
           <RoleCard 
           src={BoardIcon} 
           alt="Board Member Icon" 
-          role="Board Member"  
+          userRole="Board Member"  
           description="Board Members can see the information of the students at the schools using SchoolMe and choose to sponsor a student to help pay of some or all of their unpaid school dues for things like school lunches, medication, and clothing costs"
         />
         </div>
