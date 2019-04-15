@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Paper from '@material-ui/core/Paper';
-import Input from '@material-ui/core/Input';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import FilledInput from '@material-ui/core/FilledInput';
+// import Paper from '@material-ui/core/Paper';
+// import Input from '@material-ui/core/Input';
+// import OutlinedInput from '@material-ui/core/OutlinedInput';
+// import FilledInput from '@material-ui/core/FilledInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
+// import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
@@ -48,7 +48,6 @@ class SchoolSelect extends Component {
   handleChange = name => e => {
     e.preventDefault();
     this.setState({ [name]: e.target.value });
-    console.log('pow');
   };
 
 

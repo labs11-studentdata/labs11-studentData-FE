@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import LoginView from '../login/LoginView';
 import axios from 'axios';
 import queryString from 'query-string';
@@ -22,7 +22,6 @@ const Authenticated = Component =>
   class extends Component {
     componentDidMount() {
       const parsed = queryString.parse(window.location.href)
-      console.log(parsed)
       if(parsed.account_type) {
         window.location.href = `${parsed.account_type.replace(/\s/g, '').toLowerCase()}dashboard`
       } 

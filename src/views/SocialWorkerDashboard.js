@@ -3,8 +3,8 @@ import axios from 'axios';
 
 import { connect } from 'react-redux';
 
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+// import Grid from '@material-ui/core/Grid';
+// import Typography from '@material-ui/core/Typography';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -46,12 +46,10 @@ class SocialWorkerDashboard extends Component {
       //setting this manually for demonstration purposes
       const id = 3;
 
-      console.log("user props:", this.props);
       
       axios.get(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits/user/${id}`)
         .then(res => {
 
-          console.log(res.data);
 
           this.setState({
             visits: res.data
@@ -120,7 +118,7 @@ class SocialWorkerDashboard extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
+  // console.log(state);
 
   return {
     userID: state.login.user.user_id

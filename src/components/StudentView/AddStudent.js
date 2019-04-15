@@ -1,18 +1,18 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import Paper from "@material-ui/core/Paper";
+// import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import { connect } from "react-redux";
 import { addStudent, getAdminStudents } from "../../actions/admin";
-import DropDownMenu from "@material-ui/core/MenuList";
+// import DropDownMenu from "@material-ui/core/MenuList";
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import FilledInput from '@material-ui/core/FilledInput';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import Input from '@material-ui/core/Input';
+// import Input from '@material-ui/core/Input';
 
 import axios from 'axios';
 class AddStudent extends Component {
@@ -41,7 +41,6 @@ class AddStudent extends Component {
     e.preventDefault();
     axios.post(`${baseURL}/api/students`, this.state.student)
         .then(res => {
-          console.log(this.state.user_id)
           this.props.getAdminStudents(this.state.user_id)
           this.props.handleClose()
         })
@@ -56,23 +55,20 @@ class AddStudent extends Component {
         [e.target.name]: e.target.value
       }
     });
-    console.log(this.state)
   };
 
   fileSelectHandler = event => {
-    console.log(event.target.files[0]);
+    // console.log(event.target.files[0]);
     
     const selectedFile = event.target.files[0];
 
     const fd = new FormData();
     fd.append('userImage', selectedFile, selectedFile.name);
-
-    console.log(fd);
   
     axios.post(process.env.REACT_APP_BE_URL + '/api/uploads', fd)
         .then(response => {
   
-          console.log("server response", response);
+          // console.log("server response", response);
           this.setState({
             ...this.state, 
   
@@ -85,7 +81,7 @@ class AddStudent extends Component {
   
         })
         .catch(e => {
-        console.log("server error:", e.message);
+        // console.log("server error:", e.message);
       })
   }
 
@@ -223,7 +219,7 @@ class AddStudent extends Component {
             /> */}
 
             <input type="file" name="userImage" onChange={this.fileSelectHandler}/>
-            
+            {this.state.student.photo_url && <img  style={{height: "100px", width: "100px"}} src={this.state.student.photo_url} />}
             {/*<button onClick={this.fileUploadHandler}>Upload</button>*/}
           </Grid>
 
@@ -311,7 +307,7 @@ class AddStudent extends Component {
             }}          />
           </Grid>
 
-          <Grid  className='labelContainer' className='labelContainer' item>
+          <Grid  className='labelContainer' item>
             <InputLabel htmlFor="filled-special_needs-simple">Special Needs</InputLabel>
             <Select
                           variant="filled"

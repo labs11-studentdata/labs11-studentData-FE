@@ -35,7 +35,7 @@ const formatDate = date => {
 
 const BoardSocial = props => {
   const {classes} = props;
-  console.log("BOARD SOCIAL PROPS", props);
+  // console.log("BOARD SOCIAL PROPS", props);
   if(!props.schoolID){
     return(
       <Fragment>
@@ -54,7 +54,7 @@ const BoardSocial = props => {
     )
   } else {
     const socialVisits = props.socialVisits;
-    console.log("SOCIAL VISITS", socialVisits);
+    // console.log("SOCIAL VISITS", socialVisits);
     return(
       <Fragment>
         <Table className={classes.table}>

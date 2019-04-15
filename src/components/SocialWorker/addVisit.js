@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -45,7 +45,7 @@ class AddVisit extends React.Component {
         schoolID: this.state.schoolID,
         userID: this.props.userID
       }
-      console.log(visit)
+    //   console.log(visit)
       if (!visit.visit_date || !visit.notes || !visit.schoolID) {
           this.setState({warningText: "Please Makes sure all fields are filled out"})
       } else {
@@ -56,7 +56,7 @@ class AddVisit extends React.Component {
   handleChange = name => e => {
     e.preventDefault();
     this.setState({ [name]: e.target.value });
-    console.log('pow');
+    // console.log('pow');
   };
 
     render() {

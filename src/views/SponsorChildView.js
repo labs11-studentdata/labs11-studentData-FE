@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import axios from 'axios';
+// import axios from 'axios';
 import { SponsorChildComponent } from '../components';
 import { getStudents } from "../actions/index";
 
@@ -42,7 +42,7 @@ class SponsorChildView extends Component {
     };
 
     render() {
-      console.log(this.state)
+      // console.log(this.state)
         return (
           <>
             <SponsorChildComponent
