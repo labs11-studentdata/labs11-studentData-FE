@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Authenticated from './auth/requiresAuth';
 import { Route } from 'react-router-dom';
-import {  HeaderView, SponsorChildView, BoardView, StudentView, SocialWorkerDashboard, LandingPage, Visits } from './views';
-// import LoginView from './login/LoginView';
+import {  HeaderView, SponsorChildView, BoardView, StudentView, AdminDashboard, SocialWorkerDashboard, LandingPage, Visits, MyAccountView } from './views';
+import LoginView from './login/LoginView';
 import { OnboardingView, AddStudent } from './components';
 import AdministratorDash from './views/AdminDashboard/AdministratorDash';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -26,7 +26,7 @@ class App extends Component {
         <Route path='/admindashboard' component={AdministratorDash} />
         <Route path='/visits' component={Visits} />
         <Route path='/home' component={LandingPage} />
-
+        <Route path='/myaccount' component={MyAccountView} />
         <Route path='/upload' component={ImageUpload} />
 
       </div>

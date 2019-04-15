@@ -69,3 +69,10 @@
 #editStudent {
     margin: 10px;
 }
+
+.formImgContainer {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
