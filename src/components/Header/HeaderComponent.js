@@ -23,7 +23,7 @@ const styles = {
   },
   container: {
     width: '100%',
-    maxwidth: 1300,
+    maxWidth: 1300,
     display: 'flex',
     justifyContent: 'space-between',
     margin: '0 auto'
