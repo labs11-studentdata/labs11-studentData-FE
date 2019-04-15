@@ -45,7 +45,7 @@ export default class ImageUpload extends Component {
 
                 <input type="file" name="userImage" onChange={this.fileSelectHandler}/>
                 <button onClick={this.fileUploadHandler}>Upload</button>
-                <img src={process.env.REACT_APP_BE_URL + `/${this.state.photoURL}`}/>
+                <img src={process.env.REACT_APP_BE_URL + `/${this.state.photoURL}`} alt="uploaded picture"/>
 
             </div>
 
