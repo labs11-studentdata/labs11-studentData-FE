@@ -4,6 +4,8 @@ import TextField from '@material-ui/core/TextField';
 import {connect} from 'react-redux';
 import {makeDonation, updateStudent} from '../../actions/index';
 import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Icon from '@material-ui/core/Icon';
 
 
 
@@ -18,7 +20,7 @@ class StripeComponent extends Component {
       student: this.props.student,
       username: 'get from state later',
       buttonText: 'Send Donation',
-      success: null,
+      loading: false,
     };
   }
 
@@ -32,6 +34,23 @@ class StripeComponent extends Component {
   //     }
   //   )}
   // }
+
+  statusCheck = () => {
+    if(this.props.paying === true || this.props.updatingStudent === true){
+      this.setState({
+        ...this.state,
+        loading: true,
+        complete: false,
+      }) 
+    }
+    else if (this.props.paid === true && this.props.updatedStudent === true){
+      this.setState({
+        ...this.state,
+        loading: false,
+        complete: true
+      }) 
+    }
+  }
 
   handleSubmit = async (e) => {
     e.preventDefault();
@@ -50,15 +69,35 @@ class StripeComponent extends Component {
         dues: updatedDonation
       }
     }));
+    //couldn't get the timeouts to work unless I added intermediate functions here
+    const delayDues = () => this.props.updateDues(this.state.student, this.props.paid);
+    const delayClose = () => this.props.handleClose();
+    const delayCheck = () => this.statusCheck();
     let token = await this.props.stripe.createToken({name: this.state.username});
-    await this.props.makeDonation(
-      {token: token.token, amount: Number(this.state.amount)},
-      this.state.student.studentID,
-      this.state.student,
-      donation
-    );
-    await this.props.updateDues(this.state.student);
-    await this.props.handleClose();
+    try {
+      await this.props.makeDonation(
+        {token: token.token, amount: Number(this.state.amount)},
+        this.state.student.studentID,
+        this.state.student,
+        donation
+      );
+      setTimeout(function(){delayCheck()}, 50);
+      setTimeout(function(){delayCheck()}, 2900);
+      setTimeout(function(){delayDues()}, 3000);
+      setTimeout(function(){delayClose()}, 4000);
+    }
+    catch(err){
+      console.log(this.err)
+    }
+  }
+
+  statusIcon = () => {
+    if (this.state.loading === true){
+      return <CircularProgress />
+    }
+    else if (this.state.complete === true){
+      return <Icon>check_circle_complete</Icon>
+    }
   }
 
 
@@ -75,6 +114,7 @@ class StripeComponent extends Component {
             <div style={{display: 'flex', justifyContent: 'center', minWidth: '100%', padding: '0px 20px 0px 0px'}}><h3>Sponsoring {this.state.student.first_name}</h3></div>
             {/* <img src={this.state.student.photo_url} /> */}
             <Button color='primary' variant='outlined' style={{padding: '5px 15px', minWidth: '20px', color: 'red', margin: '10px'}} onClick={this.props.handleClose}>X</Button>
+            <div>{this.statusIcon}</div>
           </div>
           <TextField
             required
@@ -90,7 +130,14 @@ class StripeComponent extends Component {
           <CardExpiryElement/>
           <p>CVC Number</p>
           <CardCVCElement />
-          <Button type='submit' color='primary' variant="outlined" onClick={this.handleSubmit} style={{marginTop: '10px'}}>{this.state.buttonText}</Button>
+          <Button type='submit' color='primary' variant="outlined" onClick={this.handleSubmit} style={{marginTop: '10px'}}>
+            {
+              this.state.loading ? <CircularProgress size={24}/> :
+              this.state.complete ? <Icon>check_circle_complete</Icon> :
+              this.state.buttonText
+            }
+          </Button>
+          
         </div>
       );
   }
