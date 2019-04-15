@@ -21,7 +21,6 @@ export default class ImageUpload extends Component {
         const fd = new FormData();
 
         fd.append('userImage', this.state.selectedFile, this.state.selectedFile.name);
-        // console.log(fd);
 
         axios.post(process.env.REACT_APP_BE_URL + '/api/uploads', fd)
             .then(response => {

@@ -46,12 +46,10 @@ class SocialWorkerDashboard extends Component {
       //setting this manually for demonstration purposes
       const id = 3;
 
-      // console.log("user props:", this.props);
       
       axios.get(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits/user/${id}`)
         .then(res => {
 
-          // console.log(res.data);
 
           this.setState({
             visits: res.data

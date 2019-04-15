@@ -27,9 +27,7 @@ class LandingPage extends React.Component {
 
     componentDidMount() {
       const query = this.props.history.location.pathname
-      // console.log(query)
       const parsed = queryString.parse(query)
-      // console.log(parsed)
       if(parsed.account_type === '') {
           window.location.href = '/onboarding'
       }

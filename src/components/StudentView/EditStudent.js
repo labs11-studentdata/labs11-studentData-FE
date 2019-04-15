@@ -45,6 +45,34 @@ class EditStudent extends Component {
         this.props.handleClose()
     }
 
+    fileSelectHandler = event => {
+      console.log(event.target.files[0]);
+      
+      const selectedFile = event.target.files[0];
+  
+      const fd = new FormData();
+      fd.append('userImage', selectedFile, selectedFile.name);
+    
+      axios.post(process.env.REACT_APP_BE_URL + '/api/uploads', fd)
+          .then(response => {
+    
+            console.log("server response", response);
+            this.setState({
+              ...this.state, 
+    
+              student: {
+                ...this.state.student,
+                photo_url: `${process.env.REACT_APP_BE_URL}/${response.data}` 
+              }
+            
+            });
+    
+          })
+          .catch(e => {
+          console.log("server error:", e.message);
+        })
+    }
+
     handleInputChange = event => {
       let name = event.target.name;
       let value = event.target.value;
@@ -149,7 +177,7 @@ class EditStudent extends Component {
             </Select>
           </Grid>
 
-                <Grid item>
+                {/* <Grid item>
                   <TextField
                     id="filled-name"
                     label="Photo URL"
@@ -161,8 +189,12 @@ class EditStudent extends Component {
 
                     margin="normal"
                     variant="filled"
-                  />
-                </Grid>
+                  /> */}
+                  <div className='formImgContainer'>
+                    <input type="file"  name="userImage" onChange={this.fileSelectHandler}/>
+                    {this.state.student.photo_url && <img  style={{height: "100px", width: "100px"}} src={this.state.student.photo_url} />}
+                  </div>
+                {/* </Grid> */}
 
                 <Grid className='labelContainer' item>
             <InputLabel variant="filled" htmlFor="filled-enrollment_status-simple">Enrollment Status</InputLabel>

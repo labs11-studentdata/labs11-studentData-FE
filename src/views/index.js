@@ -8,3 +8,4 @@ export { default as Visits } from './Visits';
 export { default as SocialWorkerDashboard } from './SocialWorkerDashboard';
 export { default as AdministratorDash } from './AdminDashboard/AdministratorDash';
 export { default as LandingPage } from './LandingPage';
+export { default as MyAccountView } from './MyAccount/MyAccountView';

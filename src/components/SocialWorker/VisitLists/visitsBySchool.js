@@ -8,7 +8,6 @@ import Paper from '@material-ui/core/Paper';
 import moment from 'moment';
 
 const VisitListBySchool = props => {
-  // console.log(props)
   return(
     <Paper className='visit-list-container'>
       <Table className='visit-list'>

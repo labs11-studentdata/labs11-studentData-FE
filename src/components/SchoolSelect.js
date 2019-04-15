@@ -48,7 +48,6 @@ class SchoolSelect extends Component {
   handleChange = name => e => {
     e.preventDefault();
     this.setState({ [name]: e.target.value });
-    // console.log('pow');
   };
 
 

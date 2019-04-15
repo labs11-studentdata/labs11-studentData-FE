@@ -45,7 +45,6 @@ function DashContainer(props) {
   if (props.footer) {
     Footer = props.footer;
   }
-  // console.log("DashContainer props", props);
 
   return (
     <div className={classes.root}>
