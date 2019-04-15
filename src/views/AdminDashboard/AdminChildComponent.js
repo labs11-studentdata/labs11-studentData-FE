@@ -33,7 +33,7 @@ function AdminChildComponent(props) {
           
         >
           {props.students.map(student => {
-            console.log(student)
+            // console.log(student)
             return (
               <TableRow>
                 <TableCell style={{padding: '0px 0px 0px 10px', width: '15%'}}>{`${student.first_name} ${
