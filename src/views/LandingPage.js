@@ -1,4 +1,9 @@
 import React from "react";
+
+import { connect } from 'react-redux';
+import { regSelected, logSelected, loginUser } from '../actions/login';
+import { withRouter } from 'react-router';
+
 import PromoCard from "../components/LandingPage/PromoCard";
 import RoleCard from "../components/LandingPage/RoleCard";
 import Button from '@material-ui/core/Button';
@@ -12,7 +17,6 @@ import Kevin from '../imgs/Kevin.png'
 import Leianne from '../imgs/Leianne.png'
 import Padraic from '../imgs/Padraic.png'
 import Scott from '../imgs/Scott.png'
-
 
 import "../styles/LandingPage.css";
 import queryString from 'query-string';
