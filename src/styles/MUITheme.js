@@ -16,7 +16,10 @@ const theme = createMuiTheme({
             paper: "#eee",
             default: "#ddd",
         }
-      },
+    },
+    typography: {
+        useNextVariants: true,
+    },
 });
 
 export default theme;
