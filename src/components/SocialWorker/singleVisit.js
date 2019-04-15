@@ -12,16 +12,16 @@ const SingleVisit = props => {
     return (
         <Card>
             <CardContent>
-                <div className="visit-header">
-                    <Typography color="textSecondary" gutterBottom>
-                        {props.visit.visit_date}
+                <div className="visit-header single-visit-header">
+                    <Typography className="date" color="textSecondary" gutterBottom>
+                        Visit Date: {props.visit.visit_date}
                     </Typography>
-                    <Typography color="textSecondary" gutterBottom>
-                        {props.visit.school}
+                    <Typography className="school" color="textSecondary" gutterBottom>
+                        School: {props.visit.school_name}
                     </Typography>
                 </div>
                 <div className="visit-body">
-                    <Typography color="textSecondary" gutterBottom>
+                    <Typography className="text" color="textSecondary" gutterBottom>
                         {props.visit.notes}
                     </Typography>
                 </div>

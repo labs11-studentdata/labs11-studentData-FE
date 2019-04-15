@@ -19,7 +19,9 @@ class DeleteVisitButton extends React.Component {
   }
   
   deleteVisit = e => {
-    const id = this.props.visit.id
+    const id = this.props.visit.visitID
+
+    console.log(id)
 
     axios.delete(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits/${id}`)
         .then(res => {
