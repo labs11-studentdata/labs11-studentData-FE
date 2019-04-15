@@ -7,9 +7,6 @@ import { withRouter } from 'react-router';
 import PromoCard from "../components/LandingPage/PromoCard";
 import RoleCard from "../components/LandingPage/RoleCard";
 import Button from '@material-ui/core/Button';
-import { connect } from 'react-redux';
-import { regSelected, logSelected, loginUser } from '../actions/login';
-import { withRouter } from 'react-router';
 
 
 import SocialIcon from '../imgs/social-worker-icon.png';

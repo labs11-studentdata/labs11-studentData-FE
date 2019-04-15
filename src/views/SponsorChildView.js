@@ -64,7 +64,7 @@ const mapStateToProps = state => {
     fetched: state.students.fetched,
     students: state.students.students,
     error: state.students.error,
-    userID: state.login.user.user_id
+    userID: state.login.user.userID
   }
 }
 
