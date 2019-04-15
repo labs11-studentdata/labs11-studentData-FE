@@ -95,26 +95,28 @@ class LandingPage extends React.Component {
           </p>
         </div>
         <div className="landing-content roles">
-          <h3>Roles</h3>
-          <RoleCard 
-            src={AdminIcon} 
-            alt="School Administrator Icon" 
-            role="School Administrator" 
-            description="School Administrators create or join schools to add and manage student files and classrooms, as well as viewing Social workers notes for their school" 
-          />
-          <RoleCard 
-            src={SocialIcon} 
-            alt="Social Worker Icon" 
-            role="Social Worker" 
-            description="Social Workers create visit notes after visits to the schools using SchoolMe, they can also see the information of the students at each school and choose to sponser a student as well." 
-          />
-          <RoleCard 
-          src={BoardIcon} 
-          alt="Board Member Icon" 
-          role="Board Member"  
-          description="Board Members can see the information of the students at the schools using SchoolMe and choose to sponsor a student to help pay of some or all of their unpaid school dues for things like school lunches, medication, and clothing costs"
-        />
+          <h3 className="header">Roles</h3>
+          <div className="role-cards">
+            <RoleCard 
+              src={AdminIcon} 
+              alt="School Administrator Icon" 
+              role="School Administrator" 
+              description="School Administrators create or join schools to add and manage student files and classrooms, as well as viewing Social workers notes for their school" 
+            />
+            <RoleCard 
+              src={SocialIcon} 
+              alt="Social Worker Icon" 
+              role="Social Worker" 
+              description="Social Workers create visit notes after visits to the schools using SchoolMe, they can also see the information of the students at each school and choose to sponser a student as well." 
+            />
+            <RoleCard 
+              src={BoardIcon} 
+              alt="Board Member Icon" 
+              role="Board Member"  
+              description="Board Members can see the information of the students at the schools using SchoolMe and choose to sponsor a student to help pay of some or all of their unpaid school dues for things like school lunches, medication, and clothing costs"
+            />
         </div>
+          </div>
         <div className="landing-content cta">
           <h3>Ready to get started?</h3>
           <p>
@@ -146,36 +148,41 @@ class LandingPage extends React.Component {
               src={Josh}
               name="Josh Tietz"
               gh="TwistedKidd22"
-              li="JoshTietz"
+              ghLink="https://github.com/Twistedkidd22"
+              liLink="https://www.linkedin.com/in/josh-tietz/"
             />
             <PromoCard
               src={Kevin}
               name="Kevin Brack"
-              gh=""
-              li=""
+              gh="KevinBrack"
+              ghLink="https://github.com/KevinBrack"
+              liLink="https://www.linkedin.com/in/kevin-brack-273a25a0/"
             />
             <PromoCard
               src={Leianne}
               name="Leianne Louis"
-              gh=""
-              li=""
+              gh="Leianne"
+              ghLink="https://github.com/leianne"
+              liLink="https://www.linkedin.com/in/leiannelouis/"
             />
             <PromoCard
               src={Padraic}
               name="Padaic Gillespie"
-              gh=""
-              li=""
+              gh="Spinon187"
+              ghLink="https://github.com/spinon187"
+              liLink="https://www.linkedin.com/in/padraic-gillespie/"
             />
             <PromoCard
               src={Scott}
               name="Scott Bren"
-              gh=""
-              li=""
+              gh="Smbren"
+              ghLink="https://github.com/smbren"
+              liLink="https://www.linkedin.com/in/scottbren/"
             />
           </div>
         </div>
         <div className="footer">
-          <span>© 2019 Lambda School Student Data</span>
+          <span> © 2019 SchoolMe </span>
         </div>
       </div>
     );
