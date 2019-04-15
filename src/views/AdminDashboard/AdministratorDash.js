@@ -12,18 +12,14 @@ import Divider from '@material-ui/core/Divider';
 import axios from "axios";
 import AdminDonationList from './AdminDonationList';
 import "./AdminDashboard.css";
-import { Stats } from "fs";
+// import { Stats } from "fs";
 
 // Setting up route links object for left side navigation 
 
-const styles = theme => ({
-  root: {
-    ...theme.mixins.gutters(),
-    paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2
-  }
-});
-const visits = [];
+// visits is not used at this point
+// commenting for now
+// const visits = [];
+
 class AdministratorDash extends Component {
   state = {
     searchInput: "",

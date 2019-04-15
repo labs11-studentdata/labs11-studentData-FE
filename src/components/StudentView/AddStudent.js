@@ -1,18 +1,18 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import Paper from "@material-ui/core/Paper";
+// import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import { connect } from "react-redux";
 import { addStudent, getAdminStudents } from "../../actions/admin";
-import DropDownMenu from "@material-ui/core/MenuList";
+// import DropDownMenu from "@material-ui/core/MenuList";
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import FilledInput from '@material-ui/core/FilledInput';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import Input from '@material-ui/core/Input';
+// import Input from '@material-ui/core/Input';
 
 import axios from 'axios';
 class AddStudent extends Component {
@@ -311,7 +311,7 @@ class AddStudent extends Component {
             }}          />
           </Grid>
 
-          <Grid  className='labelContainer' className='labelContainer' item>
+          <Grid  className='labelContainer' item>
             <InputLabel htmlFor="filled-special_needs-simple">Special Needs</InputLabel>
             <Select
                           variant="filled"
