@@ -311,7 +311,7 @@ class AddStudent extends Component {
             }}          />
           </Grid>
 
-          <Grid  className='labelContainer' className='labelContainer' item>
+          <Grid  className='labelContainer' item>
             <InputLabel htmlFor="filled-special_needs-simple">Special Needs</InputLabel>
             <Select
                           variant="filled"
