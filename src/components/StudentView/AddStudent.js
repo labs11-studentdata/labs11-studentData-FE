@@ -41,7 +41,7 @@ class AddStudent extends Component {
     e.preventDefault();
     axios.post(`${baseURL}/api/students`, this.state.student)
         .then(res => {
-          console.log(this.state.user_id)
+          // console.log(this.state.user_id)
           this.props.getAdminStudents(this.state.user_id)
           this.props.handleClose()
         })
@@ -56,23 +56,23 @@ class AddStudent extends Component {
         [e.target.name]: e.target.value
       }
     });
-    console.log(this.state)
+    // console.log(this.state)
   };
 
   fileSelectHandler = event => {
-    console.log(event.target.files[0]);
+    // console.log(event.target.files[0]);
     
     const selectedFile = event.target.files[0];
 
     const fd = new FormData();
     fd.append('userImage', selectedFile, selectedFile.name);
 
-    console.log(fd);
+    // console.log(fd);
   
     axios.post(process.env.REACT_APP_BE_URL + '/api/uploads', fd)
         .then(response => {
   
-          console.log("server response", response);
+          // console.log("server response", response);
           this.setState({
             ...this.state, 
   
@@ -85,7 +85,7 @@ class AddStudent extends Component {
   
         })
         .catch(e => {
-        console.log("server error:", e.message);
+        // console.log("server error:", e.message);
       })
   }
 
