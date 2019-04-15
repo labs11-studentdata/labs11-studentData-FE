@@ -40,7 +40,7 @@ class EditStudent extends Component {
             this.props.getAdminStudents(this.props.adminID)
         })
         .catch(e => {
-          console.log("server error:", e.message);
+          // console.log("server error:", e.message);
         })
         this.props.handleClose()
     }
@@ -49,7 +49,7 @@ class EditStudent extends Component {
       let name = event.target.name;
       let value = event.target.value;
 
-      console.log(value);
+      // console.log(value);
 
       this.setState({
 
@@ -61,8 +61,8 @@ class EditStudent extends Component {
  
     render() {
   
-      console.log(this.state)
-      console.log("props", this.props);
+      // console.log(this.state)
+      // console.log("props", this.props);
         return (
            
 
@@ -306,7 +306,7 @@ class EditStudent extends Component {
     }
 }
 const mapStateToProps = state => {
-  console.log(state)
+  // console.log(state)
   return {
     adminID: state.login.user.user_id
   }
