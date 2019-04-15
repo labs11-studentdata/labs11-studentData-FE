@@ -158,7 +158,7 @@ class CustomizedStepper extends React.Component {
   };
 
   handleShowForm = (e) => {
-    console.log(e.target.textContent)
+    // console.log(e.target.textContent)
     const btn = e.target.textContent;
     if(btn.includes('Create')){
       this.setState({
@@ -173,7 +173,7 @@ class CustomizedStepper extends React.Component {
         showList: "block"
       })
     }
-    console.log(this.state)
+    // console.log(this.state)
   }
   finishedSelected = e => {
     e.preventDefault();
@@ -194,7 +194,7 @@ class CustomizedStepper extends React.Component {
         userID: this.props.userID
       }
     });
-    console.log(this.props.userID);
+    // console.log(this.props.userID);
     this.props.updateAccount(this.props.userID, this.state.user);
   };
   // ADD A SCHOOL -- If user does not see name of school
@@ -204,7 +204,7 @@ class CustomizedStepper extends React.Component {
     axios
       .post(`${process.env.REACT_APP_BE_URL}/api/schools/`, school)
       .then(res => {
-        console.log(res);
+        // console.log(res);
         this.setState({
           ...this.state,
           user: {
@@ -225,7 +225,7 @@ class CustomizedStepper extends React.Component {
   };
 
   schoolSelected = (e, schoolID) => {
-    console.log(e.target.textContent);
+    // console.log(e.target.textContent);
 
     this.setState({
       ...this.state,
@@ -240,11 +240,11 @@ class CustomizedStepper extends React.Component {
       }
     });
     this.props.updateLoginInfo(schoolID);
-    console.log(this.state);
+    // console.log(this.state);
   };
   // Image Upload Handler
   fileSelectHandler = event => {
-    console.log(event.target.files[0]);
+    // console.log(event.target.files[0]);
     this.setState({
       ...this.state,
       selectedFile: event.target.files[0]
@@ -264,7 +264,7 @@ class CustomizedStepper extends React.Component {
       axios
         .post(process.env.REACT_APP_BE_URL + "/api/uploads", fd)
         .then(response => {
-          console.log("server response", response);
+          // console.log("server response", response);
           this.setState({
             ...this.state,
   
@@ -276,7 +276,7 @@ class CustomizedStepper extends React.Component {
           this.handleShowSnackbar();
         })
         .catch(e => {
-          console.log("server error:", e.message);
+          // console.log("server error:", e.message);
         });
     } else {
       alert('please select a photo and upload')
@@ -292,7 +292,7 @@ class CustomizedStepper extends React.Component {
 
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     const { classes } = this.props;
     const { activeStep } = this.state;
     const steps = getSteps();
@@ -437,7 +437,7 @@ class CustomizedStepper extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
+  // console.log(state);
   return {
     userID: state.login.user.user_id
   };
