@@ -64,13 +64,13 @@ class AdministratorDash extends Component {
     ]
   }
   componentWillReceiveProps() {
+
     this.setState({
       ...this.state,
       students: this.props.students
     })
   }
   componentWillUpdate() {
-
   }
   componentDidMount() {
     const user_id = this.props.user_id;
@@ -81,16 +81,20 @@ class AdministratorDash extends Component {
         this.setState({
         ...this.state,
         school: res.data
+      })  
+        console.log('first')  
       })
-      this.props.getAdminStudents(user_id);
-      this.props.getSchoolVisits(school_id);    
-    })
+      .then(() => {
+        console.log('second')
+        this.props.getAdminStudents(user_id);
+        this.props.getSchoolVisits(school_id);
+      })
       .catch(err => console.log(err))
     // Get School Donations
       axios.get(`${baseURL}/api/donations/school/${school_id}`)
         .then(res => {
+          console.log(res)
           this.setState({
-          
           ...this.state,
           schoolDonations: res.data.schoolDonations
         })})
@@ -121,7 +125,7 @@ class AdministratorDash extends Component {
   
             <div className="headerRight">
               <AddStudentModal user_id={this.props.user_id} school={this.state.school} />
-              {this.state.students && <AdminStudentCount students={this.state.students} />}
+              {this.props.students && <AdminStudentCount students={this.props.students} />}
               
             </div>
           </div>
@@ -133,8 +137,8 @@ class AdministratorDash extends Component {
         <>
           <h1>Students</h1>
           <div className='adminStudentBtn'>
-          <AddStudentModal />
-          {this.state.students && <AdminStudentCount students={this.state.students} />}
+          <AddStudentModal user_id={this.props.user_id} school={this.state.school}/>
+          {this.props.students && <AdminStudentCount students={this.props.students} />}
 
           </div>
      
@@ -150,7 +154,7 @@ class AdministratorDash extends Component {
     if(this.state.selected === 0) {
       return (
         <>
-          {this.state.students && <AdminSchoolListComp  students={this.state.filteredStudents.length > 0 ? this.state.filteredStudents : this.state.students} />}
+          {this.state.students && <AdminSchoolListComp  students={this.state.filteredStudents.length > 0 ? this.state.filteredStudents : this.props.students} />}
           
         </>
       );
@@ -169,6 +173,8 @@ class AdministratorDash extends Component {
   };
 
   render() {
+    console.log('heyy')
+
     return (
       <>
         <DashboardFrame links={this.state.links} header={this.Header} body={this.Body} />
@@ -178,7 +184,8 @@ class AdministratorDash extends Component {
 }
 
 const mapStateToProps = state => {
-
+  console.log('hey')
+  console.log(state.admin.students)
   const arr = []
   return {
     user_id: state.login.user.user_id,
