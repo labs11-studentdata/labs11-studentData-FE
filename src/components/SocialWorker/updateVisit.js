@@ -10,13 +10,13 @@ class UpdateVisit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: "",
+      visit_date: "",
       notes: ""
     };
   }
   
   componentDidMount() {
-    this.setState({date: this.props.visit.visit_date, notes: this.props.visit.notes})
+    this.setState({visit_date: this.props.visit.visit_date, notes: this.props.visit.notes})
   }
 
   eHandler = e => {
@@ -25,19 +25,21 @@ class UpdateVisit extends React.Component {
 
 
   submitForm = e => {
-    const id = this.props.visit.id;
+    const id = this.props.visit.visitID;
     
-    let visit = this.props.visit;
-    visit.visit_date = this.state.date;
-    visit.notes = this.state.notes;
+    let changes = this.state
 
-    axios.put(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits/${id}`, { visit })
+    console.log(changes)
+
+    axios.put(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits/${id}`, changes)
       .then(res => {
           console.log(res.data)
       })
       .catch(err => {
           console.log(err.message)
       })
+
+      this.props.cancelEdit()
   }
 
   render() {
@@ -47,20 +49,22 @@ class UpdateVisit extends React.Component {
             <CardContent>
                 <div className="visit-header">
                     <TextField
+                      className="date"
                       id="standard-with-placeholder"
-                      label="Edit Date"
-                      name="date"
+                      label="Visit Date"
+                      name="visit_date"
                       onChange={this.eHandler}
-                      value={this.state.date}
+                      value={this.state.visit_date}
                       placeholder="YYYY-MM-DD"
                       margin="normal"
                     />
-                    <Typography color="textSecondary" gutterBottom>
-                        {this.props.visit.school}
+                    <Typography className="school" color="textSecondary" gutterBottom>
+                        School: {this.props.visit.school_name}
                     </Typography>
                 </div>
                 <div className="visit-body">
                   <TextField
+                    className="text"
                     id="standard-textarea"
                     label="Edit Visit Notes"
                     name="notes"

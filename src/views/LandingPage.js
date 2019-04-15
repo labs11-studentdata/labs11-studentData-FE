@@ -1,11 +1,19 @@
 import React from "react";
-import LandingCardText from "../components/LandingPage/LandingCardText";
-import LandingCardImg from "../components/LandingPage/LandingCardImg";
-import LandingCardBtn from "../components/LandingPage/LandingCardBtn";
-import { connect } from 'react-redux';
-import { regSelected, logSelected, loginUser } from '../actions/login';
+import PromoCard from "../components/LandingPage/PromoCard";
+import RoleCard from "../components/LandingPage/RoleCard";
 import Button from '@material-ui/core/Button';
-import { withRouter } from 'react-router';
+
+import SocialIcon from '../imgs/social-worker-icon.png';
+import AdminIcon from '../imgs/school-admin-icon.png';
+import BoardIcon from '../imgs/board-member-icon.png';
+
+import Josh from '../imgs/Josh.png'
+import Kevin from '../imgs/Kevin.png'
+import Leianne from '../imgs/Leianne.png'
+import Padraic from '../imgs/Padraic.png'
+import Scott from '../imgs/Scott.png'
+
+
 import "../styles/LandingPage.css";
 import queryString from 'query-string';
 const baseURL = process.env.REACT_APP_FE_ROOT;
@@ -46,49 +54,121 @@ class LandingPage extends React.Component {
     return (
       <div className="landing-container">
         <div className="jumbotron">
-          <h1>SchoolMe</h1>
-          <div className="landingBtns">
-          <Button
-            variant="contained"
-            size="large"
-            color="primary"
-            onClick={(e) => this.registerSubmit(e)}
->
-            Login
-          </Button>
-          <Button
-            variant="contained"
-            size="large"
-            color="primary"
-            onClick={(e) => this.registerSubmit(e)}
-          >
-            Register
-          </Button>
+          <div className="jumbo-inner">
+            <div className="jumbo-inner-left">
+              
+            </div>
+            <div className="jumbo-inner-right">
+              <h1>School</h1>
+              <h1>made</h1>
+              <h1 className="last">simple.</h1>
+              <p>Student management tools for Administrators.</p>
+              <p>Itegrated notes for Social Workers.</p>
+              <p className="last">Live sponsorship data for Board Members.</p>
+              <p className="last">To raise a child, it takes a village.</p>
+              <Button
+                variant="contained"
+                size="large"
+                color="primary"
+                href={`${baseURL}/login`}
+
+              >
+                Get Started
+              </Button>
+            </div>
           </div>
-         
         </div>
-        <div className="landing-content row-1">
-          <LandingCardImg class="left inlineImg hall" />
-          <LandingCardText
-            class="right inlineText"
-            title="Our Mission Statement"
-            text="We are SchoolMe, a non-profit web application for storing and sharing school related data between School Administrators, Social Workers, and Education Board Members. We want to create a platform to help board members connect with students in need across our organization. Board members are able to assist in paying the school dues of students who cannot pay themselves."
-          />
+        <div className="landing-content mission">
+          <h3>Our Mission</h3>
+          <p>
+            We are SchoolMe, a non-profit web application for storing 
+            and sharing school related data between School Administrators, 
+            Social Workers, and Education Board Members. We want to 
+            create a platform to help board members connect with 
+            students in need across our organization. Board 
+            members are able to assist in paying the school 
+            dues of students who cannot pay themselves.
+          </p>
         </div>
-        <div className="landing-content row-2">
-          <LandingCardText
-            class="left inlineText"
-            title="About Us"
-            text="We are a team of developers working together on this project while taking instruction with Lambda School. This app is to be our Capstone Project to start us off. We want to create an app that will be useful to the people who really need it. "
+        <div className="landing-content roles">
+          <h3>Roles</h3>
+          <RoleCard 
+            src={AdminIcon} 
+            alt="School Administrator Icon" 
+            role="School Administrator" 
+            description="School Administrators create or join schools to add and manage student files and classrooms, as well as viewing Social workers notes for their school" 
           />
-          <LandingCardImg class="right inlineImg class" />
+          <RoleCard 
+            src={SocialIcon} 
+            alt="Social Worker Icon" 
+            role="Social Worker" 
+            description="Social Workers create visit notes after visits to the schools using SchoolMe, they can also see the information of the students at each school and choose to sponser a student as well." 
+          />
+          <RoleCard 
+          src={BoardIcon} 
+          alt="Board Member Icon" 
+          role="Board Member"  
+          description="Board Members can see the information of the students at the schools using SchoolMe and choose to sponsor a student to help pay of some or all of their unpaid school dues for things like school lunches, medication, and clothing costs"
+        />
         </div>
-        <div className="landing-content row-3">
-          <LandingCardBtn
-            class="center inlineText"
-            title="Would you like to start using SchoolMe"
-            text="$60USD/Year"
-          />
+        <div className="landing-content cta">
+          <h3>Ready to get started?</h3>
+          <p>
+            School me works on a
+            subscription plan for
+            $60/month
+          </p>
+          <Button
+                variant="contained"
+                size="large"
+                color="primary"
+                href={`${baseURL}/login`}
+          >
+            Sign Up Now
+          </Button>
+        </div>
+        <div className="landing-content about-us">
+          <h3>About Us</h3>
+          <p>
+            We are a team of developers working together 
+            on this project while taking instruction with 
+            Lambda School. This app is to be our Capstone 
+            Project to start us off. We want to create an 
+            app that will be useful to the people who really 
+            need it.
+          </p>
+          <div className="promo-cards">
+            <PromoCard
+              src={Josh}
+              name="Josh Tietz"
+              gh="TwistedKidd22"
+              li="JoshTietz"
+            />
+            <PromoCard
+              src={Kevin}
+              name="Kevin Brack"
+              gh=""
+              li=""
+            />
+            <PromoCard
+              src={Leianne}
+              name="Leianne Louis"
+              gh=""
+              li=""
+            />
+            <PromoCard
+              src={Padraic}
+              name="Padaic Gillespie"
+              gh=""
+              li=""
+            />
+            <PromoCard
+              src={Scott}
+              name="Scott Bren"
+              gh=""
+              li=""
+            />
+          </div>
         </div>
         <div className="footer">
           <span>© 2019 Lambda School Student Data</span>

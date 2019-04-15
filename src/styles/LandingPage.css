@@ -2,97 +2,59 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    color: white;
-    background: lightgray;
+    background: whitesmoke;
 }
 
 .landing-container .jumbotron {
     background-image: url('../imgs/school-jumbotron.jpg');
-    height: 600px;
+    height: 100vh;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.landing-container .jumbotron .jumbo-inner{
+   background: rgba(35, 66, 66, 0.7);
+   height:100vh;
+   width: 100%;
+   z-index: 2;
+   display: flex;
+}
+
+.landing-container .jumbotron .jumbo-inner-left{
+    width: 60%;
+    height: 100vh;
+}
+
+.landing-container .jumbotron .jumbo-inner-right{
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     justify-content: center;
-    align-items: center;
-}
-
-.landing-container .jumbotron h1{
-    margin: 0;
-    width: 350px;
-    color: aliceblue;
-    position: relative;
-    font-size: 70px;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.landing-container .inlineImg {
-    height: 500px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 60%;
-}
-
-.landing-container .inlineText {
-    height: 500px;
-    background: lightslategray;
     width: 40%;
+    height: 100vh;
 }
 
-.landing-container .inlineText h3 {
-    width: 50%;
-    font-size: 40px;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    border-bottom: solid black 2px;
-    text-align: center;    
+.landing-container .jumbotron .jumbo-inner-right h1{
+margin: 5px 0;;
+color: whitesmoke;
+font-size: 75px; 
 }
 
-.landing-container .inlineText p {
-    font-size: 25px;
-    text-align: left;
-    padding: 0 10px;
+.landing-container .jumbotron .jumbo-inner-right .last{
+    margin-bottom: 30px;
 }
 
-.landing-container .hall {
-    background-image: url('../imgs/school-hall.jpg');
+.landing-container .jumbotron .jumbo-inner-right p{
+    margin: 5px 0;;
+    color: whitesmoke;
+    font-size: 25px; 
 }
 
-.landing-container .class {
-    background-image: url('../imgs/classroom.jpg');
-}
+
 
 .landing-container .landing-content {
-    display: flex;
-    padding-top: 20px;
-    margin-top: 20px;
-    border-top: solid black 2px;
-}
-
-.landing-container .row-3 {
-    display: flex;
-    justify-content: center;
-}
-
-.landing-container .center {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.landing-container .center .button {
-    width: 50%;
-    height: 30px;
-    background: blue;
-    text-align: center;
-    padding: 5px;
-}
-
-.landing-container .center .button:hover {
-    background: darkblue;
+    margin: 0 5%;
 }
 
 .landing-container .footer {
@@ -112,6 +74,11 @@
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
+    }
+
+    .landing-container .jumbotron h1 {
+        width: 100%;
+        left: 0;
     }
 
     .landing-container .hall {
@@ -151,11 +118,3 @@
         width: 100%;
     }
   }
-
-  .landingBtns {
-    margin: 0;
-    color: aliceblue;
-}
-.landingBtns button {
-margin: 5px;
-}
