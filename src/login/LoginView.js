@@ -45,7 +45,7 @@ class LoginView extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state)
+    // console.log(state)
     return {
         isRegistering: state.login.isRegistering
     }
