@@ -14,14 +14,14 @@ function OnboardingForm(props){
           <InputLabel htmlFor="email">Enter School email</InputLabel>
           <Input onChange={(e) => props.handleChanges(e)} id="email" name="email" autoComplete="email" value={props.user.email} autoFocus />
         </FormControl>
-        <FormControl margin="normal" required fullWidth>
+        <FormControl margin="normal" style={{display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center"}} required fullWidth>
           {/* <InputLabel htmlFor="photo_url">Add a photo url</InputLabel>
           <Input name="photo_url" value={props.user.photo_url} onChange={(e) => props.handleChanges(e)} id="photo_url" /> */}
-            <input type="file" name="userImage" onChange={props.fileSelectHandler}/>
-            <Button
-              onClick={props.fileUploadHandler}>
-                  Upload
-                </Button>
+          <label for="userImage" id='onboardingPhotoLabel' >
+            {props.user.photo_url ? 'Update' : 'Upload Photo'}
+          </label>
+            <input style={{display: "none"}} type="file" id='userImage' name="userImage" onChange={props.fileSelectHandler}/>
+            {props.user.photo_url && <img style={{height: "200px", width: "250px"}} src={props.user.photo_url} />}
         </FormControl>
       </form>
     )

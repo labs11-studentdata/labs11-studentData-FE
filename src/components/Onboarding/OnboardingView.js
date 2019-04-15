@@ -237,44 +237,35 @@ class CustomizedStepper extends React.Component {
     this.props.updateLoginInfo(schoolID);
   };
   // Image Upload Handler
-  fileSelectHandler = event => {
-    this.setState({
-      ...this.state,
-      selectedFile: event.target.files[0]
-    });
-  };
-  // Image File Upload Handler
-  fileUploadHandler = e => {
-    e.preventDefault();
-    const fd = new FormData();
-    if(this.state.selectedFile.name) {
-      fd.append(
-        "userImage",
-        this.state.selectedFile,
-        this.state.selectedFile.name
-      );
   
-      axios
-        .post(process.env.REACT_APP_BE_URL + "/api/uploads", fd)
+  fileSelectHandler = event => {
+    console.log(event.target.files[0]);
+    
+    const selectedFile = event.target.files[0];
+
+    const fd = new FormData();
+    fd.append('userImage', selectedFile, selectedFile.name);
+  
+    axios.post(process.env.REACT_APP_BE_URL + '/api/uploads', fd)
         .then(response => {
+  
+          console.log("server response", response);
           this.setState({
-            ...this.state,
+            ...this.state, 
   
             user: {
               ...this.state.user,
-              photo_url: `${process.env.REACT_APP_BE_URL}/${response.data}`
+              photo_url: `${process.env.REACT_APP_BE_URL}/${response.data}` 
             }
+          
           });
-          this.handleShowSnackbar();
+  
         })
         .catch(e => {
-          console.log("server error:", e.message);
-        });
-    } else {
-      alert('please select a photo and upload')
-    }
-    
-  };
+        console.log("server error:", e.message);
+      })
+  }
+
   handleShowSnackbar = () => {
     this.setState({ isSnackbarActive: true });
   };
@@ -330,7 +321,6 @@ class CustomizedStepper extends React.Component {
               </Snackbar>
               <OnboardingForm
                 fileSelectHandler={this.fileSelectHandler}
-                fileUploadHandler={this.fileUploadHandler}
                 user={this.state.user}
                 handleChanges={this.handleChanges}
                 handleSubmit={this.handleSubmit}
