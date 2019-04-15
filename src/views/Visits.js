@@ -33,13 +33,13 @@ class Visits extends Component {
 
   setSelectedVisit = (visit) => {
     this.setState({selectedVisit: visit})
-    console.log(visit)
+    // console.log(visit)
   }
 
   addVisit = (visit) => {
     axios.post(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits`, visit)
         .then(res => {
-            console.log(res.data)
+            // console.log(res.data)
         })
         .catch(err => {
             console.log(err.message)
@@ -49,7 +49,7 @@ class Visits extends Component {
 
   componentDidMount() {
     this.setState({userID: this.props.userID})
-    console.log(this.state.userID)
+    // console.log(this.state.userID)
   
     axios.get(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits/user/${this.state.userID}`)
       .then(res => {
@@ -102,7 +102,7 @@ class Visits extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
+  // console.log(state);
 
   return {
     userID: state.login.user.user_id
