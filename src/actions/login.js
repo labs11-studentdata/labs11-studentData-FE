@@ -1,4 +1,4 @@
-import store from '../index';
+// import store from '../index';
 // import queryString from 'query-string'
 export const LOGIN_USER = 'LOGIN_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
