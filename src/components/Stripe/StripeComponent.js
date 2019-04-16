@@ -21,6 +21,7 @@ class StripeComponent extends Component {
       username: 'get from state later',
       buttonText: 'Send Donation',
       loading: false,
+      fail: false,
     };
   }
 
@@ -41,14 +42,25 @@ class StripeComponent extends Component {
         ...this.state,
         loading: true,
         complete: false,
+        fail: false
       }) 
     }
     else if (this.props.paid === true && this.props.updatedStudent === true){
       this.setState({
         ...this.state,
         loading: false,
-        complete: true
+        complete: true,
+        fail: false
       }) 
+    }
+    else if (this.props.payFail === true || this.props.updateFail === true){
+      this.setState({
+        ...this.state,
+        loading: false,
+        complete: false,
+        fail: true
+      });
+      setTimeout(function(){alert("Something went wrong.")}, 100);
     }
   }
 
@@ -81,7 +93,7 @@ class StripeComponent extends Component {
         this.state.student,
         donation
       );
-      setTimeout(function(){delayCheck()}, 50);
+      setTimeout(function(){delayCheck()}, 10);
       setTimeout(function(){delayCheck()}, 2900);
       setTimeout(function(){delayDues()}, 3000);
       setTimeout(function(){delayClose()}, 4000);
@@ -134,6 +146,7 @@ class StripeComponent extends Component {
             {
               this.state.loading ? <CircularProgress size={24}/> :
               this.state.complete ? <Icon>check_circle_outline</Icon> :
+              this.state.fail ? <Icon>highlight_off</Icon> :
               this.state.buttonText
             }
           </Button>
@@ -150,7 +163,9 @@ const mapStateToProps = state => {
     id: state.stripe.id,
     error: state.stripe.error,
     updatingStudent: state.students.updating,
-    updatedStudent: state.students.updated
+    updatedStudent: state.students.updated,
+    payFail: state.stripe.fail,
+    updateFail: state.stripe.fail
   }
 }
 
