@@ -24,6 +24,9 @@ const styles = theme => ({
     marginTop: 30,
     marginBottom: 20,
   },
+  date: {
+    maxWidth: 50,
+  },
 });
 
 const formatDate = date => {
@@ -60,14 +63,14 @@ const BoardSocial = props => {
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
-              <TableCell>Date</TableCell>
+              <TableCell className={classes.date} >Date</TableCell>
               <TableCell>Note</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {socialVisits.map(visit => (
               <TableRow key={visit.visitID}>
-                <TableCell>{formatDate(visit.visit_date)}</TableCell>
+                <TableCell className={classes.date} >{formatDate(visit.visit_date)}</TableCell>
                 <TableCell>{visit.notes}</TableCell>
               </TableRow>
             ))}
