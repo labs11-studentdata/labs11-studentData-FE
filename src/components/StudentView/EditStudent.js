@@ -192,7 +192,7 @@ class EditStudent extends Component {
                   /> */}
                   <div className='formImgContainer'>
                     <input type="file"  name="userImage" onChange={this.fileSelectHandler}/>
-                    {this.state.student.photo_url && <img  style={{height: "100px", width: "100px"}} src={this.state.student.photo_url} />}
+                    {this.state.student.photo_url && <img  style={{height: "100px", width: "100px"}} src={this.state.student.photo_url} alt="profile"/>}
                   </div>
                 {/* </Grid> */}
 
