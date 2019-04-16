@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 
 class Visits extends Component {
   state = {
-    userID: "",
     visits: [],
     addOpen: false,
     editOpen: false,

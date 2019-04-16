@@ -137,7 +137,7 @@ class ScrollableTabsButtonAuto extends React.Component {
             if(value === index){
               return <StudentCard student={student} classes={classes} userID={this.props.userID}/>
             } else {
-              return
+              return null
             }
           })}
 
