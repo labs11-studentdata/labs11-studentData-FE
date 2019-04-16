@@ -4,7 +4,7 @@ import { HeaderComponent } from "../components";
 import { logoutUser, regSelected, logSelected } from "../actions/login";
 import { connect } from "react-redux";
 import axios from 'axios';
-import HeaderStyles from '../styles/HeaderStyles.css'
+// import HeaderStyles from '../styles/HeaderStyles.css'
 class HeaderView extends Component {
   state = {
     user: {}
