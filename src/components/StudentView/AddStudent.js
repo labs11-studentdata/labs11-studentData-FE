@@ -219,7 +219,7 @@ class AddStudent extends Component {
             /> */}
 
             <input type="file" name="userImage" onChange={this.fileSelectHandler}/>
-            {this.state.student.photo_url && <img  style={{height: "100px", width: "100px"}} src={this.state.student.photo_url} />}
+            {this.state.student.photo_url && <img  style={{height: "100px", width: "100px"}} src={this.state.student.photo_url} alt="profile"/>}
             {/*<button onClick={this.fileUploadHandler}>Upload</button>*/}
           </Grid>
 

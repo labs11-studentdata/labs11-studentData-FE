@@ -1,7 +1,7 @@
 import React from 'react';
 import FormControl from '@material-ui/core/FormControl';
 // import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Button from '@material-ui/core/Button'
+// import Button from '@material-ui/core/Button'
 import Input from '@material-ui/core/Input';
 // import Checkbox from '@material-ui/core/Checkbox';
 
@@ -21,7 +21,7 @@ function OnboardingForm(props){
             {props.user.photo_url ? 'Update' : 'Upload Photo'}
           </label>
             <input style={{display: "none"}} type="file" id='userImage' name="userImage" onChange={props.fileSelectHandler}/>
-            {props.user.photo_url && <img style={{height: "200px", width: "250px"}} src={props.user.photo_url} />}
+            {props.user.photo_url && <img style={{height: "200px", width: "250px"}} src={props.user.photo_url} alt="profile" />}
         </FormControl>
       </form>
     )
