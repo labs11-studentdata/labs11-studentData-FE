@@ -12,28 +12,7 @@ import DashboardFrame from './DashboardFrame';
 
 import SponsorChildView from '../views/SponsorChildView';
 
-/* const links = [
-  {
-    title: "Dashboard",
-    onClick: () => {
-      this.setState({
-        bodyView: null,
-      })
-    }  
-  },
-  {
-    title: "My Visit Notes",
-    url: `${process.env.REACT_APP_FE_ROOT}/visits`
-  },
-  {
-    title: "Sponsor",
-    onClick: () => {
-      this.setState({
-        bodyView: "sponsor",
-      })
-    }
-  }
-]; */
+import Visits from '../views/Visits';
 
 class SocialWorkerDashboard extends Component {
     constructor(props) {
@@ -50,9 +29,17 @@ class SocialWorkerDashboard extends Component {
                 })
               }  
             },
-            {
+/*             {
               title: "My Visit Notes",
               url: `${process.env.REACT_APP_FE_ROOT}/visits`
+            }, */
+            {
+              title: "My Visit Notes",
+              onClick: () => {
+                this.setState({
+                  bodyView: "socialview",
+                })
+              }  
             },
             {
               title: "Sponsor",
@@ -129,6 +116,13 @@ class SocialWorkerDashboard extends Component {
               <SponsorChildView />
             </Fragment>
           );
+
+        case "socialview":
+          return (
+            <Fragment>
+              <Visits />
+            </Fragment>
+        );
       }
     };
 
