@@ -133,7 +133,7 @@ class StripeComponent extends Component {
           <Button type='submit' color='primary' variant="outlined" onClick={this.handleSubmit} style={{marginTop: '10px'}}>
             {
               this.state.loading ? <CircularProgress size={24}/> :
-              this.state.complete ? <Icon>check_circle_complete</Icon> :
+              this.state.complete ? <Icon>check_circle_outline</Icon> :
               this.state.buttonText
             }
           </Button>
