@@ -10,10 +10,16 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import DashboardFrame from './DashboardFrame';
 
-const links = [
+import SponsorChildView from '../views/SponsorChildView';
+
+/* const links = [
   {
     title: "Dashboard",
-    url: `${process.env.REACT_APP_FE_ROOT}/socialworkerdashboard`
+    onClick: () => {
+      this.setState({
+        bodyView: null,
+      })
+    }  
   },
   {
     title: "My Visit Notes",
@@ -21,15 +27,42 @@ const links = [
   },
   {
     title: "Sponsor",
-    url: `${process.env.REACT_APP_FE_ROOT}/sponsor`
+    onClick: () => {
+      this.setState({
+        bodyView: "sponsor",
+      })
+    }
   }
-];
+]; */
 
 class SocialWorkerDashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
           visits: [],
+          bodyView: null,
+          links: [
+            {
+              title: "Dashboard",
+              onClick: () => {
+                this.setState({
+                  bodyView: null,
+                })
+              }  
+            },
+            {
+              title: "My Visit Notes",
+              url: `${process.env.REACT_APP_FE_ROOT}/visits`
+            },
+            {
+              title: "Sponsor",
+              onClick: () => {
+                this.setState({
+                  bodyView: "sponsor",
+                })
+              }
+            }
+          ]
         };   
     }
 
@@ -67,26 +100,36 @@ class SocialWorkerDashboard extends Component {
     };
 
     Body = () => {
-      return (
-        <Fragment>
-              <Table>
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Visit Date</TableCell>
-                    <TableCell align="left">Notes</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {this.state.visits.map(visit => (
-                    <TableRow key={visit.id}>
-                      <TableCell align="left">{visit.visit_date}</TableCell>
-                      <TableCell align="left">{visit.notes}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-        </Fragment>
-      );
+      switch(this.state.bodyView) {
+        default:
+          return (
+            <Fragment>
+                  <Table>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Visit Date</TableCell>
+                        <TableCell align="left">Notes</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {this.state.visits.map(visit => (
+                        <TableRow key={visit.id}>
+                          <TableCell align="left">{visit.visit_date}</TableCell>
+                          <TableCell align="left">{visit.notes}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+            </Fragment>
+          );
+
+        case "sponsor":
+          return (
+            <Fragment>
+              <SponsorChildView />
+            </Fragment>
+          );
+      }
     };
 
 
@@ -101,7 +144,7 @@ class SocialWorkerDashboard extends Component {
         return (
         <Fragment>
           <DashboardFrame
-            links={links}
+            links={this.state.links}
             header={this.Header}
             body={this.Body}
           />          
