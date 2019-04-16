@@ -166,7 +166,7 @@ class LandingPage extends React.Component {
             />
             <PromoCard
               src={Padraic}
-              name="Padaic Gillespie"
+              name="Padraic Gillespie"
               gh="Spinon187"
               ghLink="https://github.com/spinon187"
               liLink="https://www.linkedin.com/in/padraic-gillespie/"
