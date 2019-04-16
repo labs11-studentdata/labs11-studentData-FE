@@ -3,15 +3,11 @@ import axios from 'axios';
 
 import { connect } from 'react-redux';
 
-// import Grid from '@material-ui/core/Grid';
-// import Typography from '@material-ui/core/Typography';
-
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import DashboardFrame from './DashboardFrame';
 
 const links = [
@@ -73,24 +69,22 @@ class SocialWorkerDashboard extends Component {
     Body = () => {
       return (
         <Fragment>
-              <Paper>
               <Table>
                 <TableHead>
                   <TableRow>
                     <TableCell>Visit Date</TableCell>
-                    <TableCell align="right">Notes</TableCell>
+                    <TableCell align="left">Notes</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {this.state.visits.map(visit => (
                     <TableRow key={visit.id}>
-                      <TableCell align="right">{visit.visit_date}</TableCell>
-                      <TableCell align="right">{visit.notes}</TableCell>
+                      <TableCell align="left">{visit.visit_date}</TableCell>
+                      <TableCell align="left">{visit.notes}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
               </Table>
-            </Paper>
         </Fragment>
       );
     };
