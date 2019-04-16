@@ -105,7 +105,7 @@ const mapStateToProps = state => {
   // console.log(state);
 
   return {
-    userID: state.login.user.user_id
+    userID: state.login.user.userID
   }
 }
 
