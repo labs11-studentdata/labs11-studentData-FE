@@ -47,9 +47,7 @@ class MyAccountView extends Component {
   
     axios.post(process.env.REACT_APP_BE_URL + '/api/uploads', fd)
         .then(response => {
-  
-          console.log("server response", response);
-          this.setState({
+            this.setState({
             ...this.state, 
   
             user: {
@@ -67,7 +65,6 @@ class MyAccountView extends Component {
 
   updateUser = (e) => {
       e.preventDefault();
-      console.log(this.state.user)
     axios.put(`${process.env.REACT_APP_BE_URL}/api/users/${this.props.userID}`, this.state.user)
         .then(res => this.setState({
             ...this.state,
@@ -76,7 +73,6 @@ class MyAccountView extends Component {
         .catch(err => console.lof(err))
   }
     render() {
-        console.log('MyAcccount', this.state.user)
         return (
             <div className='myAccountContainer'>
                 <h1>Edit Your Account!</h1>

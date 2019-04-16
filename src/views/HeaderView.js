@@ -53,7 +53,6 @@ class HeaderView extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state)
   return {
     loggedIn: state.login.loggedIn,
     isRegistering: state.login.isRegistering,

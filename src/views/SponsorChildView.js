@@ -59,12 +59,13 @@ class SponsorChildView extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state)
   return {
     fetching: state.students.fetching,
     fetched: state.students.fetched,
     students: state.students.students,
     error: state.students.error,
-    userID: state.login.user.userID
+    userID: state.login.user.user_id
   }
 }
 

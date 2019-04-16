@@ -12,6 +12,8 @@ import Divider from '@material-ui/core/Divider';
 import axios from "axios";
 import AdminDonationList from './AdminDonationList';
 import "./AdminDashboard.css";
+import { SponsorChildComponent } from "../../components";
+import SponsorChildView from "../SponsorChildView";
 // import { Stats } from "fs";
 
 // Setting up route links object for left side navigation 
@@ -54,6 +56,15 @@ class AdministratorDash extends Component {
           this.setState({
             ...this.state,
             selected: 2
+          })
+        }
+      },
+      {
+        title: "Sponsor Students",
+        onClick: () => {
+          this.setState({
+            ...this.state,
+            selected: 3
           })
         }
       }
@@ -142,6 +153,9 @@ class AdministratorDash extends Component {
     if(this.state.selected === 2) {
       return <h1>School Donations</h1>
     }
+    if(this.state.selected === 3) {
+      return <h1>Sponser Students From All Schools</h1>
+    }
   };
 
   Body = () => {
@@ -159,6 +173,9 @@ class AdministratorDash extends Component {
     }
     if(this.state.selected === 2) {
       return <AdminDonationList donations={this.state.schoolDonations} />
+    }
+    if(this.state.selected === 3) {
+      return <SponsorChildView />
     }
   };
 
