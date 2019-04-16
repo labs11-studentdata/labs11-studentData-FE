@@ -17,7 +17,7 @@ function OnboardingForm(props){
         <FormControl margin="normal" style={{display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center"}} required fullWidth>
           {/* <InputLabel htmlFor="photo_url">Add a photo url</InputLabel>
           <Input name="photo_url" value={props.user.photo_url} onChange={(e) => props.handleChanges(e)} id="photo_url" /> */}
-          <label for="userImage" id='onboardingPhotoLabel' >
+          <label htmlFor="userImage" id='onboardingPhotoLabel' >
             {props.user.photo_url ? 'Update' : 'Upload Photo'}
           </label>
             <input style={{display: "none"}} type="file" id='userImage' name="userImage" onChange={props.fileSelectHandler}/>

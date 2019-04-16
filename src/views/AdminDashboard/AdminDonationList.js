@@ -24,12 +24,12 @@ function AdminDonationList(props) {
           <TableBody style={{ overflow: 'auto', height: '250px' }}>
             {props.donations.map(donation => {
               return(
-                <TableRow>
+                <TableRow key={donation.created_at}>
                   <TableCell>{moment(donation.created_at).startOf('day').fromNow()}</TableCell>
                   <TableCell>{`${donation.donor_first} ${donation.donor_last}`}</TableCell> 
-                  <TableCell>{donation.donation_total}</TableCell>                
+                  <TableCell style={{color: "green"}}>${donation.donation_total}</TableCell>                
                   <TableCell>{`${donation.student_first} ${donation.student_last}`}</TableCell>  
-                  <TableCell>{donation.dues}</TableCell>                
+                  <TableCell style={{color: "red"}}>${donation.dues}</TableCell>                
                 </TableRow>
               )
             })}

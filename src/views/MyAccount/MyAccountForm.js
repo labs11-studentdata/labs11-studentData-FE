@@ -14,7 +14,7 @@ import Grid from '@material-ui/core/Grid';
 function MyAccountForm(props) {
     return (
         
-        <form className='editStudentModal' noValidate autoComplete="off"  >
+        <form  noValidate autoComplete="off"  >
         <Grid
         container
         spacing={24}
@@ -23,6 +23,7 @@ function MyAccountForm(props) {
         justify="center"
         alignItems="center"
         maxwidth="800px"
+        className='editUserForm'
         >
     <Grid className='labelContainer' item>
     <InputLabel htmlFor="filled-first_name-simple">First Name</InputLabel>
@@ -56,22 +57,30 @@ function MyAccountForm(props) {
 
       />
     </Grid>
-          <Grid item>
-            <TextField
-              id="filled-name"
-              label="Photo URL"
+    <Grid className='labelContainer' item>
+    <InputLabel htmlFor="filled-email-simple">School Email</InputLabel>
 
-              value={props.user.photo_url}
-              onChange={props.handleInputChange}
+      <TextField
+                  className='labelSelection'
 
-              name='photo_url'
+        id="filled-name"
+        value={props.user.email}
+        onChange={props.handleInputChange}
+        name="email"
+        margin="normal"
+        variant="filled"
 
-              margin="normal"
-              variant="filled"
-            />
+      />
+    </Grid>
+          <Grid  className='userPhoto' item>
+          <label htmlFor="userImage" id='onboardingPhotoLabel' >
+            {props.user.photo_url ? 'Update Photo' : 'Upload Photo'}
+          </label>
+            <input style={{display: "none"}} type="file" id='userImage' name="userImage" onChange={props.fileSelectHandler}/>
+            {props.user.photo_url && <img style={{height: "200px", width: "250px"}} src={props.user.photo_url} alt="profile" />}
           </Grid>
 
-      <Button id='editStudent' variant='outlined' type="submit">Save Changes</Button>
+      <Button id='editStudent' variant='outlined' type="submit" onClick={props.updateUser}>Save Changes</Button>
 </Grid>
       </form>
     )

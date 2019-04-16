@@ -17,6 +17,7 @@ function LoginComponent(props) {
           {props.btns.map(btn => {
               return (
                 <Button
+                  key={btn}
                   href={btn === 'Google' ? `${url}/google` : `${url}/facebook`}
                   type="submit"
                   fullWidth
