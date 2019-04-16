@@ -11,17 +11,17 @@ class HeaderView extends Component {
   }
   // BTN SUBMITTED -- changes state if user is registering or logging in
   componentDidMount(){
-    console.log('++++++++++++++++++++++++++++++++++')
+    // console.log('++++++++++++++++++++++++++++++++++')
     axios.get(`${process.env.REACT_APP_BE_URL}/api/users/${this.props.userID}`)
       .then(res => {
-        console.log(res)
+        // console.log(res)
         this.setState({
           ...this.state,
           user: res.data.user
         })
       })
       .catch(err => console.log(err))
-      console.log(this.state)
+      // console.log(this.state)
 
   }  
   registerSubmit = e => {
@@ -34,7 +34,7 @@ class HeaderView extends Component {
     }
   };
   render() {
-    console.log(this.state.user.photo_url)
+    // console.log(this.state.user.photo_url)
     return (
       <HeaderComponent
         photo={this.state.user.photo_url}

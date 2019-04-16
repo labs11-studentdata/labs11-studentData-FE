@@ -78,10 +78,8 @@ class AdministratorDash extends Component {
         ...this.state,
         school: res.data
       })  
-        console.log('first')  
       })
       .then(() => {
-        console.log('second')
         this.props.getAdminStudents(user_id);
         this.props.getSchoolVisits(school_id);
       })
@@ -169,8 +167,6 @@ class AdministratorDash extends Component {
   };
 
   render() {
-    console.log('heyy')
-
     return (
       <>
         <DashboardFrame links={this.state.links} header={this.Header} body={this.Body} />
@@ -180,8 +176,7 @@ class AdministratorDash extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log('hey')
-  console.log(state.admin.students)
+
   const arr = []
   return {
     user_id: state.login.user.user_id,
