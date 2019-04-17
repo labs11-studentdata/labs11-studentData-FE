@@ -12,16 +12,16 @@ REACT_APP_FE_ROOT=http://localhost:3000
 ## FEATURE ROUTES
 
 ### Main routes
-| VIEW           | ROUTE                                                           |
-| -------------- | --------------------------------------------------------------- |
-| LOGIN          | https://reverent-spence-fef835.netlify.com/login                |
-| ONBOARDING     | https://reverent-spence-fef835.netlify.com/onboarding           |
-| SPONSOR        | https://reverent-spence-fef835.netlify.com/sponsor              |
-| BOARD          | https://reverent-spence-fef835.netlify.com/boardmemberdashboard |
-| ADD STUDENT    | https://reverent-spence-fef835.netlify.com/add                  |
-| VIEW STUDENT 1 | https://reverent-spence-fef835.netlify.com/student/1            |
-| SOCIAL         | https://reverent-spence-fef835.netlify.com/socialsocialworkerdashboard               |
-| ADMIN          | https://reverent-spence-fef835.netlify.com/adminadmindashboard                |
+| VIEW           | ROUTE                                                   |
+| -------------- | ------------------------------------------------------- |
+| LOGIN          | https://www.studentdata.dev/login                       |
+| ONBOARDING     | https://www.studentdata.dev/onboarding                  |
+| SPONSOR        | https://www.studentdata.dev/sponsor                     |
+| BOARD          | https://www.studentdata.dev/boardmemberdashboard        |
+| ADD STUDENT    | https://www.studentdata.dev/add                         |
+| VIEW STUDENT 1 | https://www.studentdata.dev/student/1                   |
+| SOCIAL         | https://www.studentdata.dev/socialsocialworkerdashboard |
+| ADMIN          | https://www.studentdata.dev/adminadmindashboard         |
 
 | FEATURE                                | ENDPOINT                                  | ROUTE         |
 | -------------------------------------- | ----------------------------------------- | ------------- |
