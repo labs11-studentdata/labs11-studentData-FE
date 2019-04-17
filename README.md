@@ -16,10 +16,7 @@ REACT_APP_FE_ROOT=http://localhost:3000
 | -------------- | ------------------------------------------------------- |
 | LOGIN          | https://www.studentdata.dev/login                       |
 | ONBOARDING     | https://www.studentdata.dev/onboarding                  |
-| SPONSOR        | https://www.studentdata.dev/sponsor                     |
 | BOARD          | https://www.studentdata.dev/boardmemberdashboard        |
-| ADD STUDENT    | https://www.studentdata.dev/add                         |
-| VIEW STUDENT 1 | https://www.studentdata.dev/student/1                   |
 | SOCIAL         | https://www.studentdata.dev/socialsocialworkerdashboard |
 | ADMIN          | https://www.studentdata.dev/adminadmindashboard         |
 
