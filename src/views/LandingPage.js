@@ -118,7 +118,7 @@ class LandingPage extends React.Component {
         <div className="landing-content cta">
           <h3>Ready to get started?</h3>
           <p>
-            School me works on a
+            School Me works on a
             subscription plan for
             $60/month
           </p>
