@@ -13,15 +13,15 @@ const Redirect = props => {
   const { classes } = props;
   const token = localStorage.getItem('jwt');
   if(token === null){
-    props.history.push(`${process.env.REACT_APP_FE_ROOT}/home`);
+    props.history.push(`home`);
   } else if (token.includes("account_type=admin")){
-    props.history.push(`${process.env.REACT_APP_FE_ROOT}/admindashboard`);
+    props.history.push(`admindashboard`);
   } else if (token.includes("account_type=socialworker")) {
-    props.history.push(`${process.env.REACT_APP_FE_ROOT}/socialworkerdashboard`);
+    props.history.push(`socialworkerdashboard`);
   } else if (token.includes("account_type=boardmember")) {
-    props.history.push(`${process.env.REACT_APP_FE_ROOT}/boardmemberdashboard`);
+    props.history.push(`boardmemberdashboard`);
   } else {
-    props.history.push(`${process.env.REACT_APP_FE_ROOT}/onboarding`);
+    props.history.push(`onboarding`);
   }
 
   return (
