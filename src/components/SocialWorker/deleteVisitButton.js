@@ -26,6 +26,7 @@ class DeleteVisitButton extends React.Component {
     axios.delete(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits/${id}`)
         .then(res => {
             console.log(res.data)
+            this.props.reload()
         })
         .catch(err => {
             console.log(err.message)
@@ -59,7 +60,7 @@ class DeleteVisitButton extends React.Component {
             {"Would you like to delete this visit?"}
           </DialogTitle>
           <DialogActions>
-            <Button variant='outlined' onClick={this.deleteVisit} color="red">
+            <Button variant='outlined' onClick={this.deleteVisit} color="primary">
               Delete
             </Button>
             <Button variant='outlined' onClick={this.handleClose} color="primary">

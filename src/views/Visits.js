@@ -39,12 +39,45 @@ class Visits extends Component {
   addVisit = (visit) => {
     axios.post(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits`, visit)
         .then(res => {
-            console.log(res.data)
+            let id = res.data[0]
+            console.log(id)
+            axios.get(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits/user/${this.state.userID}`)
+              .then(res => {
+                this.setState({ visits: res.data });
+                axios.get(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits/${id}`)
+                  .then(res => {
+                    this.setState({ selectedVisit: res.data[0] });
+                  })
+                  .catch(err => {
+                    console.log(err.message)
+                  });
+              })
+              .catch(err => {
+                console.log(err.message)
+              });
         })
         .catch(err => {
             console.log(err.message)
         })
     this.setState({addOpen: false})
+  }
+
+  reload = e => {
+    axios.get(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits/user/${this.state.userID}`)
+      .then(res => {
+        this.setState({ visits: res.data });
+      })
+      .catch(err => {
+        console.log(err.message)
+      });
+    this.setState({selectedVisit: null})
+  }
+
+  update = ( date, notes ) => {
+    let updated = this.state.selectedVisit
+    updated.visit_date = date;
+    updated.notes = notes;
+    this.setState({selectedVisit: updated})
   }
 
   componentDidMount() {
@@ -65,9 +98,9 @@ class Visits extends Component {
   render(){
     let displayedComponent = null;
   
-    if( this.state.addOpen === false && this.state.editOpen === true) { displayedComponent = <UpdateVisit visit={this.state.selectedVisit} cancelEdit={this.cancelEdit} />;}
+    if( this.state.addOpen === false && this.state.editOpen === true) { displayedComponent = <UpdateVisit visit={this.state.selectedVisit} update={this.update} cancelEdit={this.cancelEdit} />;}
     else if( this.state.addOpen === true ) {displayedComponent = <AddVisit cancelAdd={this.cancelAdd} addVisit={this.addVisit} userID={this.state.userID} />}
-    else if( this.state.selectedVisit ) {displayedComponent = <SingleVisit visit={this.state.selectedVisit} openEdit={this.openEdit} />}
+    else if( this.state.selectedVisit ) {displayedComponent = <SingleVisit visit={this.state.selectedVisit} reload={this.reload} openEdit={this.openEdit} />}
     return (
       <div className="visits-container">
         <div className="visits-list">

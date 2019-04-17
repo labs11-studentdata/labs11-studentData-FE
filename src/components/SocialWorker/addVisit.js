@@ -61,7 +61,7 @@ class AddVisit extends React.Component {
 
     render() {
         return(
-            <Card>
+            <Card className="white">
                 <CardContent>
                     <div className="visit-header">
                         <TextField
@@ -74,11 +74,11 @@ class AddVisit extends React.Component {
                             margin="normal"
                         />
                         <form>
-                            <FormControl>
+                            <FormControl className="school-selector">
                                 <InputLabel htmlFor="school-select">School</InputLabel>
                                 <Select
-                                className="school"
                                 value={this.state.schoolID}
+                                className="school"
                                 name='schoolID'
                                 onChange={this.handleChange('schoolID')}
                                 inputProps={{id: 'school-select'}}
