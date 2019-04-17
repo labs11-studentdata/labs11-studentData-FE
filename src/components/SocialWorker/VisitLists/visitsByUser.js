@@ -40,7 +40,7 @@ const VisitListByUser = props => {
     <Paper className='visit-list-container'>
       <Table className='visit-list'>
         <TableHead className="full">
-          <TableRow className="full">
+          <TableRow className="full topper">
             <TableCell className="cell">Date</TableCell>
             <TableCell className="cell">School</TableCell>
             <Button variant="outlined" className="add-visit-btn" onClick={props.openAdd}>
