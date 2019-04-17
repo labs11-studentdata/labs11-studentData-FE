@@ -12,7 +12,7 @@ import DashboardFrame from './DashboardFrame';
 
 import SponsorChildView from '../views/SponsorChildView';
 
-import Visits from '../views/Visits';
+//import Visits from '../views/Visits';
 
 class SocialWorkerDashboard extends Component {
     constructor(props) {
@@ -29,18 +29,18 @@ class SocialWorkerDashboard extends Component {
                 })
               }  
             },
-/*             {
+            {
               title: "My Visit Notes",
               url: `${process.env.REACT_APP_FE_ROOT}/visits`
-            }, */
-            {
+            }, 
+/*             {
               title: "My Visit Notes",
               onClick: () => {
                 this.setState({
                   bodyView: "socialview",
                 })
               }  
-            },
+            }, */
             {
               title: "Sponsor",
               onClick: () => {
@@ -117,12 +117,12 @@ class SocialWorkerDashboard extends Component {
             </Fragment>
           );
 
-        case "socialview":
+/*         case "socialview":
           return (
             <Fragment>
               <Visits />
             </Fragment>
-        );
+        ); */
       }
     };
 
