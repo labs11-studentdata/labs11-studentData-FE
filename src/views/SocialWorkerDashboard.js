@@ -101,7 +101,7 @@ class SocialWorkerDashboard extends Component {
                     <TableBody>
                       {this.state.visits.map(visit => (
                         <TableRow key={visit.id}>
-                          <TableCell align="left">{visit.visit_date}</TableCell>
+                          <TableCell align="left">{new Date(visit.visit_date).toDateString()}</TableCell>
                           <TableCell align="left">{visit.notes}</TableCell>
                         </TableRow>
                       ))}
