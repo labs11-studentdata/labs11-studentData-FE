@@ -46,9 +46,10 @@ font-size: 75px;
 }
 
 .landing-container .jumbotron .jumbo-inner-right p{
-    margin: 5px 0;;
+    margin: 5px 0;
     color: whitesmoke;
     font-size: 25px; 
+    text-align: left;
 }
 
 .landing-container .landing-content {

@@ -8,13 +8,13 @@ const PromoCard = props => {
         <div className="promo-card">
             <img className="main" src={props.src} alt={props.alt} />
             <h5>{props.name}</h5>
-            <div className="link">
-                <img className="icon" src={GHicon} alt="GitHub Logo" />
-                <a href={props.ghLink} target="_blank" rel="noopener noreferrer">{props.gh}</a>
-            </div>
-            <div className="link">
-                <img className="icon" src={LIicon} alt="LinkedIn Logo" />
-                <a href={props.liLink} target="_blank" rel="noopener noreferrer">{props.name}</a>
+            <div className="link" style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+                <a href={props.ghLink} target="_blank" rel="noopener noreferrer">
+                    <img className="icon" src={GHicon} alt="GitHub Logo" style={{margin: `8px`}}/>
+                </a>
+                <a href={props.liLink} target="_blank" rel="noopener noreferrer">
+                    <img className="icon" src={LIicon} alt="LinkedIn Logo" style={{margin: `8px`}}/>
+                </a>
             </div>
         </div>
     );
