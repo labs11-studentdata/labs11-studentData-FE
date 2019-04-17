@@ -6,6 +6,7 @@ import {  HeaderView, SponsorChildView, BoardView, StudentView, SocialWorkerDash
 import { OnboardingView, AddStudent } from './components';
 import AdministratorDash from './views/AdminDashboard/AdministratorDash';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import Redirect from './components/Redirect/Redirect';
 
 import ImageUpload from './components/ImageUpload/ImageUpload';
 
@@ -28,6 +29,7 @@ class App extends Component {
         <Route path='/home' component={LandingPage} />
         <Route path='/myaccount' component={MyAccountView} />
         <Route path='/upload' component={ImageUpload} />
+        <Route exact path="/" component={Redirect} />
 
       </div>
     );
