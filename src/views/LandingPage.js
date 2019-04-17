@@ -8,6 +8,7 @@ import PromoCard from "../components/LandingPage/PromoCard";
 import RoleCard from "../components/LandingPage/RoleCard";
 import Button from '@material-ui/core/Button';
 
+
 import SocialIcon from '../imgs/social-worker-icon.png';
 import AdminIcon from '../imgs/school-admin-icon.png';
 import BoardIcon from '../imgs/board-member-icon.png';
@@ -27,9 +28,7 @@ class LandingPage extends React.Component {
 
     componentDidMount() {
       const query = this.props.history.location.pathname
-      console.log(query)
       const parsed = queryString.parse(query)
-      console.log(parsed)
       if(parsed.account_type === '') {
           window.location.href = '/onboarding'
       }

@@ -27,7 +27,7 @@ class StudentView extends Component {
       axios.get(`${process.env.REACT_APP_BE_URL}/api/students/${id}`)
         .then(res => {
 
-          console.log(res.data);
+          // console.log(res.data);
 
           this.setState({
             student: res.data[0]
@@ -44,7 +44,7 @@ class StudentView extends Component {
   
       axios.delete(`${process.env.REACT_APP_BE_URL}/api/students/${this.state.student.studentID}`)
           .then(response => {
-              console.log("server response", response.data);
+              // console.log("server response", response.data);
           })
           .catch(e => {
 
@@ -56,7 +56,7 @@ class StudentView extends Component {
 
     render() {
   
-      console.log(this.state)
+      // console.log(this.state)
         return (
           <>
 					<div>

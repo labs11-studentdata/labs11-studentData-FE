@@ -10,7 +10,8 @@ class StudentRow extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      student: this.props.student
+      student: this.props.student,
+      open: false,
     }
   }
 
@@ -38,10 +39,13 @@ class StudentRow extends Component {
     });
   };
 
-  updateDues = update => {
-    this.setState({
-      student: update
-    })
+  updateDues = async (update, paid) => {
+    if (paid === true){
+      this.setState({
+        ...this.state,
+        student: update
+      })
+    }
   }
 
 

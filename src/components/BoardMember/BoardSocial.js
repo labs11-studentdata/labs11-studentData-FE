@@ -24,6 +24,9 @@ const styles = theme => ({
     marginTop: 30,
     marginBottom: 20,
   },
+  date: {
+    maxWidth: 50,
+  },
 });
 
 const formatDate = date => {
@@ -35,7 +38,7 @@ const formatDate = date => {
 
 const BoardSocial = props => {
   const {classes} = props;
-  console.log("BOARD SOCIAL PROPS", props);
+  // console.log("BOARD SOCIAL PROPS", props);
   if(!props.schoolID){
     return(
       <Fragment>
@@ -54,20 +57,20 @@ const BoardSocial = props => {
     )
   } else {
     const socialVisits = props.socialVisits;
-    console.log("SOCIAL VISITS", socialVisits);
+    // console.log("SOCIAL VISITS", socialVisits);
     return(
       <Fragment>
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
-              <TableCell>Date</TableCell>
+              <TableCell className={classes.date} >Date</TableCell>
               <TableCell>Note</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {socialVisits.map(visit => (
               <TableRow key={visit.visitID}>
-                <TableCell>{formatDate(visit.visit_date)}</TableCell>
+                <TableCell className={classes.date} >{formatDate(visit.visit_date)}</TableCell>
                 <TableCell>{visit.notes}</TableCell>
               </TableRow>
             ))}

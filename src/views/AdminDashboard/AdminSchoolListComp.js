@@ -26,7 +26,7 @@ function AdminSchoolListComp(props) {
             </TableHead>
             <TableBody>
               {props.students.map(student => (
-                <TableRow key={student.id}>
+                <TableRow key={student.studentID}>
                   <TableCell align="center">{`${student.first_name} ${student.last_name}`}</TableCell>
                   <TableCell align="center">{student.grade}</TableCell>
                   <TableCell align="center">{`${student.contact_first_name} ${student.contact_last_name}`}</TableCell>

@@ -42,7 +42,7 @@ class SponsorChildView extends Component {
     };
 
     render() {
-      console.log(this.state)
+      // console.log(this.state)
         return (
           <>
             <SponsorChildComponent
@@ -59,6 +59,7 @@ class SponsorChildView extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state)
   return {
     fetching: state.students.fetching,
     fetched: state.students.fetched,

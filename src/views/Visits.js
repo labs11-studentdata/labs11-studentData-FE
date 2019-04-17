@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 
 class Visits extends Component {
   state = {
-    userID: "",
     visits: [],
     addOpen: false,
     editOpen: false,
@@ -33,14 +32,12 @@ class Visits extends Component {
 
   setSelectedVisit = (visit) => {
     this.setState({selectedVisit: visit})
-    console.log(visit)
   }
 
   addVisit = (visit) => {
     axios.post(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits`, visit)
         .then(res => {
             let id = res.data[0]
-            console.log(id)
             axios.get(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits/user/${this.state.userID}`)
               .then(res => {
                 this.setState({ visits: res.data });
@@ -81,9 +78,7 @@ class Visits extends Component {
   }
 
   componentDidMount() {
-    this.setState({userID: this.props.userID})
-    console.log(this.state.userID)
-  
+    this.setState({userID: this.props.userID})  
     axios.get(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits/user/${this.state.userID}`)
       .then(res => {
         this.setState({ visits: res.data });
@@ -104,26 +99,6 @@ class Visits extends Component {
     return (
       <div className="visits-container">
         <div className="visits-list">
-        {/* <div className='visit-list'>
-          <div className="list-header">
-              <span>Date</span>
-              <span>School</span>
-              <Button variant="outlined" className="add-visit-btn" onClick={this.openAdd}>
-              Add Visit
-              </Button>
-          </div>
-
-          <div className="list-body">
-            {props.visits.map(visit => {
-              return(
-                <div className="list-item" value={visit.id} onClick={this.setSelectedVisit}>
-                  <span>{visit.visit_date}</span>
-                  <span>{visit.school_name}</span>
-                </div>
-              )
-            })}
-          </div>
-        </div> */}
         <VisitsByUser visits={this.state.visits} openAdd={this.openAdd} visitOnClick={this.setSelectedVisit} />
         </div>
         <div className="visit-display">
@@ -135,8 +110,6 @@ class Visits extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
-
   return {
     userID: state.login.user.user_id
   }

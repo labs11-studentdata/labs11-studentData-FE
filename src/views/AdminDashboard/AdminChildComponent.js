@@ -8,7 +8,8 @@ import TableRow from "@material-ui/core/TableRow";
 // import Button from "@material-ui/core/Button";
 // import EditChildModal from "../../components/StudentView/EditStudentModal";
 import EditStudentModal from "../../components/StudentView/EditStudentModal";
-// import moment from 'moment';
+import moment from 'moment';
+
 function AdminChildComponent(props) {
   return (
     <div className="donation-list-container"style={{ textAlign: "center", overflowY: "scroll", height: "400px" }}>
@@ -33,9 +34,8 @@ function AdminChildComponent(props) {
           
         >
           {props.students.map(student => {
-            console.log(student)
             return (
-              <TableRow>
+              <TableRow key={student.studentID}>
                 <TableCell style={{padding: '0px 0px 0px 10px', width: '15%'}}>{`${student.first_name} ${
                   student.last_name
                 }`}</TableCell>
@@ -43,7 +43,7 @@ function AdminChildComponent(props) {
                 <TableCell align='center' style={{padding: '0px', width: '5%'}}>{student.grade}</TableCell>
                 <TableCell align='center' style={{padding: '0px', width: '7.5%'}}>{`${student.has_insurance === 1 ? "Y" : "N"}`}</TableCell>
                 <TableCell align='center' style={{padding: '0px', width: '7.5%'}}>{`${student.has_birthcert === 1 ? "Y" : "N"}`}</TableCell>
-                  <TableCell align='center' style={{padding: '0px', width: '15%'}}>{student.insurance_expiration}</TableCell>
+                  <TableCell align='center' style={{padding: '0px', width: '15%'}}>{moment(student.insurance_expiration).format('l')}</TableCell>
 
                   <TableCell align='center' style={{padding: '0px', width: '10%'}}>{student.special_needs === 1 ? "Y" : "N"}</TableCell>
                   

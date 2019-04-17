@@ -53,7 +53,6 @@ const styles = theme => ({
                 control={<Radio color="primary" />}
                 name="Social Worker" 
                 label="Social Worker"                
-
                 labelPlacement="end"
               />
                  <p className='accountTypeLabel'>I visits schools and write reports on all of my findings. <br/> These reports are used to update school administrators and donors on <br/> the students and any concerns I have about the schools.</p>

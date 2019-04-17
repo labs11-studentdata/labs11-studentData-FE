@@ -5,6 +5,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 // import IconButton from "@material-ui/core/IconButton";
+import AccountCircle from '@material-ui/core/IconButton';
 
 const styles = {
   root: {
@@ -32,6 +33,7 @@ const styles = {
 function HeaderComponent(props) {
   const { classes } = props;
   if (props.loggedIn) {
+    const photo = props.photo && props.photo.replace(/ /g, "%20")
     return (
       <div className={classes.root}>
         <AppBar position="static">
@@ -40,9 +42,13 @@ function HeaderComponent(props) {
               <Typography variant="h6" color="inherit" className={classes.grow}>
                 SchoolMe
               </Typography>
-              <Button color="inherit" onClick={props.handleLogout} variant='outlined'>
-                Logout
-              </Button>
+              <div className='headerBtns'>
+                {window.location.href.includes('myaccount') && <Button color="inherit" href={`${props.accountType}dashboard`} variant='outlined'> Dashboard </Button>}
+                {!window.location.href.includes('myaccount') && <AccountCircle href='/myaccount' style={{ backgroundSize: "auto 100%", backgroundPosition: "center", width: "40px", height: "40px", backgroundImage: `url(${photo})`}} />}
+                <Button color="inherit" onClick={props.handleLogout} variant='outlined'>
+                  Logout
+                </Button>
+              </div>
             </div>
           </Toolbar>
         </AppBar>

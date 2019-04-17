@@ -8,7 +8,6 @@ import Paper from '@material-ui/core/Paper';
 import moment from 'moment';
 
 const VisitListBySchool = props => {
-  console.log(props)
   return(
     <Paper className='visit-list-container'>
       <Table className='visit-list'>
@@ -23,7 +22,7 @@ const VisitListBySchool = props => {
         <TableBody style={{ overflow: 'auto', height: '200px' }}>
           {props.visits.length > 0 && props.visits.map(visit => {
             return(
-              <TableRow className='visitListRow'>
+              <TableRow key={visit.notes} className='visitListRow'>
                 <TableCell>{moment(visit.visit_date).startOf('day').fromNow()}</TableCell>
                 <TableCell>{visit.notes}</TableCell>
                 <TableCell>{`${visit.first_name} ${visit.last_name}`}</TableCell>                
@@ -33,7 +32,7 @@ const VisitListBySchool = props => {
           })}
           {props.visits.length === 0 && props.visits.map(visit => {
             return(
-              <TableRow className='visitListRow'>
+              <TableRow key={visit.notes} className='visitListRow'>
                 <TableCell></TableCell>
                 <TableCell>No recent notes</TableCell>
                 <TableCell></TableCell>                

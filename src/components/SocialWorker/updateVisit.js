@@ -29,7 +29,7 @@ class UpdateVisit extends React.Component {
     
     let changes = this.state
 
-    console.log(changes)
+    // console.log(changes)
 
     axios.put(`${process.env.REACT_APP_BE_URL}/api/social_worker_visits/${id}`, changes)
       .then(res => {
