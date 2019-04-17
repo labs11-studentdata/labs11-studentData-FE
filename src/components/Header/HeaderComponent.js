@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 // import IconButton from "@material-ui/core/IconButton";
 import AccountCircle from '@material-ui/core/IconButton';
+import { Link } from 'react-router-dom';
 
 const styles = {
   root: {
@@ -15,6 +16,12 @@ const styles = {
     // flexGrow: 1,
     display: "inline-block",
     // maxWidth: 200,
+  },
+  logo: {
+    // flexGrow: 1,
+    display: "inline-block",
+    // maxWidth: 200,
+    color: "white",
   },
   menuButton: {
     marginLeft: -12,
@@ -39,9 +46,11 @@ function HeaderComponent(props) {
         <AppBar position="static">
           <Toolbar className={classes.toolBar}>
             <div className={classes.container}>
-              <Typography variant="h6" color="inherit" className={classes.grow}>
-                SchoolMe
-              </Typography>
+              <Link to="/">
+                <Typography variant="h6" color="inherit" className={classes.logo}>
+                  SchoolMe
+                </Typography>
+              </Link>
               <div className='headerBtns'>
                 {window.location.href.includes('myaccount') && <Button color="inherit" href={`${props.accountType}dashboard`} variant='outlined'> Dashboard </Button>}
                 {!window.location.href.includes('myaccount') && <AccountCircle href='/myaccount' style={{ backgroundSize: "auto 100%", backgroundPosition: "center", width: "40px", height: "40px", backgroundImage: `url(${photo})`}} />}
