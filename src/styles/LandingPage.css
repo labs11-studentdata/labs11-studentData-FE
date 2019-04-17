@@ -222,7 +222,7 @@ font-size: 75px;
 .landing-container .footer {
     width: 100%;
     height: 30px;
-    background: blue;
+    background: rgba(35, 66, 66, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -232,51 +232,66 @@ font-size: 75px;
 @media (max-width: 600px) {
     .landing-container .jumbotron {
         background-image: url('../imgs/school-jumbo-mobile.jpg');
-        height: 500px;
+        height: 100vh;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
     }
 
-    .landing-container .jumbotron h1 {
-        width: 100%;
-        left: 0;
+    .landing-container .jumbotron .jumbo-inner-left {
+        width: 45%;
     }
 
-    .landing-container .hall {
-        background-image: url('../imgs/school-hall-mobile.jpg');
-        height: 500px;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
+    .landing-container .jumbotron .jumbo-inner-right h1 {
+        font-size: 40px;
+        margin-top: 0;
     }
-    
-    .landing-container .class {
-        background-image: url('../imgs/classroom-mobile.jpg');
-        height: 500px;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
+
+    .landing-container .jumbotron .jumbo-inner-right .last{
+        margin-bottom: 15px;
     }
+
+    .landing-container .jumbotron .jumbo-inner-right p {
+        font-size: 18px;
+    }    
 
     .landing-container .landing-content {
         display: flex;
         flex-direction: column;
+
     }
 
-    .landing-container .inlineText {
-        height: 650px;
+    .landing-container .roles .role-cards {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
-    .landing-container .left {
-        width: 100%;
+    .landing-container .roles .role-card {
+        width: 80%;
+        margin-top: 50px;
     }
     
-    .landing-container .right {
+    .landing-container .cta {
+        width: 80%;
+    }
+
+    .landing-container .cta h3 {
         width: 100%;
     }
 
-    .landing-container .center {
-        width: 100%;
+    .landing-container .cta p {
+        margin-bottom: 25px;
+    }    
+
+    .landing-container .about-us .promo-cards {
+        flex-direction: column;
+        width: 90%;
+        align-items: center;
+    }
+
+    .landing-container .about-us .promo-card {
+        margin-bottom: 25px;
     }
   }

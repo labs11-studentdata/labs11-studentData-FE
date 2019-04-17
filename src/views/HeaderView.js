@@ -4,24 +4,25 @@ import { HeaderComponent } from "../components";
 import { logoutUser, regSelected, logSelected } from "../actions/login";
 import { connect } from "react-redux";
 import axios from 'axios';
-// import HeaderStyles from '../styles/HeaderStyles.css'
+import HeaderStyles from '../styles/HeaderStyles.css'
+
 class HeaderView extends Component {
   state = {
     user: {}
   }
   // BTN SUBMITTED -- changes state if user is registering or logging in
   componentDidMount(){
-    console.log('++++++++++++++++++++++++++++++++++')
+    // console.log('++++++++++++++++++++++++++++++++++')
     axios.get(`${process.env.REACT_APP_BE_URL}/api/users/${this.props.userID}`)
       .then(res => {
-        console.log(res)
+        // console.log(res)
         this.setState({
           ...this.state,
           user: res.data.user
         })
       })
       .catch(err => console.log(err))
-      console.log(this.state)
+      // console.log(this.state)
 
   }  
   registerSubmit = e => {
@@ -33,8 +34,11 @@ class HeaderView extends Component {
       this.props.logSelected();
     }
   };
+
+ 
+
   render() {
-    console.log(this.state.user.photo_url)
+    // console.log(this.state.user.photo_url)
     return (
       <HeaderComponent
         photo={this.state.user.photo_url}
@@ -42,6 +46,7 @@ class HeaderView extends Component {
         isRegistering={this.props.isRegistering}
         loggedIn={this.props.loggedIn}
         handleLogout={this.props.logoutUser}
+        accountType={this.props.accountType}
       />
     );
   }
@@ -51,7 +56,8 @@ const mapStateToProps = state => {
   return {
     loggedIn: state.login.loggedIn,
     isRegistering: state.login.isRegistering,
-    userID: state.login.user.user_id
+    userID: state.login.user.user_id,
+    accountType: state.login.user.account_type
   };
 };
 export default connect(

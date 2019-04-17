@@ -1,0 +1,15 @@
+.myAccountContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.editUserForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.userPhoto {
+    display: flex;
+    flex-direction: column;
+    
+}

@@ -43,7 +43,8 @@ function HeaderComponent(props) {
                 SchoolMe
               </Typography>
               <div className='headerBtns'>
-                <AccountCircle href='/myaccount' style={{ backgroundSize: "auto 100%", backgroundPosition: "center", width: "40px", height: "40px", backgroundImage: `url(${photo})`}} />
+                {window.location.href.includes('myaccount') && <Button color="inherit" href={`${props.accountType}dashboard`} variant='outlined'> Dashboard </Button>}
+                {!window.location.href.includes('myaccount') && <AccountCircle href='/myaccount' style={{ backgroundSize: "auto 100%", backgroundPosition: "center", width: "40px", height: "40px", backgroundImage: `url(${photo})`}} />}
                 <Button color="inherit" onClick={props.handleLogout} variant='outlined'>
                   Logout
                 </Button>
