@@ -64,8 +64,9 @@ class LandingPage extends React.Component {
               <h1>School</h1>
               <h1>made</h1>
               <h1 className="last">simple.</h1>
-              <p>Student management tools for Administrators.</p>
-              <p>Integrated notes for Social Workers.</p>
+              <br />
+              <p className="last">Student management tools for Administrators.</p>
+              <p className="last">Integrated notes for Social Workers.</p>
               <p className="last">Live sponsorship data for Board Members.</p>
               <p className="last">To raise a child, it takes a village.</p>
               <Button
