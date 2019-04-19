@@ -6,6 +6,8 @@
 .visits-container .visits-list {
     width: 30%;
     height: 93vh;
+    max-height: 93vh;
+    overflow: scroll;
     background: white;
     border-right: solid gray 2px;
 }
@@ -17,12 +19,16 @@
 .visits-container .visits-list .add-visit-btn {
     margin-top: 10px;
     position: relative;
-    width: 100px;
+    width: 105px;
     right: 10px;
 }
 
 .visits-container .visits-list .visit {
     width: 100%;
+}
+
+.visits-container .visits-list .selected {
+    background: rgb(49, 91, 105);
 }
 
 .visits-container .visits-list .visit .cell {
@@ -39,6 +45,13 @@
     background: white;
     display: flex;
     flex-direction: column;
+    padding: 0 7%;
+
+}
+
+.visits-container .visit-display .white {
+    background: white;
+    border: none;
 }
 
 .visits-container .visit-display .visit-header .date{
@@ -62,6 +75,14 @@
     padding-top: 2%;
 }
 
+.visits-container .visit-display .visit-header .school-selector {
+    position: relative;
+    bottom: 21px;
+    width: 250px;
+    text-align: left;
+    left: 5%;
+}
+
 .visits-container .visit-display .visit-header {
     height: 10vh;
     display: flex;
@@ -74,6 +95,7 @@
     overflow-y: scroll;
     max-width: 100%;
     overflow-x: hidden;
+    padding: 5px;
 }
 
 .visits-container .visit-display .visit-footer {

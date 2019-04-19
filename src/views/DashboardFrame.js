@@ -53,8 +53,8 @@ function DashContainer(props) {
         <Grid item xs={12} md={3}>
           <Paper className={classes.sidenav}>
             <List component="nav">
-              {props.links.map(link => (
-                <ListItemLink href={link.url} onClick={link.onClick} key={link.text}>
+              {props.links.map(link =>  (
+                <ListItemLink href={link.url} onClick={link.onClick} key={link.title}>
                   <ListItemText primary={link.title} />
                   {/* <Divider variant="middle" /> */}
                 </ListItemLink>

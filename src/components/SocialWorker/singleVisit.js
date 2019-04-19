@@ -10,29 +10,31 @@ import DeleteVisitButton from './deleteVisitButton'
 
 const SingleVisit = props => {
     return (
-        <Card>
-            <CardContent>
-                <div className="visit-header single-visit-header">
-                    <Typography className="date" color="textSecondary" gutterBottom>
-                        Visit Date: {props.visit.visit_date}
-                    </Typography>
-                    <Typography className="school" color="textSecondary" gutterBottom>
-                        School: {props.visit.school_name}
-                    </Typography>
-                </div>
-                <div className="visit-body">
-                    <Typography className="text" color="textSecondary" gutterBottom>
-                        {props.visit.notes}
-                    </Typography>
-                </div>
-                <div className="visit-footer">
-                    <Button variant="outlined" className="edit-btn" onClick={props.openEdit}>
-                        Edit
-                    </Button>
-                    <DeleteVisitButton visit={props.visit} />
-                </div>
-            </CardContent>
-        </Card>
+        <div className="visit white">
+            <Card className="white">
+                <CardContent>
+                    <div className="visit-header single-visit-header">
+                        <Typography className="date" gutterBottom>
+                            Visit Date: {props.visit.visit_date}
+                        </Typography>
+                        <Typography className="school" gutterBottom>
+                            School: {props.visit.school_name}
+                        </Typography>
+                    </div>
+                    <div className="visit-body">
+                        <Typography className="text" gutterBottom>
+                            {props.visit.notes}
+                        </Typography>
+                    </div>
+                    <div className="visit-footer">
+                        <Button variant="outlined" className="edit-btn" onClick={props.openEdit}>
+                            Edit
+                        </Button>
+                        <DeleteVisitButton reload={props.reload} visit={props.visit} />
+                    </div>
+                </CardContent>
+            </Card>
+        </div>
     );
 }
 

@@ -8,7 +8,6 @@ import PromoCard from "../components/LandingPage/PromoCard";
 import RoleCard from "../components/LandingPage/RoleCard";
 import Button from '@material-ui/core/Button';
 
-
 import SocialIcon from '../imgs/social-worker-icon.png';
 import AdminIcon from '../imgs/school-admin-icon.png';
 import BoardIcon from '../imgs/board-member-icon.png';
@@ -65,8 +64,9 @@ class LandingPage extends React.Component {
               <h1>School</h1>
               <h1>made</h1>
               <h1 className="last">simple.</h1>
-              <p>Student management tools for Administrators.</p>
-              <p>Itegrated notes for Social Workers.</p>
+              <br />
+              <p className="last">Student management tools for Administrators.</p>
+              <p className="last">Integrated notes for Social Workers.</p>
               <p className="last">Live sponsorship data for Board Members.</p>
               <p className="last">To raise a child, it takes a village.</p>
               <Button
@@ -74,7 +74,6 @@ class LandingPage extends React.Component {
                 size="large"
                 color="primary"
                 href={`${baseURL}/login`}
-
               >
                 Get Started
               </Button>
@@ -114,12 +113,12 @@ class LandingPage extends React.Component {
               userRole="Board Member"  
               description="Board Members can see the information of the students at the schools using SchoolMe and choose to sponsor a student to help pay of some or all of their unpaid school dues for things like school lunches, medication, and clothing costs"
             />
-        </div>
           </div>
+        </div>
         <div className="landing-content cta">
           <h3>Ready to get started?</h3>
           <p>
-            School me works on a
+            School Me works on a
             subscription plan for
             $60/month
           </p>

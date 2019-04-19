@@ -39,13 +39,14 @@ class UpdateVisit extends React.Component {
           console.log(err.message)
       })
 
+      this.props.update(this.state.visit_date, this.state.notes)
       this.props.cancelEdit()
   }
 
   render() {
     return(
       <div>
-        <Card>
+        <Card className="white">
             <CardContent>
                 <div className="visit-header">
                     <TextField

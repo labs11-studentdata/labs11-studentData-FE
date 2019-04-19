@@ -12,6 +12,8 @@ import Divider from '@material-ui/core/Divider';
 import axios from "axios";
 import AdminDonationList from './AdminDonationList';
 import "./AdminDashboard.css";
+import { SponsorChildComponent } from "../../components";
+import SponsorChildView from "../SponsorChildView";
 // import { Stats } from "fs";
 
 // Setting up route links object for left side navigation 
@@ -56,6 +58,15 @@ class AdministratorDash extends Component {
             selected: 2
           })
         }
+      },
+      {
+        title: "Sponsor Students",
+        onClick: () => {
+          this.setState({
+            ...this.state,
+            selected: 3
+          })
+        }
       }
     ]
   }
@@ -78,10 +89,8 @@ class AdministratorDash extends Component {
         ...this.state,
         school: res.data
       })  
-        console.log('first')  
       })
       .then(() => {
-        console.log('second')
         this.props.getAdminStudents(user_id);
         this.props.getSchoolVisits(school_id);
       })
@@ -144,6 +153,9 @@ class AdministratorDash extends Component {
     if(this.state.selected === 2) {
       return <h1>School Donations</h1>
     }
+    if(this.state.selected === 3) {
+      return <h1>Sponser Students From All Schools</h1>
+    }
   };
 
   Body = () => {
@@ -162,6 +174,9 @@ class AdministratorDash extends Component {
     if(this.state.selected === 2) {
       return <AdminDonationList donations={this.state.schoolDonations} />
     }
+    if(this.state.selected === 3) {
+      return <SponsorChildView />
+    }
   };
 
   Footer = () => {
@@ -169,8 +184,6 @@ class AdministratorDash extends Component {
   };
 
   render() {
-    console.log('heyy')
-
     return (
       <>
         <DashboardFrame links={this.state.links} header={this.Header} body={this.Body} />
@@ -180,8 +193,7 @@ class AdministratorDash extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log('hey')
-  console.log(state.admin.students)
+
   const arr = []
   return {
     user_id: state.login.user.user_id,
