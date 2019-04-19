@@ -71,7 +71,7 @@ export const getVisits = () => dispatch => {
 export const getVisitsByUserId = id => dispatch => {
   dispatch({type: FETCHING_VISITS});
 
-  axios.get(`${baseURL}/api/social_worker_visits/${id}`)
+  axios.get(`${baseURL}/api/social_worker_visits/user/${id}`)
     .then(res => dispatch({type: FETCHED_VISITS, payload: res.data}))
     .catch(err => dispatch({type: FAIL, payload: err}))
 }
